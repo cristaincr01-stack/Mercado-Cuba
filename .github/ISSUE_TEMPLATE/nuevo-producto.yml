@@ -1,0 +1,66 @@
+name: 📦 Publicar un producto
+description: Envía tu producto para que lo publiquemos en Mercado Cuba
+title: "[Producto] "
+labels: ["nuevo-producto"]
+body:
+  - type: input
+    id: nombre-producto
+    attributes:
+      label: Nombre del producto
+      placeholder: "Ej. Ventilador de pie 3 velocidades"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: categoria
+    attributes:
+      label: Categoría
+      options:
+        - Electrónica
+        - Ropa y calzado
+        - Hogar
+        - Alimentos
+        - Belleza
+        - Vehículos
+    validations:
+      required: true
+
+  - type: dropdown
+    id: provincia
+    attributes:
+      label: Provincia
+      options:
+        - La Habana
+        - Santiago de Cuba
+        - Villa Clara
+        - Camagüey
+        - Holguín
+        - Matanzas
+        - Pinar del Río
+        - Cienfuegos
+    validations:
+      required: true
+
+  - type: input
+    id: precio
+    attributes:
+      label: Precio (en USD)
+      placeholder: "Ej. 25"
+    validations:
+      required: true
+
+  - type: input
+    id: nombre-vendedor
+    attributes:
+      label: Tu nombre (como quieres que aparezca)
+      placeholder: "Ej. Yosvany R."
+    validations:
+      required: true
+
+  - type: input
+    id: telefono
+    attributes:
+      label: Tu número de WhatsApp
+      placeholder: "Ej. +53 5xxx xxxx"
+    validations:
+      required: true

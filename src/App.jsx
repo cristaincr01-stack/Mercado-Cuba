@@ -63,9 +63,12 @@ export default function MercadoCuba() {
                 Mercado<span className="text-[#E8A33D]">CU</span>
               </span>
             </div>
-            <button className="bg-[#C4472B] hover:bg-[#a83a23] transition-colors text-white text-sm font-semibold px-4 py-2 rounded-sm">
+            <a
+              href="https://github.com/cristaincr01-stack/Mercado-Cuba/issues/new?template=nuevo-producto.yml"
+              className="bg-[#C4472B] hover:bg-[#a83a23] transition-colors text-white text-sm font-semibold px-4 py-2 rounded-sm"
+            >
               Publicar mi producto
-            </button>
+            </a>
           </div>
           <h1
             className="mt-8 text-4xl sm:text-5xl font-black leading-[0.95] max-w-2xl uppercase"
@@ -175,9 +178,12 @@ export default function MercadoCuba() {
               Pagas una cuota mensual fija por tener tu vidriera activa en tu provincia. Sin comisión por venta.
             </p>
           </div>
-          <button className="bg-[#E8A33D] text-[#232620] font-bold px-5 py-2.5 rounded-sm hover:bg-[#d99429] transition-colors whitespace-nowrap">
+          <a
+            href="https://github.com/cristaincr01-stack/Mercado-Cuba/issues/new?template=nuevo-producto.yml"
+            className="bg-[#E8A33D] text-[#232620] font-bold px-5 py-2.5 rounded-sm hover:bg-[#d99429] transition-colors whitespace-nowrap"
+          >
             Quiero publicar
-          </button>
+          </a>
         </div>
       </section>
 

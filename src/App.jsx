@@ -64,7 +64,7 @@ export default function MercadoCuba() {
               </span>
             </div>
             <a
-              href="https://github.com/cristaincr01-stack/Mercado-Cuba/issues/new?template=nuevo-producto.yml"
+              href="https://docs.google.com/forms/d/e/1FAIpQLScqVcoGremgczIq0KvzoPyciqFDpKpfu79I2IxV6gA3GU7FlA/viewform"
               className="bg-[#C4472B] hover:bg-[#a83a23] transition-colors text-white text-sm font-semibold px-4 py-2 rounded-sm"
             >
               Publicar mi producto
@@ -179,7 +179,7 @@ export default function MercadoCuba() {
             </p>
           </div>
           <a
-            href="https://github.com/cristaincr01-stack/Mercado-Cuba/issues/new?template=nuevo-producto.yml"
+            href="https://docs.google.com/forms/d/e/1FAIpQLScqVcoGremgczIq0KvzoPyciqFDpKpfu79I2IxV6gA3GU7FlA/viewform"
             className="bg-[#E8A33D] text-[#232620] font-bold px-5 py-2.5 rounded-sm hover:bg-[#d99429] transition-colors whitespace-nowrap"
           >
             Quiero publicar
@@ -209,4 +209,4 @@ export default function MercadoCuba() {
       )}
     </div>
   );
-}
+    }

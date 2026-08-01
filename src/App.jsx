@@ -297,7 +297,7 @@ function Tienda() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {productosFiltrados.map(p => (
-              <div key={p.id} className="bg-white rounded-sm border border-[#e5dfd0] p-4 flex flex-col gap-3 hover:shadow-md transition-shadow">
+              <div key={p.id} className="bg-white rounded-lg border border-[#e5dfd0] p-5 flex flex-col gap-4 hover:shadow-lg transition-shadow">
                 <div className="flex items-start justify-between gap-2">
                   <span className="text-[10px] uppercase font-bold tracking-wide text-[#1B6B63] bg-[#e6efec] px-2 py-0.5 rounded-sm">
                     {p.categoria}
@@ -306,17 +306,19 @@ function Tienda() {
                     <MapPin className="w-3 h-3" /> {p.provincia}
                   </span>
                 </div>
-                <h3 className="font-semibold text-[15px] leading-snug">{p.nombre}</h3>
+                <h3 className="font-bold text-base text-[#232620] leading-snug">
+  {p.nombre}
+</h3>
                 <div className="flex items-center justify-between mt-1">
                   <EtiquetaPrecio precio={p.precio} moneda={p.moneda} />
                   <span className="text-[11px] text-[#8a8370]">{p.vendedor}</span>
                 </div>
                 <button
-                  onClick={() => setSeleccionado(p)}
-                  className="mt-1 flex items-center justify-center gap-1.5 bg-[#C4472B] hover:bg-[#a83a23] transition-colors text-white text-sm font-semibold py-2 rounded-sm"
-                >
-                  Comprar <ChevronRight className="w-4 h-4" />
-                </button>
+  onClick={() => setSeleccionado(p)}
+  className="mt-2 flex items-center justify-center gap-2 bg-[#C4472B] hover:bg-[#a83a23] transition-colors text-white text-sm font-semibold py-2.5 rounded-md"
+>
+  Ver producto <ChevronRight className="w-4 h-4" />
+</button>
               </div>
             ))}
           </div>

@@ -172,6 +172,7 @@ function Tienda() {
   const [busqueda, setBusqueda] = useState("");
   const [seleccionado, setSeleccionado] = useState(null);
   const [productos, setProductos] = useState([]);
+  const [menuAbierto, setMenuAbierto] = useState(false);
 
   useEffect(() => {
     fetch(`${API_URL}?accion=aprobados`)
@@ -212,6 +213,44 @@ function Tienda() {
             >
               Publicar mi producto
             </a>
+            <div className="relative">
+  <button
+    onClick={() => setMenuAbierto(!menuAbierto)}
+    className="text-white text-2xl font-bold px-2"
+  >
+    ⋮
+  </button>
+
+  {menuAbierto && (
+    <div className="absolute right-0 mt-2 w-52 bg-white text-[#232620] rounded-md shadow-lg p-2 z-50">
+
+      <button className="w-full text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
+        👤 Crear cuenta
+      </button>
+
+      <button className="w-full text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
+        🔑 Iniciar sesión
+      </button>
+
+      <button className="w-full text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
+        ⚙️ Configuración
+      </button>
+
+      <button className="w-full text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
+        ❓ Ayuda
+      </button>
+
+      <button className="w-full text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
+        💬 Soporte
+      </button>
+
+      <button className="w-full text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
+        ℹ️ Acerca de MercadoCU
+      </button>
+
+    </div>
+  )}
+</div>
           </div>
           <h1
             className="mt-8 text-4xl sm:text-5xl font-black leading-[0.95] max-w-2xl uppercase"

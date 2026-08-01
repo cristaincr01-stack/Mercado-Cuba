@@ -261,9 +261,9 @@ function Tienda() {
   <br />
   todo en un solo lugar.
 </h1>
-          <p className="mt-3 text-[#DCE6E0] max-w-xl text-sm sm:text-base">
-            Compra y vende directo entre cubanos, por provincia y categoría. Sin intermediarios extranjeros, sin complicaciones.
-          </p>
+          <p className="mt-4 text-white/80 max-w-xl text-base leading-relaxed">
+  Compra y vende productos en tu provincia de forma rápida y sencilla. Encuentra lo que necesitas o publica lo que quieres vender.
+</p>
         </div>
       </header>
 

@@ -132,7 +132,7 @@ function PanelAdmin() {
           {pendientes.map((p) => (
             <div key={p._fila} className="bg-white rounded-sm border border-[#e5dfd0] p-4">
               <div className="flex items-start justify-between gap-2 mb-1">
-                <span className="text-[10px] uppercase font-bold tracking-wide text-[#1B6B63] bg-[#e6efec] px-2 py-0.5 rounded-sm">
+                <span className="text-xs font-semibold text-[#1B6B63] bg-[#e6efec] px-3 py-1 rounded-full">
                   {p["Categoría"]}
                 </span>
                 <span className="text-[11px] text-[#8a8370]">{p["Provincia"]}</span>
@@ -339,7 +339,7 @@ function Tienda() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {productosFiltrados.map(p => (
-              <div key={p.id} className="bg-white rounded-lg border border-[#e5dfd0] p-5 flex flex-col gap-4 hover:shadow-lg transition-shadow">
+              <div key={p.id} className="bg-white rounded-2xl shadow-sm border border-[#eee7d8] p-5 flex flex-col gap-4 hover:shadow-xl transition-shadow">
                 <div className="flex items-start justify-between gap-2">
                   <span className="text-[10px] uppercase font-bold tracking-wide text-[#1B6B63] bg-[#e6efec] px-2 py-0.5 rounded-sm">
                     {p.categoria}
@@ -348,7 +348,7 @@ function Tienda() {
                     <MapPin className="w-3 h-3" /> {p.provincia}
                   </span>
                 </div>
-                <h3 className="font-bold text-base text-[#232620] leading-snug">
+                <h3 className="font-semibold text-lg text-[#232620] leading-tight">
   {p.nombre}
 </h3>
                 <div className="flex items-center justify-between mt-1">

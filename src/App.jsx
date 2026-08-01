@@ -183,13 +183,13 @@ function Tienda() {
   }, []);
 
   const productosFiltrados = useMemo(() => {
-    return productos.filter(p => {
-      const okProvincia = provincia === "Todas" || p.provincia === provincia;
-      const okCategoria = categoria === "Todas" || p.categoria === categoria;
-      const okBusqueda = p.nombre.toLowerCase().includes(busqueda.toLowerCase());
-      return okProvincia && okCategoria && okBusqueda;
-    });
-  }, [productos, provincia, categoria, busqueda]);
+  return productos.filter(p => {
+    const okProvincia = provincia === "Todas" || p.provincia?.trim() === provincia.trim();
+    const okCategoria = categoria === "Todas" || p.categoria?.trim() === categoria.trim();
+
+    return okProvincia && okCategoria;
+  });
+}, [productos, provincia, categoria]);
 
   return (
     <div className="min-h-screen bg-[#EDE6D6] text-[#232620]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>

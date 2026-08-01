@@ -254,11 +254,13 @@ function Tienda() {
 </div>
           </div>
           <h1
-            className="mt-8 text-4xl sm:text-5xl font-black leading-[0.95] max-w-2xl uppercase"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            Lo que se vende en tu provincia,<br />todo en un solo cartel.
-          </h1>
+  className="mt-8 text-4xl sm:text-5xl font-black leading-tight max-w-2xl"
+  style={{ fontFamily: "'Inter', sans-serif" }}
+>
+  Lo que se vende en tu provincia,
+  <br />
+  todo en un solo lugar.
+</h1>
           <p className="mt-3 text-[#DCE6E0] max-w-xl text-sm sm:text-base">
             Compra y vende directo entre cubanos, por provincia y categoría. Sin intermediarios extranjeros, sin complicaciones.
           </p>

@@ -268,8 +268,8 @@ function Tienda() {
       </header>
 
       <div className="max-w-6xl mx-auto px-5 -mt-6">
-        <div className="bg-white rounded-sm shadow-md p-4 flex flex-col sm:flex-row gap-3">
-          <div className="flex items-center gap-2 flex-1 border border-[#ddd6c4] rounded-sm px-3 py-2">
+        <div className="bg-white rounded-2xl shadow-lg p-4 flex flex-col sm:flex-row gap-3">
+          <div className="flex items-center gap-2 flex-1 border border-[#ddd6c4] rounded-xl px-4 py-3">
             <Search className="w-4 h-4 text-[#8a8370]" />
             <input
               value={busqueda}
@@ -281,12 +281,12 @@ function Tienda() {
           <select
             value={categoria}
             onChange={e => setCategoria(e.target.value)}
-            className="border border-[#ddd6c4] rounded-sm px-3 py-2 text-sm bg-white"
+            className="border border-[#ddd6c4] rounded-xl px-4 py-3 text-sm bg-white"
           >
             {CATEGORIAS.map(c => <option key={c}>{c}</option>)}
           </select>
           <button
-  className="bg-[#1B6B63] text-white px-5 py-2 rounded-sm font-semibold"
+  className="bg-[#1B6B63] hover:bg-[#15554f] text-white px-6 py-3 rounded-xl font-semibold transition"
 >
   Buscar
 </button>
@@ -297,7 +297,7 @@ function Tienda() {
     setCategoria("Todas");
     setProvincia("Todas");
   }}
-  className="bg-[#C4472B] text-white px-5 py-2 rounded-sm font-semibold"
+  className="bg-[#C4472B] hover:bg-[#a83a23] text-white px-6 py-3 rounded-xl font-semibold transition"
 >
   Limpiar
 </button>

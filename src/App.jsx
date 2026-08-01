@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from "react";
-import { MapPin, Search, X, MessageCircle, Store, ChevronRight, Tag } from "lucide-react";
+import React, { useState, useMemo, useEffect } from "react";
+import { MapPin, Search, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock } from "lucide-react";
 
 const PROVINCIAS = [
   "Todas", "La Habana", "Santiago de Cuba", "Villa Clara",
@@ -10,16 +10,54 @@ const CATEGORIAS = [
   "Todas", "Electrónica", "Ropa y calzado", "Hogar", "Alimentos", "Belleza", "Vehículos"
 ];
 
-const PRODUCTOS = [
-  { id: 1, nombre: "Ventilador de pie 3 velocidades", categoria: "Hogar", provincia: "La Habana", precio: 45, moneda: "USD", vendedor: "Yosvany R.", tel: "+53 5xxx xxxx" },
-  { id: 2, nombre: "Tenis deportivos talla 42", categoria: "Ropa y calzado", provincia: "Santiago de Cuba", precio: 28, moneda: "USD", vendedor: "Marlén P.", tel: "+53 5xxx xxxx" },
-  { id: 3, nombre: "Cargador solar portátil", categoria: "Electrónica", provincia: "Villa Clara", precio: 22, moneda: "USD", vendedor: "Osmani F.", tel: "+53 5xxx xxxx" },
-  { id: 4, nombre: "Combo de aseo personal", categoria: "Belleza", provincia: "Camagüey", precio: 15, moneda: "USD", vendedor: "Dayana M.", tel: "+53 5xxx xxxx" },
-  { id: 5, nombre: "Paquete de pollo 5 lb", categoria: "Alimentos", provincia: "Holguín", precio: 12, moneda: "USD", vendedor: "Reinier C.", tel: "+53 5xxx xxxx" },
-  { id: 6, nombre: "Bocina Bluetooth recargable", categoria: "Electrónica", provincia: "La Habana", precio: 33, moneda: "USD", vendedor: "Anabel S.", tel: "+53 5xxx xxxx" },
-  { id: 7, nombre: "Pieza de motor eléctrico bici", categoria: "Vehículos", provincia: "Matanzas", precio: 60, moneda: "USD", vendedor: "Leandro G.", tel: "+53 5xxx xxxx" },
-  { id: 8, nombre: "Juego de sábanas queen", categoria: "Hogar", provincia: "Pinar del Río", precio: 18, moneda: "USD", vendedor: "Odalys T.", tel: "+53 5xxx xxxx" },
-];
+const SHEET_CSV_URL =
+  "https://docs.google.com/spreadsheets/d/1AA7DL6khw3LLNU5ALB8HxG1lnZ_gjtcOQli6SdShSTs/export?format=csv&gid=0";
+
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbyWs2l2XjGA2J2ewcyu-vnV4Pfayw_MHPIiMUb2Cl-GLWLVtj_PCtyegj-taEnYIg1e/exec";
+
+function parseCSV(text) {
+  const lines = text.trim().split("\n");
+  const parseLine = (line) => {
+    const result = [];
+    let current = "";
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      if (char === '"') {
+        inQuotes = !inQuotes;
+      } else if (char === "," && !inQuotes) {
+        result.push(current.trim());
+        current = "";
+      } else {
+        current += char;
+      }
+    }
+    result.push(current.trim());
+    return result;
+  };
+
+  const headers = parseLine(lines[0]);
+  return lines.slice(1).map((line) => {
+    const values = parseLine(line);
+    const obj = {};
+    headers.forEach((h, i) => (obj[h] = values[i] || ""));
+    return obj;
+  });
+}
+
+function mapearProducto(fila, index) {
+  return {
+    id: index,
+    nombre: fila["Nombre del producto"] || "",
+    categoria: fila["Categoría"] || "",
+    provincia: fila["Provincia"] || "",
+    precio: fila["Precio"] || "",
+    moneda: fila["Moneda"] || "",
+    vendedor: fila["Tu nombre (como quieres que aparezca en el anuncio)"] || "",
+    tel: fila["Tu número de WhatsApp"] || "",
+  };
+}
 
 function EtiquetaPrecio({ precio, moneda }) {
   return (
@@ -32,25 +70,164 @@ function EtiquetaPrecio({ precio, moneda }) {
   );
 }
 
-export default function MercadoCuba() {
+function PanelAdmin() {
+  const [clave, setClave] = useState("");
+  const [claveIngresada, setClaveIngresada] = useState("");
+  const [autenticado, setAutenticado] = useState(false);
+  const [productos, setProductos] = useState([]);
+  const [cargando, setCargando] = useState(false);
+  const [procesando, setProcesando] = useState(null);
+
+  const cargarProductos = (claveActual) => {
+    setCargando(true);
+    fetch(`${API_URL}?accion=listar&clave=${encodeURIComponent(claveActual)}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          alert("Clave incorrecta");
+          setAutenticado(false);
+        } else {
+          setProductos(data);
+          setAutenticado(true);
+        }
+        setCargando(false);
+      })
+      .catch(() => {
+        alert("No se pudo conectar. Revisa tu conexión.");
+        setCargando(false);
+      });
+  };
+
+  const entrar = () => {
+    setClaveIngresada(clave);
+    cargarProductos(clave);
+  };
+
+  const decidir = (fila, valor) => {
+    setProcesando(fila);
+    fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify({ clave: claveIngresada, fila, valor }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setProductos((prev) => prev.filter((p) => p._fila !== fila));
+        setProcesando(null);
+      })
+      .catch(() => {
+        alert("No se pudo guardar. Intenta de nuevo.");
+        setProcesando(null);
+      });
+  };
+
+  if (!autenticado) {
+    return (
+      <div className="min-h-screen bg-[#EDE6D6] flex items-center justify-center p-5">
+        <div className="bg-white rounded-sm shadow-md p-6 w-full max-w-sm text-center">
+          <Lock className="w-8 h-8 mx-auto text-[#1B6B63] mb-3" />
+          <h2 className="font-bold text-lg mb-3">Panel del propietario</h2>
+          <input
+            type="password"
+            value={clave}
+            onChange={(e) => setClave(e.target.value)}
+            placeholder="Escribe tu clave"
+            className="w-full border border-[#ddd6c4] rounded-sm px-3 py-2 text-sm mb-3"
+          />
+          <button
+            onClick={entrar}
+            disabled={cargando}
+            className="w-full bg-[#1B6B63] text-white font-semibold py-2 rounded-sm hover:bg-[#155650] transition-colors"
+          >
+            {cargando ? "Entrando..." : "Entrar"}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const pendientes = productos.filter((p) => !p["Aprobado"]);
+
+  return (
+    <div className="min-h-screen bg-[#EDE6D6] p-5">
+      <h1 className="text-2xl font-black mb-1" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+        PRODUCTOS PENDIENTES
+      </h1>
+      <p className="text-sm text-[#5c5848] mb-5">{pendientes.length} esperando tu aprobación</p>
+
+      {pendientes.length === 0 ? (
+        <div className="bg-white rounded-sm p-8 text-center text-[#8a8370] text-sm">
+          No hay productos pendientes por ahora.
+        </div>
+      ) : (
+        <div className="flex flex-col gap-3 max-w-xl">
+          {pendientes.map((p) => (
+            <div key={p._fila} className="bg-white rounded-sm border border-[#e5dfd0] p-4">
+              <div className="flex items-start justify-between gap-2 mb-1">
+                <span className="text-[10px] uppercase font-bold tracking-wide text-[#1B6B63] bg-[#e6efec] px-2 py-0.5 rounded-sm">
+                  {p["Categoría"]}
+                </span>
+                <span className="text-[11px] text-[#8a8370]">{p["Provincia"]}</span>
+              </div>
+              <h3 className="font-semibold text-[15px]">{p["Nombre del producto"]}</h3>
+              <p className="text-sm text-[#5c5848] mt-1">
+                {p["Precio"]} {p["Moneda"]} · Vendedor: {p["Tu nombre (como quieres que aparezca en el anuncio)"]}
+              </p>
+              <p className="text-xs text-[#8a8370] mt-1">WhatsApp: {p["Tu número de WhatsApp"]}</p>
+              <div className="flex gap-2 mt-3">
+                <button
+                  onClick={() => decidir(p._fila, "SI")}
+                  disabled={procesando === p._fila}
+                  className="flex-1 flex items-center justify-center gap-1.5 bg-[#1B6B63] hover:bg-[#155650] text-white text-sm font-semibold py-2 rounded-sm transition-colors"
+                >
+                  <Check className="w-4 h-4" /> Aprobar
+                </button>
+                <button
+                  onClick={() => decidir(p._fila, "NO")}
+                  disabled={procesando === p._fila}
+                  className="flex-1 flex items-center justify-center gap-1.5 bg-[#C4472B] hover:bg-[#a83a23] text-white text-sm font-semibold py-2 rounded-sm transition-colors"
+                >
+                  <X className="w-4 h-4" /> Rechazar
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Tienda() {
   const [provincia, setProvincia] = useState("Todas");
   const [categoria, setCategoria] = useState("Todas");
   const [busqueda, setBusqueda] = useState("");
   const [seleccionado, setSeleccionado] = useState(null);
+  const [productos, setProductos] = useState([]);
+
+  useEffect(() => {
+    fetch(SHEET_CSV_URL)
+      .then((res) => res.text())
+      .then((text) => {
+        const filas = parseCSV(text);
+        const aprobados = filas.filter((fila) => {
+          const valor = (fila["Aprobado"] || "").toLowerCase().trim();
+          return valor === "si" || valor === "sí";
+        });
+        setProductos(aprobados.map(mapearProducto));
+      });
+  }, []);
 
   const productosFiltrados = useMemo(() => {
-    return PRODUCTOS.filter(p => {
+    return productos.filter(p => {
       const okProvincia = provincia === "Todas" || p.provincia === provincia;
       const okCategoria = categoria === "Todas" || p.categoria === categoria;
       const okBusqueda = p.nombre.toLowerCase().includes(busqueda.toLowerCase());
       return okProvincia && okCategoria && okBusqueda;
     });
-  }, [provincia, categoria, busqueda]);
+  }, [productos, provincia, categoria, busqueda]);
 
   return (
     <div className="min-h-screen bg-[#EDE6D6] text-[#232620]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-
-      {/* Header / Cartelera */}
       <header className="bg-[#1B6B63] text-[#F5F1E6] border-b-4 border-[#C4472B]">
         <div className="max-w-6xl mx-auto px-5 py-6">
           <div className="flex items-center justify-between gap-4 flex-wrap">
@@ -82,7 +259,6 @@ export default function MercadoCuba() {
         </div>
       </header>
 
-      {/* Buscador + filtros */}
       <div className="max-w-6xl mx-auto px-5 -mt-6">
         <div className="bg-white rounded-sm shadow-md p-4 flex flex-col sm:flex-row gap-3">
           <div className="flex items-center gap-2 flex-1 border border-[#ddd6c4] rounded-sm px-3 py-2">
@@ -104,7 +280,6 @@ export default function MercadoCuba() {
         </div>
       </div>
 
-      {/* Provincias */}
       <div className="max-w-6xl mx-auto px-5 mt-6">
         <div className="flex items-center gap-2 mb-2 text-xs uppercase tracking-wide text-[#5c5848] font-semibold">
           <MapPin className="w-3.5 h-3.5" /> Provincia
@@ -126,7 +301,6 @@ export default function MercadoCuba() {
         </div>
       </div>
 
-      {/* Listado de productos */}
       <main className="max-w-6xl mx-auto px-5 mt-6 pb-16">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-sm font-semibold text-[#5c5848] uppercase tracking-wide">
@@ -167,7 +341,6 @@ export default function MercadoCuba() {
         )}
       </main>
 
-      {/* Franja para vendedores */}
       <section className="bg-[#232620] text-[#F5F1E6] py-10">
         <div className="max-w-6xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
@@ -187,7 +360,6 @@ export default function MercadoCuba() {
         </div>
       </section>
 
-      {/* Modal de compra */}
       {seleccionado && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-sm max-w-sm w-full p-5 relative">
@@ -209,4 +381,9 @@ export default function MercadoCuba() {
       )}
     </div>
   );
+}
+
+export default function App() {
+  const esAdmin = window.location.hash === "#admin";
+  return esAdmin ? <PanelAdmin /> : <Tienda />;
     }

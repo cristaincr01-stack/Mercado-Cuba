@@ -195,7 +195,7 @@ function Tienda() {
 
   return (
     <div className="min-h-screen bg-[#EDE6D6] text-[#232620]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-      <header className="bg-[#1B6B63] text-[#F5F1E6] border-b-4 border-[#C4472B]">
+      <header className="relative bg-[#1B6B63] text-[#F5F1E6] border-b-4 border-[#C4472B]">
         <div className="max-w-6xl mx-auto px-5 py-6">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-2">
@@ -213,16 +213,17 @@ function Tienda() {
             >
               Publicar mi producto
             </a>
-            <div className="relative">
+
+            <div className="absolute top-5 right-5">
   <button
     onClick={() => setMenuAbierto(!menuAbierto)}
-    className="text-white text-2xl font-bold px-2"
+    className="text-white text-3xl font-bold leading-none"
   >
     ⋮
   </button>
 
   {menuAbierto && (
-    <div className="absolute right-0 mt-2 w-52 bg-white text-[#232620] rounded-md shadow-lg p-2 z-50">
+    <div className="absolute right-0 mt-3 w-52 bg-white text-[#232620] rounded-md shadow-lg p-2 z-50">
 
       <button className="w-full text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
         👤 Crear cuenta

@@ -363,10 +363,12 @@ function Tienda() {
             </p>
             <button
   onClick={() => {
+    const numero = `53${seleccionado["Tu número de WhatsApp"]}`;
+
     const mensaje = `Hola, estoy interesado en el producto "${seleccionado.nombre}". ¿Sigue disponible?`;
 
     window.open(
-      `https://wa.me/${seleccionado["Tu número de WhatsApp"]}?text=${encodeURIComponent(mensaje)}`,
+      `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
       "_blank"
     );
   }}

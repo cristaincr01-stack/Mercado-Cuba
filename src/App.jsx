@@ -363,7 +363,7 @@ function Tienda() {
             </p>
             <button
   onClick={() => {
-    const numero = `53${seleccionado["Tu número de WhatsApp"]}`;
+    const numero = `53${String(seleccionado["Tu número de WhatsApp"]).replace(/\s+/g, "")}`;
 
     const mensaje = `Hola, estoy interesado en el producto "${seleccionado.nombre}". ¿Sigue disponible?`;
 

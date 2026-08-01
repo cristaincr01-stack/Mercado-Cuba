@@ -356,8 +356,20 @@ function Tienda() {
             <h3 className="font-bold text-xl mt-2 text-[#232620]">
   {seleccionado.nombre}
 </h3>
-            <p className="text-sm text-[#8a8370] mt-1">Vendedor: {seleccionado.vendedor} · {seleccionado.provincia}</p>
-            <div className="mt-3"><EtiquetaPrecio precio={seleccionado.precio} moneda={seleccionado.moneda} /></div>
+            <p className="text-sm text-[#8a8370] mt-1">
+  Vendedor: {seleccionado.vendedor} · {seleccionado.provincia}
+</p>
+
+<p className="text-xs text-red-500 mt-2 break-all">
+  {JSON.stringify(seleccionado)}
+</p>
+
+<div className="mt-3">
+  <EtiquetaPrecio
+    precio={seleccionado.precio}
+    moneda={seleccionado.moneda}
+  />
+</div>
             <p className="text-sm text-[#5c5848] mt-4 leading-relaxed">
               El pago y la entrega se coordinan directo con el vendedor. Al tocar el botón, se abriría un chat de WhatsApp con el pedido ya escrito.
             </p>

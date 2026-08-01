@@ -174,6 +174,7 @@ function Tienda() {
   const [productos, setProductos] = useState([]);
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [filtrosAbiertos, setFiltrosAbiertos] = useState(false);
+  const [orden, setOrden] = useState("recientes");
 
   useEffect(() => {
     fetch(`${API_URL}?accion=aprobados`)
@@ -185,7 +186,7 @@ function Tienda() {
   }, []);
 
   const productosFiltrados = useMemo(() => {
-  return productos.filter(p => {
+  let resultado = productos.filter(p => {
     const okProvincia =
       provincia === "Todas" ||
       p.provincia?.trim().toLowerCase() === provincia.trim().toLowerCase();
@@ -200,7 +201,17 @@ function Tienda() {
 
     return okProvincia && okCategoria && okBusqueda;
   });
-}, [productos, provincia, categoria, busqueda]);
+
+  if (orden === "precioMenor") {
+    resultado.sort((a, b) => a.precio - b.precio);
+  }
+
+  if (orden === "precioMayor") {
+    resultado.sort((a, b) => b.precio - a.precio);
+  }
+
+  return resultado;
+}, [productos, provincia, categoria, busqueda, orden]);
 
   return (
     <div className="min-h-screen bg-[#EDE6D6] text-[#232620]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
@@ -318,7 +329,19 @@ function Tienda() {
     <h3 className="text-sm font-semibold mb-3">
       Filtros
     </h3>
+<label className="text-sm font-medium text-[#5c5848]">
+  Ordenar por
+</label>
 
+<select
+  value={orden}
+  onChange={e => setOrden(e.target.value)}
+  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 text-sm bg-white mt-2"
+>
+  <option value="recientes">Más recientes</option>
+  <option value="precioMenor">Precio menor a mayor</option>
+  <option value="precioMayor">Precio mayor a menor</option>
+</select>
     <select
       value={provincia}
       onChange={e => setProvincia(e.target.value)}

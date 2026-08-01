@@ -10,41 +10,8 @@ const CATEGORIAS = [
   "Todas", "Electrónica", "Ropa y calzado", "Hogar", "Alimentos", "Belleza", "Vehículos"
 ];
 
-const SHEET_CSV_URL =
-  "https://docs.google.com/spreadsheets/d/1AA7DL6khw3LLNU5ALB8HxG1lnZ_gjtcOQli6SdShSTs/export?format=csv&gid=0";
-
 const API_URL =
   "https://script.google.com/macros/s/AKfycbyWs2l2XjGA2J2ewcyu-vnV4Pfayw_MHPIiMUb2Cl-GLWLVtj_PCtyegj-taEnYIg1e/exec";
-
-function parseCSV(text) {
-  const lines = text.trim().split("\n");
-  const parseLine = (line) => {
-    const result = [];
-    let current = "";
-    let inQuotes = false;
-    for (let i = 0; i < line.length; i++) {
-      const char = line[i];
-      if (char === '"') {
-        inQuotes = !inQuotes;
-      } else if (char === "," && !inQuotes) {
-        result.push(current.trim());
-        current = "";
-      } else {
-        current += char;
-      }
-    }
-    result.push(current.trim());
-    return result;
-  };
-
-  const headers = parseLine(lines[0]);
-  return lines.slice(1).map((line) => {
-    const values = parseLine(line);
-    const obj = {};
-    headers.forEach((h, i) => (obj[h] = values[i] || ""));
-    return obj;
-  });
-}
 
 function mapearProducto(fila, index) {
   return {
@@ -207,16 +174,12 @@ function Tienda() {
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
-    fetch(SHEET_CSV_URL)
-      .then((res) => res.text())
-      .then((text) => {
-        const filas = parseCSV(text);
-        const aprobados = filas.filter((fila) => {
-          const valor = (fila["Aprobado"] || "").toLowerCase().trim();
-          return valor === "si" || valor === "sí";
-        });
-        setProductos(aprobados.map(mapearProducto));
-      });
+    fetch(`${API_URL}?accion=aprobados`)
+      .then((res) => res.json())
+      .then((data) => {
+        setProductos(data.map(mapearProducto));
+      })
+      .catch(() => {});
   }, []);
 
   const productosFiltrados = useMemo(() => {
@@ -388,4 +351,4 @@ function Tienda() {
 export default function App() {
   const esAdmin = window.location.hash === "#admin";
   return esAdmin ? <PanelAdmin /> : <Tienda />;
-          }
+                    }

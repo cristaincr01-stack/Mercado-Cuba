@@ -360,10 +360,6 @@ function Tienda() {
   Vendedor: {seleccionado.vendedor} · {seleccionado.provincia}
 </p>
 
-<p className="text-xs text-red-500 mt-2 break-all">
-  {JSON.stringify(seleccionado)}
-</p>
-
 <div className="mt-3">
   <EtiquetaPrecio
     precio={seleccionado.precio}

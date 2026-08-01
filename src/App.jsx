@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { MapPin, Search, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock } from "lucide-react";
+import { MapPin, Search, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal } from "lucide-react";
 
 const PROVINCIAS = [
   "Todas", "Pinar del Río" , "Artemisa" , "La Habana", "Mayabeque" , "Matanzas" , "Cienfuegos" , "Villa Clara" , "Sansti Spiritu" , "Ciego de Ávila",
@@ -294,9 +294,11 @@ function Tienda() {
             {CATEGORIAS.map(c => <option key={c}>{c}</option>)}
           </select>
           <button
-  className="bg-[#1B6B63] hover:bg-[#15554f] text-white px-6 py-3 rounded-xl font-semibold transition"
+  onClick={() => setFiltrosAbiertos(!filtrosAbiertos)}
+  className="bg-[#1B6B63] hover:bg-[#15554f] text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2"
 >
-  Buscar
+  <SlidersHorizontal className="w-4 h-4" />
+  Filtros
 </button>
 
 <button

@@ -200,7 +200,11 @@ function Tienda() {
       busqueda.trim() === "" ||
       p.nombre?.toLowerCase().includes(busqueda.toLowerCase());
 
-    return okProvincia && okCategoria && okBusqueda;
+    const okMoneda =
+      moneda === "Todas" ||
+      p.moneda?.trim().toUpperCase() === moneda;
+
+    return okProvincia && okCategoria && okBusqueda && okMoneda;
   });
 
   if (orden === "precioMenor") {
@@ -212,7 +216,7 @@ function Tienda() {
   }
 
   return resultado;
-}, [productos, provincia, categoria, busqueda, orden]);
+}, [productos, provincia, categoria, busqueda, orden, moneda]);
 
   return (
     <div className="min-h-screen bg-[#EDE6D6] text-[#232620]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
@@ -356,7 +360,6 @@ function Tienda() {
       <option value="CUP">CUP</option>
       <option value="USD">USD</option>
       <option value="EUR">EUR</option>
-      <option value="MLC">MLC</option>
     </select>
 
   </div>

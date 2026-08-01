@@ -204,7 +204,7 @@ function Tienda() {
                 className="text-2xl tracking-tight font-extrabold uppercase"
                 style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.02em" }}
               >
-                Mercado<span className="text-[#E8A33D]">CU</span>
+                Mercado<span className="text-[#E8A33D]">CUX</span>
               </span>
             </div>
             <a

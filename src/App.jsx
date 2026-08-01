@@ -105,13 +105,15 @@ function PanelAdmin() {
 
   const decidir = (fila, valor) => {
     setProcesando(fila);
-    fetch(API_URL, {
-      method: "POST",
-      body: JSON.stringify({ clave: claveIngresada, fila, valor }),
-    })
+    const url = `${API_URL}?accion=decidir&clave=${encodeURIComponent(claveIngresada)}&fila=${fila}&valor=${valor}`;
+    fetch(url)
       .then((res) => res.json())
-      .then(() => {
-        setProductos((prev) => prev.filter((p) => p._fila !== fila));
+      .then((data) => {
+        if (data.error) {
+          alert("Error: " + data.error);
+        } else {
+          setProductos((prev) => prev.filter((p) => p._fila !== fila));
+        }
         setProcesando(null);
       })
       .catch(() => {
@@ -386,4 +388,4 @@ function Tienda() {
 export default function App() {
   const esAdmin = window.location.hash === "#admin";
   return esAdmin ? <PanelAdmin /> : <Tienda />;
-    }
+          }

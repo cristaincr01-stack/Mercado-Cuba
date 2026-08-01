@@ -204,7 +204,7 @@ function Tienda() {
                 className="text-2xl tracking-tight font-extrabold uppercase"
                 style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.02em" }}
               >
-                Mercado<span className="text-[#E8A33D]">CUX</span>
+                Mercado<span className="text-[#E8A33D]">CU</span>
               </span>
             </div>
             <a
@@ -353,11 +353,11 @@ function Tienda() {
 </h3>
                 <div className="flex items-center justify-between mt-1">
                   <EtiquetaPrecio precio={p.precio} moneda={p.moneda} />
-                  <span className="text-[11px] text-[#8a8370]">{p.vendedor}</span>
+                  <span className="text-xs text-[#8a8370] font-medium">{p.vendedor}</span>
                 </div>
                 <button
   onClick={() => setSeleccionado(p)}
-  className="mt-1 flex items-center justify-center gap-1.5 bg-[#C4472B] hover:bg-[#a83a23] transition-colors text-white text-sm font-semibold py-2 rounded-sm"
+  className="mt-1 flex items-center justify-center gap-2 bg-[#C4472B] hover:bg-[#a83a23] transition text-white text-sm font-semibold py-3 rounded-xl"
 >
   Ver producto <ChevronRight className="w-4 h-4" />
 </button>
@@ -379,7 +379,7 @@ function Tienda() {
           </div>
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLScqVcoGremgczIq0KvzoPyciqFDpKpfu79I2IxV6gA3GU7FlA/viewform"
-            className="bg-[#E8A33D] text-[#232620] font-bold px-5 py-2.5 rounded-sm hover:bg-[#d99429] transition-colors whitespace-nowrap"
+            className="bg-[#E8A33D] text-[#232620] font-bold px-6 py-3 rounded-xl hover:bg-[#d99429] transition whitespace-nowrap"
           >
             Quiero publicar
           </a>

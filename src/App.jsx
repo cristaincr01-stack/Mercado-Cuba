@@ -346,12 +346,16 @@ function Tienda() {
 
       {seleccionado && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-sm max-w-sm w-full p-5 relative">
+          <div className="bg-white rounded-lg max-w-sm w-full p-5 relative shadow-xl">
             <button onClick={() => setSeleccionado(null)} className="absolute top-3 right-3 text-[#8a8370] hover:text-[#232620]">
               <X className="w-5 h-5" />
             </button>
-            <span className="text-[10px] uppercase font-bold tracking-wide text-[#1B6B63]">{seleccionado.categoria}</span>
-            <h3 className="font-bold text-lg mt-1">{seleccionado.nombre}</h3>
+            <span className="inline-block text-[10px] uppercase font-bold tracking-wide text-[#1B6B63] bg-[#e6efec] px-2 py-1 rounded-sm">
+  {seleccionado.categoria}
+</span>
+            <h3 className="font-bold text-xl mt-2 text-[#232620]">
+  {seleccionado.nombre}
+</h3>
             <p className="text-sm text-[#8a8370] mt-1">Vendedor: {seleccionado.vendedor} · {seleccionado.provincia}</p>
             <div className="mt-3"><EtiquetaPrecio precio={seleccionado.precio} moneda={seleccionado.moneda} /></div>
             <p className="text-sm text-[#5c5848] mt-4 leading-relaxed">

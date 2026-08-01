@@ -173,6 +173,7 @@ function Tienda() {
   const [seleccionado, setSeleccionado] = useState(null);
   const [productos, setProductos] = useState([]);
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const [filtrosAbiertos, setFiltrosAbiertos] = useState(false);
 
   useEffect(() => {
     fetch(`${API_URL}?accion=aprobados`)
@@ -311,24 +312,46 @@ function Tienda() {
 >
   Limpiar
 </button>
-        </div>
-      </div>
 
-      <div className="max-w-6xl mx-auto px-5 mt-6">
-        <div className="flex items-center gap-2 mb-2 text-xs uppercase tracking-wide text-[#5c5848] font-semibold">
-          <MapPin className="w-3.5 h-3.5" /> Provincia
-        </div>
-        <div className="flex gap-2 overflow-x-auto pb-2">
-          {PROVINCIAS.map(p => (
-            <button
-              key={p}
-              onClick={() => setProvincia(p)}
-              className={`whitespace-nowrap px-3 py-1.5 rounded-sm text-sm font-medium border transition-colors ${
-                provincia === p
-                  ? "bg-[#1B6B63] text-white border-[#1B6B63]"
-                  : "bg-white text-[#232620] border-[#ddd6c4] hover:border-[#1B6B63]"
-              }`}
-            >
+{filtrosAbiertos && (
+  <div className="w-full bg-white border border-[#ddd6c4] rounded-2xl p-4 shadow-lg mt-3">
+    <h3 className="text-sm font-semibold mb-3">
+      Filtros
+    </h3>
+
+    <select
+      value={provincia}
+      onChange={e => setProvincia(e.target.value)}
+      className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 text-sm bg-white"
+    >
+      {PROVINCIAS.map(p => (
+        <option key={p} value={p}>
+          {p}
+        </option>
+      ))}
+    </select>
+  </div>
+)}
+
+</div>
+</div>
+
+<div className="max-w-6xl mx-auto px-5 mt-6">
+  <div className="flex items-center gap-2 mb-2 text-xs uppercase tracking-wide text-[#5c5848] font-semibold">
+    <MapPin className="w-3.5 h-3.5" /> Provincia
+  </div>
+
+  <div className="flex gap-2 overflow-x-auto pb-2">
+    {PROVINCIAS.map(p => (
+      <button
+        key={p}
+        onClick={() => setProvincia(p)}
+        className={`whitespace-nowrap px-3 py-1.5 rounded-sm text-sm font-medium border transition-colors ${
+          provincia === p
+            ? "bg-[#1B6B63] text-white border-[#1B6B63]"
+            : "bg-white text-[#232620] border-[#ddd6c4] hover:border-[#1B6B63]"
+        }`}  
+          >
               {p}
             </button>
           ))}

@@ -10,6 +10,18 @@ const CATEGORIAS = [
   "Todas", "Electrónica", "Ropa y calzado", "Hogar", "Alimentos", "Belleza", "Vehículos"
 ];
 
+const TASAS_CAMBIO = {
+  USD: 680,
+  EUR: 700,
+};
+
+function convertirACUP(precio, moneda) {
+  if (moneda === "USD") return precio * TASAS_CAMBIO.USD;
+  if (moneda === "EUR") return precio * TASAS_CAMBIO.EUR;
+
+  return precio;
+}
+
 const API_URL =
   "https://script.google.com/macros/s/AKfycbyWs2l2XjGA2J2ewcyu-vnV4Pfayw_MHPIiMUb2Cl-GLWLVtj_PCtyegj-taEnYIg1e/exec";
 
@@ -208,12 +220,18 @@ function Tienda() {
   });
 
   if (orden === "precioMenor") {
-    resultado.sort((a, b) => a.precio - b.precio);
-  }
+  resultado.sort((a, b) =>
+    convertirACUP(a.precio, a.moneda) -
+    convertirACUP(b.precio, b.moneda)
+  );
+}
 
-  if (orden === "precioMayor") {
-    resultado.sort((a, b) => b.precio - a.precio);
-  }
+if (orden === "precioMayor") {
+  resultado.sort((a, b) =>
+    convertirACUP(b.precio, b.moneda) -
+    convertirACUP(a.precio, a.moneda)
+  );
+}
 
   return resultado;
 }, [productos, provincia, categoria, busqueda, orden, moneda]);

@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import { MapPin, Search, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock } from "lucide-react";
 
 const PROVINCIAS = [
-  "Todas", "Pinar del Río" , "Artemisa" , "La Habana", "Mayabeque" , "Matanzas" , "Cienfuegos" , "Villa Clara", "Sansti Spiritu" , "Ciego de Ávila",
+  "Todas", "Pinar del Río" , "Artemisa" , "La Habana", "Mayabeque" , "Matanzas" , "Cienfuegos" , "Villa Clara" , "Sansti Spiritu" , "Ciego de Ávila",
   "Camagüey", "Holguín", "Granma" , "Santiago de Cuba" , "Guantánamo" , "Isla de la Juventud"
 ];
 

@@ -1,4 +1,4 @@
-ķimport React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { MapPin, Search, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock } from "lucide-react";
 
 const PROVINCIAS = [

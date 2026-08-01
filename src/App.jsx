@@ -242,6 +242,22 @@ function Tienda() {
           >
             {CATEGORIAS.map(c => <option key={c}>{c}</option>)}
           </select>
+          <button
+  className="bg-[#1B6B63] text-white px-5 py-2 rounded-sm font-semibold"
+>
+  Buscar
+</button>
+
+<button
+  onClick={() => {
+    setBusqueda("");
+    setCategoria("Todas");
+    setProvincia("Todas");
+  }}
+  className="bg-[#C4472B] text-white px-5 py-2 rounded-sm font-semibold"
+>
+  Limpiar
+</button>
         </div>
       </div>
 

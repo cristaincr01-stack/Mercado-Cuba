@@ -367,10 +367,12 @@ function Tienda() {
 
     const mensaje = `Hola, estoy interesado en el producto "${seleccionado.nombre}". ¿Sigue disponible?`;
 
-    window.open(
-      `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
-      "_blank"
-    );
+console.log(seleccionado);
+
+window.open(
+  `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
+  "_blank"
+);
   }}
   className="mt-4 w-full flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#155650] transition-colors text-white font-semibold py-2.5 rounded-sm"
 >

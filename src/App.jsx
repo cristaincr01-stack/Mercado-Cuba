@@ -184,7 +184,8 @@ function Tienda() {
 
   const productosFiltrados = useMemo(() => {
   return productos.filter(p => {
-    const okProvincia = provincia === "Todas" || p.provincia?.trim() === provincia.trim();
+    const okProvincia = provincia === "Todas" || 
+  p.provincia?.trim().toLowerCase() === provincia.trim().toLowerCase();
     const okCategoria = categoria === "Todas" || p.categoria?.trim() === categoria.trim();
 
     return okProvincia && okCategoria;

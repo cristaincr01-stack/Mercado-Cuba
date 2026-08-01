@@ -185,13 +185,21 @@ function Tienda() {
 
   const productosFiltrados = useMemo(() => {
   return productos.filter(p => {
-    const okProvincia = provincia === "Todas" || 
-  p.provincia?.trim().toLowerCase() === provincia.trim().toLowerCase();
-    const okCategoria = categoria === "Todas" || p.categoria?.trim() === categoria.trim();
+    const okProvincia =
+      provincia === "Todas" ||
+      p.provincia?.trim().toLowerCase() === provincia.trim().toLowerCase();
 
-    return okProvincia && okCategoria;
+    const okCategoria =
+      categoria === "Todas" ||
+      p.categoria?.trim() === categoria.trim();
+
+    const okBusqueda =
+      busqueda.trim() === "" ||
+      p.nombre?.toLowerCase().includes(busqueda.toLowerCase());
+
+    return okProvincia && okCategoria && okBusqueda;
   });
-}, [productos, provincia, categoria]);
+}, [productos, provincia, categoria, busqueda]);
 
   return (
     <div className="min-h-screen bg-[#EDE6D6] text-[#232620]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
@@ -267,7 +275,7 @@ function Tienda() {
         </div>
       </header>
 
-      <div className="max-w-6xl mx-auto px-5 -mt-6">
+      <div className="max-w-6xl mx-auto px-5 mt-6">
         <div className="bg-white rounded-2xl shadow-lg p-4 flex flex-col sm:flex-row gap-3">
           <div className="flex items-center gap-2 flex-1 border border-[#ddd6c4] rounded-xl px-4 py-3">
             <Search className="w-4 h-4 text-[#8a8370]" />

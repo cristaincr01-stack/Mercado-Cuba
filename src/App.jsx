@@ -175,6 +175,7 @@ function Tienda() {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [filtrosAbiertos, setFiltrosAbiertos] = useState(false);
   const [orden, setOrden] = useState("recientes");
+  const [moneda, setMoneda] = useState("Todas");
 
   useEffect(() => {
     fetch(`${API_URL}?accion=aprobados`)
@@ -342,17 +343,22 @@ function Tienda() {
   <option value="precioMenor">Precio menor a mayor</option>
   <option value="precioMayor">Precio mayor a menor</option>
 </select>
+     <label className="text-sm font-medium text-[#5c5848] mt-4 block">
+      Moneda
+    </label>
+
     <select
-      value={provincia}
-      onChange={e => setProvincia(e.target.value)}
-      className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 text-sm bg-white"
+      value={moneda}
+      onChange={e => setMoneda(e.target.value)}
+      className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 text-sm bg-white mt-2"
     >
-      {PROVINCIAS.map(p => (
-        <option key={p} value={p}>
-          {p}
-        </option>
-      ))}
+      <option value="Todas">Todas</option>
+      <option value="CUP">CUP</option>
+      <option value="USD">USD</option>
+      <option value="EUR">EUR</option>
+      <option value="MLC">MLC</option>
     </select>
+
   </div>
 )}
 

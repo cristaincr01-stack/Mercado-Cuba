@@ -223,9 +223,9 @@ function Tienda() {
   </button>
 
   {menuAbierto && (
-    <div className="absolute right-0 mt-3 w-52 bg-white text-[#232620] rounded-md shadow-lg p-2 z-50">
+    <div className="absolute right-0 mt-3 w-60 bg-white text-[#232620] rounded-2xl shadow-xl p-3 z-50">
 
-      <button className="w-full text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
+      <button className="w-full text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl">
         👤 Crear cuenta
       </button>
 

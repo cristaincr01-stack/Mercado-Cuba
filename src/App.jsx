@@ -315,7 +315,7 @@ function Tienda() {
                 </div>
                 <button
   onClick={() => setSeleccionado(p)}
-  className="mt-2 flex items-center justify-center gap-2 bg-[#C4472B] hover:bg-[#a83a23] transition-colors text-white text-sm font-semibold py-2.5 rounded-md"
+  className="mt-1 flex items-center justify-center gap-1.5 bg-[#C4472B] hover:bg-[#a83a23] transition-colors text-white text-sm font-semibold py-2 rounded-sm"
 >
   Ver producto <ChevronRight className="w-4 h-4" />
 </button>

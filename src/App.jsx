@@ -256,15 +256,29 @@ function Tienda() {
   const [filtrosAbiertos, setFiltrosAbiertos] = useState(false);
   const [orden, setOrden] = useState("recientes");
   const [moneda, setMoneda] = useState("Todas");
+  const [tasas, setTasas] = useState({
+  USD: 680,
+  EUR: 700,
+});
 
   useEffect(() => {
-    fetch(`${API_URL}?accion=aprobados`)
-      .then((res) => res.json())
-      .then((data) => {
-        setProductos(data.map(mapearProducto));
-      })
-      .catch(() => {});
-  }, []);
+  fetch(`${API_URL}?accion=aprobados`)
+    .then((res) => res.json())
+    .then((data) => {
+      setProductos(data.map(mapearProducto));
+    })
+    .catch(() => {});
+
+  fetch(`${API_URL}?accion=monedas`)
+    .then((res) => res.json())
+    .then((data) => {
+      setTasas({
+        USD: data.usd,
+        EUR: data.eur,
+      });
+    })
+    .catch(() => {});
+}, []);
 
   const productosFiltrados = useMemo(() => {
   let resultado = productos.filter(p => {
@@ -373,6 +387,16 @@ if (orden === "precioMayor") {
           <p className="mt-4 text-white/80 max-w-xl text-base leading-relaxed">
   Compra y vende productos en tu provincia de forma rápida y sencilla. Encuentra lo que necesitas o publica lo que quieres vender.
 </p>
+<div className="mt-4 flex gap-3 flex-wrap">
+  <div className="bg-white/10 px-4 py-2 rounded-xl">
+    💵 USD: {tasas.USD} CUP
+  </div>
+
+  <div className="bg-white/10 px-4 py-2 rounded-xl">
+    💶 EUR: {tasas.EUR} CUP
+  </div>
+</div>
+
         </div>
       </header>
 

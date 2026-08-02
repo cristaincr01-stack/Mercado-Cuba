@@ -56,6 +56,9 @@ function PanelAdmin() {
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(false);
   const [procesando, setProcesando] = useState(null);
+  const [usd, setUsd] = useState("");
+const [eur, setEur] = useState("");
+const [guardandoMonedas, setGuardandoMonedas] = useState(false);
 
   const cargarProductos = (claveActual) => {
     setCargando(true);
@@ -101,6 +104,27 @@ function PanelAdmin() {
       });
   };
 
+  const actualizarMonedas = () => {
+  setGuardandoMonedas(true);
+
+  const url = `${API_URL}?accion=actualizarMonedas&clave=${encodeURIComponent(claveIngresada)}&usd=${usd}&eur=${eur}`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.error) {
+        alert("Error: " + data.error);
+      } else {
+        alert("Tasas actualizadas correctamente");
+      }
+      setGuardandoMonedas(false);
+    })
+    .catch(() => {
+      alert("No se pudieron actualizar las monedas");
+      setGuardandoMonedas(false);
+    });
+};
+
   if (!autenticado) {
     return (
       <div className="min-h-screen bg-[#EDE6D6] flex items-center justify-center p-5">
@@ -130,6 +154,47 @@ function PanelAdmin() {
 
   return (
     <div className="min-h-screen bg-[#EDE6D6] p-5">
+      <div className="bg-white rounded-sm border border-[#e5dfd0] p-4 mb-5 max-w-xl">
+  <h2 className="font-bold text-lg mb-3">
+    Configuración de monedas
+  </h2>
+
+  <div className="flex gap-3 mb-3">
+    <div className="flex-1">
+      <label className="text-sm text-[#5c5848]">
+        USD en CUP
+      </label>
+      <input
+        type="number"
+        value={usd}
+        onChange={(e) => setUsd(e.target.value)}
+        className="w-full border border-[#ddd6c4] rounded-sm px-3 py-2"
+        placeholder="680"
+      />
+    </div>
+
+    <div className="flex-1">
+      <label className="text-sm text-[#5c5848]">
+        EUR en CUP
+      </label>
+      <input
+        type="number"
+        value={eur}
+        onChange={(e) => setEur(e.target.value)}
+        className="w-full border border-[#ddd6c4] rounded-sm px-3 py-2"
+        placeholder="700"
+      />
+    </div>
+  </div>
+
+  <button
+    onClick={actualizarMonedas}
+    disabled={guardandoMonedas}
+    className="w-full bg-[#1B6B63] text-white font-semibold py-2 rounded-sm"
+  >
+    {guardandoMonedas ? "Guardando..." : "Actualizar monedas"}
+  </button>
+</div>
       <h1 className="text-2xl font-black mb-1" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
         PRODUCTOS PENDIENTES
       </h1>

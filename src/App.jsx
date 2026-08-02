@@ -270,7 +270,60 @@ const [monedaProducto, setMonedaProducto] = useState("CUP");
 const [precioProducto, setPrecioProducto] = useState("");
 const [whatsappProducto, setWhatsappProducto] = useState("");
 const [imagenProducto, setImagenProducto] = useState(null);
+  const [enviandoProducto, setEnviandoProducto] = useState(false);
+const enviarProducto = async () => {
+  if (!nombreProducto || !precioProducto || !whatsappProducto || !imagenProducto) {
+    alert("Completa todos los campos y selecciona una foto");
+    return;
+  }
 
+  setEnviandoProducto(true);
+
+  try {
+    const lector = new FileReader();
+
+    lector.onloadend = async () => {
+      const base64 = lector.result.split(",")[1];
+
+      const datos = {
+        nombre: nombreProducto,
+        categoria: categoriaProducto,
+        provincia: provinciaProducto,
+        moneda: monedaProducto,
+        precio: precioProducto,
+        whatsapp: whatsappProducto,
+        imagen: base64,
+        tipo: imagenProducto.type,
+        nombreImagen: imagenProducto.name
+      };
+
+      const respuesta = await fetch(
+        "https://script.google.com/macros/s/AKfycby16A5ELOrZAE2QubflsJp9j6EQx34erkLCPD4TcIL18RvvDVCU5yVbOFZMn-Tfe0UU/exec",
+        {
+          method: "POST",
+          body: JSON.stringify(datos)
+        }
+      );
+
+      const resultado = await respuesta.json();
+
+      if (resultado.exito) {
+        alert("Producto enviado para aprobación");
+        setPublicarAbierto(false);
+      } else {
+        alert("Error al enviar producto");
+      }
+
+      setEnviandoProducto(false);
+    };
+
+    lector.readAsDataURL(imagenProducto);
+
+  } catch (error) {
+    alert("No se pudo enviar el producto");
+    setEnviandoProducto(false);
+  }
+};
   useEffect(() => {
   fetch(`${API_URL}?accion=aprobados`)
     .then((res) => res.json())
@@ -664,6 +717,35 @@ window.open(
                 onChange={(e) => setPrecioProducto(e.target.value)}
                 className="w-full border rounded-lg px-3 py-2"
               />
+              <select
+  value={categoriaProducto}
+  onChange={(e) => setCategoriaProducto(e.target.value)}
+  className="w-full border rounded-lg px-3 py-2"
+>
+  {CATEGORIAS.filter(c => c !== "Todas").map(c => (
+    <option key={c}>{c}</option>
+  ))}
+</select>
+
+<select
+  value={provinciaProducto}
+  onChange={(e) => setProvinciaProducto(e.target.value)}
+  className="w-full border rounded-lg px-3 py-2"
+>
+  {PROVINCIAS.filter(p => p !== "Todas").map(p => (
+    <option key={p}>{p}</option>
+  ))}
+</select>
+
+<select
+  value={monedaProducto}
+  onChange={(e) => setMonedaProducto(e.target.value)}
+  className="w-full border rounded-lg px-3 py-2"
+>
+  <option value="CUP">CUP</option>
+  <option value="USD">USD</option>
+  <option value="EUR">EUR</option>
+</select>
 
               <input
                 type="text"
@@ -681,10 +763,12 @@ window.open(
               />
 
               <button
-                className="w-full bg-[#1B6B63] text-white font-semibold py-3 rounded-lg"
-              >
-                Enviar producto
-              </button>
+  onClick={enviarProducto}
+  disabled={enviandoProducto}
+  className="w-full bg-[#1B6B63] text-white font-semibold py-3 rounded-lg"
+>
+  {enviandoProducto ? "Enviando..." : "Enviar producto"}
+</button>
 
             </div>
 

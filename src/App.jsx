@@ -38,6 +38,7 @@ function mapearProducto(fila, index) {
     moneda: fila["Moneda"] || "",
     vendedor: fila["Tu nombre (como quieres que aparezca en el anuncio)"] || "",
     tel: fila["Tu número de WhatsApp"] || "",
+    foto: fila["Foto del Producto"] || "",
   };
 }
 
@@ -522,6 +523,14 @@ if (orden === "precioMayor") {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {productosFiltrados.map(p => (
               <div key={p.id} className="bg-white rounded-2xl shadow-sm border border-[#eee7d8] p-5 flex flex-col gap-4 hover:shadow-xl transition-shadow">
+
+                {p.foto && (
+  <img
+    src={p.foto}
+    alt={p.nombre}
+    className="w-full h-48 object-cover rounded-xl"
+  />
+)}
                 <div className="flex items-start justify-between gap-2">
                   <span className="text-[10px] uppercase font-bold tracking-wide text-[#1B6B63] bg-[#e6efec] px-2 py-0.5 rounded-sm">
                     {p.categoria}

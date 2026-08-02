@@ -286,7 +286,7 @@ const enviarProducto = async () => {
       const base64 = lector.result.split(",")[1];
 
       const datos = {
-        nombre: nombreProducto,
+        nombreProducto: nombreProducto,
         categoria: categoriaProducto,
         provincia: provinciaProducto,
         moneda: monedaProducto,

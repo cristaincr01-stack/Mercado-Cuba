@@ -294,16 +294,22 @@ const enviarProducto = async () => {
         whatsapp: whatsappProducto,
         imagen: base64,
         tipo: imagenProducto.type,
-        nombreImagen: imagenProducto.name
+        nombre: imagenProducto.name
       };
 
-      const respuesta = await fetch(
-        "https://script.google.com/macros/s/AKfycby16A5ELOrZAE2QubflsJp9j6EQx34erkLCPD4TcIL18RvvDVCU5yVbOFZMn-Tfe0UU/exec",
-        {
-          method: "POST",
-          body: JSON.stringify(datos)
-        }
-      );
+      const formulario = new URLSearchParams();
+
+Object.keys(datos).forEach((clave) => {
+  formulario.append(clave, datos[clave]);
+});
+
+const respuesta = await fetch(
+  "https://script.google.com/macros/s/AKfycby16A5ELOrZAE2QubflsJp9j6EQx34erkLCPD4TcIL18RvvDVCU5yVbOFZMn-Tfe0UU/exec",
+  {
+    method: "POST",
+    body: formulario
+  }
+);
 
       const resultado = await respuesta.json();
 

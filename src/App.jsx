@@ -594,10 +594,11 @@ if (orden === "precioMayor") {
 
                 {p.foto && (
   <img
-    src={p.foto}
-    alt={p.nombre}
-    className="w-full h-48 object-cover rounded-xl"
-  />
+  src={p.foto}
+  alt={p.nombre}
+  className="w-full h-48 object-cover rounded-xl"
+  style={{ display: "block" }}
+/>
 )}
                 <div className="flex items-start justify-between gap-2">
                   <span className="text-[10px] uppercase font-bold tracking-wide text-[#1B6B63] bg-[#e6efec] px-2 py-0.5 rounded-sm">

@@ -26,7 +26,7 @@ function convertirACUP(precio, moneda) {
 }
 
 const API_URL =
-  "https://script.google.com/macros/s/AKfycbyWs2l2XjGA2J2ewcyu-vnV4Pfayw_MHPIiMUb2Cl-GLWLVtj_PCtyegj-taEnYIg1e/exec";
+  "https://script.google.com/macros/s/AKfycby16A5ELOrZAE2QubflsJp9j6EQx34erkLCPD4TcIL18RvvDVCU5yVbOFZMn-Tfe0UU/exec";
 
 function mapearProducto(fila, index) {
   return {
@@ -248,6 +248,7 @@ const [guardandoMonedas, setGuardandoMonedas] = useState(false);
 }
 
 function Tienda() {
+  const [publicarAbierto, setPublicarAbierto] = useState(false);
   const [provincia, setProvincia] = useState("Todas");
   const [categoria, setCategoria] = useState("Todas");
   const [busqueda, setBusqueda] = useState("");
@@ -261,6 +262,14 @@ function Tienda() {
   USD: 680,
   EUR: 700,
 });
+
+  const [nombreProducto, setNombreProducto] = useState("");
+const [categoriaProducto, setCategoriaProducto] = useState("Electrónica");
+const [provinciaProducto, setProvinciaProducto] = useState("La Habana");
+const [monedaProducto, setMonedaProducto] = useState("CUP");
+const [precioProducto, setPrecioProducto] = useState("");
+const [whatsappProducto, setWhatsappProducto] = useState("");
+const [imagenProducto, setImagenProducto] = useState(null);
 
   useEffect(() => {
   fetch(`${API_URL}?accion=aprobados`)
@@ -334,12 +343,12 @@ if (orden === "precioMayor") {
                 Mercado<span className="text-[#E8A33D]">CU</span>
               </span>
             </div>
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLScqVcoGremgczIq0KvzoPyciqFDpKpfu79I2IxV6gA3GU7FlA/viewform"
-              className="bg-[#C4472B] hover:bg-[#a83a23] transition-colors text-white text-sm font-semibold px-4 py-2 rounded-full"
-            >
-              Publicar mi producto
-            </a>
+            <button
+  onClick={() => setPublicarAbierto(true)}
+  className="bg-[#C4472B] hover:bg-[#a83a23] transition-colors text-white text-sm font-semibold px-4 py-2 rounded-full"
+>
+  Publicar mi producto
+</button>
 
             <div className="absolute top-5 right-5">
   <button
@@ -568,12 +577,12 @@ if (orden === "precioMayor") {
               Pagas una cuota mensual fija por tener tu vidriera activa en tu provincia. Sin comisión por venta.
             </p>
           </div>
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLScqVcoGremgczIq0KvzoPyciqFDpKpfu79I2IxV6gA3GU7FlA/viewform"
-            className="bg-[#E8A33D] text-[#232620] font-bold px-6 py-3 rounded-xl hover:bg-[#d99429] transition whitespace-nowrap"
-          >
-            Quiero publicar
-          </a>
+          <button
+  onClick={() => setPublicarAbierto(true)}
+  className="bg-[#E8A33D] text-[#232620] font-bold px-6 py-3 rounded-xl hover:bg-[#d99429] transition whitespace-nowrap"
+>
+  Quiero publicar
+</button>
         </div>
       </section>
 
@@ -619,6 +628,66 @@ window.open(
 >
   <MessageCircle className="w-4 h-4" /> Contactar por WhatsApp
 </button>
+          </div>
+        </div>
+      )}
+
+            {publicarAbierto && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg max-w-md w-full p-5 relative shadow-xl">
+
+            <button
+              onClick={() => setPublicarAbierto(false)}
+              className="absolute top-3 right-3 text-[#8a8370]"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <h2 className="text-xl font-bold mb-4">
+              Publicar producto
+            </h2>
+
+            <div className="space-y-3">
+
+              <input
+                type="text"
+                placeholder="Nombre del producto"
+                value={nombreProducto}
+                onChange={(e) => setNombreProducto(e.target.value)}
+                className="w-full border rounded-lg px-3 py-2"
+              />
+
+              <input
+                type="number"
+                placeholder="Precio"
+                value={precioProducto}
+                onChange={(e) => setPrecioProducto(e.target.value)}
+                className="w-full border rounded-lg px-3 py-2"
+              />
+
+              <input
+                type="text"
+                placeholder="WhatsApp"
+                value={whatsappProducto}
+                onChange={(e) => setWhatsappProducto(e.target.value)}
+                className="w-full border rounded-lg px-3 py-2"
+              />
+
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImagenProducto(e.target.files[0])}
+                className="w-full"
+              />
+
+              <button
+                className="w-full bg-[#1B6B63] text-white font-semibold py-3 rounded-lg"
+              >
+                Enviar producto
+              </button>
+
+            </div>
+
           </div>
         </div>
       )}

@@ -273,8 +273,8 @@ function Tienda() {
     .then((res) => res.json())
     .then((data) => {
       setTasas({
-        USD: data.usd,
-        EUR: data.eur,
+        USD: data.USD,
+        EUR: data.EUR,
       });
 
           TASAS_CAMBIO.USD = data.USD;

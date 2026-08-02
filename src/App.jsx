@@ -17,8 +17,8 @@ const TASAS_CAMBIO = {
 
 function convertirACUP(precio, moneda) {
   if (moneda === "USD") return precio * TASAS_CAMBIO.USD;
-  if (moneda === "EUR") return precio * TASAS_CAMBIO.EUR;
-
+  if (moneda === "EUR" || moneda === "Euro") return precio * TASAS_CAMBIO.EUR;
+  if (moneda === "CUP") return precio;
   return precio;
 }
 

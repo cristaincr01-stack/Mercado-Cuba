@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { MapPin, Search, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal } from "lucide-react";
+import { MapPin, Search, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info } from "lucide-react";
 
 const PROVINCIAS = [
   "Todas", "Pinar del Río" , "Artemisa" , "La Habana", "Mayabeque" , "Matanzas" , "Cienfuegos" , "Villa Clara" , "Sansti Spiritu" , "Ciego de Ávila",
@@ -351,29 +351,35 @@ if (orden === "precioMayor") {
   {menuAbierto && (
     <div className="absolute right-0 mt-3 w-60 bg-white text-[#232620] rounded-2xl shadow-xl p-3 z-50">
 
-      <button className="w-full text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl">
-        👤 Crear cuenta
-      </button>
+      <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl">
+  <UserRound className="w-5 h-5 text-[#1B6B63]" />
+  Crear cuenta
+</button>
 
-      <button className="w-full text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
-        🔑 Iniciar sesión
-      </button>
+      <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
+  <LogIn className="w-5 h-5 text-[#1B6B63]" />
+  Iniciar sesión
+</button>
 
-      <button className="w-full text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
-        ⚙️ Configuración
-      </button>
+      <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
+  <Settings className="w-5 h-5 text-[#1B6B63]" />
+  Configuración
+</button>
 
-      <button className="w-full text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
-        ❓ Ayuda
-      </button>
+      <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
+  <CircleHelp className="w-5 h-5 text-[#1B6B63]" />
+  Ayuda
+</button>
 
-      <button className="w-full text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
-        💬 Soporte
-      </button>
+      <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
+  <Headphones className="w-5 h-5 text-[#1B6B63]" />
+  Soporte
+</button>
 
-      <button className="w-full text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
-        ℹ️ Acerca de MercadoCU
-      </button>
+      <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
+  <Info className="w-5 h-5 text-[#1B6B63]" />
+  Acerca de MercadoCU
+</button>
 
     </div>
   )}

@@ -317,7 +317,7 @@ const respuesta = await fetch(
         alert("Producto enviado para aprobación");
         setPublicarAbierto(false);
       } else {
-        alert("Error al enviar producto");
+        alert("Error: " + JSON.stringify(resultado));
       }
 
       setEnviandoProducto(false);

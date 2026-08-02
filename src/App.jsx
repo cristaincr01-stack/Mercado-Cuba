@@ -16,9 +16,12 @@ const TASAS_CAMBIO = {
 };
 
 function convertirACUP(precio, moneda) {
-  if (moneda === "USD") return precio * TASAS_CAMBIO.USD;
-  if (moneda === "EUR" || moneda === "Euro") return precio * TASAS_CAMBIO.EUR;
-  if (moneda === "CUP") return precio;
+  const m = String(moneda).trim().toUpperCase();
+
+  if (m === "USD") return precio * TASAS_CAMBIO.USD;
+  if (m === "EUR" || m === "EURO" || m === "€") return precio * TASAS_CAMBIO.EUR;
+  if (m === "CUP") return precio;
+
   return precio;
 }
 
@@ -285,17 +288,15 @@ function Tienda() {
   });
 
   if (orden === "precioMenor") {
-  resultado.sort((a, b) =>
-    convertirACUP(a.precio, a.moneda) -
-    convertirACUP(b.precio, b.moneda)
-  );
+  resultado.sort((a, b) => {
+    return convertirACUP(a.precio, a.moneda) - convertirACUP(b.precio, b.moneda);
+  });
 }
 
 if (orden === "precioMayor") {
-  resultado.sort((a, b) =>
-    convertirACUP(b.precio, b.moneda) -
-    convertirACUP(a.precio, a.moneda)
-  );
+  resultado.sort((a, b) => {
+    return convertirACUP(b.precio, b.moneda) - convertirACUP(a.precio, a.moneda);
+  });
 }
 
   return resultado;

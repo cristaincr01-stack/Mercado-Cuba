@@ -11,8 +11,8 @@ const CATEGORIAS = [
 ];
 
 const TASAS_CAMBIO = {
-  USD: 680,
-  EUR: 700,
+  USD: 0,
+  EUR: 0,
 };
 
 function convertirACUP(precio, moneda) {
@@ -276,6 +276,9 @@ function Tienda() {
         USD: data.usd,
         EUR: data.eur,
       });
+
+          TASAS_CAMBIO.USD = data.USD;
+TASAS_CAMBIO.EUR = data.EUR;
     })
     .catch(() => {});
 }, []);

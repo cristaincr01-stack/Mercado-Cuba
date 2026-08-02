@@ -326,8 +326,8 @@ const respuesta = await fetch(
     lector.readAsDataURL(imagenProducto);
 
   } catch (error) {
-    alert("No se pudo enviar el producto");
-    setEnviandoProducto(false);
+  alert("ERROR REAL: " + error.toString());
+  setEnviandoProducto(false);
   }
 };
   useEffect(() => {

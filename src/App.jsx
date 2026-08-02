@@ -29,6 +29,12 @@ const API_URL =
   "https://script.google.com/macros/s/AKfycby16A5ELOrZAE2QubflsJp9j6EQx34erkLCPD4TcIL18RvvDVCU5yVbOFZMn-Tfe0UU/exec";
 
 function mapearProducto(fila, index) {
+
+  const foto = fila["Foto del Producto"] || "";
+
+const fotoDirecta = foto.includes("drive.google.com/file/d/")
+  ? "https://drive.google.com/uc?export=view&id=" + foto.split("/d/")[1].split("/")[0]
+  : foto;
   return {
     id: index,
     nombre: fila["Nombre del producto"] || "",
@@ -38,7 +44,7 @@ function mapearProducto(fila, index) {
     moneda: fila["Moneda"] || "",
     vendedor: fila["Tu nombre (como quieres que aparezca en el anuncio)"] || "",
     tel: fila["Tu número de WhatsApp"] || "",
-    foto: fila["Foto del Producto"] || "",
+    foto: fotoDirecta,
   };
 }
 

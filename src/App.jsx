@@ -225,6 +225,18 @@ const [guardandoMonedas, setGuardandoMonedas] = useState(false);
                 <span className="text-[11px] text-[#8a8370]">{p["Provincia"]}</span>
               </div>
               <h3 className="font-semibold text-[15px]">{p["Nombre del producto"]}</h3>
+              {p["Foto del Producto"] && (
+  <div className="w-full h-48 rounded-xl flex items-center justify-center bg-white overflow-hidden mt-3">
+    <img
+      src={p["Foto del Producto"].replace(
+        "uc?export=view&id=",
+        "thumbnail?sz=w1000&id="
+      )}
+      alt={p["Nombre del producto"]}
+      className="w-full h-full object-contain"
+    />
+  </div>
+)}
               <p className="text-sm text-[#5c5848] mt-1">
                 {p["Precio"]} {p["Moneda"]} · Vendedor: {p["Tu nombre (como quieres que aparezca en el anuncio)"]}
               </p>

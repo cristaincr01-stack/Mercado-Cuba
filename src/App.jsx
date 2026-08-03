@@ -599,7 +599,7 @@ if (orden === "precioMayor") {
               <div key={p.id} className="bg-white rounded-2xl shadow-sm border border-[#eee7d8] p-5 flex flex-col gap-4 hover:shadow-xl transition-shadow">
 
                 {p.foto && (
-  <div className="w-full h-48 overflow-hidden rounded-xl">
+  <div className="w-full h-64 rounded-xl flex items-center justify-center bg-white">
     <img
   src={p.foto.replace(
     "uc?export=view&id=",

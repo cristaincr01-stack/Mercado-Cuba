@@ -603,10 +603,10 @@ if (orden === "precioMayor") {
     <img
   src={p.foto.replace(
     "uc?export=view&id=",
-    "thumbnail?id="
+    "thumbnail?sz=w1000&id="
   )}
   alt={p.nombre}
-  className="w-full h-full object-cover"
+  className="w-full h-full object-contain"
 />
   </div>
 )}

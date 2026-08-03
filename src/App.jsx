@@ -601,10 +601,13 @@ if (orden === "precioMayor") {
                 {p.foto && (
   <div className="w-full h-48 overflow-hidden rounded-xl">
     <img
-      src={p.foto}
-      alt={p.nombre}
-      className="w-full h-full object-cover"
-    />
+  src={p.foto.replace(
+    "uc?export=view&id=",
+    "thumbnail?id="
+  )}
+  alt={p.nombre}
+  className="w-full h-full object-cover"
+/>
   </div>
 )}
                 <div className="flex items-start justify-between gap-2">

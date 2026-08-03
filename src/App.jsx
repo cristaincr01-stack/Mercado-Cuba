@@ -599,14 +599,14 @@ if (orden === "precioMayor") {
               <div key={p.id} className="bg-white rounded-2xl shadow-sm border border-[#eee7d8] p-5 flex flex-col gap-4 hover:shadow-xl transition-shadow">
 
                 {p.foto && (
-  <img
-    src={p.foto}
-    alt={p.nombre}
-    className="w-full rounded-xl"
-    style={{ height: "200px" }}
-  />
+  <div className="w-full h-48 overflow-hidden rounded-xl">
+    <img
+      src={p.foto}
+      alt={p.nombre}
+      className="w-full h-full object-cover"
+    />
+  </div>
 )}
-                <p>{JSON.stringify(p)}</p>
                 <div className="flex items-start justify-between gap-2">
                   <span className="text-[10px] uppercase font-bold tracking-wide text-[#1B6B63] bg-[#e6efec] px-2 py-0.5 rounded-sm">
                     {p.categoria}

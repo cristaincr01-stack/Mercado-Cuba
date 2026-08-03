@@ -606,7 +606,7 @@ if (orden === "precioMayor") {
     style={{ height: "200px" }}
   />
 )}
-                <p>{p.foto}</p>
+                <p>{JSON.stringify(p)}</p>
                 <div className="flex items-start justify-between gap-2">
                   <span className="text-[10px] uppercase font-bold tracking-wide text-[#1B6B63] bg-[#e6efec] px-2 py-0.5 rounded-sm">
                     {p.categoria}

@@ -358,6 +358,41 @@ const [imagenProducto, setImagenProducto] = useState(null);
   }
 
 };
+  const marcarVendido = async (fila) => {
+
+  try {
+
+    const respuesta = await fetch(
+      `${API_URL}?accion=marcarVendido&fila=${fila}`
+    );
+
+    const resultado = await respuesta.json();
+
+    if (resultado.exito) {
+
+      setMisProductos(
+        prev => prev.map((p) =>
+          p._fila === fila
+            ? { ...p, Estado: "Vendido" }
+            : p
+        )
+      );
+
+      alert("Producto marcado como vendido");
+
+    } else {
+
+      alert("No se pudo marcar");
+
+    }
+
+  } catch (error) {
+
+    alert("Error al marcar el producto");
+
+  }
+
+};
 const enviarProducto = async () => {
   if (!nombreProducto || !precioProducto || !whatsappProducto || !imagenProducto) {
     alert("Completa todos los campos y selecciona una foto");
@@ -842,6 +877,12 @@ window.open(
     >
       Eliminar producto
     </button>
+    <button
+  onClick={() => marcarVendido(p._fila)}
+  className="mt-2 w-full bg-green-600 text-white py-2 rounded-lg"
+>
+  Marcar vendido
+</button>
   </div>
 ))}
   </div>

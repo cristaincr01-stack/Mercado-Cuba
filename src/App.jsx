@@ -863,6 +863,11 @@ window.open(
 
     {misProductos.map((p, index) => (
   <div key={index} className="border rounded-lg p-3 mb-2">
+    {p["Estado"] === "Vendido" && (
+  <div className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold inline-block mb-2">
+    VENDIDO
+  </div>
+)}
     <p className="font-semibold">
       {p["Nombre del producto"]}
     </p>

@@ -37,6 +37,7 @@ const fotoDirecta = foto.includes("drive.google.com/file/d/")
   : foto;
   return {
     id: index,
+    _fila: fila._fila,
     nombre: fila["Nombre del producto"] || "",
     categoria: fila["Categoría"] || "",
     provincia: fila["Provincia"] || "",
@@ -334,11 +335,15 @@ const [imagenProducto, setImagenProducto] = useState(null);
 
     if (resultado.exito) {
 
-      setMisProductos(
-        misProductos.filter((p) => p._fila !== fila)
-      );
+  setMisProductos(
+    prev => prev.filter((p) => p._fila !== fila)
+  );
 
-      alert("Producto eliminado");
+  setProductos(
+    prev => prev.filter((p) => p._fila !== fila)
+  );
+
+  alert("Producto eliminado");
 
     } else {
 

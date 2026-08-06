@@ -796,6 +796,16 @@ window.open(
     ))}
   </div>
 )}
+      <button
+  onClick={() => {
+    setMisProductosAbierto(false);
+    setMisProductos([]);
+    setWhatsappLogin("");
+  }}
+  className="w-full mt-4 bg-[#C4472B] text-white font-semibold py-2 rounded-lg"
+>
+  Cerrar
+</button>
 
     </div>
   </div>

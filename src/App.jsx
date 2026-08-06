@@ -316,6 +316,43 @@ const [imagenProducto, setImagenProducto] = useState(null);
 
   setCargandoMisProductos(false);
 };
+  const eliminarProducto = async (fila) => {
+
+  const confirmar = window.confirm(
+    "¿Seguro que quieres eliminar este producto?"
+  );
+
+  if (!confirmar) return;
+
+  try {
+
+    const respuesta = await fetch(
+      `${API_URL}?accion=eliminarProducto&fila=${fila}`
+    );
+
+    const resultado = await respuesta.json();
+
+    if (resultado.exito) {
+
+      setMisProductos(
+        misProductos.filter((p) => p._fila !== fila)
+      );
+
+      alert("Producto eliminado");
+
+    } else {
+
+      alert("No se pudo eliminar");
+
+    }
+
+  } catch (error) {
+
+    alert("Error al eliminar");
+
+  }
+
+};
 const enviarProducto = async () => {
   if (!nombreProducto || !precioProducto || !whatsappProducto || !imagenProducto) {
     alert("Completa todos los campos y selecciona una foto");
@@ -785,15 +822,23 @@ window.open(
     </h3>
 
     {misProductos.map((p, index) => (
-      <div key={index} className="border rounded-lg p-3 mb-2">
-        <p className="font-semibold">
-          {p["Nombre del producto"]}
-        </p>
-        <p>
-          {p["Precio"]} {p["Moneda"]}
-        </p>
-      </div>
-    ))}
+  <div key={index} className="border rounded-lg p-3 mb-2">
+    <p className="font-semibold">
+      {p["Nombre del producto"]}
+    </p>
+
+    <p>
+      {p["Precio"]} {p["Moneda"]}
+    </p>
+
+    <button
+      onClick={() => eliminarProducto(p._fila)}
+      className="mt-2 w-full bg-red-600 text-white py-2 rounded-lg"
+    >
+      Eliminar producto
+    </button>
+  </div>
+))}
   </div>
 )}
       <button

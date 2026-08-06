@@ -704,7 +704,7 @@ if (orden === "precioMayor") {
 
       {seleccionado && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg max-w-sm w-full p-5 relative shadow-xl">
+          <div className="bg-white rounded-lg max-w-sm w-full p-5 relative shadow-xl max-h-[85vh] overflow-y-auto">
             <button onClick={() => setSeleccionado(null)} className="absolute top-3 right-3 text-[#8a8370] hover:text-[#232620]">
               <X className="w-5 h-5" />
             </button>

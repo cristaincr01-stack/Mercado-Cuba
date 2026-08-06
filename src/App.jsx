@@ -268,6 +268,10 @@ const [guardandoMonedas, setGuardandoMonedas] = useState(false);
 function Tienda() {
   const [publicarAbierto, setPublicarAbierto] = useState(false);
   const [provincia, setProvincia] = useState("Todas");
+    const [misProductosAbierto, setMisProductosAbierto] = useState(false);
+  const [whatsappLogin, setWhatsappLogin] = useState("");
+  const [misProductos, setMisProductos] = useState([]);
+  const [cargandoMisProductos, setCargandoMisProductos] = useState(false);
   const [categoria, setCategoria] = useState("Todas");
   const [busqueda, setBusqueda] = useState("");
   const [seleccionado, setSeleccionado] = useState(null);
@@ -289,6 +293,29 @@ const [precioProducto, setPrecioProducto] = useState("");
 const [whatsappProducto, setWhatsappProducto] = useState("");
 const [imagenProducto, setImagenProducto] = useState(null);
   const [enviandoProducto, setEnviandoProducto] = useState(false);
+  const buscarMisProductos = async () => {
+  if (!whatsappLogin) {
+    alert("Escribe tu número de WhatsApp");
+    return;
+  }
+
+  setCargandoMisProductos(true);
+
+  try {
+    const respuesta = await fetch(
+      `${API_URL}?accion=misProductos&whatsapp=${encodeURIComponent(whatsappLogin)}`
+    );
+
+    const datos = await respuesta.json();
+
+    setMisProductos(datos);
+
+  } catch (error) {
+    alert("No se pudieron cargar tus productos");
+  }
+
+  setCargandoMisProductos(false);
+};
 const enviarProducto = async () => {
   if (!nombreProducto || !precioProducto || !whatsappProducto || !imagenProducto) {
     alert("Completa todos los campos y selecciona una foto");
@@ -441,6 +468,13 @@ if (orden === "precioMayor") {
       <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl">
   <UserRound className="w-5 h-5 text-[#1B6B63]" />
   Crear cuenta
+</button>
+      <button
+  onClick={() => setMisProductosAbierto(true)}
+  className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl"
+>
+  <Store className="w-5 h-5 text-[#1B6B63]" />
+  Mis productos
 </button>
 
       <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
@@ -714,6 +748,40 @@ window.open(
         </div>
       )}
 
+      {misProductosAbierto && (
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+    <div className="bg-white rounded-lg max-w-sm w-full p-5 relative shadow-xl">
+
+      <button
+        onClick={() => setMisProductosAbierto(false)}
+        className="absolute top-3 right-3 text-[#8a8370]"
+      >
+        <X className="w-5 h-5" />
+      </button>
+
+      <h2 className="text-xl font-bold mb-4">
+        Mis productos
+      </h2>
+
+      <input
+        type="text"
+        placeholder="Tu número de WhatsApp"
+        value={whatsappLogin}
+        onChange={(e) => setWhatsappLogin(e.target.value)}
+        className="w-full border rounded-lg px-3 py-2 mb-3"
+      />
+
+      <button
+        onClick={buscarMisProductos}
+        disabled={cargandoMisProductos}
+        className="w-full bg-[#1B6B63] text-white font-semibold py-3 rounded-lg"
+      >
+        {cargandoMisProductos ? "Buscando..." : "Entrar"}
+      </button>
+
+    </div>
+  </div>
+)}
             {publicarAbierto && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg max-w-md w-full p-5 relative shadow-xl">

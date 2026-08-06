@@ -778,6 +778,24 @@ window.open(
       >
         {cargandoMisProductos ? "Buscando..." : "Entrar"}
       </button>
+      {misProductos.length > 0 && (
+  <div className="mt-4">
+    <h3 className="font-bold mb-2">
+      Tus productos:
+    </h3>
+
+    {misProductos.map((p, index) => (
+      <div key={index} className="border rounded-lg p-3 mb-2">
+        <p className="font-semibold">
+          {p["Nombre del producto"]}
+        </p>
+        <p>
+          {p["Precio"]} {p["Moneda"]}
+        </p>
+      </div>
+    ))}
+  </div>
+)}
 
     </div>
   </div>

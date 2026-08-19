@@ -795,14 +795,18 @@ if (orden === "precioMayor") {
     </span>
 
     {p.estado === "Vendido" ? (
-      <span className="text-[10px] uppercase font-bold tracking-wide text-white bg-red-600 px-2 py-0.5 rounded-sm">
-        VENDIDO
-      </span>
-    ) : (
-      <span className="text-[10px] uppercase font-bold tracking-wide text-white bg-green-600 px-2 py-0.5 rounded-sm">
-        EN VENTA
-      </span>
-    )}
+  <span className="text-[10px] uppercase font-bold tracking-wide text-white bg-red-600 px-2 py-0.5 rounded-sm">
+    VENDIDO
+  </span>
+) : p.estado === "Reservado" ? (
+  <span className="text-[10px] uppercase font-bold tracking-wide text-white bg-yellow-500 px-2 py-0.5 rounded-sm">
+    RESERVADO
+  </span>
+) : (
+  <span className="text-[10px] uppercase font-bold tracking-wide text-white bg-green-600 px-2 py-0.5 rounded-sm">
+    EN VENTA
+  </span>
+)}
   </div>
 
   <span className="text-[11px] text-[#8a8370] flex items-center gap-1">

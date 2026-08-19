@@ -46,7 +46,7 @@ const fotoDirecta = foto.includes("drive.google.com/file/d/")
     vendedor: fila["Tu nombre (como quieres que aparezca en el anuncio)"] || "",
     tel: fila["Tu número de WhatsApp"] || "",
     foto: fotoDirecta,
-    estado: fila["Estado"] || ""
+    estado: fila["Estado"] || "EN VENTA",
   };
 }
 
@@ -735,9 +735,26 @@ if (orden === "precioMayor") {
   </div>
 )}
                 <div className="flex items-start justify-between gap-2">
-                  <span className="text-[10px] uppercase font-bold tracking-wide text-[#1B6B63] bg-[#e6efec] px-2 py-0.5 rounded-sm">
-                    {p.categoria}
-                  </span>
+  <div className="flex items-center gap-2 flex-wrap">
+    <span className="text-[10px] uppercase font-bold tracking-wide text-[#1B6B63] bg-[#e6efec] px-2 py-0.5 rounded-sm">
+      {p.categoria}
+    </span>
+
+    {p.estado === "Vendido" ? (
+      <span className="text-[10px] uppercase font-bold tracking-wide text-white bg-red-600 px-2 py-0.5 rounded-sm">
+        VENDIDO
+      </span>
+    ) : (
+      <span className="text-[10px] uppercase font-bold tracking-wide text-white bg-green-600 px-2 py-0.5 rounded-sm">
+        EN VENTA
+      </span>
+    )}
+  </div>
+
+  <span className="text-[11px] text-[#8a8370] flex items-center gap-1">
+    <MapPin className="w-3 h-3" /> {p.provincia}
+  </span>
+</div>
                   <span className="text-[11px] text-[#8a8370] flex items-center gap-1">
                     <MapPin className="w-3 h-3" /> {p.provincia}
                   </span>

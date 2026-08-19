@@ -1280,10 +1280,19 @@ window.open(
   <span className="text-[10px] font-semibold">Inicio</span>
 </button>
 
-          <button className="flex flex-col items-center justify-center gap-1 text-[#5c5848]">
-            <Search className="w-5 h-5" />
-            <span className="text-[10px] font-semibold">Buscar</span>
-          </button>
+          <button
+  onClick={() => {
+    const buscador = document.querySelector('input[placeholder="Buscar un producto..."]');
+    if (buscador) {
+      buscador.focus();
+      buscador.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }}
+  className="flex flex-col items-center justify-center gap-1 text-[#5c5848]"
+>
+  <Search className="w-5 h-5" />
+  <span className="text-[10px] font-semibold">Buscar</span>
+</button>
 
           <button
   onClick={() => setPublicarAbierto(true)}

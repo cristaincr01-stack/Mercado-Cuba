@@ -1206,6 +1206,13 @@ window.open(
   onChange={(e) => setCategoriaProducto(e.target.value)}
   className="w-full border rounded-lg px-3 py-2"
 >
+                <option value="" disabled>Categoría</option>
+
+  {CATEGORIAS.filter(c => c !== "Todas").map(c => (
+    <option key={c} value={c}>{c}</option>
+  ))}
+</select>
+
 
 <select
   value={provinciaProducto}

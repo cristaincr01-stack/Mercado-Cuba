@@ -1004,6 +1004,18 @@ window.open(
         placeholder="Precio"
         className="w-full border rounded-lg px-3 py-2 mb-4"
       />
+      <div className="mb-4">
+  <label className="block text-sm font-semibold mb-2">
+    Cambiar foto
+  </label>
+
+  <input
+    type="file"
+    accept="image/*"
+    onChange={(e) => setImagenProducto(e.target.files[0] || null)}
+    className="w-full border rounded-lg px-3 py-2"
+  />
+</div>
 
       <button
         onClick={async () => {

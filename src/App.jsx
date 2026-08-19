@@ -1283,11 +1283,6 @@ window.open(
   </div>
   <span className="text-[10px] font-bold">Publicar</span>
 </button>
-            <div className="w-10 h-10 -mt-5 rounded-full bg-[#C4472B] text-white flex items-center justify-center shadow-lg border-4 border-[#EDE6D6]">
-              <Plus className="w-6 h-6" />
-            </div>
-            <span className="text-[10px] font-bold">Publicar</span>
-          </button>
 
           <button
   onClick={() => setMisProductosAbierto(true)}

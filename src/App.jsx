@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { MapPin, Search, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info } from "lucide-react";
+import { MapPin, Search, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal } from "lucide-react";
 
 const PROVINCIAS = [
   "Todas", "Pinar del Río" , "Artemisa" , "La Habana", "Mayabeque" , "Matanzas" , "Cienfuegos" , "Villa Clara" , "Sansti Spiritu" , "Ciego de Ávila",
@@ -1258,10 +1258,47 @@ window.open(
 
           </div>
         </div>
-      )}
+            )}
+
+      {/* BARRA DE NAVEGACIÓN INFERIOR */}
+      <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#ddd6c7] shadow-[0_-4px_15px_rgba(0,0,0,0.08)]">
+        <div className="max-w-2xl mx-auto h-16 grid grid-cols-5">
+
+          <button className="flex flex-col items-center justify-center gap-1 text-[#1B6B63]">
+            <Home className="w-5 h-5" />
+            <span className="text-[10px] font-semibold">Inicio</span>
+          </button>
+
+          <button className="flex flex-col items-center justify-center gap-1 text-[#5c5848]">
+            <Search className="w-5 h-5" />
+            <span className="text-[10px] font-semibold">Buscar</span>
+          </button>
+
+          <button className="flex flex-col items-center justify-center gap-1 text-[#C4472B]">
+            <div className="w-10 h-10 -mt-5 rounded-full bg-[#C4472B] text-white flex items-center justify-center shadow-lg border-4 border-[#EDE6D6]">
+              <Plus className="w-6 h-6" />
+            </div>
+            <span className="text-[10px] font-bold">Publicar</span>
+          </button>
+
+          <button className="flex flex-col items-center justify-center gap-1 text-[#5c5848]">
+            <Package className="w-5 h-5" />
+            <span className="text-[10px] font-semibold">Mis productos</span>
+          </button>
+
+          <button className="flex flex-col items-center justify-center gap-1 text-[#5c5848]">
+            <MoreHorizontal className="w-5 h-5" />
+            <span className="text-[10px] font-semibold">Más</span>
+          </button>
+
+        </div>
+      </nav>
+
     </div>
   );
 }
+
+export default function App() {
 
 export default function App() {
   const esAdmin = window.location.hash === "#admin";

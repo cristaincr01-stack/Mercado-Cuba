@@ -1201,24 +1201,9 @@ window.open(
             autoFocus
           />
         </div>
-        <select
-  value={categoria}
-  onChange={e => setCategoria(e.target.value)}
-  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 text-sm bg-white"
->
-  {CATEGORIAS.map(c => (
-    <option key={c}>{c}</option>
-  ))}
-</select>
-        <select
-  value={provincia}
-  onChange={e => setProvincia(e.target.value)}
-  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 text-sm bg-white"
->
-  {PROVINCIAS.map(p => (
-    <option key={p}>{p}</option>
-  ))}
-</select>
+        <p className="text-xs text-[#8a8370] px-1 pt-1">
+  Busca productos por nombre o palabra clave
+</p>
 
       </div>
 
@@ -1237,8 +1222,7 @@ window.open(
             </button>
 
             <h2 className="text-xl font-bold mb-4">
-              Publicar producto
-            </h2>
+                   </h2>
 
             <div className="space-y-3">
 

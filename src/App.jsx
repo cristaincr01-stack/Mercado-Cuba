@@ -1018,68 +1018,100 @@ window.open(
 </div>
 
       <button
-        onClick={async () => {
-          if (!nombreProducto || !precioProducto) {
-            alert("Completa el nombre y el precio");
-            return;
-          }
+  onClick={async () => {
+    if (!nombreProducto || !precioProducto) {
+      alert("Completa el nombre y el precio");
+      return;
+    }
 
-          try {
-            const respuesta = await fetch(
-              `${API_URL}?accion=editarProducto&fila=${productoEditando._fila}&nombre=${encodeURIComponent(nombreProducto)}&categoria=${encodeURIComponent(categoriaProducto)}&provincia=${encodeURIComponent(provinciaProducto)}&moneda=${encodeURIComponent(monedaProducto)}&precio=${encodeURIComponent(precioProducto)}`
-            );
+    try {
+      // Subir nueva foto si se seleccionó una
+      if (imagenProducto) {
+        const reader = new FileReader();
 
-            const resultado = await respuesta.json();
+        const base64 = await new Promise((resolve, reject) => {
+          reader.onload = () => resolve(reader.result.split(",")[1]);
+          reader.onerror = reject;
+          reader.readAsDataURL(imagenProducto);
+        });
 
-            if (resultado.exito) {
+        const respuestaFoto = await fetch(API_URL, {
+          method: "POST",
+          body: new URLSearchParams({
+            accion: "editarFoto",
+            fila: productoEditando._fila,
+            imagen: base64,
+            tipo: imagenProducto.type,
+            nombre: imagenProducto.name
+          })
+        });
 
-              setMisProductos(prev =>
-                prev.map(p =>
-                  p._fila === productoEditando._fila
-                    ? {
-                        ...p,
-                        "Nombre del producto": nombreProducto,
-                        "Categoría": categoriaProducto,
-                        "Provincia": provinciaProducto,
-                        "Moneda": monedaProducto,
-                        "Precio": precioProducto
-                      }
-                    : p
-                )
-              );
+        const resultadoFoto = await respuestaFoto.json();
 
-              setProductos(prev =>
-                prev.map(p =>
-                  p._fila === productoEditando._fila
-                    ? {
-                        ...p,
-                        nombre: nombreProducto,
-                        categoria: categoriaProducto,
-                        provincia: provinciaProducto,
-                        moneda: monedaProducto,
-                        precio: precioProducto
-                      }
-                    : p
-                )
-              );
+        if (!resultadoFoto.exito) {
+          alert("No se pudo subir la nueva foto");
+          return;
+        }
+      }
 
-              setEditandoProducto(false);
-              setProductoEditando(null);
+      // Actualizar los datos del producto
+      const respuesta = await fetch(
+        `${API_URL}?accion=editarProducto&fila=${productoEditando._fila}&nombre=${encodeURIComponent(nombreProducto)}&categoria=${encodeURIComponent(categoriaProducto)}&provincia=${encodeURIComponent(provinciaProducto)}&moneda=${encodeURIComponent(monedaProducto)}&precio=${encodeURIComponent(precioProducto)}`
+      );
 
-              alert("Producto actualizado correctamente");
+      const resultado = await respuesta.json();
 
-            } else {
-              alert("No se pudo actualizar el producto");
-            }
+      if (resultado.exito) {
 
-          } catch (error) {
-            alert("Error al actualizar el producto");
-          }
-        }}
-        className="w-full bg-[#1B6B63] text-white font-semibold py-3 rounded-lg"
-      >
-        Guardar cambios
-      </button>
+        setMisProductos(prev =>
+          prev.map(p =>
+            p._fila === productoEditando._fila
+              ? {
+                  ...p,
+                  "Nombre del producto": nombreProducto,
+                  "Categoría": categoriaProducto,
+                  "Provincia": provinciaProducto,
+                  "Moneda": monedaProducto,
+                  "Precio": precioProducto
+                }
+              : p
+          )
+        );
+
+        setProductos(prev =>
+          prev.map(p =>
+            p._fila === productoEditando._fila
+              ? {
+                  ...p,
+                  nombre: nombreProducto,
+                  categoria: categoriaProducto,
+                  provincia: provinciaProducto,
+                  moneda: monedaProducto,
+                  precio: precioProducto
+                }
+              : p
+          )
+        );
+
+        setImagenProducto(null);
+        setEditandoProducto(false);
+        setProductoEditando(null);
+
+        alert("Producto actualizado correctamente");
+
+      } else {
+        alert("No se pudo actualizar el producto");
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert("Error al actualizar el producto");
+    }
+  }}
+  className="w-full bg-[#1B6B63] text-white font-semibold py-3 rounded-lg"
+>
+  Guardar cambios
+</button>
 
     </div>
   </div>

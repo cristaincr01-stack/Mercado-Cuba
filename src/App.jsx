@@ -1204,8 +1204,10 @@ window.open(
               <select
   value={categoriaProducto}
   onChange={(e) => setCategoriaProducto(e.target.value)}
-  className="w-full border rounded-lg px-3 py-2"
-/>
+  className={`w-full border rounded-lg px-3 py-2 appearance-none bg-white ${
+  categoriaProducto ? "text-[#232620]" : "text-[#8fa9b8]"
+}`}
+>
                 <option value="" disabled>Categoría</option>
 
   {CATEGORIAS.filter(c => c !== "Todas").map(c => (
@@ -1217,7 +1219,9 @@ window.open(
 <select
   value={provinciaProducto}
   onChange={(e) => setProvinciaProducto(e.target.value)}
-  className="w-full border rounded-lg px-3 py-2 appearance-none bg-white text-[#8a8370]"
+  className={`w-full border rounded-lg px-3 py-2 appearance-none bg-white ${
+  provinciaProducto ? "text-[#232620]" : "text-[#8fa9b8]"
+}`}
 >
   <option value="" disabled>Provincia</option>
   {PROVINCIAS.filter(p => p !== "Todas").map(p => (
@@ -1228,7 +1232,9 @@ window.open(
 <select
   value={monedaProducto}
   onChange={(e) => setMonedaProducto(e.target.value)}
-  className="w-full border rounded-lg px-3 py-2 appearance-none bg-white text-[#8a8370]"
+  className={`w-full border rounded-lg px-3 py-2 appearance-none bg-white ${
+  monedaProducto ? "text-[#232620]" : "text-[#8fa9b8]"
+}`}
 >
   <option value="" disabled>Moneda</option>
   <option value="CUP">CUP</option>

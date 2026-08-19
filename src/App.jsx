@@ -1204,6 +1204,49 @@ window.open(
         <p className="text-xs text-[#8a8370] px-1 pt-1">
   Busca productos por nombre o palabra clave
 </p>
+        {busqueda && (
+  <div className="pt-2">
+    <p className="text-xs font-semibold text-[#5c5848] mb-2">
+      Resultados de búsqueda
+    </p>
+
+    <div className="space-y-2 max-h-72 overflow-y-auto">
+      {productosFiltrados.length > 0 ? (
+        productosFiltrados.map(p => (
+          <div
+            key={p.id}
+            className="flex items-center gap-3 p-3 rounded-xl border border-[#eee7d8] hover:bg-[#faf8f2] transition-colors"
+          >
+            {p.foto && (
+              <img
+                src={p.foto.replace(
+                  "uc?export=view&id=",
+                  "thumbnail?sz=w200&id="
+                )}
+                alt={p.nombre}
+                className="w-12 h-12 rounded-lg object-contain bg-white"
+              />
+            )}
+
+            <div className="min-w-0">
+              <p className="font-semibold text-sm text-[#232620] truncate">
+                {p.nombre}
+              </p>
+
+              <p className="text-xs text-[#8a8370]">
+                {p.provincia} · {p.categoria}
+              </p>
+            </div>
+          </div>
+        ))
+      ) : (
+        <p className="text-sm text-[#8a8370] py-4 text-center">
+          No encontramos productos.
+        </p>
+      )}
+    </div>
+  </div>
+)}
 
       </div>
 

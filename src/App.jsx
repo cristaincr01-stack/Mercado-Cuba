@@ -755,10 +755,6 @@ if (orden === "precioMayor") {
     <MapPin className="w-3 h-3" /> {p.provincia}
   </span>
 </div>
-                  <span className="text-[11px] text-[#8a8370] flex items-center gap-1">
-                    <MapPin className="w-3 h-3" /> {p.provincia}
-                  </span>
-                </div>
                                 {p.estado && p.estado.toLowerCase() === "vendido" && (
                   <div className="mt-2 inline-block bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-md">
                     VENDIDO

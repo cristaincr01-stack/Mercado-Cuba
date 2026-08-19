@@ -1204,7 +1204,7 @@ window.open(
               <select
   value={categoriaProducto}
   onChange={(e) => setCategoriaProducto(e.target.value)}
-  className="w-full border rounded-lg px-3 py-2"
+  className="w-full border rounded-lg px-3 py-2 appearance-none bg-white"
 >
                 <option value="" disabled>Categoría</option>
 
@@ -1217,8 +1217,9 @@ window.open(
 <select
   value={provinciaProducto}
   onChange={(e) => setProvinciaProducto(e.target.value)}
-  className="w-full border rounded-lg px-3 py-2"
+  className="w-full border rounded-lg px-3 py-2 appearance-none bg-white"
 >
+  <option value="" disabled>Provincia</option>
   {PROVINCIAS.filter(p => p !== "Todas").map(p => (
     <option key={p}>{p}</option>
   ))}
@@ -1227,8 +1228,9 @@ window.open(
 <select
   value={monedaProducto}
   onChange={(e) => setMonedaProducto(e.target.value)}
-  className="w-full border rounded-lg px-3 py-2"
+  className="w-full border rounded-lg px-3 py-2 appearance-none bg-white"
 >
+  <option value="" disabled>Moneda</option>
   <option value="CUP">CUP</option>
   <option value="USD">USD</option>
   <option value="EUR">EUR</option>

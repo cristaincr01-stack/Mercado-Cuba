@@ -1170,6 +1170,43 @@ window.open(
     </div>
   </div>
 )}
+      {buscarAbierto && (
+  <div className="fixed inset-0 bg-black/50 flex items-start justify-center p-4 z-50">
+    <div className="bg-white rounded-2xl max-w-md w-full mt-6 shadow-xl overflow-hidden">
+
+      <div className="flex items-center justify-between p-4 border-b border-[#eee7d8]">
+        <h2 className="text-lg font-bold text-[#232620]">
+          Buscar productos
+        </h2>
+
+        <button
+          onClick={() => setBuscarAbierto(false)}
+          className="text-[#8a8370]"
+        >
+          <X className="w-5 h-5" />
+        </button>
+      </div>
+
+      <div className="p-4 space-y-3">
+
+        <div className="flex items-center gap-2 border border-[#ddd6c4] rounded-xl px-4 py-3">
+          <Search className="w-4 h-4 text-[#8a8370]" />
+
+          <input
+            type="text"
+            value={busqueda}
+            onChange={e => setBusqueda(e.target.value)}
+            placeholder="¿Qué estás buscando?"
+            className="w-full outline-none text-sm bg-transparent"
+            autoFocus
+          />
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+)}
             {publicarAbierto && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg max-w-md w-full p-5 relative shadow-xl">

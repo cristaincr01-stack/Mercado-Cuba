@@ -1204,7 +1204,7 @@ window.open(
               <select
   value={categoriaProducto}
   onChange={(e) => setCategoriaProducto(e.target.value)}
-  className="w-full border rounded-lg px-3 py-2 appearance-none bg-white"
+  className="w-full border rounded-lg px-3 py-2 appearance-none bg-white text-[#8a8370]"
 >
                 <option value="" disabled>Categoría</option>
 
@@ -1217,7 +1217,7 @@ window.open(
 <select
   value={provinciaProducto}
   onChange={(e) => setProvinciaProducto(e.target.value)}
-  className="w-full border rounded-lg px-3 py-2 appearance-none bg-white"
+  className="w-full border rounded-lg px-3 py-2 appearance-none bg-white text-[#8a8370]"
 >
   <option value="" disabled>Provincia</option>
   {PROVINCIAS.filter(p => p !== "Todas").map(p => (
@@ -1228,7 +1228,7 @@ window.open(
 <select
   value={monedaProducto}
   onChange={(e) => setMonedaProducto(e.target.value)}
-  className="w-full border rounded-lg px-3 py-2 appearance-none bg-white"
+  className="w-full border rounded-lg px-3 py-2 appearance-none bg-white text-[#8a8370]"
 >
   <option value="" disabled>Moneda</option>
   <option value="CUP">CUP</option>

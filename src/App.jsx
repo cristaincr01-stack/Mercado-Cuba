@@ -295,6 +295,8 @@ const [precioProducto, setPrecioProducto] = useState("");
 const [whatsappProducto, setWhatsappProducto] = useState("");
 const [imagenProducto, setImagenProducto] = useState(null);
   const [enviandoProducto, setEnviandoProducto] = useState(false);
+  const [productoEditando, setProductoEditando] = useState(null);
+const [editandoProducto, setEditandoProducto] = useState(false);
   const buscarMisProductos = async () => {
   if (!whatsappLogin) {
     alert("Escribe tu número de WhatsApp");
@@ -358,6 +360,15 @@ const [imagenProducto, setImagenProducto] = useState(null);
 
   }
 
+};
+  const abrirEdicion = (producto) => {
+  setProductoEditando(producto);
+  setNombreProducto(producto["Nombre del producto"] || "");
+  setCategoriaProducto(producto["Categoría"] || "Electrónica");
+  setProvinciaProducto(producto["Provincia"] || "La Habana");
+  setMonedaProducto(producto["Moneda"] || "CUP");
+  setPrecioProducto(producto["Precio"] || "");
+  setEditandoProducto(true);
 };
   const marcarVendido = async (fila) => {
 
@@ -897,6 +908,12 @@ window.open(
       Eliminar producto
     </button>
     <button
+  onClick={() => abrirEdicion(p)}
+  className="mt-2 w-full bg-[#1B6B63] text-white py-2 rounded-lg"
+>
+  Editar producto
+</button>
+    <button
   onClick={() => marcarVendido(p._fila)}
   className="mt-2 w-full bg-green-600 text-white py-2 rounded-lg"
 >
@@ -916,6 +933,141 @@ window.open(
 >
   Cerrar
 </button>
+
+    </div>
+  </div>
+)}
+      {editandoProducto && productoEditando && (
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+    <div className="bg-white rounded-lg max-w-md w-full p-5 relative shadow-xl">
+
+      <button
+        onClick={() => {
+          setEditandoProducto(false);
+          setProductoEditando(null);
+        }}
+        className="absolute top-3 right-3 text-[#8a8370]"
+      >
+        <X className="w-5 h-5" />
+      </button>
+
+      <h2 className="text-xl font-bold mb-4">
+        Editar producto
+      </h2>
+
+      <input
+        type="text"
+        value={nombreProducto}
+        onChange={(e) => setNombreProducto(e.target.value)}
+        placeholder="Nombre del producto"
+        className="w-full border rounded-lg px-3 py-2 mb-3"
+      />
+
+      <select
+        value={categoriaProducto}
+        onChange={(e) => setCategoriaProducto(e.target.value)}
+        className="w-full border rounded-lg px-3 py-2 mb-3"
+      >
+        {CATEGORIAS.filter(c => c !== "Todas").map((c) => (
+          <option key={c} value={c}>
+            {c}
+          </option>
+        ))}
+      </select>
+
+      <select
+        value={provinciaProducto}
+        onChange={(e) => setProvinciaProducto(e.target.value)}
+        className="w-full border rounded-lg px-3 py-2 mb-3"
+      >
+        {PROVINCIAS.filter(p => p !== "Todas").map((p) => (
+          <option key={p} value={p}>
+            {p}
+          </option>
+        ))}
+      </select>
+
+      <select
+        value={monedaProducto}
+        onChange={(e) => setMonedaProducto(e.target.value)}
+        className="w-full border rounded-lg px-3 py-2 mb-3"
+      >
+        <option value="CUP">CUP</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+      </select>
+
+      <input
+        type="number"
+        value={precioProducto}
+        onChange={(e) => setPrecioProducto(e.target.value)}
+        placeholder="Precio"
+        className="w-full border rounded-lg px-3 py-2 mb-4"
+      />
+
+      <button
+        onClick={async () => {
+          if (!nombreProducto || !precioProducto) {
+            alert("Completa el nombre y el precio");
+            return;
+          }
+
+          try {
+            const respuesta = await fetch(
+              `${API_URL}?accion=editarProducto&fila=${productoEditando._fila}&nombre=${encodeURIComponent(nombreProducto)}&categoria=${encodeURIComponent(categoriaProducto)}&provincia=${encodeURIComponent(provinciaProducto)}&moneda=${encodeURIComponent(monedaProducto)}&precio=${encodeURIComponent(precioProducto)}`
+            );
+
+            const resultado = await respuesta.json();
+
+            if (resultado.exito) {
+
+              setMisProductos(prev =>
+                prev.map(p =>
+                  p._fila === productoEditando._fila
+                    ? {
+                        ...p,
+                        "Nombre del producto": nombreProducto,
+                        "Categoría": categoriaProducto,
+                        "Provincia": provinciaProducto,
+                        "Moneda": monedaProducto,
+                        "Precio": precioProducto
+                      }
+                    : p
+                )
+              );
+
+              setProductos(prev =>
+                prev.map(p =>
+                  p._fila === productoEditando._fila
+                    ? {
+                        ...p,
+                        nombre: nombreProducto,
+                        categoria: categoriaProducto,
+                        provincia: provinciaProducto,
+                        moneda: monedaProducto,
+                        precio: precioProducto
+                      }
+                    : p
+                )
+              );
+
+              setEditandoProducto(false);
+              setProductoEditando(null);
+
+              alert("Producto actualizado correctamente");
+
+            } else {
+              alert("No se pudo actualizar el producto");
+            }
+
+          } catch (error) {
+            alert("Error al actualizar el producto");
+          }
+        }}
+        className="w-full bg-[#1B6B63] text-white font-semibold py-3 rounded-lg"
+      >
+        Guardar cambios
+      </button>
 
     </div>
   </div>

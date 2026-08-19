@@ -1267,10 +1267,18 @@ window.open(
       <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#ddd6c7] shadow-[0_-4px_15px_rgba(0,0,0,0.08)]">
         <div className="max-w-2xl mx-auto h-16 grid grid-cols-5">
 
-          <button className="flex flex-col items-center justify-center gap-1 text-[#1B6B63]">
-            <Home className="w-5 h-5" />
-            <span className="text-[10px] font-semibold">Inicio</span>
-          </button>
+          <button
+  onClick={() => {
+    setPublicarAbierto(false);
+    setMisProductosAbierto(false);
+    setMenuAbierto(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }}
+  className="flex flex-col items-center justify-center gap-1 text-[#1B6B63]"
+>
+  <Home className="w-5 h-5" />
+  <span className="text-[10px] font-semibold">Inicio</span>
+</button>
 
           <button className="flex flex-col items-center justify-center gap-1 text-[#5c5848]">
             <Search className="w-5 h-5" />

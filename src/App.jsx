@@ -370,6 +370,49 @@ const [editandoProducto, setEditandoProducto] = useState(false);
   setPrecioProducto(producto["Precio"] || "");
   setEditandoProducto(true);
 };
+  const marcarReservado = async (fila) => {
+
+  try {
+
+    const respuesta = await fetch(
+      `${API_URL}?accion=marcarReservado&fila=${fila}`
+    );
+
+    const resultado = await respuesta.json();
+
+    if (resultado.exito) {
+
+      setMisProductos(
+        prev => prev.map((p) =>
+          p._fila === fila
+            ? { ...p, Estado: "Reservado" }
+            : p
+        )
+      );
+
+      setProductos(
+        prev => prev.map((p) =>
+          p._fila === fila
+            ? { ...p, estado: "Reservado" }
+            : p
+        )
+      );
+
+      alert("Producto marcado como reservado");
+
+    } else {
+
+      alert("No se pudo marcar como reservado");
+
+    }
+
+  } catch (error) {
+
+    alert("Error al marcar el producto como reservado");
+
+  }
+
+};
   const marcarVendido = async (fila) => {
 
   try {
@@ -912,6 +955,12 @@ window.open(
   className="mt-2 w-full bg-[#1B6B63] text-white py-2 rounded-lg"
 >
   Editar producto
+</button>
+    <button
+  onClick={() => marcarReservado(p._fila)}
+  className="mt-2 w-full bg-yellow-500 text-white py-2 rounded-lg"
+>
+  Marcar reservado
 </button>
     <button
   onClick={() => marcarVendido(p._fila)}

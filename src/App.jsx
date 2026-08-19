@@ -1204,8 +1204,8 @@ window.open(
               <select
   value={categoriaProducto}
   onChange={(e) => setCategoriaProducto(e.target.value)}
-  className="w-full border rounded-lg px-3 py-2 appearance-none bg-white text-[#8a8370]"
->
+  className="w-full border rounded-lg px-3 py-2"
+/>
                 <option value="" disabled>Categoría</option>
 
   {CATEGORIAS.filter(c => c !== "Todas").map(c => (

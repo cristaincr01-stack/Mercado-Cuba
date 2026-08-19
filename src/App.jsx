@@ -46,7 +46,7 @@ const fotoDirecta = foto.includes("drive.google.com/file/d/")
     vendedor: fila["Tu nombre (como quieres que aparezca en el anuncio)"] || "",
     tel: fila["Tu número de WhatsApp"] || "",
     foto: fotoDirecta,
-    estado: p["Estado"]
+    estado: fila["Estado"] || ""
   };
 }
 

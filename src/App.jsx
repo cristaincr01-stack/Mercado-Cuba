@@ -288,9 +288,9 @@ function Tienda() {
 });
 
   const [nombreProducto, setNombreProducto] = useState("");
-const [categoriaProducto, setCategoriaProducto] = useState("Electrónica");
-const [provinciaProducto, setProvinciaProducto] = useState("La Habana");
-const [monedaProducto, setMonedaProducto] = useState("CUP");
+const [categoriaProducto, setCategoriaProducto] = useState("");
+const [provinciaProducto, setProvinciaProducto] = useState("");
+const [monedaProducto, setMonedaProducto] = useState("");
 const [precioProducto, setPrecioProducto] = useState("");
 const [whatsappProducto, setWhatsappProducto] = useState("");
 const [imagenProducto, setImagenProducto] = useState(null);
@@ -1206,10 +1206,6 @@ window.open(
   onChange={(e) => setCategoriaProducto(e.target.value)}
   className="w-full border rounded-lg px-3 py-2"
 >
-  {CATEGORIAS.filter(c => c !== "Todas").map(c => (
-    <option key={c}>{c}</option>
-  ))}
-</select>
 
 <select
   value={provinciaProducto}
@@ -1292,10 +1288,13 @@ window.open(
   <span className="text-[10px] font-semibold">Mis productos</span>
 </button>
 
-          <button className="flex flex-col items-center justify-center gap-1 text-[#5c5848]">
-            <MoreHorizontal className="w-5 h-5" />
-            <span className="text-[10px] font-semibold">Más</span>
-          </button>
+          <button
+  onClick={() => setMenuAbierto(!menuAbierto)}
+  className="flex flex-col items-center justify-center gap-1 text-[#5c5848]"
+>
+  <MoreHorizontal className="w-5 h-5" />
+  <span className="text-[10px] font-semibold">Más</span>
+</button>
 
         </div>
       </nav>

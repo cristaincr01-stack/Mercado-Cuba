@@ -1201,6 +1201,24 @@ window.open(
             autoFocus
           />
         </div>
+        <select
+  value={categoria}
+  onChange={e => setCategoria(e.target.value)}
+  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 text-sm bg-white"
+>
+  {CATEGORIAS.map(c => (
+    <option key={c}>{c}</option>
+  ))}
+</select>
+        <select
+  value={provincia}
+  onChange={e => setProvincia(e.target.value)}
+  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 text-sm bg-white"
+>
+  {PROVINCIAS.map(p => (
+    <option key={p}>{p}</option>
+  ))}
+</select>
 
       </div>
 

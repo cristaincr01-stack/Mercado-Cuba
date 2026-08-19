@@ -1274,17 +1274,28 @@ window.open(
             <span className="text-[10px] font-semibold">Buscar</span>
           </button>
 
-          <button className="flex flex-col items-center justify-center gap-1 text-[#C4472B]">
+          <button
+  onClick={() => setPublicarAbierto(true)}
+  className="flex flex-col items-center justify-center gap-1 text-[#C4472B]"
+>
+  <div className="w-10 h-10 -mt-5 rounded-full bg-[#C4472B] text-white flex items-center justify-center shadow-lg border-4 border-[#EDE6D6]">
+    <Plus className="w-6 h-6" />
+  </div>
+  <span className="text-[10px] font-bold">Publicar</span>
+</button>
             <div className="w-10 h-10 -mt-5 rounded-full bg-[#C4472B] text-white flex items-center justify-center shadow-lg border-4 border-[#EDE6D6]">
               <Plus className="w-6 h-6" />
             </div>
             <span className="text-[10px] font-bold">Publicar</span>
           </button>
 
-          <button className="flex flex-col items-center justify-center gap-1 text-[#5c5848]">
-            <Package className="w-5 h-5" />
-            <span className="text-[10px] font-semibold">Mis productos</span>
-          </button>
+          <button
+  onClick={() => setMisProductosAbierto(true)}
+  className="flex flex-col items-center justify-center gap-1 text-[#5c5848]"
+>
+  <Package className="w-5 h-5" />
+  <span className="text-[10px] font-semibold">Mis productos</span>
+</button>
 
           <button className="flex flex-col items-center justify-center gap-1 text-[#5c5848]">
             <MoreHorizontal className="w-5 h-5" />

@@ -271,6 +271,7 @@ function Tienda() {
   const [publicarAbierto, setPublicarAbierto] = useState(false);
   const [provincia, setProvincia] = useState("Todas");
     const [misProductosAbierto, setMisProductosAbierto] = useState(false);
+  const [buscarAbierto, setBuscarAbierto] = useState(false);
   const [whatsappLogin, setWhatsappLogin] = useState("");
   const [misProductos, setMisProductos] = useState([]);
   const [cargandoMisProductos, setCargandoMisProductos] = useState(false);
@@ -1289,13 +1290,7 @@ window.open(
 </button>
 
           <button
-  onClick={() => {
-    const buscador = document.querySelector('input[placeholder="Buscar un producto..."]');
-    if (buscador) {
-      buscador.focus();
-      buscador.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  }}
+  onClick={() => setBuscarAbierto(true)}
   className="flex flex-col items-center justify-center gap-1 text-[#5c5848]"
 >
   <Search className="w-5 h-5" />

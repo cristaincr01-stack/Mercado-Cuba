@@ -1214,9 +1214,13 @@ window.open(
       {productosFiltrados.length > 0 ? (
         productosFiltrados.map(p => (
           <div
-            key={p.id}
-            className="flex items-center gap-3 p-3 rounded-xl border border-[#eee7d8] hover:bg-[#faf8f2] transition-colors"
-          >
+  key={p.id}
+  onClick={() => {
+    setSeleccionado(p);
+    setBusqueda("");
+  }}
+  className="flex items-center gap-3 p-3 rounded-xl border border-[#eee7d8] hover:bg-[#faf8f2] transition-colors cursor-pointer"
+>
             {p.foto && (
               <img
                 src={p.foto.replace(

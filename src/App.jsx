@@ -911,6 +911,16 @@ if (orden === "precioMayor") {
         </button>
 
       </div>
+      {tipoCuenta && (
+  <button
+    onClick={() => {
+      alert(`Seleccionaste: ${tipoCuenta}`);
+    }}
+    className="w-full mt-5 bg-[#1B6B63] text-white font-bold py-3 rounded-xl hover:bg-[#14534e] transition"
+  >
+    Continuar
+  </button>
+)}
 
     </div>
   </div>

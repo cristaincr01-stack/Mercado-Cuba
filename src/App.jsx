@@ -692,7 +692,14 @@ if (orden === "precioMayor") {
   Mis productos
 </button>
 
-      <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
+      <button
+  onClick={() => {
+    setMenuAbierto(false);
+    setIniciarSesionAbierto(true);
+    setSesionError("");
+  }}
+  className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm"
+>
   <LogIn className="w-5 h-5 text-[#1B6B63]" />
   Iniciar sesión
 </button>
@@ -1426,7 +1433,92 @@ window.open(
         </div>
       )}
 
-      {misProductosAbierto && (
+      {iniciarSesionAbierto && (
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+    <div className="bg-white rounded-2xl max-w-sm w-full p-5 relative shadow-xl">
+
+      <button
+        onClick={() => {
+          setIniciarSesionAbierto(false);
+          setWhatsappSesion("");
+          setPinSesion("");
+          setSesionError("");
+        }}
+        className="absolute top-3 right-3 text-[#8a8370]"
+      >
+        <X className="w-5 h-5" />
+      </button>
+
+      <h2 className="text-xl font-bold mb-1">
+        Iniciar sesión
+      </h2>
+
+      <p className="text-sm text-[#8a8370] mb-5">
+        Accede a tu cuenta de MercadoCU
+      </p>
+
+      <label className="block text-sm font-semibold text-[#232620] mb-1">
+        WhatsApp
+      </label>
+
+      <input
+        type="tel"
+        placeholder="Tu número de WhatsApp"
+        value={whatsappSesion}
+        onChange={(e) => setWhatsappSesion(e.target.value)}
+        className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 mb-4 outline-none focus:border-[#1B6B63] text-[#232620]"
+      />
+
+      <label className="block text-sm font-semibold text-[#232620] mb-1">
+        Contraseña
+      </label>
+
+      <div className="relative">
+        <input
+          type={mostrarPinSesion ? "text" : "password"}
+          placeholder="Tu contraseña"
+          value={pinSesion}
+          onChange={(e) => setPinSesion(e.target.value)}
+          className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 pr-12 outline-none focus:border-[#1B6B63] text-[#232620]"
+        />
+
+        <button
+          type="button"
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={() => setMostrarPinSesion(!mostrarPinSesion)}
+          className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-[#6f6a5c] hover:text-[#1B6B63]"
+          aria-label={
+            mostrarPinSesion
+              ? "Ocultar contraseña"
+              : "Mostrar contraseña"
+          }
+        >
+          {mostrarPinSesion ? (
+            <EyeOff size={18} strokeWidth={1.8} />
+          ) : (
+            <Eye size={18} strokeWidth={1.8} />
+          )}
+        </button>
+      </div>
+
+      {sesionError && (
+        <p className="text-red-600 text-sm mt-3">
+          {sesionError}
+        </p>
+      )}
+
+      <button
+        onClick={iniciarSesion}
+        disabled={cargandoSesion}
+        className="w-full mt-5 bg-[#1B6B63] text-white font-bold py-3 rounded-xl hover:bg-[#14534e] transition"
+      >
+        {cargandoSesion ? "Entrando..." : "Iniciar sesión"}
+      </button>
+
+    </div>
+  </div>
+)}
+        {misProductosAbierto && (
   <div className="fixed inset-0 bg-black/50 overflow-y-auto p-4 z-50">
     <div className="bg-white rounded-lg max-w-sm w-full p-5 relative shadow-xl mx-auto mt-10 mb-10">
 

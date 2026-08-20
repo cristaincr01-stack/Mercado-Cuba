@@ -272,6 +272,7 @@ function Tienda() {
   const [provincia, setProvincia] = useState("Todas");
     const [misProductosAbierto, setMisProductosAbierto] = useState(false);
   const [buscarAbierto, setBuscarAbierto] = useState(false);
+  const [productoDestino, setProductoDestino] = useState(null);
   const [whatsappLogin, setWhatsappLogin] = useState("");
   const [misProductos, setMisProductos] = useState([]);
   const [cargandoMisProductos, setCargandoMisProductos] = useState(false);
@@ -775,7 +776,11 @@ if (orden === "precioMayor") {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {productosFiltrados.map(p => (
-              <div key={p.id} className="bg-white rounded-2xl shadow-sm border border-[#eee7d8] p-5 flex flex-col gap-4 hover:shadow-xl transition-shadow">
+              <div
+  key={p.id}
+  id={`producto-${p.id}`}
+  className="bg-white rounded-2xl shadow-sm border border-[#eee7d8] p-5 flex flex-col gap-4 hover:shadow-xl transition-shadow"
+>
 
                 {p.foto && (
   <div className="w-full h-64 rounded-xl flex items-center justify-center bg-white">
@@ -1216,6 +1221,7 @@ window.open(
           <div
   key={p.id}
   onClick={() => {
+     setProductoDestino(p);
     setBusqueda("");
     setBuscarAbierto(false);
   }}

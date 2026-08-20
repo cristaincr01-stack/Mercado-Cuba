@@ -969,7 +969,7 @@ if (orden === "precioMayor") {
   }
   value={nombreRegistro}
   onChange={(e) => setNombreRegistro(e.target.value)}
-  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63]"
+  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63] text-[#232620]"
 />
       </div>
 
@@ -983,7 +983,7 @@ if (orden === "precioMayor") {
   placeholder="Tu número de WhatsApp"
   value={whatsappRegistro}
   onChange={(e) => setWhatsappRegistro(e.target.value)}
-  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63]"
+  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63] text-[#232620]"
 />
       </div>
 
@@ -997,7 +997,7 @@ if (orden === "precioMayor") {
   placeholder="Crea un PIN"
   value={pinRegistro}
   onChange={(e) => setPinRegistro(e.target.value)}
-  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63]"
+  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63] text-[#232620]"
 />
       </div>
 
@@ -1032,7 +1032,14 @@ if (orden === "precioMayor") {
       return;
     }
 
-    alert("Datos correctos. Próximo paso: crear la cuenta.");
+    const nuevaCuenta = {
+  tipo: tipoCuenta,
+  nombre: nombreRegistro.trim(),
+  whatsapp: whatsappRegistro.trim(),
+  pin: pinRegistro,
+};
+
+console.log("NUEVA CUENTA:", nuevaCuenta);
   }}
   className="w-full mt-6 bg-[#1B6B63] text-white font-bold py-3 rounded-xl hover:bg-[#14534e] transition"
 >

@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame } from "lucide-react";
+import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck } from "lucide-react";
 
 const PROVINCIAS = [
   "Todas", "Pinar del Río" , "Artemisa" , "La Habana", "Mayabeque" , "Matanzas" , "Cienfuegos" , "Villa Clara" , "Sansti Spiritu" , "Ciego de Ávila",
@@ -691,6 +691,54 @@ if (orden === "precioMayor") {
       </p>
       <p className="text-[11px] text-[#8a8370]">
         Lo que más se está buscando
+      </p>
+    </div>
+  </div>
+
+  <ChevronRight className="w-4 h-4 text-[#8a8370]" />
+</button>
+      <button
+  onClick={() => {
+    setMenuAbierto(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }}
+  className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#EDE6D6] rounded-xl transition"
+>
+  <div className="flex items-center gap-3">
+    <div className="w-9 h-9 rounded-xl bg-[#e6efec] flex items-center justify-center">
+      <Store className="w-5 h-5 text-[#1B6B63]" />
+    </div>
+
+    <div>
+      <p className="font-semibold text-sm text-[#232620]">
+        Tiendas
+      </p>
+      <p className="text-[11px] text-[#8a8370]">
+        Descubre tiendas y vendedores
+      </p>
+    </div>
+  </div>
+
+  <ChevronRight className="w-4 h-4 text-[#8a8370]" />
+</button>
+      <button
+  onClick={() => {
+    setMenuAbierto(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }}
+  className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#EDE6D6] rounded-xl transition"
+>
+  <div className="flex items-center gap-3">
+    <div className="w-9 h-9 rounded-xl bg-[#fff3d9] flex items-center justify-center">
+      <BadgeCheck className="w-5 h-5 text-[#E8A33D]" />
+    </div>
+
+    <div>
+      <p className="font-semibold text-sm text-[#232620]">
+        Verificados
+      </p>
+      <p className="text-[11px] text-[#8a8370]">
+        Vendedores y tiendas de confianza
       </p>
     </div>
   </div>

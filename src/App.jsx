@@ -321,7 +321,8 @@ const [editandoProducto, setEditandoProducto] = useState(false);
     return;
   }
 
-  setCargandoMisProductos(true);
+  setMisProductosAbierto(true);
+    setCargandoMisProductos(true);
 
   try {
     const respuesta = await fetch(
@@ -678,7 +679,7 @@ if (orden === "precioMayor") {
   Crear cuenta
 </button>
       <button
-  onClick={() => setMisProductosAbierto(true)}
+  onClick={buscarMisProductos}
   className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl"
 >
   <Store className="w-5 h-5 text-[#1B6B63]" />

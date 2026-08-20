@@ -288,6 +288,7 @@ function Tienda() {
   const [nombreRegistro, setNombreRegistro] = useState("");
 const [whatsappRegistro, setWhatsappRegistro] = useState("");
 const [pinRegistro, setPinRegistro] = useState("");
+  const [registroError, setRegistroError] = useState("");
   const [filtrosAbiertos, setFiltrosAbiertos] = useState(false);
   const [orden, setOrden] = useState("recientes");
   const [moneda, setMoneda] = useState("Todas");
@@ -931,7 +932,12 @@ if (orden === "precioMayor") {
   <div>
 
     <button
-      onClick={() => setRegistroPaso(1)}
+      onClick={() => {
+  setNombreRegistro("");
+  setWhatsappRegistro("");
+  setPinRegistro("");
+  setRegistroPaso(1);
+}}
       className="flex items-center gap-2 text-sm text-[#1B6B63] font-semibold mb-5"
     >
       ← Atrás
@@ -997,11 +1003,41 @@ if (orden === "precioMayor") {
 
     </div>
 
+    {registroError && (
+  <p className="text-sm text-[#C4472B] font-semibold mt-3">
+    {registroError}
+  </p>
+)}
     <button
-      className="w-full mt-6 bg-[#1B6B63] text-white font-bold py-3 rounded-xl hover:bg-[#14534e] transition"
-    >
-      Crear mi cuenta
-    </button>
+  onClick={() => {
+    setRegistroError("");
+
+    if (!nombreRegistro.trim()) {
+      setRegistroError("Escribe tu nombre.");
+      return;
+    }
+
+    if (!whatsappRegistro.trim()) {
+      setRegistroError("Escribe tu número de WhatsApp.");
+      return;
+    }
+
+    if (!pinRegistro.trim()) {
+      setRegistroError("Crea un PIN para tu cuenta.");
+      return;
+    }
+
+    if (pinRegistro.length < 4) {
+      setRegistroError("El PIN debe tener al menos 4 caracteres.");
+      return;
+    }
+
+    alert("Datos correctos. Próximo paso: crear la cuenta.");
+  }}
+  className="w-full mt-6 bg-[#1B6B63] text-white font-bold py-3 rounded-xl hover:bg-[#14534e] transition"
+>
+  Crear mi cuenta
+</button>
 
   </div>
 )}

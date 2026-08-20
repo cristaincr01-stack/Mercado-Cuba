@@ -277,6 +277,10 @@ function Tienda() {
   const [productoDestacado, setProductoDestacado] = useState(null);
   const [whatsappLogin, setWhatsappLogin] = useState("");
   const [misProductos, setMisProductos] = useState([]);
+  const [usuarioActual, setUsuarioActual] = useState(() => {
+  const guardado = localStorage.getItem("mercadoCU_usuario");
+  return guardado ? JSON.parse(guardado) : null;
+});
   const [cargandoMisProductos, setCargandoMisProductos] = useState(false);
   const [categoria, setCategoria] = useState("Todas");
   const [busqueda, setBusqueda] = useState("");
@@ -1112,6 +1116,18 @@ try {
   );
 
   setRegistroError("");
+  const usuario = {
+  idVendedor: resultado.idVendedor,
+  nombre: nombreRegistro,
+  whatsapp: whatsappRegistro
+};
+
+setUsuarioActual(usuario);
+
+localStorage.setItem(
+  "mercadoCU_usuario",
+  JSON.stringify(usuario)
+);
 
 } catch (error) {
   console.error(error);

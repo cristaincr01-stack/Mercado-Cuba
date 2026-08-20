@@ -273,6 +273,7 @@ function Tienda() {
     const [misProductosAbierto, setMisProductosAbierto] = useState(false);
   const [buscarAbierto, setBuscarAbierto] = useState(false);
   const [productoDestino, setProductoDestino] = useState(null);
+  const [productoDestacado, setProductoDestacado] = useState(null);
   const [whatsappLogin, setWhatsappLogin] = useState("");
   const [misProductos, setMisProductos] = useState([]);
   const [cargandoMisProductos, setCargandoMisProductos] = useState(false);
@@ -540,8 +541,12 @@ TASAS_CAMBIO.EUR = data.EUR;
       behavior: "smooth",
       block: "center",
     });
-
+setProductoDestacado(productoDestino.id);
     setProductoDestino(null);
+
+    setTimeout(() => {
+      setProductoDestacado(null);
+    }, 1800);
   }
 }, [productoDestino]);
 
@@ -793,7 +798,11 @@ if (orden === "precioMayor") {
               <div
   key={p.id}
   id={`producto-${p.id}`}
-  className="bg-white rounded-2xl shadow-sm border border-[#eee7d8] p-5 flex flex-col gap-4 hover:shadow-xl transition-shadow"
+  className={`bg-white rounded-2xl border p-5 flex flex-col gap-4 transition-all duration-500 ${
+    productoDestacado === p.id
+      ? "border-[#E8A33D] shadow-[0_0_0_4px_rgba(232,163,61,0.18),0_12px_35px_rgba(35,38,32,0.18)] scale-[1.015]"
+      : "border-[#eee7d8] shadow-sm hover:shadow-xl"
+  }`}
 >
 
                 {p.foto && (

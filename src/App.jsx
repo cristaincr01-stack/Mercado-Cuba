@@ -645,6 +645,9 @@ if (orden === "precioMayor") {
     <X className="w-5 h-5" />
   </button>
 </div>
+      <p className="text-[11px] uppercase tracking-wider font-bold text-[#8a8370] mt-2 mb-2 px-2">
+  Tu cuenta
+</p>
       <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl">
   <UserRound className="w-5 h-5 text-[#1B6B63]" />
   Crear cuenta

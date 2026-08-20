@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck } from "lucide-react";
+import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck } from "lucide-react";
 
 const PROVINCIAS = [
   "Todas", "Pinar del Río" , "Artemisa" , "La Habana", "Mayabeque" , "Matanzas" , "Cienfuegos" , "Villa Clara" , "Sansti Spiritu" , "Ciego de Ávila",
@@ -282,6 +282,7 @@ function Tienda() {
   const [seleccionado, setSeleccionado] = useState(null);
   const [productos, setProductos] = useState([]);
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const [crearCuentaAbierto, setCrearCuentaAbierto] = useState(false);
   const [filtrosAbiertos, setFiltrosAbiertos] = useState(false);
   const [orden, setOrden] = useState("recientes");
   const [moneda, setMoneda] = useState("Todas");
@@ -651,7 +652,13 @@ if (orden === "precioMayor") {
     Tu cuenta
   </p>
 </div>
-      <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl">
+      <button
+  onClick={() => {
+    setMenuAbierto(false);
+    setCrearCuentaAbierto(true);
+  }}
+  className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl"
+>
   <UserRound className="w-5 h-5 text-[#1B6B63]" />
   Crear cuenta
 </button>
@@ -746,6 +753,36 @@ if (orden === "precioMayor") {
   <ChevronRight className="w-4 h-4 text-[#8a8370]" />
 </button>
       <div className="flex items-center gap-2 mt-5 mb-2 px-2">
+  <Truck className="w-4 h-4 text-[#1B6B63]" />
+  <p className="text-xs uppercase tracking-wider font-bold text-[#8a8370]">
+    Servicios
+  </p>
+</div>
+      <button
+  onClick={() => {
+    setMenuAbierto(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }}
+  className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#EDE6D6] rounded-xl transition"
+>
+  <div className="flex items-center gap-3">
+    <div className="w-9 h-9 rounded-xl bg-[#e6efec] flex items-center justify-center">
+      <Truck className="w-5 h-5 text-[#1B6B63]" />
+    </div>
+
+    <div>
+      <p className="font-semibold text-sm text-[#232620]">
+        Domicilios
+      </p>
+      <p className="text-[11px] text-[#8a8370]">
+        Encuentra servicios de entrega
+      </p>
+    </div>
+  </div>
+
+  <ChevronRight className="w-4 h-4 text-[#8a8370]" />
+</button>
+      <div className="flex items-center gap-2 mt-5 mb-2 px-2">
   <Settings className="w-4 h-4 text-[#1B6B63]" />
   <p className="text-xs uppercase tracking-wider font-bold text-[#8a8370]">
     Ayuda y configuración
@@ -774,6 +811,85 @@ if (orden === "precioMayor") {
 
     </div>
   )}
+              {crearCuentaAbierto && (
+  <div className="fixed inset-0 bg-black/50 flex items-end justify-center z-50">
+    <div className="bg-white w-full max-w-lg rounded-t-3xl p-5 shadow-2xl">
+
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <p className="text-xs uppercase tracking-wider text-[#8a8370] font-semibold">
+            MercadoCU
+          </p>
+
+          <h2 className="text-2xl font-bold text-[#232620]">
+            Crear cuenta
+          </h2>
+        </div>
+
+        <button
+          onClick={() => setCrearCuentaAbierto(false)}
+          className="w-10 h-10 rounded-full bg-[#EDE6D6] flex items-center justify-center"
+        >
+          <X className="w-5 h-5" />
+        </button>
+      </div>
+
+      <p className="text-sm text-[#5c5848] mb-4">
+        ¿Cómo quieres utilizar MercadoCU?
+      </p>
+
+      <div className="space-y-3">
+
+        <button className="w-full flex items-center gap-4 p-4 border border-[#eee7d8] rounded-2xl hover:bg-[#faf8f2] transition text-left">
+          <div className="w-11 h-11 rounded-xl bg-[#e6efec] flex items-center justify-center">
+            <UserRound className="w-6 h-6 text-[#1B6B63]" />
+          </div>
+
+          <div>
+            <p className="font-bold text-[#232620]">
+              Vendedor
+            </p>
+            <p className="text-xs text-[#8a8370]">
+              Publica y vende tus productos
+            </p>
+          </div>
+        </button>
+
+        <button className="w-full flex items-center gap-4 p-4 border border-[#eee7d8] rounded-2xl hover:bg-[#faf8f2] transition text-left">
+          <div className="w-11 h-11 rounded-xl bg-[#e6efec] flex items-center justify-center">
+            <Store className="w-6 h-6 text-[#1B6B63]" />
+          </div>
+
+          <div>
+            <p className="font-bold text-[#232620]">
+              Tienda
+            </p>
+            <p className="text-xs text-[#8a8370]">
+              Impulsa tu negocio dentro de MercadoCU
+            </p>
+          </div>
+        </button>
+
+        <button className="w-full flex items-center gap-4 p-4 border border-[#eee7d8] rounded-2xl hover:bg-[#faf8f2] transition text-left">
+          <div className="w-11 h-11 rounded-xl bg-[#e6efec] flex items-center justify-center">
+            <Truck className="w-6 h-6 text-[#1B6B63]" />
+          </div>
+
+          <div>
+            <p className="font-bold text-[#232620]">
+              Mensajero
+            </p>
+            <p className="text-xs text-[#8a8370]">
+              Ofrece servicios de domicilio
+            </p>
+          </div>
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+)}
 </div>
           </div>
           <h1

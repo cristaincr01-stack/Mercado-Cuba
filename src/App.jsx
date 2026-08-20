@@ -320,6 +320,53 @@ const [imagenProducto, setImagenProducto] = useState(null);
   const [enviandoProducto, setEnviandoProducto] = useState(false);
   const [productoEditando, setProductoEditando] = useState(null);
 const [editandoProducto, setEditandoProducto] = useState(false);
+  const iniciarSesion = async () => {
+  if (!whatsappSesion || !pinSesion) {
+    setSesionError("Escribe tu WhatsApp y contraseña");
+    return;
+  }
+
+  setCargandoSesion(true);
+  setSesionError("");
+
+  try {
+    const respuesta = await fetch(
+      `${API_URL}?accion=iniciarSesion&whatsapp=${encodeURIComponent(
+        whatsappSesion
+      )}&pin=${encodeURIComponent(pinSesion)}`
+    );
+
+    const resultado = await respuesta.json();
+
+    if (resultado.exito) {
+      localStorage.setItem(
+        "mercadoCU_usuario",
+        JSON.stringify(resultado.usuario)
+      );
+
+      setIniciarSesionAbierto(false);
+      setWhatsappSesion("");
+      setPinSesion("");
+      setSesionError("");
+
+      alert(`¡Bienvenido ${resultado.usuario.nombre}!`);
+    } else {
+      setSesionError(
+        resultado.error || "No se pudo iniciar sesión"
+      );
+    }
+
+  } catch (error) {
+    console.error(error);
+
+    setSesionError(
+      "No se pudo conectar con el servidor."
+    );
+
+  } finally {
+    setCargandoSesion(false);
+  }
+};
   const buscarMisProductos = async () => {
   if (!usuarioActual) {
     setMisProductosAbierto(false);

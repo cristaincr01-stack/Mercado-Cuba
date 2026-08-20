@@ -645,9 +645,12 @@ if (orden === "precioMayor") {
     <X className="w-5 h-5" />
   </button>
 </div>
-      <p className="text-[11px] uppercase tracking-wider font-bold text-[#8a8370] mt-2 mb-2 px-2">
-  PRUEBA CUENTA
-</p>
+      <div className="flex items-center gap-2 mt-3 mb-2 px-2">
+  <UserRound className="w-4 h-4 text-[#1B6B63]" />
+  <p className="text-xs uppercase tracking-wider font-bold text-[#8a8370]">
+    Tu cuenta
+  </p>
+</div>
       <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl">
   <UserRound className="w-5 h-5 text-[#1B6B63]" />
   Crear cuenta
@@ -664,6 +667,42 @@ if (orden === "precioMayor") {
   <LogIn className="w-5 h-5 text-[#1B6B63]" />
   Iniciar sesión
 </button>
+      <div className="flex items-center gap-2 mt-5 mb-2 px-2">
+  <Store className="w-4 h-4 text-[#1B6B63]" />
+  <p className="text-xs uppercase tracking-wider font-bold text-[#8a8370]">
+    MercadoCU
+  </p>
+</div>
+      <button
+  onClick={() => {
+    setMenuAbierto(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }}
+  className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#EDE6D6] rounded-xl transition"
+>
+  <div className="flex items-center gap-3">
+    <div className="w-9 h-9 rounded-xl bg-[#fff3d9] flex items-center justify-center">
+      <span className="text-lg">🔥</span>
+    </div>
+
+    <div>
+      <p className="font-semibold text-sm text-[#232620]">
+        Tendencias
+      </p>
+      <p className="text-[11px] text-[#8a8370]">
+        Lo que más se está buscando
+      </p>
+    </div>
+  </div>
+
+  <ChevronRight className="w-4 h-4 text-[#8a8370]" />
+</button>
+      <div className="flex items-center gap-2 mt-5 mb-2 px-2">
+  <Settings className="w-4 h-4 text-[#1B6B63]" />
+  <p className="text-xs uppercase tracking-wider font-bold text-[#8a8370]">
+    Ayuda y configuración
+  </p>
+</div>
 
       <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
   <Settings className="w-5 h-5 text-[#1B6B63]" />

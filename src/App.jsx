@@ -288,6 +288,12 @@ function Tienda() {
   const [productos, setProductos] = useState([]);
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [crearCuentaAbierto, setCrearCuentaAbierto] = useState(false);
+  const [iniciarSesionAbierto, setIniciarSesionAbierto] = useState(false);
+const [whatsappSesion, setWhatsappSesion] = useState("");
+const [pinSesion, setPinSesion] = useState("");
+const [mostrarPinSesion, setMostrarPinSesion] = useState(false);
+const [sesionError, setSesionError] = useState("");
+const [cargandoSesion, setCargandoSesion] = useState(false);
   const [tipoCuenta, setTipoCuenta] = useState("");
   const [registroPaso, setRegistroPaso] = useState(1);
   const [nombreRegistro, setNombreRegistro] = useState("");

@@ -530,6 +530,20 @@ TASAS_CAMBIO.EUR = data.EUR;
     })
     .catch(() => {});
 }, []);
+  useEffect(() => {
+  if (!productoDestino) return;
+
+  const elemento = document.getElementById(`producto-${productoDestino.id}`);
+
+  if (elemento) {
+    elemento.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+
+    setProductoDestino(null);
+  }
+}, [productoDestino]);
 
   const productosFiltrados = useMemo(() => {
   let resultado = productos.filter(p => {

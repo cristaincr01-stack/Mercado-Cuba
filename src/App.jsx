@@ -832,7 +832,7 @@ if (orden === "precioMayor") {
   setCrearCuentaAbierto(false);
   setMenuAbierto(true);
 }}
-          className="w-10 h-10 rounded-full bg-[#EDE6D6] flex items-center justify-center"
+          className="w-10 h-10 rounded-full bg-[#232620] text-white flex items-center justify-center hover:bg-[#1B6B63] transition"
         >
           <X className="w-5 h-5" />
         </button>

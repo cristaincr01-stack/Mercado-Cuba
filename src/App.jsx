@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal } from "lucide-react";
+import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame } from "lucide-react";
 
 const PROVINCIAS = [
   "Todas", "Pinar del Río" , "Artemisa" , "La Habana", "Mayabeque" , "Matanzas" , "Cienfuegos" , "Villa Clara" , "Sansti Spiritu" , "Ciego de Ávila",
@@ -682,7 +682,7 @@ if (orden === "precioMayor") {
 >
   <div className="flex items-center gap-3">
     <div className="w-9 h-9 rounded-xl bg-[#fff3d9] flex items-center justify-center">
-      <span className="text-lg">🔥</span>
+      <Flame className="w-5 h-5 text-[#C4472B]" />
     </div>
 
     <div>

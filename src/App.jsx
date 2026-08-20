@@ -315,8 +315,9 @@ const [imagenProducto, setImagenProducto] = useState(null);
   const [productoEditando, setProductoEditando] = useState(null);
 const [editandoProducto, setEditandoProducto] = useState(false);
   const buscarMisProductos = async () => {
-  if (!whatsappLogin) {
-    alert("Escribe tu número de WhatsApp");
+  if (!usuarioActual) {
+    setMisProductosAbierto(false);
+    setCrearCuentaAbierto(true);
     return;
   }
 
@@ -324,7 +325,7 @@ const [editandoProducto, setEditandoProducto] = useState(false);
 
   try {
     const respuesta = await fetch(
-      `${API_URL}?accion=misProductos&whatsapp=${encodeURIComponent(whatsappLogin)}`
+      `${API_URL}?accion=misProductos&whatsapp=${encodeURIComponent(usuarioActual.whatsapp)}`
     );
 
     const datos = await respuesta.json();
@@ -1433,21 +1434,15 @@ window.open(
         Mis productos
       </h2>
 
-      <input
-        type="text"
-        placeholder="Tu número de WhatsApp"
-        value={whatsappLogin}
-        onChange={(e) => setWhatsappLogin(e.target.value)}
-        className="w-full border rounded-lg px-3 py-2 mb-3"
-      />
-
-      <button
-        onClick={buscarMisProductos}
-        disabled={cargandoMisProductos}
-        className="w-full bg-[#1B6B63] text-white font-semibold py-3 rounded-lg"
-      >
-        {cargandoMisProductos ? "Buscando..." : "Entrar"}
-      </button>
+      {cargandoMisProductos ? (
+  <p className="text-center text-[#5c5848] py-4">
+    Cargando tus productos...
+  </p>
+) : misProductos.length === 0 ? (
+  <p className="text-center text-[#5c5848] py-4">
+    No tienes productos publicados todavía.
+  </p>
+) : null}
       {misProductos.length > 0 && (
   <div className="mt-4">
     <h3 className="font-bold mb-2">

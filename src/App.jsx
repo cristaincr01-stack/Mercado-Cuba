@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck } from "lucide-react";
+import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck, Eye,
+EyeOff, } from "lucide-react";
 
 const PROVINCIAS = [
   "Todas", "Pinar del Río" , "Artemisa" , "La Habana", "Mayabeque" , "Matanzas" , "Cienfuegos" , "Villa Clara" , "Sansti Spiritu" , "Ciego de Ávila",
@@ -990,53 +991,63 @@ if (orden === "precioMayor") {
 />
       </div>
 
-      <div>
-  <label className="block text-sm font-semibold text-[#232620] mb-1">
-    PIN
-  </label>
+            <div>
+        <label className="block text-sm font-semibold text-[#232620] mb-1">
+          Contraseña
+        </label>
 
-  <div className="relative">
-    <input
-      type={mostrarPin ? "text" : "password"}
-      placeholder="Crea un PIN"
-      value={pinRegistro}
-      onChange={(e) => setPinRegistro(e.target.value)}
-      className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 pr-12 outline-none focus:border-[#1B6B63] text-[#232620]"
-    />
+        <div className="relative">
+          <input
+            type={mostrarPin ? "text" : "password"}
+            placeholder="Crea una contraseña"
+            value={pinRegistro}
+            onChange={(e) => setPinRegistro(e.target.value)}
+            className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 pr-12 outline-none focus:border-[#1B6B63] text-[#232620]"
+          />
 
-    <button
-      type="button"
-      onClick={() => setMostrarPin(!mostrarPin)}
-      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6f6a5c] hover:text-[#1B6B63]"
-      aria-label={mostrarPin ? "Ocultar PIN" : "Mostrar PIN"}
-    >
-      {mostrarPin ? "◉" : "◌"}
-    </button>
-  </div>
+          <button
+            type="button"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => setMostrarPin(!mostrarPin)}
+            className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-[#6f6a5c] hover:text-[#1B6B63]"
+            aria-label={mostrarPin ? "Ocultar contraseña" : "Mostrar contraseña"}
+          >
+            {mostrarPin ? (
+              <EyeOff size={18} strokeWidth={1.8} />
+            ) : (
+              <Eye size={18} strokeWidth={1.8} />
+            )}
+          </button>
+        </div>
 
-  <label className="block text-sm font-semibold text-[#232620] mt-4 mb-1">
-    Confirmar PIN
-  </label>
+        <label className="block text-sm font-semibold text-[#232620] mt-4 mb-1">
+          Confirmar contraseña
+        </label>
 
-  <div className="relative">
-    <input
-      type={mostrarPin ? "text" : "password"}
-      placeholder="Repite tu PIN"
-      value={confirmarPinRegistro}
-      onChange={(e) => setConfirmarPinRegistro(e.target.value)}
-      className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 pr-12 outline-none focus:border-[#1B6B63] text-[#232620]"
-    />
+        <div className="relative">
+          <input
+            type={mostrarPin ? "text" : "password"}
+            placeholder="Repite tu contraseña"
+            value={confirmarPinRegistro}
+            onChange={(e) => setConfirmarPinRegistro(e.target.value)}
+            className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 pr-12 outline-none focus:border-[#1B6B63] text-[#232620]"
+          />
 
-    <button
-      type="button"
-      onClick={() => setMostrarPin(!mostrarPin)}
-      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6f6a5c] hover:text-[#1B6B63]"
-      aria-label={mostrarPin ? "Ocultar PIN" : "Mostrar PIN"}
-    >
-      {mostrarPin ? "◉" : "◌"}
-    </button>
-  </div>
-</div>
+          <button
+            type="button"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => setMostrarPin(!mostrarPin)}
+            className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-[#6f6a5c] hover:text-[#1B6B63]"
+            aria-label={mostrarPin ? "Ocultar contraseña" : "Mostrar contraseña"}
+          >
+            {mostrarPin ? (
+              <EyeOff size={18} strokeWidth={1.8} />
+            ) : (
+              <Eye size={18} strokeWidth={1.8} />
+            )}
+          </button>
+        </div>
+      </div>
 
     </div>
 

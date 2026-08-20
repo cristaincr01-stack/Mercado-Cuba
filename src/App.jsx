@@ -1914,7 +1914,7 @@ window.open(
 </button>
 
           <button
-  onClick={() => setMisProductosAbierto(true)}
+  onClick={buscarMisProductos}
   className="flex flex-col items-center justify-center gap-1 text-[#5c5848]"
 >
   <Package className="w-5 h-5" />

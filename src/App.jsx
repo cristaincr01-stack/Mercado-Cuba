@@ -628,7 +628,23 @@ if (orden === "precioMayor") {
 
   {menuAbierto && (
     <div className="fixed inset-x-0 bottom-0 bg-white text-[#232620] rounded-t-3xl shadow-2xl p-5 z-50 max-h-[85vh] overflow-y-auto">
+<div className="flex items-center justify-between mb-5">
+  <div>
+    <p className="text-xs uppercase tracking-wider text-[#8a8370] font-semibold">
+      MercadoCU
+    </p>
+    <h2 className="text-2xl font-bold text-[#232620]">
+      Más
+    </h2>
+  </div>
 
+  <button
+    onClick={() => setMenuAbierto(false)}
+    className="w-10 h-10 rounded-full bg-[#EDE6D6] flex items-center justify-center hover:bg-[#ddd6c4] transition"
+  >
+    <X className="w-5 h-5" />
+  </button>
+</div>
       <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl">
   <UserRound className="w-5 h-5 text-[#1B6B63]" />
   Crear cuenta

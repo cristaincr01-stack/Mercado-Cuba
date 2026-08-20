@@ -284,6 +284,7 @@ function Tienda() {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [crearCuentaAbierto, setCrearCuentaAbierto] = useState(false);
   const [tipoCuenta, setTipoCuenta] = useState("");
+  const [registroPaso, setRegistroPaso] = useState(1);
   const [filtrosAbiertos, setFiltrosAbiertos] = useState(false);
   const [orden, setOrden] = useState("recientes");
   const [moneda, setMoneda] = useState("Todas");
@@ -838,11 +839,13 @@ if (orden === "precioMayor") {
         </button>
       </div>
 
-      <p className="text-sm text-[#5c5848] mb-4">
-        ¿Cómo quieres utilizar MercadoCU?
-      </p>
+      {registroPaso === 1 && (
+  <>
+    <p className="text-sm text-[#5c5848] mb-4">
+      ¿Cómo quieres utilizar MercadoCU?
+    </p>
 
-      <div className="space-y-3">
+    <div className="space-y-3">
 
         <button
   onClick={() => setTipoCuenta("vendedor")}
@@ -913,13 +916,85 @@ if (orden === "precioMayor") {
       </div>
       {tipoCuenta && (
   <button
-    onClick={() => {
-      alert(`Seleccionaste: ${tipoCuenta}`);
-    }}
+    onClick={() => setRegistroPaso(2)}
     className="w-full mt-5 bg-[#1B6B63] text-white font-bold py-3 rounded-xl hover:bg-[#14534e] transition"
   >
     Continuar
   </button>
+)}
+      </>
+)}
+      {registroPaso === 2 && (
+  <div>
+
+    <button
+      onClick={() => setRegistroPaso(1)}
+      className="flex items-center gap-2 text-sm text-[#1B6B63] font-semibold mb-5"
+    >
+      ← Atrás
+    </button>
+
+    <h3 className="text-xl font-bold text-[#232620]">
+      {tipoCuenta === "vendedor" && "Crear cuenta de vendedor"}
+      {tipoCuenta === "tienda" && "Crear cuenta de tienda"}
+      {tipoCuenta === "mensajero" && "Crear cuenta de mensajero"}
+    </h3>
+
+    <p className="text-sm text-[#8a8370] mt-1 mb-5">
+      Solo necesitamos unos datos básicos para comenzar.
+    </p>
+
+    <div className="space-y-4">
+
+      <div>
+        <label className="block text-sm font-semibold text-[#232620] mb-1">
+          Nombre
+        </label>
+
+        <input
+          type="text"
+          placeholder={
+            tipoCuenta === "tienda"
+              ? "Nombre de tu tienda"
+              : "Tu nombre"
+          }
+          className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63]"
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-semibold text-[#232620] mb-1">
+          WhatsApp
+        </label>
+
+        <input
+          type="tel"
+          placeholder="Tu número de WhatsApp"
+          className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63]"
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-semibold text-[#232620] mb-1">
+          PIN
+        </label>
+
+        <input
+          type="password"
+          placeholder="Crea un PIN"
+          className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63]"
+        />
+      </div>
+
+    </div>
+
+    <button
+      className="w-full mt-6 bg-[#1B6B63] text-white font-bold py-3 rounded-xl hover:bg-[#14534e] transition"
+    >
+      Crear mi cuenta
+    </button>
+
+  </div>
 )}
 
     </div>

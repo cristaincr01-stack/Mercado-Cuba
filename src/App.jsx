@@ -285,6 +285,9 @@ function Tienda() {
   const [crearCuentaAbierto, setCrearCuentaAbierto] = useState(false);
   const [tipoCuenta, setTipoCuenta] = useState("");
   const [registroPaso, setRegistroPaso] = useState(1);
+  const [nombreRegistro, setNombreRegistro] = useState("");
+const [whatsappRegistro, setWhatsappRegistro] = useState("");
+const [pinRegistro, setPinRegistro] = useState("");
   const [filtrosAbiertos, setFiltrosAbiertos] = useState(false);
   const [orden, setOrden] = useState("recientes");
   const [moneda, setMoneda] = useState("Todas");
@@ -952,14 +955,16 @@ if (orden === "precioMayor") {
         </label>
 
         <input
-          type="text"
-          placeholder={
-            tipoCuenta === "tienda"
-              ? "Nombre de tu tienda"
-              : "Tu nombre"
-          }
-          className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63]"
-        />
+  type="text"
+  placeholder={
+    tipoCuenta === "tienda"
+      ? "Nombre de tu tienda"
+      : "Tu nombre"
+  }
+  value={nombreRegistro}
+  onChange={(e) => setNombreRegistro(e.target.value)}
+  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63]"
+/>
       </div>
 
       <div>
@@ -968,10 +973,12 @@ if (orden === "precioMayor") {
         </label>
 
         <input
-          type="tel"
-          placeholder="Tu número de WhatsApp"
-          className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63]"
-        />
+  type="tel"
+  placeholder="Tu número de WhatsApp"
+  value={whatsappRegistro}
+  onChange={(e) => setWhatsappRegistro(e.target.value)}
+  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63]"
+/>
       </div>
 
       <div>
@@ -980,10 +987,12 @@ if (orden === "precioMayor") {
         </label>
 
         <input
-          type="password"
-          placeholder="Crea un PIN"
-          className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63]"
-        />
+  type="password"
+  placeholder="Crea un PIN"
+  value={pinRegistro}
+  onChange={(e) => setPinRegistro(e.target.value)}
+  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63]"
+/>
       </div>
 
     </div>

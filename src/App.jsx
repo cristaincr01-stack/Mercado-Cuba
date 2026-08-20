@@ -1071,17 +1071,17 @@ if (orden === "precioMayor") {
     }
 
     if (!pinRegistro.trim()) {
-      setRegistroError("Crea un PIN para tu cuenta.");
+      setRegistroError("Crea una contraseña para tu cuenta.");
       return;
     }
 
     if (pinRegistro.length < 4) {
-      setRegistroError("El PIN debe tener al menos 4 caracteres.");
+      setRegistroError("La contraseña debe tener al menos 4 caracteres.");
       return;
     }
     
     if (pinRegistro !== confirmarPinRegistro) {
-  setRegistroError("Los PIN no coinciden.");
+  setRegistroError("Las contraseñas no coinciden.");
   return;
     }
 

@@ -1010,7 +1010,7 @@ if (orden === "precioMayor") {
   </p>
 )}
     <button
-  onClick={() => {
+  onClick={async () => {
     setRegistroError("");
 
     if (!nombreRegistro.trim()) {
@@ -1040,7 +1040,35 @@ if (orden === "precioMayor") {
   pin: pinRegistro,
 };
 
-console.log("NUEVA CUENTA:", nuevaCuenta);
+try {
+  const respuesta = await fetch(
+    `${API_URL}?accion=registrarUsuario&nombre=${encodeURIComponent(nuevaCuenta.nombre)}&whatsapp=${encodeURIComponent(nuevaCuenta.whatsapp)}&pin=${encodeURIComponent(nuevaCuenta.pin)}&tipo=${encodeURIComponent(nuevaCuenta.tipo)}`
+  );
+
+  const resultado = await respuesta.json();
+
+  if (!resultado.exito) {
+    setRegistroError(
+      resultado.error || "No se pudo crear la cuenta."
+    );
+    return;
+  }
+
+  alert(
+    "¡Cuenta creada correctamente! Tu ID de vendedor es " +
+    resultado.idVendedor
+  );
+
+  setRegistroError("");
+
+} catch (error) {
+  console.error(error);
+
+  setRegistroError(
+    "No se pudo conectar con el servidor."
+  );
+}
+
   }}
   className="w-full mt-6 bg-[#1B6B63] text-white font-bold py-3 rounded-xl hover:bg-[#14534e] transition"
 >

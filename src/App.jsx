@@ -283,6 +283,7 @@ function Tienda() {
   const [productos, setProductos] = useState([]);
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [crearCuentaAbierto, setCrearCuentaAbierto] = useState(false);
+  const [tipoCuenta, setTipoCuenta] = useState("");
   const [filtrosAbiertos, setFiltrosAbiertos] = useState(false);
   const [orden, setOrden] = useState("recientes");
   const [moneda, setMoneda] = useState("Todas");
@@ -827,7 +828,10 @@ if (orden === "precioMayor") {
         </div>
 
         <button
-          onClick={() => setCrearCuentaAbierto(false)}
+          onClick={() => {
+  setCrearCuentaAbierto(false);
+  setMenuAbierto(true);
+}}
           className="w-10 h-10 rounded-full bg-[#EDE6D6] flex items-center justify-center"
         >
           <X className="w-5 h-5" />
@@ -840,7 +844,14 @@ if (orden === "precioMayor") {
 
       <div className="space-y-3">
 
-        <button className="w-full flex items-center gap-4 p-4 border border-[#eee7d8] rounded-2xl hover:bg-[#faf8f2] transition text-left">
+        <button
+  onClick={() => setTipoCuenta("vendedor")}
+  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
+    tipoCuenta === "vendedor"
+      ? "border-2 border-[#1B6B63] bg-[#e6efec]"
+      : "border border-[#eee7d8] hover:bg-[#faf8f2]"
+  }`}
+>
           <div className="w-11 h-11 rounded-xl bg-[#e6efec] flex items-center justify-center">
             <UserRound className="w-6 h-6 text-[#1B6B63]" />
           </div>
@@ -855,7 +866,14 @@ if (orden === "precioMayor") {
           </div>
         </button>
 
-        <button className="w-full flex items-center gap-4 p-4 border border-[#eee7d8] rounded-2xl hover:bg-[#faf8f2] transition text-left">
+        <button
+  onClick={() => setTipoCuenta("tienda")}
+  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
+    tipoCuenta === "tienda"
+      ? "border-2 border-[#1B6B63] bg-[#e6efec]"
+      : "border border-[#eee7d8] hover:bg-[#faf8f2]"
+  }`}
+>
           <div className="w-11 h-11 rounded-xl bg-[#e6efec] flex items-center justify-center">
             <Store className="w-6 h-6 text-[#1B6B63]" />
           </div>
@@ -870,7 +888,14 @@ if (orden === "precioMayor") {
           </div>
         </button>
 
-        <button className="w-full flex items-center gap-4 p-4 border border-[#eee7d8] rounded-2xl hover:bg-[#faf8f2] transition text-left">
+        <button
+  onClick={() => setTipoCuenta("mensajero")}
+  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
+    tipoCuenta === "mensajero"
+      ? "border-2 border-[#1B6B63] bg-[#e6efec]"
+      : "border border-[#eee7d8] hover:bg-[#faf8f2]"
+  }`}
+>
           <div className="w-11 h-11 rounded-xl bg-[#e6efec] flex items-center justify-center">
             <Truck className="w-6 h-6 text-[#1B6B63]" />
           </div>

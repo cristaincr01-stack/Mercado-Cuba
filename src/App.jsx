@@ -479,6 +479,7 @@ const enviarProducto = async () => {
         moneda: monedaProducto,
         precio: precioProducto,
         whatsapp: whatsappProducto,
+        nombreVendedor: nombreRegistro,
         imagen: base64,
         tipo: imagenProducto.type,
         nombre: imagenProducto.name

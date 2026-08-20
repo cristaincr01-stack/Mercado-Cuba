@@ -537,16 +537,27 @@ TASAS_CAMBIO.EUR = data.EUR;
   const elemento = document.getElementById(`producto-${productoDestino.id}`);
 
   if (elemento) {
-    elemento.scrollIntoView({
+    const rect = elemento.getBoundingClientRect();
+    const y =
+      rect.top +
+      window.scrollY -
+      (window.innerHeight / 2) +
+      (rect.height / 2);
+
+    window.scrollTo({
+      top: y,
       behavior: "smooth",
-      block: "center",
     });
-setProductoDestacado(productoDestino.id);
-    setProductoDestino(null);
 
     setTimeout(() => {
-      setProductoDestacado(null);
-    }, 1800);
+      setProductoDestacado(productoDestino.id);
+
+      setTimeout(() => {
+        setProductoDestacado(null);
+      }, 1800);
+    }, 500);
+
+    setProductoDestino(null);
   }
 }, [productoDestino]);
 

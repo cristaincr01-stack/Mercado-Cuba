@@ -1216,8 +1216,8 @@ window.open(
           <div
   key={p.id}
   onClick={() => {
-    setSeleccionado(p);
     setBusqueda("");
+    setBuscarAbierto(false);
   }}
   className="flex items-center gap-3 p-3 rounded-xl border border-[#eee7d8] hover:bg-[#faf8f2] transition-colors cursor-pointer"
 >

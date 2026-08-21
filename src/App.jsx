@@ -941,6 +941,7 @@ if (orden === "precioMayor") {
           </h2>
         </div>
 
+        <button
         onClick={() => {
   setCrearCuentaAbierto(false);
 

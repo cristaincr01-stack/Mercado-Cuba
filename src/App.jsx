@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck, Eye,
-EyeOff, } from "lucide-react";
+EyeOff, LogOut, } from "lucide-react";
 
 const PROVINCIAS = [
   "Todas", "Pinar del Río" , "Artemisa" , "La Habana", "Mayabeque" , "Matanzas" , "Cienfuegos" , "Villa Clara" , "Sansti Spiritu" , "Ciego de Ávila",
@@ -726,35 +726,66 @@ if (orden === "precioMayor") {
     Tu cuenta
   </p>
 </div>
-      <button
-  onClick={() => {
-    setMenuAbierto(false);
-    setCrearCuentaAbierto(true);
-  }}
-  className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl"
->
-  <UserRound className="w-5 h-5 text-[#1B6B63]" />
-  Crear cuenta
-</button>
-      <button
-  onClick={buscarMisProductos}
-  className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl"
->
-  <Store className="w-5 h-5 text-[#1B6B63]" />
-  Mis productos
-</button>
+      {!usuarioActual ? (
+  <>
+    <button
+      onClick={() => {
+        setMenuAbierto(false);
+        setCrearCuentaAbierto(true);
+      }}
+      className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl"
+    >
+      <UserRound className="w-5 h-5 text-[#1B6B63]" />
+      Crear cuenta
+    </button>
 
-      <button
-  onClick={() => {
-    setMenuAbierto(false);
-    setIniciarSesionAbierto(true);
-    setSesionError("");
-  }}
-  className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm"
->
-  <LogIn className="w-5 h-5 text-[#1B6B63]" />
-  Iniciar sesión
-</button>
+    <button
+      onClick={() => {
+        setMenuAbierto(false);
+        setIniciarSesionAbierto(true);
+        setSesionError("");
+      }}
+      className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl"
+    >
+      <LogIn className="w-5 h-5 text-[#1B6B63]" />
+      Iniciar sesión
+    </button>
+  </>
+) : (
+  <>
+    <div className="px-3 py-3 mb-1 bg-[#EDE6D6] rounded-xl">
+      <p className="text-xs text-[#8a8370]">
+        Sesión iniciada
+      </p>
+      <p className="font-bold text-[#232620]">
+        {usuarioActual.nombre}
+      </p>
+    </div>
+
+    <button
+      onClick={buscarMisProductos}
+      className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl"
+    >
+      <Store className="w-5 h-5 text-[#1B6B63]" />
+      Mis productos
+    </button>
+
+    <button
+      onClick={() => {
+        localStorage.removeItem("mercadoCU_usuario");
+        setUsuarioActual(null);
+        setMenuAbierto(false);
+        setMisProductos([]);
+        setMisProductosAbierto(false);
+        alert("Sesión cerrada");
+      }}
+      className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl text-[#C4472B]"
+    >
+      <LogOut className="w-5 h-5" />
+      Cerrar sesión
+    </button>
+  </>
+)}
       <div className="flex items-center gap-2 mt-5 mb-2 px-2">
   <Store className="w-4 h-4 text-[#1B6B63]" />
   <p className="text-xs uppercase tracking-wider font-bold text-[#8a8370]">

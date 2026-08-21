@@ -260,7 +260,7 @@ const [guardandoMonedas, setGuardandoMonedas] = useState(false);
                   <X className="w-4 h-4" /> Rechazar
                 </button>
               </div>
-            </div>7
+            </div>
           ))}
         </div>
       )}

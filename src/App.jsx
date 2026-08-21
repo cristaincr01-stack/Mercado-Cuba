@@ -343,6 +343,7 @@ const [editandoProducto, setEditandoProducto] = useState(false);
         "mercadoCU_usuario",
         JSON.stringify(resultado.usuario)
       );
+      setUsuarioActual(resultado.usuario);
 
       setIniciarSesionAbierto(false);
       setWhatsappSesion("");

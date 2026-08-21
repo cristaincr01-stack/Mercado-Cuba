@@ -260,7 +260,7 @@ const [guardandoMonedas, setGuardandoMonedas] = useState(false);
                   <X className="w-4 h-4" /> Rechazar
                 </button>
               </div>
-            </div>
+            </div>7
           ))}
         </div>
       )}
@@ -522,7 +522,7 @@ const [editandoProducto, setEditandoProducto] = useState(false);
 
 };
 const enviarProducto = async () => {
-  if (!nombreProducto || !precioProducto || !whatsappProducto || !imagenProducto) {
+  if (!usuarioActual || !nombreProducto || !precioProducto || !imagenProducto) {
     alert("Completa todos los campos y selecciona una foto");
     return;
   }
@@ -536,17 +536,21 @@ const enviarProducto = async () => {
       const base64 = lector.result.split(",")[1];
 
       const datos = {
-        nombreProducto: nombreProducto,
-        categoria: categoriaProducto,
-        provincia: provinciaProducto,
-        moneda: monedaProducto,
-        precio: precioProducto,
-        whatsapp: whatsappProducto,
-        nombreVendedor: nombreRegistro,
-        imagen: base64,
-        tipo: imagenProducto.type,
-        nombre: imagenProducto.name
-      };
+  nombreProducto: nombreProducto,
+  categoria: categoriaProducto,
+  provincia: provinciaProducto,
+  moneda: monedaProducto,
+  precio: precioProducto,
+
+  // Datos de la cuenta actualmente iniciada
+  whatsapp: usuarioActual.whatsapp,
+  nombreVendedor: usuarioActual.nombre,
+  idVendedor: usuarioActual.idVendedor,
+
+  imagen: base64,
+  tipo: imagenProducto.type,
+  nombre: imagenProducto.name
+};
 
       const formulario = new URLSearchParams();
 

@@ -288,6 +288,7 @@ function Tienda() {
   const [productos, setProductos] = useState([]);
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [crearCuentaAbierto, setCrearCuentaAbierto] = useState(false);
+  const [volverA, setVolverA] = useState("inicio");
   const [iniciarSesionAbierto, setIniciarSesionAbierto] = useState(false);
 const [whatsappSesion, setWhatsappSesion] = useState("");
 const [pinSesion, setPinSesion] = useState("");
@@ -371,6 +372,7 @@ const [editandoProducto, setEditandoProducto] = useState(false);
   const buscarMisProductos = async () => {
   if (!usuarioActual) {
     setMisProductosAbierto(false);
+    setVolverA("inicio");
     setCrearCuentaAbierto(true);
     return;
   }
@@ -731,6 +733,7 @@ if (orden === "precioMayor") {
     <button
       onClick={() => {
         setMenuAbierto(false);
+        setVolverA("mas");
         setCrearCuentaAbierto(true);
       }}
       className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl"

@@ -941,10 +941,14 @@ if (orden === "precioMayor") {
           </h2>
         </div>
 
-        <button
-          onClick={() => {
+        onClick={() => {
   setCrearCuentaAbierto(false);
-  setMenuAbierto(true);
+
+  if (volverA === "mas") {
+    setMenuAbierto(true);
+  } else {
+    setMenuAbierto(false);
+  }
 }}
           className="w-10 h-10 rounded-full bg-[#232620] text-white flex items-center justify-center hover:bg-[#1B6B63] transition"
         >

@@ -697,11 +697,31 @@ if (orden === "precioMayor") {
 
             <div className="absolute top-5 right-5">
   <button
-    onClick={() => setMenuAbierto(!menuAbierto)}
-    className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition text-white text-3xl font-bold"
-  >
-    ⋮
-  </button>
+  onClick={() => setMenuAbierto(!menuAbierto)}
+  className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition"
+>
+  {usuarioActual ? (
+    <div className="relative">
+      <div className="w-10 h-10 rounded-full bg-[#1B6B63] text-white flex items-center justify-center text-xs font-bold border-2 border-white shadow-md">
+        {usuarioActual.nombre
+          ? usuarioActual.nombre
+              .split(" ")
+              .filter(Boolean)
+              .slice(0, 2)
+              .map((parte) => parte[0])
+              .join("")
+              .toUpperCase()
+          : "U"}
+      </div>
+
+      <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
+    </div>
+  ) : (
+    <div className="w-10 h-10 rounded-full bg-white/20 border border-white/40 flex items-center justify-center text-white">
+      <UserRound className="w-5 h-5" />
+    </div>
+  )}
+</button>
 
   {menuAbierto && (
     <div className="fixed inset-x-0 bottom-0 bg-white text-[#232620] rounded-t-3xl shadow-2xl p-5 z-50 max-h-[85vh] overflow-y-auto">

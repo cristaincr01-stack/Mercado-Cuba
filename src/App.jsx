@@ -1997,14 +1997,6 @@ window.open(
 </select>
 
               <input
-                type="text"
-                placeholder="WhatsApp"
-                value={whatsappProducto}
-                onChange={(e) => setWhatsappProducto(e.target.value)}
-                className="w-full border rounded-lg px-3 py-2"
-              />
-
-              <input
                 type="file"
                 accept="image/*"
                 onChange={(e) => setImagenProducto(e.target.files[0])}

@@ -1334,13 +1334,13 @@ localStorage.setItem(
           <select
             value={categoria}
             onChange={e => setCategoria(e.target.value)}
-            className="border border-[#ddd6c4] rounded-xl px-4 py-3 text-sm bg-white"
+            className="border border-[#2A3033] rounded-xl px-4 py-3 text-sm bg-[#151A1D] text-[#F2F4F5] outline-none"
           >
             {CATEGORIAS.map(c => <option key={c}>{c}</option>)}
           </select>
           <button
   onClick={() => setFiltrosAbiertos(!filtrosAbiertos)}
-  className="bg-[#1B6B63] hover:bg-[#15554f] text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2"
+  className="bg-[#1B6B63] hover:bg-[#237D73] text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2"
 >
   <SlidersHorizontal className="w-4 h-4" />
   Filtros
@@ -1352,7 +1352,7 @@ localStorage.setItem(
     setCategoria("Todas");
     setProvincia("Todas");
   }}
-  className="bg-[#C4472B] hover:bg-[#a83a23] text-white px-6 py-3 rounded-xl font-semibold transition"
+  className="bg-[#202629] hover:bg-[#2A3033] border border-[#3A474B] text-[#F2F4F5] px-6 py-3 rounded-xl font-semibold transition"
 >
   Limpiar
 </button>
@@ -1397,7 +1397,7 @@ localStorage.setItem(
 </div>
 
 <div className="max-w-6xl mx-auto px-5 mt-6">
-  <div className="flex items-center gap-2 mb-2 text-xs uppercase tracking-wide text-[#5c5848] font-semibold">
+  <div className="flex items-center gap-2 mb-2 text-xs uppercase tracking-wide text-[#9AA6AD] font-semibold">
     <MapPin className="w-3.5 h-3.5" /> Provincia
   </div>
 
@@ -1406,11 +1406,11 @@ localStorage.setItem(
       <button
         key={p}
         onClick={() => setProvincia(p)}
-        className={`whitespace-nowrap px-3 py-1.5 rounded-sm text-sm font-medium border transition-colors ${
-          provincia === p
-            ? "bg-[#1B6B63] text-white border-[#1B6B63]"
-            : "bg-white text-[#232620] border-[#ddd6c4] hover:border-[#1B6B63]"
-        }`}  
+        className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium border transition-all ${
+  provincia === p
+    ? "bg-[#1B6B63] text-white border-[#1B6B63]"
+    : "bg-[#151A1D] text-[#9AA6AD] border-[#2A3033] hover:border-[#1B6B63] hover:text-[#F2F4F5]"
+}`} 
           >
               {p}
             </button>
@@ -1420,15 +1420,17 @@ localStorage.setItem(
 
       <main className="max-w-6xl mx-auto px-5 mt-6 pb-16">
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-semibold text-[#5c5848] uppercase tracking-wide">
+          <h2 className="text-sm font-semibold text-[#9AA6AD] uppercase tracking-wide">
             {productosFiltrados.length} anuncio{productosFiltrados.length !== 1 ? "s" : ""} encontrado{productosFiltrados.length !== 1 ? "s" : ""}
           </h2>
         </div>
 
         {productosFiltrados.length === 0 ? (
-          <div className="bg-white rounded-sm p-8 text-center text-[#8a8370] text-sm">
-            No hay anuncios con esos filtros todavía. Prueba con otra provincia o categoría.
-          </div>
+          <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-10 text-center text-[#9AA6AD] text-sm">
+  No hay publicaciones con esos filtros todavía.
+  <br />
+  Prueba con otra provincia o categoría.
+</div>
         ) : (
           <div className="max-w-2xl mx-auto space-y-5">
             {productosFiltrados.map(p => (

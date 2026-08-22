@@ -1677,13 +1677,10 @@ localStorage.setItem(
     <div className="aspect-[4/3] sm:aspect-[16/10] flex items-center justify-center">
 
       <img
-        src={p.foto.replace(
-          "uc?export=view&id=",
-          "thumbnail?sz=w1000&id="
-        )}
-        alt={p.nombre}
-        className="w-full h-full object-contain transition-transform duration-500 hover:scale-[1.02]"
-      />
+  src={p.foto}
+  alt={p.nombre}
+  className="w-full h-full object-contain transition-transform duration-500 hover:scale-[1.02]"
+/>
 
     </div>
 

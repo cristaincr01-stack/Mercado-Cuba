@@ -112,11 +112,8 @@ function mapearProducto(fila, index) {
 
 function EtiquetaPrecio({ precio, moneda }) {
   return (
-    <div
-      className="relative inline-flex items-center gap-1 bg-[#E8A33D] text-[#232620] px-3 py-1 font-mono text-sm font-bold shadow-sm"
-      style={{ clipPath: "polygon(10px 0, 100% 0, 100% 100%, 10px 100%, 0 50%)" }}
-    >
-      <span className="pl-1">{precio} {moneda}</span>
+    <div className="inline-flex items-center bg-[#7EE2C0] text-[#0D1113] px-3.5 py-1.5 rounded-xl font-mono text-sm font-bold shadow-[0_4px_14px_rgba(126,226,192,0.12)]">
+      <span>{precio} {moneda}</span>
     </div>
   );
 }

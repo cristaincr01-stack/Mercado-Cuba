@@ -1681,6 +1681,9 @@ localStorage.setItem(
     "uc?export=view&id=",
     "thumbnail?sz=w1000&id="
   )}
+  onError={(e) => {
+    e.currentTarget.src = p.foto;
+  }}
   alt={p.nombre}
   className="w-full h-full object-contain transition-transform duration-500 hover:scale-[1.02]"
 />

@@ -1800,50 +1800,100 @@ localStorage.setItem(
       </section>
 
       {seleccionado && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg max-w-sm w-full p-5 relative shadow-xl">
-            <button onClick={() => setSeleccionado(null)} className="absolute top-3 right-3 text-[#8a8370] hover:text-[#232620]">
-              <X className="w-5 h-5" />
-            </button>
-            <span className="inline-block text-[10px] uppercase font-bold tracking-wide text-[#1B6B63] bg-[#e6efec] px-2 py-1 rounded-sm">
-  {seleccionado.categoria}
-</span>
-            <h3 className="font-bold text-xl mt-2 text-[#232620]">
-  {seleccionado.nombre}
-</h3>
-            <p className="text-sm text-[#8a8370] mt-1">
-  Vendedor: {seleccionado.vendedor} · {seleccionado.provincia}
-</p>
+  <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 z-50">
 
-<div className="mt-3">
-  <EtiquetaPrecio
-    precio={seleccionado.precio}
-    moneda={seleccionado.moneda}
-  />
-</div>
-            <p className="text-sm text-[#5c5848] mt-4 leading-relaxed">
-              El pago y la entrega se coordinan directo con el vendedor. Al tocar el botón, se abriría un chat de WhatsApp con el pedido ya escrito.
-            </p>
-            <button
-  onClick={() => {
-    const numero = `53${String(seleccionado.tel).replace(/\s+/g, "")}`;
+    <div className="bg-[#151A1D] border border-[#2A3033] rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 relative shadow-[0_20px_60px_rgba(0,0,0,0.45)] text-[#F2F4F5]">
 
-    const mensaje = `Hola, estoy interesado en el producto "${seleccionado.nombre}". ¿Sigue disponible?`;
+      {/* CERRAR */}
+      <button
+        onClick={() => setSeleccionado(null)}
+        className="absolute top-3 right-3 w-10 h-10 rounded-full bg-[#202629] border border-[#30383C] text-[#9AA6AD] flex items-center justify-center hover:text-white hover:bg-[#272E31] active:scale-95 transition-all"
+      >
+        <X className="w-5 h-5" />
+      </button>
 
-console.log(seleccionado);
+      {/* CATEGORÍA */}
+      <span className="inline-flex text-[10px] uppercase font-bold tracking-[0.1em] text-[#7EE2C0] bg-[#1B6B63]/20 border border-[#1B6B63]/30 px-2.5 py-1.5 rounded-full">
+        {seleccionado.categoria}
+      </span>
 
-window.open(
-  `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
-  "_blank"
-);
-  }}
-  className="mt-4 w-full flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#155650] transition-colors text-white font-semibold py-2.5 rounded-sm"
->
-  <MessageCircle className="w-4 h-4" /> Contactar por WhatsApp
-</button>
-          </div>
+      {/* NOMBRE */}
+      <h3 className="font-extrabold text-2xl mt-3 pr-10 tracking-tight text-[#F2F4F5] leading-tight">
+        {seleccionado.nombre}
+      </h3>
+
+      {/* VENDEDOR */}
+      <div className="flex items-center gap-2 mt-3 text-sm text-[#9AA6AD]">
+
+        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1B6B63] to-[#164F4A] border border-[#3A827A] flex items-center justify-center text-white text-[10px] font-bold">
+          {seleccionado.vendedor
+            ? seleccionado.vendedor
+                .split(" ")
+                .filter(Boolean)
+                .slice(0, 2)
+                .map(parte => parte[0])
+                .join("")
+                .toUpperCase()
+            : "U"}
         </div>
-      )}
+
+        <div className="min-w-0">
+          <p className="text-xs font-semibold text-[#F2F4F5] truncate">
+            {seleccionado.vendedor || "Vendedor"}
+          </p>
+
+          <p className="text-[11px] text-[#9AA6AD] flex items-center gap-1">
+            <MapPin className="w-3 h-3" />
+            {seleccionado.provincia}
+          </p>
+        </div>
+
+      </div>
+
+      {/* PRECIO */}
+      <div className="mt-5 bg-[#202629] border border-[#2A3033] rounded-2xl px-4 py-3">
+
+        <p className="text-[10px] uppercase tracking-[0.12em] text-[#9AA6AD] mb-1">
+          Precio
+        </p>
+
+        <div className="text-3xl font-black tracking-tight text-[#7EE2C0]">
+          <EtiquetaPrecio
+            precio={seleccionado.precio}
+            moneda={seleccionado.moneda}
+          />
+        </div>
+
+      </div>
+
+      {/* INFORMACIÓN */}
+      <p className="text-sm text-[#9AA6AD] mt-4 leading-relaxed">
+        El pago y la entrega se coordinan directamente con el vendedor.
+      </p>
+
+      {/* WHATSAPP */}
+      <button
+        onClick={() => {
+          const numero = `53${String(seleccionado.tel).replace(/\s+/g, "")}`;
+
+          const mensaje = `Hola, estoy interesado en el producto "${seleccionado.nombre}". ¿Sigue disponible?`;
+
+          console.log(seleccionado);
+
+          window.open(
+            `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
+            "_blank"
+          );
+        }}
+        className="mt-5 w-full flex items-center justify-center gap-2 bg-[#7EE2C0] hover:bg-[#8BE8CB] active:scale-[0.98] transition-all text-[#0D1113] font-bold py-3.5 rounded-2xl shadow-[0_6px_18px_rgba(126,226,192,0.12)]"
+      >
+        <MessageCircle className="w-5 h-5" />
+        Contactar por WhatsApp
+      </button>
+
+    </div>
+  </div>
+)}
 
       {iniciarSesionAbierto && (
   <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">

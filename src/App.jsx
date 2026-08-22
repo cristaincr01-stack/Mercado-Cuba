@@ -1705,12 +1705,12 @@ localStorage.setItem(
     </button>
 
     <button
-      onClick={() => setSeleccionado(p)}
-      className="flex items-center justify-center gap-2 bg-[#202629] hover:bg-[#2A3033] active:scale-[0.98] transition-all text-[#F2F4F5] text-sm font-semibold py-3 rounded-2xl"
-    >
-      <ChevronRight className="w-4 h-4" />
-      <span>Ver producto</span>
-    </button>
+  onClick={() => setSeleccionado(p)}
+  className="flex items-center justify-center gap-1.5 bg-[#202629] hover:bg-[#2A3033] active:scale-[0.98] transition-all text-[#F2F4F5] text-sm font-semibold py-3 rounded-2xl whitespace-nowrap"
+>
+  <ChevronRight className="w-4 h-4 shrink-0" />
+  <span>Ver producto</span>
+</button>
 
     <button
       onClick={() => {

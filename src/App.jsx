@@ -555,7 +555,7 @@ const [editandoProducto, setEditandoProducto] = useState(false);
   }
 
 };
-  const marcarVendido = async (fila) => {
+ const marcarVendido = async (fila) => {
 
   try {
 
@@ -575,17 +575,25 @@ const [editandoProducto, setEditandoProducto] = useState(false);
         )
       );
 
+      setProductos(
+        prev => prev.map((p) =>
+          p._fila === fila
+            ? { ...p, estado: "Vendido" }
+            : p
+        )
+      );
+
       alert("Producto marcado como vendido");
 
     } else {
 
-      alert("No se pudo marcar");
+      alert("No se pudo marcar como vendido");
 
     }
 
   } catch (error) {
 
-    alert("Error al marcar el producto");
+    alert("Error al marcar el producto como vendido");
 
   }
 

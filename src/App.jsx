@@ -1483,8 +1483,8 @@ localStorage.setItem(
         onClick={() => setProvincia(p)}
         className={`whitespace-nowrap px-4 py-2.5 rounded-full text-[13px] font-semibold border transition-all duration-200 active:scale-95 ${
           provincia === p
-            ? "bg-[#7EE2C0] text-[#0D1113] border-[#7EE2C0] shadow-[0_4px_14px_rgba(126,226,192,0.14)]"
-            : "bg-[#151A1D] text-[#9AA6AD] border-[#30383C] hover:border-[#4A555A] hover:text-[#F2F4F5]"
+  ? "bg-[#1B6B63] text-[#F2F4F5] border-[#2A8178] shadow-[0_4px_14px_rgba(27,107,99,0.20)]"
+  : "bg-[#151A1D] text-[#9AA6AD] border-[#30383C] hover:border-[#4A555A] hover:text-[#F2F4F5]"
         }`}
       >
         {p}
@@ -1641,7 +1641,7 @@ localStorage.setItem(
         Precio
       </p>
 
-      <div className="text-3xl font-black tracking-tight text-[#7EE2C0]">
+      <div className="text-3xl font-black tracking-tight text-[#5FBFA5]">
         <EtiquetaPrecio
           precio={p.precio}
           moneda={p.moneda}
@@ -1735,7 +1735,7 @@ localStorage.setItem(
     {/* PREGUNTAR */}
     <button
       onClick={() => setSeleccionado(p)}
-      className="group flex items-center justify-center gap-1.5 bg-[#7EE2C0] hover:bg-[#8BE8CB] active:scale-[0.97] transition-all text-[#0D1113] text-[12px] sm:text-[13px] font-bold py-3.5 rounded-2xl shadow-[0_4px_14px_rgba(126,226,192,0.12)]"
+      className="group flex items-center justify-center gap-1.5 bg-[#1B6B63] hover:bg-[#23786F] active:scale-[0.97] transition-all text-white text-[12px] sm:text-[13px] font-bold py-3.5 rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.18)]"
     >
       <MessageCircle
         className="w-4 h-4 shrink-0 group-hover:scale-105 transition-transform"
@@ -1817,7 +1817,7 @@ localStorage.setItem(
       </button>
 
       {/* CATEGORÍA */}
-      <span className="inline-flex text-[10px] uppercase font-bold tracking-[0.1em] text-[#7EE2C0] bg-[#1B6B63]/20 border border-[#1B6B63]/30 px-2.5 py-1.5 rounded-full">
+      <span className="inline-flex text-[10px] uppercase font-bold tracking-[0.1em] text-[#6BC7AD] bg-[#1B6B63]/20 border border-[#1B6B63]/30 px-2.5 py-1.5 rounded-full">
         {seleccionado.categoria}
       </span>
 
@@ -1889,7 +1889,7 @@ localStorage.setItem(
             "_blank"
           );
         }}
-        className="mt-5 w-full flex items-center justify-center gap-2 bg-[#7EE2C0] hover:bg-[#8BE8CB] active:scale-[0.98] transition-all text-[#0D1113] font-bold py-3.5 rounded-2xl shadow-[0_6px_18px_rgba(126,226,192,0.12)]"
+        className="mt-5 w-full flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#23786F] active:scale-[0.98] transition-all text-white font-bold py-3.5 rounded-2xl shadow-[0_6px_18px_rgba(126,226,192,0.12)]"
       >
         <MessageCircle className="w-5 h-5" />
         Contactar por WhatsApp

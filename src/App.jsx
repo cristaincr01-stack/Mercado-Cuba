@@ -787,6 +787,7 @@ const [editandoProducto, setEditandoProducto] = useState(false);
       formulario.append(clave, datos[clave]);
     });
 
+    console.log("ANTES DE ENVIAR:", datos);
     const respuesta = await fetch(
       API_URL,
       {
@@ -796,6 +797,7 @@ const [editandoProducto, setEditandoProducto] = useState(false);
     );
 
     const resultado = await respuesta.json();
+    console.log("RESPUESTA DEL SERVIDOR:", resultado);
 
     if (resultado.exito) {
       alert("Producto enviado para aprobación");

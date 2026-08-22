@@ -591,8 +591,9 @@ const respuesta = await fetch(
   fetch(`${API_URL}?accion=aprobados`)
     .then((res) => res.json())
     .then((data) => {
-      setProductos(data.map(mapearProducto));
-    })
+  console.log("PRODUCTOS RECIBIDOS:", data);
+  setProductos([]);
+})
     .catch(() => {});
 
   fetch(`${API_URL}?accion=monedas`)

@@ -2197,7 +2197,15 @@ localStorage.setItem(
   {p["Estado"] === "Vendido" ? "Vendido" : "Vendido"}
 </button>
 
+ {(p["Estado"] === "Vendido" || p["Estado"] === "Reservado") && (
   <button
+    onClick={() => marcarEnVenta(p._fila)}
+    className="flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#237D73] text-white py-2.5 rounded-xl text-sm font-semibold transition"
+  >
+    Poner en venta
+  </button>
+)}
+      <button
     onClick={() => eliminarProducto(p._fila)}
     className="flex items-center justify-center gap-2 bg-[#321F1F] hover:bg-[#452323] border border-[#613030] text-[#FF6B57] py-2.5 rounded-xl text-sm font-semibold transition"
   >

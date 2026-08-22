@@ -598,6 +598,49 @@ const [editandoProducto, setEditandoProducto] = useState(false);
   }
 
 };
+  const marcarEnVenta = async (fila) => {
+
+  try {
+
+    const respuesta = await fetch(
+      `${API_URL}?accion=marcarEnVenta&fila=${fila}`
+    );
+
+    const resultado = await respuesta.json();
+
+    if (resultado.exito) {
+
+      setMisProductos(
+        prev => prev.map((p) =>
+          p._fila === fila
+            ? { ...p, Estado: "En venta" }
+            : p
+        )
+      );
+
+      setProductos(
+        prev => prev.map((p) =>
+          p._fila === fila
+            ? { ...p, estado: "En venta" }
+            : p
+        )
+      );
+
+      alert("Producto puesto nuevamente en venta");
+
+    } else {
+
+      alert("No se pudo poner el producto en venta");
+
+    }
+
+  } catch (error) {
+
+    alert("Error al poner el producto en venta");
+
+  }
+
+};
 const enviarProducto = async () => {
   if (!usuarioActual || !nombreProducto || !precioProducto || !imagenProducto) {
     alert("Completa todos los campos y selecciona una foto");

@@ -730,22 +730,6 @@ const [editandoProducto, setEditandoProducto] = useState(false);
 };
 
 
-    const formulario = new URLSearchParams();
-
-    Object.keys(datos).forEach((clave) => {
-      formulario.append(clave, datos[clave]);
-    });
-
-    const respuesta = await fetch(
-      API_URL,
-      {
-        method: "POST",
-        body: formulario
-      }
-    );
-
-    
-
       const enviarProducto = async () => {
   if (
     !usuarioActual ||

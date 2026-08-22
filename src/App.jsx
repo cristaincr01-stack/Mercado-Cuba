@@ -82,17 +82,26 @@ const API_URL =
 function mapearProducto(fila, index) {
   const foto = String(fila?.["Foto del Producto"] || "");
 
-  let fotoDirecta = foto;
+  let fotosDirectas = [];
 
-  if (foto.includes("drive.google.com/file/d/")) {
-    const partes = foto.split("/d/");
+  // Separar varias fotos usando ||
+  fotosDirectas = foto
+    .split("||")
+    .map((url) => url.trim())
+    .filter(Boolean)
+    .map((url) => {
+      if (url.includes("drive.google.com/file/d/")) {
+        const partes = url.split("/d/");
 
-    if (partes[1]) {
-      const id = partes[1].split("/")[0];
-      fotoDirecta =
-        "https://drive.google.com/uc?export=view&id=" + id;
-    }
-  }
+        if (partes[1]) {
+          const id = partes[1].split("/")[0];
+
+          return "https://drive.google.com/uc?export=view&id=" + id;
+        }
+      }
+
+      return url;
+    });
 
   return {
     id: index,
@@ -105,10 +114,85 @@ function mapearProducto(fila, index) {
     vendedor:
       fila?.["Tu nombre (como quieres que aparezca en el anuncio)"] || "",
     tel: fila?.["Tu número de WhatsApp"] || "",
-    foto: fotoDirecta,
+
+    // Primera foto: compatibilidad con el código actual
+    foto: fotosDirectas[0] || "",
+
+    // Todas las fotos: para el carrusel
+    fotos: fotosDirectas,
+
     estado: fila?.["Estado"] || "EN VENTA",
   };
 }
+
+function CarruselFotos({ fotos, nombre }) {
+  const [fotoActual, setFotoActual] = useState(0);
+
+  if (!fotos || fotos.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="relative w-full bg-[#0B0F11] overflow-hidden">
+
+      {/* CARRUSEL HORIZONTAL */}
+      <div
+        className="flex w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+        onScroll={(e) => {
+          const ancho = e.currentTarget.clientWidth;
+
+          if (ancho > 0) {
+            const indice = Math.round(
+              e.currentTarget.scrollLeft / ancho
+            );
+
+            setFotoActual(indice);
+          }
+        }}
+      >
+
+        {fotos.map((foto, index) => (
+          <div
+            key={index}
+            className="min-w-full snap-center flex items-center justify-center"
+          >
+            <div className="aspect-[4/3] sm:aspect-[16/10] w-full flex items-center justify-center">
+              <img
+                src={foto.replace(
+                  "uc?export=view&id=",
+                  "thumbnail?sz=w1000&id="
+                )}
+                alt={`${nombre} - foto ${index + 1}`}
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </div>
+        ))}
+
+      </div>
+
+      {/* INDICADORES */}
+      {fotos.length > 1 && (
+        <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
+          {fotos.map((_, index) => (
+            <span
+              key={index}
+              className={`h-1.5 rounded-full transition-all ${
+                index === fotoActual
+                  ? "w-5 bg-white"
+                  : "w-1.5 bg-white/40"
+              }`}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* BORDE INFERIOR */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-[#2A3033]" />
+
+    </div>
+  );
+    }
 
 function EtiquetaPrecio({ precio, moneda }) {
   return (

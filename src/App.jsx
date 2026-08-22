@@ -1322,7 +1322,7 @@ localStorage.setItem(
 
       <div className="max-w-6xl mx-auto px-5 mt-6">
         <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4 flex flex-col sm:flex-row gap-3">
-          className="flex items-center gap-2 flex-1 bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3"
+         <div className="flex items-center gap-2 flex-1 bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3">
             <Search className="w-4 h-4 text-[#8a8370]" />
             <input
               value={busqueda}

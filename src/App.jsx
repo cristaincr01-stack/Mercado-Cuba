@@ -589,22 +589,28 @@ const respuesta = await fetch(
 };
   useEffect(() => {
   fetch(`${API_URL}?accion=aprobados`)
-  .then((res) => res.json())
-  .then((data) => {
-    console.log("APROBADOS:", data);
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("APROBADOS:", data);
 
-    if (!Array.isArray(data)) {
-      console.error("APROBADOS NO ES UN ARRAY:", data);
+      if (!Array.isArray(data)) {
+        console.error("APROBADOS NO ES UN ARRAY:", data);
+        setProductos([]);
+        return;
+      }
+
+      const productosMapeados = data.map((fila, index) =>
+        mapearProducto(fila, index)
+      );
+
+      console.log("PRODUCTOS MAPEADOS:", productosMapeados);
+
+      setProductos(productosMapeados);
+    })
+    .catch((error) => {
+      console.error("ERROR CARGANDO PRODUCTOS:", error);
       setProductos([]);
-      return;
-    }
-
-    setProductos(data.map(mapearProducto));
-  })
-  .catch((error) => {
-    console.error("ERROR CARGANDO PRODUCTOS:", error);
-    setProductos([]);
-  });
+    });
 
   fetch(`${API_URL}?accion=monedas`)
     .then((res) => res.json())

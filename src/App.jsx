@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck, Eye,
-EyeOff, LogOut, Heart,} from "lucide-react";
+EyeOff, LogOut, Heart, Share2,} from "lucide-react";
 window.onerror = function (mensaje, archivo, linea, columna, error) {
   document.body.innerHTML = `
     <div style="
@@ -1651,26 +1651,42 @@ localStorage.setItem(
 </div>
 
 {/* ACCIONES */}
-<div className="px-4 py-4">
+<div className="px-4 pt-3 pb-4">
 
   <div className="h-px bg-[#2A3033] mb-3" />
 
-  <div className="grid grid-cols-2 gap-2">
+  <div className="grid grid-cols-3 gap-2">
 
     <button
       onClick={() => setSeleccionado(p)}
-      className="flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#237D73] transition text-white text-sm font-semibold py-3 rounded-xl"
+      className="flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#237D73] active:scale-[0.98] transition-all text-white text-sm font-semibold py-3 rounded-2xl"
     >
       <MessageCircle className="w-4 h-4" />
-      Preguntar
+      <span>Preguntar</span>
     </button>
 
     <button
       onClick={() => setSeleccionado(p)}
-      className="flex items-center justify-center gap-2 bg-[#202629] hover:bg-[#2A3033] transition text-[#F2F4F5] text-sm font-semibold py-3 rounded-xl"
+      className="flex items-center justify-center gap-2 bg-[#202629] hover:bg-[#2A3033] active:scale-[0.98] transition-all text-[#F2F4F5] text-sm font-semibold py-3 rounded-2xl"
     >
-      Ver producto
       <ChevronRight className="w-4 h-4" />
+      <span>Ver producto</span>
+    </button>
+
+    <button
+      onClick={() => {
+        if (navigator.share) {
+          navigator.share({
+            title: p.nombre,
+            text: `Mira este producto en MercadoCU: ${p.nombre}`,
+            url: window.location.href
+          }).catch(() => {});
+        }
+      }}
+      className="flex items-center justify-center gap-2 bg-[#202629] hover:bg-[#2A3033] active:scale-[0.98] transition-all text-[#F2F4F5] text-sm font-semibold py-3 rounded-2xl"
+    >
+      <Share2 className="w-4 h-4" />
+      <span>Compartir</span>
     </button>
 
   </div>

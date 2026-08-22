@@ -1411,70 +1411,155 @@ localStorage.setItem(
             No hay anuncios con esos filtros todavía. Prueba con otra provincia o categoría.
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="max-w-2xl mx-auto space-y-5">
             {productosFiltrados.map(p => (
-              <div
-  key={p.id}
-  id={`producto-${p.id}`}
-  className={`bg-white rounded-2xl border p-5 flex flex-col gap-4 transition-all duration-500 ${
-    productoDestacado === p.id
-      ? "border-[#E8A33D] shadow-[0_0_0_4px_rgba(232,163,61,0.18),0_12px_35px_rgba(35,38,32,0.18)] scale-[1.015]"
-      : "border-[#eee7d8] shadow-sm hover:shadow-xl"
-  }`}
->
+  <article
+    key={p.id}
+    id={`producto-${p.id}`}
+    className={`bg-[#151A1D] rounded-3xl border overflow-hidden transition-all duration-500 ${
+      productoDestacado === p.id
+        ? "border-[#E8A33D] shadow-[0_0_0_4px_rgba(232,163,61,0.18),0_12px_35px_rgba(0,0,0,0.35)] scale-[1.01]"
+        : "border-[#2A3033] shadow-[0_8px_30px_rgba(0,0,0,0.18)]"
+    }`}
+  >
 
-                {p.foto && (
-  <div className="w-full h-64 rounded-xl flex items-center justify-center bg-white">
-    <img
-  src={p.foto.replace(
-    "uc?export=view&id=",
-    "thumbnail?sz=w1000&id="
-  )}
-  alt={p.nombre}
-  className="w-full h-full object-contain"
-/>
-  </div>
-)}
-                <div className="flex items-start justify-between gap-2">
-  <div className="flex items-center gap-2 flex-wrap">
-    <span className="text-[10px] uppercase font-bold tracking-wide text-[#1B6B63] bg-[#e6efec] px-2 py-0.5 rounded-sm">
-      {p.categoria}
-    </span>
+    {/* CABECERA DE LA PUBLICACIÓN */}
+    <div className="flex items-center justify-between px-4 pt-4 pb-3">
 
-    {p.estado === "Vendido" ? (
-  <span className="text-[10px] uppercase font-bold tracking-wide text-white bg-red-600 px-2 py-0.5 rounded-sm">
-    VENDIDO
-  </span>
-) : p.estado === "Reservado" ? (
-  <span className="text-[10px] uppercase font-bold tracking-wide text-white bg-yellow-500 px-2 py-0.5 rounded-sm">
-    RESERVADO
-  </span>
-) : (
-  <span className="text-[10px] uppercase font-bold tracking-wide text-white bg-green-600 px-2 py-0.5 rounded-sm">
-    EN VENTA
-  </span>
-)}
-  </div>
+      <div className="flex items-center gap-3">
 
-  <span className="text-[11px] text-[#8a8370] flex items-center gap-1">
-    <MapPin className="w-3 h-3" /> {p.provincia}
-  </span>
-</div>
-                <h3 className="font-semibold text-lg text-[#232620] leading-tight">
-  {p.nombre}
-</h3>
-                <div className="flex items-center justify-between mt-1">
-                  <EtiquetaPrecio precio={p.precio} moneda={p.moneda} />
-                  <span className="text-xs text-[#8a8370] font-medium">{p.vendedor}</span>
-                </div>
-                <button
-  onClick={() => setSeleccionado(p)}
-  className="mt-1 flex items-center justify-center gap-2 bg-[#C4472B] hover:bg-[#a83a23] transition text-white text-sm font-semibold py-3 rounded-xl"
->
-  Ver producto <ChevronRight className="w-4 h-4" />
-</button>
-              </div>
-            ))}
+        <div className="w-10 h-10 rounded-full bg-[#1B6B63] flex items-center justify-center text-white font-bold text-xs">
+          {p.vendedor
+            ? p.vendedor
+                .split(" ")
+                .filter(Boolean)
+                .slice(0, 2)
+                .map(parte => parte[0])
+                .join("")
+                .toUpperCase()
+            : "U"}
+        </div>
+
+        <div>
+          <p className="text-sm font-bold text-[#F2F4F5]">
+            {p.vendedor || "Vendedor"}
+          </p>
+
+          <p className="text-[11px] text-[#9AA6AD] flex items-center gap-1">
+            <MapPin className="w-3 h-3" />
+            {p.provincia}
+          </p>
+        </div>
+
+      </div>
+
+      <button
+        className="w-9 h-9 rounded-full flex items-center justify-center text-[#9AA6AD] hover:bg-[#2A3033] transition"
+      >
+        <MoreHorizontal className="w-5 h-5" />
+      </button>
+
+    </div>
+
+    {/* TÍTULO */}
+    <div className="px-4 pb-3">
+
+      <div className="flex items-center gap-2 flex-wrap mb-2">
+
+        <span className="text-[10px] uppercase font-bold tracking-wide text-[#72C8BD] bg-[#1B6B63]/20 px-2.5 py-1 rounded-full">
+          {p.categoria}
+        </span>
+
+        {p.estado === "Vendido" ? (
+          <span className="text-[10px] uppercase font-bold tracking-wide text-[#FF8A76] bg-[#C4472B]/20 px-2.5 py-1 rounded-full">
+            VENDIDO
+          </span>
+        ) : p.estado === "Reservado" ? (
+          <span className="text-[10px] uppercase font-bold tracking-wide text-[#E8C56A] bg-[#E8A33D]/15 px-2.5 py-1 rounded-full">
+            RESERVADO
+          </span>
+        ) : (
+          <span className="text-[10px] uppercase font-bold tracking-wide text-[#79D6A3] bg-[#79D6A3]/10 px-2.5 py-1 rounded-full">
+            EN VENTA
+          </span>
+        )}
+
+      </div>
+
+      <h3 className="text-xl font-bold text-[#F2F4F5] leading-tight">
+        {p.nombre}
+      </h3>
+
+    </div>
+
+    {/* FOTO PRINCIPAL */}
+    {p.foto && (
+      <div className="w-full aspect-square bg-[#0D1113] overflow-hidden">
+
+        <img
+          src={p.foto.replace(
+            "uc?export=view&id=",
+            "thumbnail?sz=w1000&id="
+          )}
+          alt={p.nombre}
+          className="w-full h-full object-contain"
+        />
+
+      </div>
+    )}
+
+    {/* INFORMACIÓN */}
+    <div className="px-4 pt-4">
+
+      <div className="flex items-end justify-between gap-3">
+
+        <div>
+          <p className="text-[11px] uppercase tracking-wide text-[#9AA6AD] mb-1">
+            Precio
+          </p>
+
+          <div className="text-2xl font-black text-[#F2F4F5]">
+            <EtiquetaPrecio
+              precio={p.precio}
+              moneda={p.moneda}
+            />
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    {/* ACCIONES */}
+    <div className="px-4 py-4 mt-1">
+
+      <div className="h-px bg-[#2A3033] mb-3" />
+
+      <div className="grid grid-cols-2 gap-2">
+
+        <button
+          onClick={() => setSeleccionado(p)}
+          className="flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#237D73] transition text-white text-sm font-semibold py-3 rounded-xl"
+        >
+          <MessageCircle className="w-4 h-4" />
+          Me interesa
+        </button>
+
+        <button
+          onClick={() => setSeleccionado(p)}
+          className="flex items-center justify-center gap-2 bg-[#202629] hover:bg-[#2A3033] transition text-[#F2F4F5] text-sm font-semibold py-3 rounded-xl"
+        >
+          Ver producto
+          <ChevronRight className="w-4 h-4" />
+        </button>
+
+      </div>
+
+    </div>
+
+  </article>
+))}
+  
           </div>
         )}
       </main>

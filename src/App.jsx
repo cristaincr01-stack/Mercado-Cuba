@@ -1520,73 +1520,91 @@ localStorage.setItem(
   >
 
     {/* CABECERA DE LA PUBLICACIÓN */}
-    <div className="flex items-center justify-between px-4 pt-4 pb-3">
+<div className="flex items-center justify-between px-4 pt-4 pb-3">
 
-      <div className="flex items-center gap-3">
+  <div className="flex items-center gap-3">
 
-        <div className="w-10 h-10 rounded-full bg-[#1B6B63] flex items-center justify-center text-white font-bold text-xs">
-          {p.vendedor
-            ? p.vendedor
-                .split(" ")
-                .filter(Boolean)
-                .slice(0, 2)
-                .map(parte => parte[0])
-                .join("")
-                .toUpperCase()
-            : "U"}
-        </div>
+    {/* AVATAR */}
+    <div className="relative">
 
-        <div>
-          <p className="text-sm font-bold text-[#F2F4F5]">
-            {p.vendedor || "Vendedor"}
-          </p>
-
-          <p className="text-[11px] text-[#9AA6AD] flex items-center gap-1">
-            <MapPin className="w-3 h-3" />
-            {p.provincia}
-          </p>
-        </div>
-
+      <div className="w-11 h-11 rounded-full bg-[#1B6B63] border border-[#3A827A] flex items-center justify-center text-white font-bold text-sm shadow-[0_4px_12px_rgba(0,0,0,0.25)]">
+        {p.vendedor
+          ? p.vendedor
+              .split(" ")
+              .filter(Boolean)
+              .slice(0, 2)
+              .map(parte => parte[0])
+              .join("")
+              .toUpperCase()
+          : "U"}
       </div>
 
-      <button
-        className="w-9 h-9 rounded-full flex items-center justify-center text-[#9AA6AD] hover:bg-[#2A3033] transition"
-      >
-        <MoreHorizontal className="w-5 h-5" />
-      </button>
+      {/* INDICADOR */}
+      <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#79D6A3] border-2 border-[#151A1D]" />
 
     </div>
+
+    {/* INFORMACIÓN DEL VENDEDOR */}
+    <div className="min-w-0">
+
+      <p className="text-sm font-bold text-[#F2F4F5] truncate">
+        {p.vendedor || "Vendedor"}
+      </p>
+
+      <p className="text-[11px] text-[#9AA6AD] flex items-center gap-1 mt-0.5">
+        <MapPin className="w-3 h-3 shrink-0" />
+        <span className="truncate">
+          {p.provincia}
+        </span>
+      </p>
+
+    </div>
+
+  </div>
+
+  {/* MENÚ */}
+  <button
+    className="w-9 h-9 shrink-0 rounded-full flex items-center justify-center text-[#9AA6AD] hover:bg-[#2A3033] hover:text-[#F2F4F5] active:scale-95 transition-all"
+  >
+    <MoreHorizontal className="w-5 h-5" />
+  </button>
+
+</div>
 
     {/* TÍTULO */}
-    <div className="px-4 pb-3">
+<div className="px-4 pb-4">
 
-      <div className="flex items-center gap-2 flex-wrap mb-2">
+  <div className="flex items-center gap-2 mb-2.5">
 
-        <span className="text-[10px] uppercase font-bold tracking-wide text-[#72C8BD] bg-[#1B6B63]/20 px-2.5 py-1 rounded-full">
-          {p.categoria}
-        </span>
+    {/* CATEGORÍA */}
+    <span className="text-[10px] uppercase font-bold tracking-[0.1em] text-[#7EE2C0]">
+      {p.categoria}
+    </span>
 
-        {p.estado === "Vendido" ? (
-          <span className="text-[10px] uppercase font-bold tracking-wide text-[#FF8A76] bg-[#C4472B]/20 px-2.5 py-1 rounded-full">
-            VENDIDO
-          </span>
-        ) : p.estado === "Reservado" ? (
-          <span className="text-[10px] uppercase font-bold tracking-wide text-[#E8C56A] bg-[#E8A33D]/15 px-2.5 py-1 rounded-full">
-            RESERVADO
-          </span>
-        ) : (
-          <span className="text-[10px] uppercase font-bold tracking-wide text-[#79D6A3] bg-[#79D6A3]/10 px-2.5 py-1 rounded-full">
-            EN VENTA
-          </span>
-        )}
+    <span className="w-1 h-1 rounded-full bg-[#4A555A]" />
 
-      </div>
+    {/* ESTADO */}
+    {p.estado === "Vendido" ? (
+      <span className="text-[10px] uppercase font-bold tracking-[0.1em] text-[#FF8A76]">
+        Vendido
+      </span>
+    ) : p.estado === "Reservado" ? (
+      <span className="text-[10px] uppercase font-bold tracking-[0.1em] text-[#E8C56A]">
+        Reservado
+      </span>
+    ) : (
+      <span className="text-[10px] uppercase font-bold tracking-[0.1em] text-[#79D6A3]">
+        En venta
+      </span>
+    )}
 
-      <h3 className="text-xl font-bold text-[#F2F4F5] leading-tight">
-        {p.nombre}
-      </h3>
+  </div>
 
-    </div>
+  <h3 className="text-[22px] font-extrabold tracking-tight text-[#F2F4F5] leading-[1.15]">
+    {p.nombre}
+  </h3>
+
+</div>
 
     {/* FOTO PRINCIPAL */}
 {p.foto && (

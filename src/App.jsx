@@ -1589,20 +1589,24 @@ localStorage.setItem(
     </div>
 
     {/* FOTO PRINCIPAL */}
-    {p.foto && (
-      <div className="w-full aspect-square bg-[#0D1113] overflow-hidden">
+{p.foto && (
+  <div className="relative w-full bg-[#0D1113] overflow-hidden">
 
-        <img
-          src={p.foto.replace(
-            "uc?export=view&id=",
-            "thumbnail?sz=w1000&id="
-          )}
-          alt={p.nombre}
-          className="w-full h-full object-contain"
-        />
+    <div className="aspect-[4/3] sm:aspect-[16/10] flex items-center justify-center">
 
-      </div>
-    )}
+      <img
+        src={p.foto.replace(
+          "uc?export=view&id=",
+          "thumbnail?sz=w1000&id="
+        )}
+        alt={p.nombre}
+        className="w-full h-full object-contain transition-transform duration-500 hover:scale-[1.02]"
+      />
+
+    </div>
+
+  </div>
+)}
 
     {/* INFORMACIÓN */}
     <div className="px-4 pt-4">

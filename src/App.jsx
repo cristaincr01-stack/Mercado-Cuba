@@ -341,6 +341,17 @@ function Tienda() {
   const [categoria, setCategoria] = useState("Todas");
   const [busqueda, setBusqueda] = useState("");
   const [seleccionado, setSeleccionado] = useState(null);
+  useEffect(() => {
+  if (seleccionado) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+
+  return () => {
+    document.body.style.overflow = "";
+  };
+}, [seleccionado]);
   const [productos, setProductos] = useState([]);
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [crearCuentaAbierto, setCrearCuentaAbierto] = useState(false);

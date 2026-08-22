@@ -1666,23 +1666,54 @@ localStorage.setItem(
 </div>
 
     {/* INTERACCIONES */}
-<div className="px-4 pt-3">
+<div className="px-4 pt-3 pb-1">
 
-  <div className="flex items-center justify-between text-xs text-[#9AA6AD]">
+  <div className="flex items-center justify-between">
 
+    {/* INTERESADOS */}
     <button
       onClick={() => setSeleccionado(p)}
-      className="flex items-center gap-2 hover:text-[#FF6B57] transition"
+      className="group flex items-center gap-2 transition-all active:scale-95"
     >
-      <Heart className="w-5 h-5" strokeWidth={1.8} />
-      <span>0</span>
-      <span className="hidden sm:inline">interesados</span>
+      <div className="w-9 h-9 rounded-full bg-[#202629] flex items-center justify-center group-hover:bg-[#2A3033] transition">
+        <Heart
+          className="w-4 h-4 text-[#9AA6AD] group-hover:text-[#FF8A76] transition"
+          strokeWidth={1.8}
+        />
+      </div>
+
+      <div className="text-left leading-tight">
+        <p className="text-sm font-bold text-[#F2F4F5]">
+          0
+        </p>
+
+        <p className="text-[10px] text-[#9AA6AD]">
+          interesados
+        </p>
+      </div>
     </button>
 
+
+    {/* VISUALIZACIONES */}
     <div className="flex items-center gap-2">
-      <Eye className="w-4 h-4" />
-      <span>0</span>
-      <span>visualizaciones</span>
+
+      <div className="w-9 h-9 rounded-full bg-[#202629] flex items-center justify-center">
+        <Eye
+          className="w-4 h-4 text-[#9AA6AD]"
+          strokeWidth={1.8}
+        />
+      </div>
+
+      <div className="leading-tight">
+        <p className="text-sm font-bold text-[#F2F4F5]">
+          0
+        </p>
+
+        <p className="text-[10px] text-[#9AA6AD]">
+          visualizaciones
+        </p>
+      </div>
+
     </div>
 
   </div>

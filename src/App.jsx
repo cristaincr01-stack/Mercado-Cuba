@@ -1605,7 +1605,7 @@ localStorage.setItem(
 
     {/* FOTO PRINCIPAL */}
 {p.foto && (
-  <div className="relative w-full bg-[#0D1113] overflow-hidden">
+  <div className="relative w-full bg-[#0B0F11] overflow-hidden">
 
     <div className="aspect-[4/3] sm:aspect-[16/10] flex items-center justify-center">
 
@@ -1615,10 +1615,13 @@ localStorage.setItem(
           "thumbnail?sz=w1000&id="
         )}
         alt={p.nombre}
-        className="w-full h-full object-contain transition-transform duration-500 hover:scale-[1.02]"
+        className="w-full h-full object-contain transition-transform duration-500 hover:scale-[1.015]"
       />
 
     </div>
+
+    {/* BORDE INFERIOR SUTIL */}
+    <div className="absolute bottom-0 left-0 right-0 h-px bg-[#2A3033]" />
 
   </div>
 )}

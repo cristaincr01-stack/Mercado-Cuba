@@ -30,24 +30,33 @@ const API_URL =
   "https://script.google.com/macros/s/AKfycby16A5ELOrZAE2QubflsJp9j6EQx34erkLCPD4TcIL18RvvDVCU5yVbOFZMn-Tfe0UU/exec";
 
 function mapearProducto(fila, index) {
+  const foto = String(fila?.["Foto del Producto"] || "");
 
-  const foto = fila["Foto del Producto"] || "";
+  let fotoDirecta = foto;
 
-const fotoDirecta = foto.includes("drive.google.com/file/d/")
-  ? "https://drive.google.com/uc?export=view&id=" + foto.split("/d/")[1].split("/")[0]
-  : foto;
+  if (foto.includes("drive.google.com/file/d/")) {
+    const partes = foto.split("/d/");
+
+    if (partes[1]) {
+      const id = partes[1].split("/")[0];
+      fotoDirecta =
+        "https://drive.google.com/uc?export=view&id=" + id;
+    }
+  }
+
   return {
     id: index,
-    _fila: fila._fila,
-    nombre: fila["Nombre del producto"] || "",
-    categoria: fila["Categoría"] || "",
-    provincia: fila["Provincia"] || "",
-    precio: fila["Precio"] || "",
-    moneda: fila["Moneda"] || "",
-    vendedor: fila["Tu nombre (como quieres que aparezca en el anuncio)"] || "",
-    tel: fila["Tu número de WhatsApp"] || "",
+    _fila: fila?._fila || "",
+    nombre: fila?.["Nombre del producto"] || "",
+    categoria: fila?.["Categoría"] || "",
+    provincia: fila?.["Provincia"] || "",
+    precio: fila?.["Precio"] || "",
+    moneda: fila?.["Moneda"] || "",
+    vendedor:
+      fila?.["Tu nombre (como quieres que aparezca en el anuncio)"] || "",
+    tel: fila?.["Tu número de WhatsApp"] || "",
     foto: fotoDirecta,
-    estado: fila["Estado"] || "EN VENTA",
+    estado: fila?.["Estado"] || "EN VENTA",
   };
 }
 

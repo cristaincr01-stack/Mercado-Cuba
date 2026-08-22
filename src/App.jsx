@@ -2117,18 +2117,34 @@ localStorage.setItem(
   </button>
 
   <button
-    onClick={() => marcarReservado(p._fila)}
-    className="flex items-center justify-center gap-2 bg-[#202629] hover:bg-[#2A3033] border border-[#3A474B] text-[#F2F4F5] py-2.5 rounded-xl text-sm font-semibold transition"
-  >
-    Reservar
-  </button>
+  onClick={() => {
+    if (p["Estado"] === "Vendido") return;
+    marcarReservado(p._fila);
+  }}
+  disabled={p["Estado"] === "Vendido"}
+  className={`flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition ${
+    p["Estado"] === "Vendido"
+      ? "bg-[#151A1D] border border-[#2A3033] text-[#5C666B] cursor-not-allowed opacity-60"
+      : "bg-[#202629] hover:bg-[#2A3033] border border-[#3A474B] text-[#F2F4F5]"
+  }`}
+>
+  {p["Estado"] === "Vendido" ? "Vendido" : "Reservar"}
+</button>
 
   <button
-    onClick={() => marcarVendido(p._fila)}
-    className="flex items-center justify-center gap-2 bg-[#202629] hover:bg-[#2A3033] border border-[#3A474B] text-[#F2F4F5] py-2.5 rounded-xl text-sm font-semibold transition"
-  >
-    Vendido
-  </button>
+  onClick={() => {
+    if (p["Estado"] === "Vendido") return;
+    marcarVendido(p._fila);
+  }}
+  disabled={p["Estado"] === "Vendido"}
+  className={`flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition ${
+    p["Estado"] === "Vendido"
+      ? "bg-[#321F1F] border border-[#613030] text-[#FF6B57] cursor-not-allowed opacity-70"
+      : "bg-[#202629] hover:bg-[#2A3033] border border-[#3A474B] text-[#F2F4F5]"
+  }`}
+>
+  {p["Estado"] === "Vendido" ? "Vendido" : "Vendido"}
+</button>
 
   <button
     onClick={() => eliminarProducto(p._fila)}

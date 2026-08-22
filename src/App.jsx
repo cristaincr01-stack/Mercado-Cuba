@@ -1609,26 +1609,43 @@ localStorage.setItem(
 )}
 
     {/* INFORMACIÓN */}
-    <div className="px-4 pt-4">
+<div className="px-4 pt-4 pb-1">
 
-      <div className="flex items-end justify-between gap-3">
+  <div className="flex items-center justify-between gap-3">
 
-        <div>
-          <p className="text-[11px] uppercase tracking-wide text-[#9AA6AD] mb-1">
-            Precio
-          </p>
+    <div>
+      <p className="text-[10px] uppercase tracking-[0.12em] text-[#9AA6AD] mb-1">
+        Precio
+      </p>
 
-          <div className="text-2xl font-black text-[#F2F4F5]">
-            <EtiquetaPrecio
-              precio={p.precio}
-              moneda={p.moneda}
-            />
-          </div>
-        </div>
-
+      <div className="text-3xl font-black tracking-tight text-[#7EE2C0]">
+        <EtiquetaPrecio
+          precio={p.precio}
+          moneda={p.moneda}
+        />
       </div>
-
     </div>
+
+    {p.estado === "Vendido" ? (
+      <span className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wide text-[#FF8A76] bg-[#C4472B]/15 border border-[#C4472B]/20 px-3 py-1.5 rounded-full">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B57]" />
+        Vendido
+      </span>
+    ) : p.estado === "Reservado" ? (
+      <span className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wide text-[#E8C56A] bg-[#E8A33D]/10 border border-[#E8A33D]/20 px-3 py-1.5 rounded-full">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#E8A33D]" />
+        Reservado
+      </span>
+    ) : (
+      <span className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wide text-[#79D6A3] bg-[#79D6A3]/10 border border-[#79D6A3]/20 px-3 py-1.5 rounded-full">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#79D6A3]" />
+        En venta
+      </span>
+    )}
+
+  </div>
+
+</div>
 
     {/* INTERACCIONES */}
 <div className="px-4 pt-3">

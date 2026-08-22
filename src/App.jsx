@@ -2154,14 +2154,14 @@ localStorage.setItem(
   className="bg-[#0D1113] border border-[#2A3033] rounded-2xl p-4 mb-3 shadow-sm"
 >
     {p["Foto del Producto"] && (
-  <div className="w-full aspect-[4/3] bg-[#0B0F11] rounded-2xl overflow-hidden mb-3">
+  <div className="w-full bg-[#0B0F11] rounded-2xl overflow-hidden mb-3">
     <img
       src={p["Foto del Producto"].replace(
         "uc?export=view&id=",
         "thumbnail?sz=w1000&id="
       )}
       alt={p["Nombre del producto"]}
-      className="w-full h-full object-contain"
+      className="w-full max-h-[320px] object-contain"
     />
   </div>
 )}

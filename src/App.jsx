@@ -2000,19 +2000,13 @@ localStorage.setItem(
         <X className="w-5 h-5" />
       </button>
 
-     {/* FOTO DEL PRODUCTO */}
-{seleccionado.foto && (
-  <div className="relative w-full mb-4 overflow-hidden rounded-2xl bg-[#0B0F11] border border-[#2A3033]">
-    <div className="aspect-[4/3] flex items-center justify-center">
-      <img
-        src={seleccionado.foto.replace(
-          "uc?export=view&id=",
-          "thumbnail?sz=w1000&id="
-        )}
-        alt={seleccionado.nombre}
-        className="w-full h-full object-contain"
-      />
-    </div>
+     {/* CARRUSEL DE FOTOS */}
+{seleccionado.fotos && seleccionado.fotos.length > 0 && (
+  <div className="mb-4 rounded-2xl overflow-hidden border border-[#2A3033]">
+    <CarruselFotos
+      fotos={seleccionado.fotos}
+      nombre={seleccionado.nombre}
+    />
   </div>
 )}
 

@@ -1760,26 +1760,30 @@ window.open(
   </div>
 )}
         {misProductosAbierto && (
-  <div className="fixed inset-0 bg-black/50 overflow-y-auto p-4 z-50">
-    <div className="bg-white rounded-lg max-w-sm w-full p-5 relative shadow-xl mx-auto mt-10 mb-10">
+  <div className="fixed inset-0 bg-black/70 overflow-y-auto p-4 z-50">
+    <div className="bg-[#151A1D] border border-[#2A3033] rounded-3xl max-w-lg w-full p-5 relative shadow-2xl mx-auto mt-10 mb-10 text-[#F2F4F5]">
 
       <button
         onClick={() => setMisProductosAbierto(false)}
-        className="absolute top-3 right-3 text-[#8a8370]"
+        className="absolute top-3 right-3 w-9 h-9 rounded-full bg-[#202629] text-[#9AA6AD] flex items-center justify-center hover:text-white transition"
       >
         <X className="w-5 h-5" />
       </button>
 
-      <h2 className="text-xl font-bold mb-4">
-        Mis productos
-      </h2>
+      <h2 className="text-2xl font-bold mb-1">
+  Mis productos
+</h2>
+
+<p className="text-sm text-[#9AA6AD] mb-5">
+  Administra tus publicaciones
+</p>
 
       {cargandoMisProductos ? (
-  <p className="text-center text-[#5c5848] py-4">
+  <p className="text-center text-[#9AA6AD] py-6">
     Cargando tus productos...
   </p>
 ) : misProductos.length === 0 ? (
-  <p className="text-center text-[#5c5848] py-4">
+  <p className="text-center text-[#9AA6AD] py-6">
     No tienes productos publicados todavía.
   </p>
 ) : null}
@@ -1790,19 +1794,22 @@ window.open(
     </h3>
 
     {misProductos.map((p, index) => (
-  <div key={index} className="border rounded-lg p-3 mb-2">
+  <div
+  key={index}
+  className="bg-[#0D1113] border border-[#2A3033] rounded-2xl p-4 mb-3 shadow-sm"
+>
     {p["Estado"] === "Vendido" && (
   <div className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold inline-block mb-2">
     VENDIDO
   </div>
 )}
-    <p className="font-semibold">
-      {p["Nombre del producto"]}
-    </p>
+    <p className="font-semibold text-[#F2F4F5] text-lg">
+  {p["Nombre del producto"]}
+</p>
 
-    <p>
-      {p["Precio"]} {p["Moneda"]}
-    </p>
+    <p className="text-[#F2F4F5] font-bold text-xl mt-1">
+  {p["Precio"]} {p["Moneda"]}
+</p>
 
     <button
       onClick={() => eliminarProducto(p._fila)}
@@ -1838,7 +1845,7 @@ window.open(
     setMisProductos([]);
     setWhatsappLogin("");
   }}
-  className="w-full mt-4 bg-[#C4472B] text-white font-semibold py-2 rounded-lg"
+  className="w-full mt-5 bg-[#202629] border border-[#3A474B] text-[#F2F4F5] font-semibold py-3 rounded-xl hover:bg-[#2A3033] transition"
 >
   Cerrar
 </button>

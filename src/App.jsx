@@ -1473,22 +1473,23 @@ localStorage.setItem(
     <MapPin className="w-3.5 h-3.5" /> Provincia
   </div>
 
-  <div className="flex gap-2 overflow-x-auto pb-2">
-    {PROVINCIAS.map(p => (
-      <button
-        key={p}
-        onClick={() => setProvincia(p)}
-        className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium border transition-all ${
-  provincia === p
-    ? "bg-[#1B6B63] text-white border-[#1B6B63]"
-    : "bg-[#151A1D] text-[#9AA6AD] border-[#2A3033] hover:border-[#1B6B63] hover:text-[#F2F4F5]"
-}`} 
-          >
-              {p}
-            </button>
-          ))}
-        </div>
-      </div>
+  <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+
+  {PROVINCIAS.map(p => (
+    <button
+      key={p}
+      onClick={() => setProvincia(p)}
+      className={`whitespace-nowrap px-4 py-2.5 rounded-full text-[13px] font-semibold border transition-all duration-200 active:scale-95 ${
+        provincia === p
+          ? "bg-[#7EE2C0] text-[#0D1113] border-[#7EE2C0] shadow-[0_4px_14px_rgba(126,226,192,0.14)]"
+          : "bg-[#151A1D] text-[#9AA6AD] border-[#30383C] hover:border-[#4A555A] hover:text-[#F2F4F5]"
+      }`}
+    >
+      {p}
+    </button>
+  ))}
+
+</div>
 
       <main className="max-w-6xl mx-auto px-5 mt-6 pb-16">
         <div className="flex items-center justify-between mb-3">
@@ -1524,17 +1525,17 @@ localStorage.setItem(
     {/* AVATAR */}
     <div className="relative">
 
-      <div className="w-11 h-11 rounded-full bg-[#1B6B63] border border-[#3A827A] flex items-center justify-center text-white font-bold text-sm shadow-[0_4px_12px_rgba(0,0,0,0.25)]">
-        {p.vendedor
-          ? p.vendedor
-              .split(" ")
-              .filter(Boolean)
-              .slice(0, 2)
-              .map(parte => parte[0])
-              .join("")
-              .toUpperCase()
-          : "U"}
-      </div>
+      <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#1B6B63] to-[#164F4A] border border-[#3A827A] flex items-center justify-center text-white font-bold text-sm shadow-[0_5px_16px_rgba(0,0,0,0.28)]">
+  {p.vendedor
+    ? p.vendedor
+        .split(" ")
+        .filter(Boolean)
+        .slice(0, 2)
+        .map(parte => parte[0])
+        .join("")
+        .toUpperCase()
+    : "U"}
+</div>
 
       {/* INDICADOR */}
       <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#79D6A3] border-2 border-[#151A1D]" />
@@ -1560,11 +1561,11 @@ localStorage.setItem(
   </div>
 
   {/* MENÚ */}
-  <button
-    className="w-9 h-9 shrink-0 rounded-full flex items-center justify-center text-[#9AA6AD] hover:bg-[#2A3033] hover:text-[#F2F4F5] active:scale-95 transition-all"
-  >
-    <MoreHorizontal className="w-5 h-5" />
-  </button>
+<button
+  className="w-10 h-10 shrink-0 rounded-full flex items-center justify-center text-[#9AA6AD] bg-[#202629] border border-[#30383C] hover:bg-[#272E31] hover:text-[#F2F4F5] hover:border-[#3A464B] active:scale-95 transition-all"
+>
+  <MoreHorizontal className="w-5 h-5" />
+</button>
 
 </div>
 
@@ -1615,7 +1616,7 @@ localStorage.setItem(
           "thumbnail?sz=w1000&id="
         )}
         alt={p.nombre}
-        className="w-full h-full object-contain transition-transform duration-500 hover:scale-[1.015]"
+        className="w-full h-full object-contain transition-transform duration-500 hover:scale-[1.02]"
       />
 
     </div>
@@ -1725,23 +1726,27 @@ localStorage.setItem(
 
   <div className="h-px bg-[#2A3033] mb-3" />
 
-  <div className="grid grid-cols-3 gap-2">
+  <div className="grid grid-cols-3 gap-2.5">
 
     {/* PREGUNTAR */}
     <button
       onClick={() => setSeleccionado(p)}
-      className="flex items-center justify-center gap-1.5 bg-[#7EE2C0] hover:bg-[#8BE8CB] active:scale-[0.98] transition-all text-[#0D1113] text-[13px] font-bold py-3 rounded-2xl"
+      className="group flex items-center justify-center gap-1.5 bg-[#7EE2C0] hover:bg-[#8BE8CB] active:scale-[0.97] transition-all text-[#0D1113] text-[12px] sm:text-[13px] font-bold py-3.5 rounded-2xl shadow-[0_4px_14px_rgba(126,226,192,0.12)]"
     >
-      <MessageCircle className="w-4 h-4 shrink-0" />
+      <MessageCircle
+        className="w-4 h-4 shrink-0 group-hover:scale-105 transition-transform"
+      />
       <span>Preguntar</span>
     </button>
 
     {/* VER PRODUCTO */}
     <button
       onClick={() => setSeleccionado(p)}
-      className="flex items-center justify-center gap-1 bg-[#202629] hover:bg-[#2A3033] active:scale-[0.98] transition-all text-[#F2F4F5] text-[13px] font-semibold py-3 rounded-2xl whitespace-nowrap px-1"
+      className="group flex items-center justify-center gap-1.5 bg-[#202629] hover:bg-[#272E31] active:scale-[0.97] transition-all text-[#F2F4F5] text-[12px] sm:text-[13px] font-semibold py-3.5 rounded-2xl border border-[#30383C] hover:border-[#3A464B]"
     >
-      <ChevronRight className="w-4 h-4 shrink-0" />
+      <ChevronRight
+        className="w-4 h-4 shrink-0 text-[#7EE2C0] group-hover:translate-x-0.5 transition-transform"
+      />
       <span>Ver producto</span>
     </button>
 
@@ -1756,9 +1761,11 @@ localStorage.setItem(
           }).catch(() => {});
         }
       }}
-      className="flex items-center justify-center gap-1.5 bg-[#202629] hover:bg-[#2A3033] active:scale-[0.98] transition-all text-[#F2F4F5] text-[13px] font-semibold py-3 rounded-2xl whitespace-nowrap"
+      className="group flex items-center justify-center gap-1.5 bg-[#202629] hover:bg-[#272E31] active:scale-[0.97] transition-all text-[#F2F4F5] text-[12px] sm:text-[13px] font-semibold py-3.5 rounded-2xl border border-[#30383C] hover:border-[#3A464B]"
     >
-      <Share2 className="w-4 h-4 shrink-0" />
+      <Share2
+        className="w-4 h-4 shrink-0 text-[#9AA6AD] group-hover:text-[#7EE2C0] transition-colors"
+      />
       <span>Compartir</span>
     </button>
 

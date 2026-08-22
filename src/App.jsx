@@ -591,16 +591,19 @@ const respuesta = await fetch(
   fetch(`${API_URL}?accion=aprobados`)
   .then((res) => res.json())
   .then((data) => {
-    console.log("PRODUCTOS RECIBIDOS:", data);
+    console.log("APROBADOS:", data);
 
-    const productosMapeados = data.map(mapearProducto);
+    if (!Array.isArray(data)) {
+      console.error("APROBADOS NO ES UN ARRAY:", data);
+      setProductos([]);
+      return;
+    }
 
-    console.log("PRODUCTOS MAPEADOS:", productosMapeados);
-
-    setProductos(productosMapeados);
+    setProductos(data.map(mapearProducto));
   })
   .catch((error) => {
     console.error("ERROR CARGANDO PRODUCTOS:", error);
+    setProductos([]);
   });
 
   fetch(`${API_URL}?accion=monedas`)

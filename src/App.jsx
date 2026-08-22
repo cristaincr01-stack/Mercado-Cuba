@@ -728,7 +728,25 @@ const [editandoProducto, setEditandoProducto] = useState(false);
   }
 
 };
-const enviarProducto = async () => {
+
+
+    const formulario = new URLSearchParams();
+
+    Object.keys(datos).forEach((clave) => {
+      formulario.append(clave, datos[clave]);
+    });
+
+    const respuesta = await fetch(
+      API_URL,
+      {
+        method: "POST",
+        body: formulario
+      }
+    );
+
+    
+
+      const enviarProducto = async () => {
   if (
     !usuarioActual ||
     !nombreProducto ||
@@ -772,12 +790,10 @@ const enviarProducto = async () => {
       moneda: monedaProducto,
       precio: precioProducto,
 
-      // Datos de la cuenta actualmente iniciada
       whatsapp: usuarioActual.whatsapp,
       nombreVendedor: usuarioActual.nombre,
       idVendedor: usuarioActual.idVendedor,
 
-      // Varias fotos
       imagenes: JSON.stringify(fotosBase64)
     };
 
@@ -802,7 +818,6 @@ const enviarProducto = async () => {
 
       setPublicarAbierto(false);
 
-      // Limpiar formulario
       setNombreProducto("");
       setCategoriaProducto("");
       setProvinciaProducto("");
@@ -814,45 +829,11 @@ const enviarProducto = async () => {
       alert("Error: " + JSON.stringify(resultado));
     }
 
-    setEnviandoProducto(false);
-
   } catch (error) {
     alert("ERROR REAL: " + error.toString());
+
+  } finally {
     setEnviandoProducto(false);
-  }
-};
-
-      const formulario = new URLSearchParams();
-
-Object.keys(datos).forEach((clave) => {
-  formulario.append(clave, datos[clave]);
-});
-
-const respuesta = await fetch(
-  "https://script.google.com/macros/s/AKfycby16A5ELOrZAE2QubflsJp9j6EQx34erkLCPD4TcIL18RvvDVCU5yVbOFZMn-Tfe0UU/exec",
-  {
-    method: "POST",
-    body: formulario
-  }
-);
-
-      const resultado = await respuesta.json();
-
-      if (resultado.exito) {
-        alert("Producto enviado para aprobación");
-        setPublicarAbierto(false);
-      } else {
-        alert("Error: " + JSON.stringify(resultado));
-      }
-
-      setEnviandoProducto(false);
-    };
-
-    lector.readAsDataURL(imagenProducto);
-
-  } catch (error) {
-  alert("ERROR REAL: " + error.toString());
-  setEnviandoProducto(false);
   }
 };
   useEffect(() => {

@@ -2348,69 +2348,118 @@ window.open(
             )}
 
       {/* BARRA DE NAVEGACIÓN INFERIOR */}
-      <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#ddd6c7] shadow-[0_-4px_15px_rgba(0,0,0,0.08)]">
-        <div className="max-w-2xl mx-auto h-16 grid grid-cols-5">
+<nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#0D1113]/95 backdrop-blur-xl border-t border-[#2A3033] shadow-[0_-8px_30px_rgba(0,0,0,0.35)]">
 
-          <button
-  onClick={() => {
-  setPublicarAbierto(false);
-  setMisProductosAbierto(false);
-  setBuscarAbierto(false);
-  setMenuAbierto(false);
-  setBusqueda("");
-  setProductoDestino(null);
-  setProductoDestacado(null);
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}}
-  className="flex flex-col items-center justify-center gap-1 text-[#1B6B63]"
->
-  <Home className="w-5 h-5" />
-  <span className="text-[10px] font-semibold">Inicio</span>
-</button>
+  <div className="max-w-2xl mx-auto h-[72px] grid grid-cols-5 items-center px-2">
 
-          <button
-  onClick={() => setBuscarAbierto(true)}
-  className="flex flex-col items-center justify-center gap-1 text-[#5c5848]"
->
-  <Search className="w-5 h-5" />
-  <span className="text-[10px] font-semibold">Buscar</span>
-</button>
+    {/* INICIO */}
+    <button
+      onClick={() => {
+        setPublicarAbierto(false);
+        setMisProductosAbierto(false);
+        setBuscarAbierto(false);
+        setMenuAbierto(false);
+        setBusqueda("");
+        setProductoDestino(null);
+        setProductoDestacado(null);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }}
+      className="h-full flex flex-col items-center justify-center gap-1 text-[#7EE2C0] transition-all active:scale-95"
+    >
+      <Home className="w-5 h-5" strokeWidth={2} />
+      <span className="text-[10px] font-semibold">
+        Inicio
+      </span>
+    </button>
 
-          <button
-  onClick={() => {
-    if (!usuarioActual) {
-      setCrearCuentaAbierto(true);
-      return;
-    }
 
-    setPublicarAbierto(true);
-  }}
-  className="flex flex-col items-center justify-center gap-1 text-[#C4472B]"
->
-  <div className="w-10 h-10 -mt-5 rounded-full bg-[#C4472B] text-white flex items-center justify-center shadow-lg border-4 border-[#EDE6D6]">
-    <Plus className="w-6 h-6" />
-  </div>
-  <span className="text-[10px] font-bold">Publicar</span>
-</button>
+    {/* BUSCAR */}
+    <button
+      onClick={() => setBuscarAbierto(true)}
+      className="h-full flex flex-col items-center justify-center gap-1 text-[#9AA6AD] hover:text-[#F2F4F5] transition-all active:scale-95"
+    >
+      <Search className="w-5 h-5" strokeWidth={2} />
+      <span className="text-[10px] font-semibold">
+        Buscar
+      </span>
+    </button>
 
-          <button
-  onClick={buscarMisProductos}
-  className="flex flex-col items-center justify-center gap-1 text-[#5c5848]"
->
-  <Package className="w-5 h-5" />
-  <span className="text-[10px] font-semibold">Mis productos</span>
-</button>
 
-          <button
-  onClick={() => setMenuAbierto(!menuAbierto)}
-  className="flex flex-col items-center justify-center gap-1 text-[#5c5848]"
->
-  <MoreHorizontal className="w-5 h-5" />
-  <span className="text-[10px] font-semibold">Más</span>
-</button>
+    {/* PUBLICAR */}
+    <button
+      onClick={() => {
+        if (!usuarioActual) {
+          setCrearCuentaAbierto(true);
+          return;
+        }
+
+        setPublicarAbierto(true);
+      }}
+      className="h-full flex flex-col items-center justify-center gap-1 text-[#7EE2C0] active:scale-95 transition-all"
+    >
+      <div className="relative -mt-7">
+
+        <div className="w-14 h-14 rounded-full bg-[#7EE2C0] text-[#0D1113] flex items-center justify-center shadow-[0_6px_25px_rgba(126,226,192,0.25)] border-4 border-[#0D1113]">
+          <Plus className="w-7 h-7" strokeWidth={2.5} />
+        </div>
+
+      </div>
+
+      <span className="text-[10px] font-bold -mt-1">
+        Publicar
+      </span>
+    </button>
+
+
+    {/* MIS PRODUCTOS */}
+    <button
+      onClick={buscarMisProductos}
+      className="h-full flex flex-col items-center justify-center gap-1 text-[#9AA6AD] hover:text-[#F2F4F5] transition-all active:scale-95"
+    >
+      <Package className="w-5 h-5" strokeWidth={2} />
+      <span className="text-[10px] font-semibold">
+        Mis productos
+      </span>
+    </button>
+
+
+    {/* TÚ / MÁS */}
+    <button
+      onClick={() => setMenuAbierto(!menuAbierto)}
+      className="h-full flex flex-col items-center justify-center gap-1 text-[#9AA6AD] hover:text-[#F2F4F5] transition-all active:scale-95"
+    >
+
+      {usuarioActual ? (
+        <div className="relative">
+
+          <div className="w-6 h-6 rounded-full bg-[#1B6B63] border border-[#3A827A] flex items-center justify-center text-white text-[9px] font-bold">
+            {usuarioActual.nombre
+              ? usuarioActual.nombre
+                  .split(" ")
+                  .filter(Boolean)
+                  .slice(0, 2)
+                  .map(parte => parte[0])
+                  .join("")
+                  .toUpperCase()
+              : "U"}
+          </div>
+
+          <span className="absolute -right-0.5 -bottom-0.5 w-2 h-2 rounded-full bg-[#79D6A3] border border-[#0D1113]" />
 
         </div>
-      </nav>
+      ) : (
+        <UserRound className="w-5 h-5" strokeWidth={2} />
+      )}
+
+      <span className="text-[10px] font-semibold">
+        Tú
+      </span>
+
+    </button>
+
+  </div>
+
+</nav>
 
     </div>
   );

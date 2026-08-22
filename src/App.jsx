@@ -675,53 +675,72 @@ if (orden === "precioMayor") {
 }, [productos, provincia, categoria, busqueda, orden, moneda]);
 
   return (
-    <div className="min-h-screen bg-[#EDE6D6] text-[#232620]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-      <header className="relative bg-[#1B6B63] text-[#F5F1E6] border-b-4 border-[#C4472B]">
+  <div
+    className="min-h-screen bg-[#0D1113] text-[#F2F4F5]"
+    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+  >
+      <header className="relative bg-[#151A1D] text-[#F2F4F5] border-b border-[#2A3033]">
         <div className="max-w-6xl mx-auto px-5 py-6">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-2">
-              <Store className="w-7 h-7" strokeWidth={2.5} />
-              <span
-                className="text-2xl tracking-tight font-extrabold uppercase"
-                style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.02em" }}
-              >
-                Mercado<span className="text-[#E8A33D]">CU</span>
-              </span>
+              <div className="flex items-center gap-2.5">
+  <div className="w-9 h-9 rounded-xl bg-[#1B6B63] flex items-center justify-center shadow-lg">
+    <Store className="w-5 h-5 text-white" strokeWidth={2.2} />
+  </div>
+
+  <span
+    className="text-2xl tracking-tight font-extrabold"
+    style={{
+      fontFamily: "'Inter', system-ui, sans-serif",
+      letterSpacing: "-0.04em"
+    }}
+  >
+    Mercado<span className="text-[#E8A33D]">CU</span>
+  </span>
+</div>
             </div>
             <button
-  onClick={() => setPublicarAbierto(true)}
-  className="bg-[#C4472B] hover:bg-[#a83a23] transition-colors text-white text-sm font-semibold px-4 py-2 rounded-full"
+  onClick={() => {
+    if (!usuarioActual) {
+      setCrearCuentaAbierto(true);
+      return;
+    }
+
+    setPublicarAbierto(true);
+  }}
+  className="bg-[#1B6B63] hover:bg-[#237D73] transition-all text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg"
 >
-  Publicar mi producto
+  + Publicar
 </button>
 
             <div className="absolute top-5 right-5">
   <button
-  onClick={() => setMenuAbierto(!menuAbierto)}
-  className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition"
->
-  {usuarioActual ? (
-    <div className="relative">
-      <div className="w-10 h-10 rounded-full bg-[#1B6B63] text-white flex items-center justify-center text-xs font-bold border-2 border-white shadow-md">
-        {usuarioActual.nombre
-          ? usuarioActual.nombre
-              .split(" ")
-              .filter(Boolean)
-              .slice(0, 2)
-              .map((parte) => parte[0])
-              .join("")
-              .toUpperCase()
-          : "U"}
-      </div>
+    onClick={() => setMenuAbierto(!menuAbierto)}
+    className="relative w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-105"
+  >
+    {usuarioActual ? (
+      <>
+        <div className="w-10 h-10 rounded-full bg-[#1B6B63] text-white flex items-center justify-center text-xs font-bold border border-[#3A474B] shadow-lg">
+          {usuarioActual.nombre
+            ? usuarioActual.nombre
+                .split(" ")
+                .filter(Boolean)
+                .slice(0, 2)
+                .map((parte) => parte[0])
+                .join("")
+                .toUpperCase()
+            : "U"}
+        </div>
 
-      <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
-    </div>
-  ) : (
-    <div className="w-10 h-10 rounded-full bg-white/20 border border-white/40 flex items-center justify-center text-white">
-      <UserRound className="w-5 h-5" />
-    </div>
-  )}
-</button>
+        <span className="absolute bottom-0 right-0 w-3 h-3 bg-[#35C759] border-2 border-[#151A1D] rounded-full" />
+      </>
+    ) : (
+      <div className="w-10 h-10 rounded-full bg-[#202629] border border-[#3A474B] flex items-center justify-center text-[#9AA6AD]">
+        <UserRound className="w-5 h-5" />
+      </div>
+    )}
+  </button>
+</div>
 
   {menuAbierto && (
     <div className="fixed inset-x-0 bottom-0 bg-white text-[#232620] rounded-t-3xl shadow-2xl p-5 z-50 max-h-[85vh] overflow-y-auto">
@@ -1302,14 +1321,14 @@ localStorage.setItem(
       </header>
 
       <div className="max-w-6xl mx-auto px-5 mt-6">
-        <div className="bg-white rounded-2xl shadow-lg p-4 flex flex-col sm:flex-row gap-3">
-          <div className="flex items-center gap-2 flex-1 border border-[#ddd6c4] rounded-xl px-4 py-3">
+        <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4 flex flex-col sm:flex-row gap-3">
+          className="flex items-center gap-2 flex-1 bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3"
             <Search className="w-4 h-4 text-[#8a8370]" />
             <input
               value={busqueda}
               onChange={e => setBusqueda(e.target.value)}
               placeholder="Buscar un producto..."
-              className="w-full outline-none text-sm bg-transparent"
+              className="w-full outline-none text-sm bg-transparent text-[#F2F4F5] placeholder:text-[#69757B]"
             />
           </div>
           <select
@@ -1530,32 +1549,56 @@ localStorage.setItem(
 
     </div>
 
-    {/* ACCIONES */}
-    <div className="px-4 py-4 mt-1">
+    {/* INTERACCIONES */}
+<div className="px-4 pt-3">
 
-      <div className="h-px bg-[#2A3033] mb-3" />
+  <div className="flex items-center justify-between text-xs text-[#9AA6AD]">
 
-      <div className="grid grid-cols-2 gap-2">
+    <button
+      onClick={() => setSeleccionado(p)}
+      className="flex items-center gap-2 hover:text-[#FF6B57] transition"
+    >
+      <Heart className="w-5 h-5" strokeWidth={1.8} />
+      <span>0</span>
+      <span className="hidden sm:inline">interesados</span>
+    </button>
 
-        <button
-          onClick={() => setSeleccionado(p)}
-          className="flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#237D73] transition text-white text-sm font-semibold py-3 rounded-xl"
-        >
-          <MessageCircle className="w-4 h-4" />
-          Me interesa
-        </button>
-
-        <button
-          onClick={() => setSeleccionado(p)}
-          className="flex items-center justify-center gap-2 bg-[#202629] hover:bg-[#2A3033] transition text-[#F2F4F5] text-sm font-semibold py-3 rounded-xl"
-        >
-          Ver producto
-          <ChevronRight className="w-4 h-4" />
-        </button>
-
-      </div>
-
+    <div className="flex items-center gap-2">
+      <Eye className="w-4 h-4" />
+      <span>0</span>
+      <span>visualizaciones</span>
     </div>
+
+  </div>
+
+</div>
+
+{/* ACCIONES */}
+<div className="px-4 py-4">
+
+  <div className="h-px bg-[#2A3033] mb-3" />
+
+  <div className="grid grid-cols-2 gap-2">
+
+    <button
+      onClick={() => setSeleccionado(p)}
+      className="flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#237D73] transition text-white text-sm font-semibold py-3 rounded-xl"
+    >
+      <MessageCircle className="w-4 h-4" />
+      Preguntar
+    </button>
+
+    <button
+      onClick={() => setSeleccionado(p)}
+      className="flex items-center justify-center gap-2 bg-[#202629] hover:bg-[#2A3033] transition text-[#F2F4F5] text-sm font-semibold py-3 rounded-xl"
+    >
+      Ver producto
+      <ChevronRight className="w-4 h-4" />
+    </button>
+
+  </div>
+
+</div>
 
   </article>
 ))}

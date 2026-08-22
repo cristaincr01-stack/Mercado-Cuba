@@ -1295,7 +1295,6 @@ localStorage.setItem(
   </div>
 )}
 </div>
-          </div>
           <h1
   className="mt-8 text-4xl sm:text-5xl font-black leading-tight max-w-2xl"
   style={{ fontFamily: "'Inter', sans-serif" }}

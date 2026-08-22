@@ -1744,15 +1744,29 @@ localStorage.setItem(
   <div className="grid grid-cols-3 gap-2.5">
 
     {/* PREGUNTAR */}
-    <button
-      onClick={() => setSeleccionado(p)}
-      className="group flex items-center justify-center gap-1.5 bg-[#1B6B63] hover:bg-[#23786F] active:scale-[0.97] transition-all text-white text-[12px] sm:text-[13px] font-bold py-3.5 rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.18)]"
-    >
-      <MessageCircle
-        className="w-4 h-4 shrink-0 group-hover:scale-105 transition-transform"
-      />
-      <span>Preguntar</span>
-    </button>
+<button
+  onClick={() => {
+    if (p.estado === "Vendido") return;
+    setSeleccionado(p);
+  }}
+  disabled={p.estado === "Vendido"}
+  className={`group flex items-center justify-center gap-1.5 transition-all text-[12px] sm:text-[13px] font-bold py-3.5 rounded-2xl ${
+    p.estado === "Vendido"
+      ? "bg-[#202629] text-[#5C666B] border border-[#2A3033] cursor-not-allowed opacity-60"
+      : "bg-[#1B6B63] hover:bg-[#23786F] active:scale-[0.97] text-white shadow-[0_4px_14px_rgba(0,0,0,0.18)]"
+  }`}
+>
+  <MessageCircle
+    className={`w-4 h-4 shrink-0 ${
+      p.estado === "Vendido"
+        ? "text-[#5C666B]"
+        : "group-hover:scale-105 transition-transform"
+    }`}
+  />
+  <span>
+    {p.estado === "Vendido" ? "Vendido" : "Preguntar"}
+  </span>
+</button>
 
     {/* VER PRODUCTO */}
     <button
@@ -1923,25 +1937,34 @@ localStorage.setItem(
         El pago y la entrega se coordinan directamente con el vendedor.
       </p>
 
-      {/* WHATSAPP */}
-      <button
-        onClick={() => {
-          const numero = `53${String(seleccionado.tel).replace(/\s+/g, "")}`;
+     {/* WHATSAPP */}
+<button
+  onClick={() => {
+    if (seleccionado.estado === "Vendido") return;
 
-          const mensaje = `Hola, estoy interesado en el producto "${seleccionado.nombre}". ¿Sigue disponible?`;
+    const numero = `53${String(seleccionado.tel).replace(/\s+/g, "")}`;
 
-          console.log(seleccionado);
+    const mensaje = `Hola, estoy interesado en el producto "${seleccionado.nombre}". ¿Sigue disponible?`;
 
-          window.open(
-            `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
-            "_blank"
-          );
-        }}
-        className="mt-5 w-full flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#23786F] active:scale-[0.98] transition-all text-white font-bold py-3.5 rounded-2xl shadow-[0_6px_18px_rgba(126,226,192,0.12)]"
-      >
-        <MessageCircle className="w-5 h-5" />
-        Contactar por WhatsApp
-      </button>
+    console.log(seleccionado);
+
+    window.open(
+      `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
+      "_blank"
+    );
+  }}
+  disabled={seleccionado.estado === "Vendido"}
+  className={`mt-5 w-full flex items-center justify-center gap-2 font-bold py-3.5 rounded-2xl transition-all ${
+    seleccionado.estado === "Vendido"
+      ? "bg-[#202629] text-[#5C666B] border border-[#2A3033] cursor-not-allowed opacity-60"
+      : "bg-[#1B6B63] hover:bg-[#23786F] active:scale-[0.98] text-white shadow-[0_6px_18px_rgba(0,0,0,0.18)]"
+  }`}
+>
+  <MessageCircle className="w-5 h-5" />
+  {seleccionado.estado === "Vendido"
+    ? "Producto vendido"
+    : "Contactar por WhatsApp"}
+</button>
 
     </div>
   </div>

@@ -1327,6 +1327,7 @@ localStorage.setItem(
 </div>
 
         </div>
+          </div>
       </header>
 
       <div className="max-w-6xl mx-auto px-5 mt-6">

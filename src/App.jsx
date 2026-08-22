@@ -1816,6 +1816,43 @@ localStorage.setItem(
         <X className="w-5 h-5" />
       </button>
 
+     {/* FOTO DEL PRODUCTO */}
+{seleccionado.foto && (
+  <div className="relative w-full mb-4 overflow-hidden rounded-2xl bg-[#0B0F11] border border-[#2A3033]">
+    <div className="aspect-[4/3] flex items-center justify-center">
+      <img
+        src={seleccionado.foto.replace(
+          "uc?export=view&id=",
+          "thumbnail?sz=w1000&id="
+        )}
+        alt={seleccionado.nombre}
+        className="w-full h-full object-contain"
+      />
+    </div>
+  </div>
+)}
+
+{/* ESTADO */}
+<div className="flex items-center gap-2 mb-3">
+
+  {seleccionado.estado === "Vendido" ? (
+    <span className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wide text-[#FF8A76] bg-[#C4472B]/15 border border-[#C4472B]/20 px-3 py-1.5 rounded-full">
+      <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B57]" />
+      Vendido
+    </span>
+  ) : seleccionado.estado === "Reservado" ? (
+    <span className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wide text-[#E8C56A] bg-[#E8A33D]/10 border border-[#E8A33D]/20 px-3 py-1.5 rounded-full">
+      <span className="w-1.5 h-1.5 rounded-full bg-[#E8A33D]" />
+      Reservado
+    </span>
+  ) : (
+    <span className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wide text-[#79D6A3] bg-[#79D6A3]/10 border border-[#79D6A3]/20 px-3 py-1.5 rounded-full">
+      <span className="w-1.5 h-1.5 rounded-full bg-[#79D6A3]" />
+      En venta
+    </span>
+  )}
+
+</div>
       {/* CATEGORÍA */}
       <span className="inline-flex text-[10px] uppercase font-bold tracking-[0.1em] text-[#6BC7AD] bg-[#1B6B63]/20 border border-[#1B6B63]/30 px-2.5 py-1.5 rounded-full">
         {seleccionado.categoria}

@@ -1811,30 +1811,37 @@ window.open(
   {p["Precio"]} {p["Moneda"]}
 </p>
 
-    <button
-      onClick={() => eliminarProducto(p._fila)}
-      className="mt-2 w-full bg-red-600 text-white py-2 rounded-lg"
-    >
-      Eliminar producto
-    </button>
-    <button
-  onClick={() => abrirEdicion(p)}
-  className="mt-2 w-full bg-[#1B6B63] text-white py-2 rounded-lg"
->
-  Editar producto
-</button>
-    <button
-  onClick={() => marcarReservado(p._fila)}
-  className="mt-2 w-full bg-yellow-500 text-white py-2 rounded-lg"
->
-  Marcar reservado
-</button>
-    <button
-  onClick={() => marcarVendido(p._fila)}
-  className="mt-2 w-full bg-green-600 text-white py-2 rounded-lg"
->
-  Marcar vendido
-</button>
+    <div className="grid grid-cols-2 gap-2 mt-4">
+
+  <button
+    onClick={() => abrirEdicion(p)}
+    className="flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#237D73] text-white py-2.5 rounded-xl text-sm font-semibold transition"
+  >
+    Editar
+  </button>
+
+  <button
+    onClick={() => marcarReservado(p._fila)}
+    className="flex items-center justify-center gap-2 bg-[#202629] hover:bg-[#2A3033] border border-[#3A474B] text-[#F2F4F5] py-2.5 rounded-xl text-sm font-semibold transition"
+  >
+    Reservar
+  </button>
+
+  <button
+    onClick={() => marcarVendido(p._fila)}
+    className="flex items-center justify-center gap-2 bg-[#202629] hover:bg-[#2A3033] border border-[#3A474B] text-[#F2F4F5] py-2.5 rounded-xl text-sm font-semibold transition"
+  >
+    Vendido
+  </button>
+
+  <button
+    onClick={() => eliminarProducto(p._fila)}
+    className="flex items-center justify-center gap-2 bg-[#321F1F] hover:bg-[#452323] border border-[#613030] text-[#FF6B57] py-2.5 rounded-xl text-sm font-semibold transition"
+  >
+    Eliminar
+  </button>
+
+</div>
   </div>
 ))}
   </div>

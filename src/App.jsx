@@ -1,6 +1,56 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck, Eye,
 EyeOff, LogOut, } from "lucide-react";
+window.onerror = function (mensaje, archivo, linea, columna, error) {
+  document.body.innerHTML = `
+    <div style="
+      padding:20px;
+      background:#111;
+      color:#ff6b6b;
+      font-family:monospace;
+      min-height:100vh;
+      white-space:pre-wrap;
+    ">
+      <h2 style="color:white;">ERROR DE MERCADOCU</h2>
+
+      <p><strong>Mensaje:</strong></p>
+      <p>${mensaje}</p>
+
+      <p><strong>Archivo:</strong></p>
+      <p>${archivo}</p>
+
+      <p><strong>Línea:</strong> ${linea}</p>
+
+      <p><strong>Columna:</strong> ${columna}</p>
+
+      <p><strong>Error:</strong></p>
+      <p>${error ? error.stack : "Sin información adicional"}</p>
+    </div>
+  `;
+};
+
+window.onunhandledrejection = function (event) {
+  document.body.innerHTML = `
+    <div style="
+      padding:20px;
+      background:#111;
+      color:#ff6b6b;
+      font-family:monospace;
+      min-height:100vh;
+      white-space:pre-wrap;
+    ">
+      <h2 style="color:white;">ERROR DE MERCADOCU</h2>
+
+      <p><strong>Promesa rechazada:</strong></p>
+
+      <p>${
+        event.reason?.stack ||
+        event.reason ||
+        "Error desconocido"
+      }</p>
+    </div>
+  `;
+};
 
 const PROVINCIAS = [
   "Todas", "Pinar del Río" , "Artemisa" , "La Habana", "Mayabeque" , "Matanzas" , "Cienfuegos" , "Villa Clara" , "Sansti Spiritu" , "Ciego de Ávila",

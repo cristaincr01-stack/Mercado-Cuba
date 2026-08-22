@@ -729,7 +729,6 @@ const [editandoProducto, setEditandoProducto] = useState(false);
 
 };
 const enviarProducto = async () => {
-const enviarProducto = async () => {
   if (
     !usuarioActual ||
     !nombreProducto ||

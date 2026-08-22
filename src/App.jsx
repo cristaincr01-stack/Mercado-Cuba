@@ -1727,22 +1727,25 @@ localStorage.setItem(
 
   <div className="grid grid-cols-3 gap-2">
 
+    {/* PREGUNTAR */}
     <button
       onClick={() => setSeleccionado(p)}
-      className="flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#237D73] active:scale-[0.98] transition-all text-white text-sm font-semibold py-3 rounded-2xl"
+      className="flex items-center justify-center gap-1.5 bg-[#7EE2C0] hover:bg-[#8BE8CB] active:scale-[0.98] transition-all text-[#0D1113] text-[13px] font-bold py-3 rounded-2xl"
     >
-      <MessageCircle className="w-4 h-4" />
+      <MessageCircle className="w-4 h-4 shrink-0" />
       <span>Preguntar</span>
     </button>
 
+    {/* VER PRODUCTO */}
     <button
-  onClick={() => setSeleccionado(p)}
-  className="flex items-center justify-center gap-1 bg-[#202629] hover:bg-[#2A3033] active:scale-[0.98] transition-all text-[#F2F4F5] text-[13px] font-semibold py-3 rounded-2xl whitespace-nowrap px-1"
->
-  <ChevronRight className="w-4 h-4 shrink-0" />
-  <span>Ver producto</span>
-</button>
+      onClick={() => setSeleccionado(p)}
+      className="flex items-center justify-center gap-1 bg-[#202629] hover:bg-[#2A3033] active:scale-[0.98] transition-all text-[#F2F4F5] text-[13px] font-semibold py-3 rounded-2xl whitespace-nowrap px-1"
+    >
+      <ChevronRight className="w-4 h-4 shrink-0" />
+      <span>Ver producto</span>
+    </button>
 
+    {/* COMPARTIR */}
     <button
       onClick={() => {
         if (navigator.share) {
@@ -1753,9 +1756,9 @@ localStorage.setItem(
           }).catch(() => {});
         }
       }}
-      className="flex items-center justify-center gap-2 bg-[#202629] hover:bg-[#2A3033] active:scale-[0.98] transition-all text-[#F2F4F5] text-sm font-semibold py-3 rounded-2xl"
+      className="flex items-center justify-center gap-1.5 bg-[#202629] hover:bg-[#2A3033] active:scale-[0.98] transition-all text-[#F2F4F5] text-[13px] font-semibold py-3 rounded-2xl whitespace-nowrap"
     >
-      <Share2 className="w-4 h-4" />
+      <Share2 className="w-4 h-4 shrink-0" />
       <span>Compartir</span>
     </button>
 

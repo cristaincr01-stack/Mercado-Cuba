@@ -642,34 +642,98 @@ const [editandoProducto, setEditandoProducto] = useState(false);
 
 };
 const enviarProducto = async () => {
-  if (!usuarioActual || !nombreProducto || !precioProducto || !imagenProducto) {
-    alert("Completa todos los campos y selecciona una foto");
+const enviarProducto = async () => {
+  if (
+    !usuarioActual ||
+    !nombreProducto ||
+    !precioProducto ||
+    imagenesProducto.length === 0
+  ) {
+    alert("Completa todos los campos y selecciona al menos una foto");
     return;
   }
 
   setEnviandoProducto(true);
 
   try {
-    const lector = new FileReader();
+    const fotosBase64 = [];
 
-    lector.onloadend = async () => {
-      const base64 = lector.result.split(",")[1];
+    // Convertir cada foto a Base64
+    for (const imagen of imagenesProducto) {
+      const lector = new FileReader();
 
-      const datos = {
-  nombreProducto: nombreProducto,
-  categoria: categoriaProducto,
-  provincia: provinciaProducto,
-  moneda: monedaProducto,
-  precio: precioProducto,
+      const base64 = await new Promise((resolve, reject) => {
+        lector.onloadend = () => {
+          resolve(lector.result.split(",")[1]);
+        };
 
-  // Datos de la cuenta actualmente iniciada
-  whatsapp: usuarioActual.whatsapp,
-  nombreVendedor: usuarioActual.nombre,
-  idVendedor: usuarioActual.idVendedor,
+        lector.onerror = reject;
 
-  imagen: base64,
-  tipo: imagenProducto.type,
-  nombre: imagenProducto.name
+        lector.readAsDataURL(imagen);
+      });
+
+      fotosBase64.push({
+        imagen: base64,
+        tipo: imagen.type,
+        nombre: imagen.name
+      });
+    }
+
+    const datos = {
+      nombreProducto: nombreProducto,
+      categoria: categoriaProducto,
+      provincia: provinciaProducto,
+      moneda: monedaProducto,
+      precio: precioProducto,
+
+      // Datos de la cuenta actualmente iniciada
+      whatsapp: usuarioActual.whatsapp,
+      nombreVendedor: usuarioActual.nombre,
+      idVendedor: usuarioActual.idVendedor,
+
+      // Varias fotos
+      imagenes: JSON.stringify(fotosBase64)
+    };
+
+    const formulario = new URLSearchParams();
+
+    Object.keys(datos).forEach((clave) => {
+      formulario.append(clave, datos[clave]);
+    });
+
+    const respuesta = await fetch(
+      API_URL,
+      {
+        method: "POST",
+        body: formulario
+      }
+    );
+
+    const resultado = await respuesta.json();
+
+    if (resultado.exito) {
+      alert("Producto enviado para aprobación");
+
+      setPublicarAbierto(false);
+
+      // Limpiar formulario
+      setNombreProducto("");
+      setCategoriaProducto("");
+      setProvinciaProducto("");
+      setMonedaProducto("");
+      setPrecioProducto("");
+      setImagenesProducto([]);
+
+    } else {
+      alert("Error: " + JSON.stringify(resultado));
+    }
+
+    setEnviandoProducto(false);
+
+  } catch (error) {
+    alert("ERROR REAL: " + error.toString());
+    setEnviandoProducto(false);
+  }
 };
 
       const formulario = new URLSearchParams();

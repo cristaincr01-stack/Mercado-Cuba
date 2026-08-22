@@ -2602,11 +2602,31 @@ localStorage.setItem(
 </select>
 
               <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setImagenProducto(e.target.files[0])}
-                className="w-full"
-              />
+  type="file"
+  accept="image/*"
+  multiple
+  onChange={(e) => {
+    const archivos = Array.from(e.target.files || []);
+
+    if (archivos.length > 5) {
+      alert("Puedes seleccionar máximo 5 fotos");
+      setImagenesProducto(archivos.slice(0, 5));
+      return;
+    }
+
+    setImagenesProducto(archivos);
+  }}
+  className="w-full"
+/>
+
+{imagenesProducto.length > 0 && (
+  <p className="text-xs text-[#8a8370] mt-2">
+    {imagenesProducto.length}{" "}
+    {imagenesProducto.length === 1
+      ? "foto seleccionada"
+      : "fotos seleccionadas"}
+  </p>
+)}
 
               <button
   onClick={enviarProducto}

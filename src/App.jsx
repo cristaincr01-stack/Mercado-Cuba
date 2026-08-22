@@ -158,13 +158,16 @@ function CarruselFotos({ fotos, nombre }) {
           >
             <div className="aspect-[4/3] sm:aspect-[16/10] w-full flex items-center justify-center">
               <img
-                src={foto.replace(
-                  "uc?export=view&id=",
-                  "thumbnail?sz=w1000&id="
-                )}
-                alt={`${nombre} - foto ${index + 1}`}
-                className="w-full h-full object-contain"
-              />
+  src={foto.replace(
+    "uc?export=view&id=",
+    "thumbnail?sz=w1000&id="
+  )}
+  onError={(e) => {
+    e.currentTarget.src = foto;
+  }}
+  alt={`${nombre} - foto ${index + 1}`}
+  className="w-full h-full object-contain"
+/>
             </div>
           </div>
         ))}
@@ -1818,30 +1821,12 @@ localStorage.setItem(
 
 </div>
 
-    {/* FOTO PRINCIPAL */}
-{p.foto && (
-  <div className="relative w-full bg-[#0B0F11] overflow-hidden">
-
-    <div className="aspect-[4/3] sm:aspect-[16/10] flex items-center justify-center">
-
-     <img
-  src={p.foto.replace(
-    "uc?export=view&id=",
-    "thumbnail?sz=w1000&id="
-  )}
-  onError={(e) => {
-    e.currentTarget.src = p.foto;
-  }}
-  alt={p.nombre}
-  className="w-full h-full object-contain transition-transform duration-500 hover:scale-[1.02]"
-/>
-
-    </div>
-
-    {/* BORDE INFERIOR SUTIL */}
-    <div className="absolute bottom-0 left-0 right-0 h-px bg-[#2A3033]" />
-
-  </div>
+    {/* CARRUSEL DE FOTOS */}
+{p.fotos && p.fotos.length > 0 && (
+  <CarruselFotos
+    fotos={p.fotos}
+    nombre={p.nombre}
+  />
 )}
 
     {/* INFORMACIÓN */}

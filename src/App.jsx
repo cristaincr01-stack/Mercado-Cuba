@@ -1797,9 +1797,17 @@ localStorage.setItem(
     {/* PREGUNTAR */}
 <button
   onClick={() => {
-    if (p.estado === "Vendido") return;
-    setSeleccionado(p);
-  }}
+  if (p.estado === "Vendido") return;
+
+  const numero = `53${String(p.tel).replace(/\s+/g, "")}`;
+
+  const mensaje = `Hola, estoy interesado en el producto "${p.nombre}". ¿Sigue disponible?`;
+
+  window.open(
+    `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
+    "_blank"
+  );
+}}
   disabled={p.estado === "Vendido"}
   className={`group flex items-center justify-center gap-1.5 transition-all text-[12px] sm:text-[13px] font-bold py-3.5 rounded-2xl ${
     p.estado === "Vendido"
@@ -2145,6 +2153,18 @@ localStorage.setItem(
   key={index}
   className="bg-[#0D1113] border border-[#2A3033] rounded-2xl p-4 mb-3 shadow-sm"
 >
+    {p["Foto del Producto"] && (
+  <div className="w-full aspect-[4/3] bg-[#0B0F11] rounded-2xl overflow-hidden mb-3">
+    <img
+      src={p["Foto del Producto"].replace(
+        "uc?export=view&id=",
+        "thumbnail?sz=w1000&id="
+      )}
+      alt={p["Nombre del producto"]}
+      className="w-full h-full object-contain"
+    />
+  </div>
+)}
     {p["Estado"] === "Vendido" && (
   <div className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold inline-block mb-2">
     VENDIDO
@@ -2207,7 +2227,7 @@ localStorage.setItem(
 )}
       <button
     onClick={() => eliminarProducto(p._fila)}
-    className="flex items-center justify-center gap-2 bg-[#321F1F] hover:bg-[#452323] border border-[#613030] text-[#FF6B57] py-2.5 rounded-xl text-sm font-semibold transition"
+    className="col-span-2 flex items-center justify-center gap-2 bg-[#321F1F] hover:bg-[#452323] border border-[#613030] text-[#FF6B57] py-2.5 rounded-xl text-sm font-semibold transition"
   >
     Eliminar
   </button>

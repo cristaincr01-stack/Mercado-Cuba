@@ -2206,86 +2206,116 @@ localStorage.setItem(
   </div>
 )}
 
-      {iniciarSesionAbierto && (
-  <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-    <div className="bg-white rounded-2xl max-w-sm w-full p-5 relative shadow-xl">
+     
+          {iniciarSesionAbierto && (
+  <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
 
+    <div className="relative bg-[#151C1E] border border-[#2A3437] rounded-3xl max-w-sm w-full p-6 shadow-[0_25px_80px_rgba(0,0,0,0.55)] overflow-hidden">
+
+      {/* ACENTO SUPERIOR */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#7EE2C0] via-[#5FBFA5] to-transparent" />
+
+      {/* CERRAR */}
       <button
-        onClick={() => {
-          setIniciarSesionAbierto(false);
-          setWhatsappSesion("");
-          setPinSesion("");
-          setSesionError("");
-        }}
-        className="absolute top-3 right-3 text-[#8a8370]"
+        onClick={() => setIniciarSesionAbierto(false)}
+        className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#202A2D] border border-[#303B3E] flex items-center justify-center text-[#9AA6AD] hover:text-white active:scale-95 transition-all"
       >
         <X className="w-5 h-5" />
       </button>
 
-      <h2 className="text-xl font-bold mb-1">
-        Iniciar sesión
-      </h2>
-
-      <p className="text-sm text-[#8a8370] mb-5">
-        Accede a tu cuenta de MercadoCU
-      </p>
-
-      <label className="block text-sm font-semibold text-[#232620] mb-1">
-        WhatsApp
-      </label>
-
-      <input
-        type="tel"
-        placeholder="Tu número de WhatsApp"
-        value={whatsappSesion}
-        onChange={(e) => setWhatsappSesion(e.target.value)}
-        className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 mb-4 outline-none focus:border-[#1B6B63] text-[#232620]"
-      />
-
-      <label className="block text-sm font-semibold text-[#232620] mb-1">
-        Contraseña
-      </label>
-
-      <div className="relative">
-        <input
-          type={mostrarPinSesion ? "text" : "password"}
-          placeholder="Tu contraseña"
-          value={pinSesion}
-          onChange={(e) => setPinSesion(e.target.value)}
-          className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 pr-12 outline-none focus:border-[#1B6B63] text-[#232620]"
+      {/* ICONO */}
+      <div className="w-12 h-12 rounded-2xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center mb-5">
+        <LogIn
+          className="w-6 h-6 text-[#7EE2C0]"
+          strokeWidth={2.2}
         />
-
-        <button
-          type="button"
-          onMouseDown={(e) => e.preventDefault()}
-          onClick={() => setMostrarPinSesion(!mostrarPinSesion)}
-          className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-[#6f6a5c] hover:text-[#1B6B63]"
-          aria-label={
-            mostrarPinSesion
-              ? "Ocultar contraseña"
-              : "Mostrar contraseña"
-          }
-        >
-          {mostrarPinSesion ? (
-            <EyeOff size={18} strokeWidth={1.8} />
-          ) : (
-            <Eye size={18} strokeWidth={1.8} />
-          )}
-        </button>
       </div>
 
+      {/* TITULO */}
+      <h2 className="text-2xl font-black tracking-tight text-[#F2F4F5] mb-2">
+        Bienvenido de nuevo
+      </h2>
+
+      <p className="text-sm leading-6 text-[#9AA6AD] mb-6">
+        Inicia sesión para continuar en MercadoCU.
+      </p>
+
+      {/* WHATSAPP */}
+      <div className="mb-4">
+        <label className="block text-xs font-bold uppercase tracking-wide text-[#9AA6AD] mb-2">
+          WhatsApp
+        </label>
+
+        <input
+          type="tel"
+          value={whatsappLogin}
+          onChange={(e) => setWhatsappLogin(e.target.value)}
+          placeholder="Tu número de WhatsApp"
+          className="w-full bg-[#202A2D] border border-[#354145] rounded-2xl px-4 py-3.5 text-[#F2F4F5] placeholder:text-[#68757A] outline-none focus:border-[#7EE2C0] focus:ring-2 focus:ring-[#7EE2C0]/10 transition-all"
+        />
+      </div>
+
+      {/* CONTRASEÑA */}
+      <div className="mb-4">
+        <label className="block text-xs font-bold uppercase tracking-wide text-[#9AA6AD] mb-2">
+          Contraseña
+        </label>
+
+        <div className="relative">
+
+          <input
+            type={mostrarPinLogin ? "text" : "password"}
+            value={pinLogin}
+            onChange={(e) => setPinLogin(e.target.value)}
+            placeholder="Tu contraseña"
+            className="w-full bg-[#202A2D] border border-[#354145] rounded-2xl px-4 py-3.5 pr-12 text-[#F2F4F5] placeholder:text-[#68757A] outline-none focus:border-[#7EE2C0] focus:ring-2 focus:ring-[#7EE2C0]/10 transition-all"
+          />
+
+          <button
+            type="button"
+            onClick={() => setMostrarPinLogin(!mostrarPinLogin)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-xl flex items-center justify-center text-[#9AA6AD] hover:text-[#7EE2C0] transition-colors"
+          >
+            {mostrarPinLogin ? (
+              <EyeOff className="w-5 h-5" />
+            ) : (
+              <Eye className="w-5 h-5" />
+            )}
+          </button>
+
+        </div>
+      </div>
+
+      {/* ERROR */}
       {sesionError && (
-        <p className="text-red-600 text-sm mt-3">
-          {sesionError}
-        </p>
+        <div className="mb-4 bg-[#C4472B]/10 border border-[#C4472B]/20 rounded-2xl px-4 py-3">
+          <p className="text-xs font-semibold text-[#FF8A76]">
+            {sesionError}
+          </p>
+        </div>
       )}
 
+      {/* BOTON */}
       <button
         onClick={iniciarSesion}
-        disabled={cargandoSesion}
-        className="w-full mt-5 bg-[#1B6B63] text-white font-bold py-3 rounded-xl hover:bg-[#14534e] transition"
+        className="w-full bg-[#7EE2C0] text-[#0D1113] font-bold py-3.5 rounded-2xl shadow-[0_8px_25px_rgba(126,226,192,0.12)] active:scale-[0.98] transition-all"
       >
-        {cargandoSesion ? "Entrando..." : "Iniciar sesión"}
+        Iniciar sesión
+      </button>
+
+      {/* REGISTRO */}
+      <button
+        onClick={() => {
+          setIniciarSesionAbierto(false);
+          setVolverA("publicar");
+          setCrearCuentaAbierto(true);
+        }}
+        className="w-full mt-3 py-3 text-sm font-semibold text-[#9AA6AD] hover:text-[#7EE2C0] transition-colors"
+      >
+        ¿No tienes cuenta?{" "}
+        <span className="text-[#7EE2C0]">
+          Crear cuenta
+        </span>
       </button>
 
     </div>
@@ -2816,24 +2846,39 @@ localStorage.setItem(
         </div>
             )}
     {opcionesPublicar && (
-  <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-    <div className="bg-white rounded-2xl max-w-sm w-full p-5 relative shadow-xl">
+  <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
 
+    <div className="relative bg-[#151C1E] border border-[#2A3437] rounded-3xl max-w-sm w-full p-6 shadow-[0_25px_80px_rgba(0,0,0,0.55)] overflow-hidden">
+
+      {/* ACENTO SUPERIOR */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#7EE2C0] via-[#5FBFA5] to-transparent" />
+
+      {/* CERRAR */}
       <button
         onClick={() => setOpcionesPublicar(false)}
-        className="absolute top-3 right-3 text-[#8a8370]"
+        className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#202A2D] border border-[#303B3E] flex items-center justify-center text-[#9AA6AD] hover:text-white active:scale-95 transition-all"
       >
         <X className="w-5 h-5" />
       </button>
 
-      <h2 className="text-xl font-bold text-[#232620] mb-2">
-        Para publicar un producto
+      {/* ICONO */}
+      <div className="w-12 h-12 rounded-2xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center mb-5">
+        <Plus
+          className="w-6 h-6 text-[#7EE2C0]"
+          strokeWidth={2.5}
+        />
+      </div>
+
+      {/* TITULO */}
+      <h2 className="text-2xl font-black tracking-tight text-[#F2F4F5] mb-2">
+        Publica en MercadoCU
       </h2>
 
-      <p className="text-sm text-[#8a8370] mb-5">
-        Inicia sesión si ya tienes una cuenta o crea una nueva.
+      <p className="text-sm leading-6 text-[#9AA6AD] mb-6 pr-6">
+        Inicia sesión si ya tienes una cuenta o crea una nueva para comenzar a publicar.
       </p>
 
+      {/* BOTONES */}
       <div className="space-y-3">
 
         <button
@@ -2842,7 +2887,7 @@ localStorage.setItem(
             setSesionError("");
             setIniciarSesionAbierto(true);
           }}
-          className="w-full flex items-center justify-center gap-2 bg-[#1B6B63] text-white font-semibold py-3 rounded-xl"
+          className="w-full flex items-center justify-center gap-2 bg-[#7EE2C0] text-[#0D1113] font-bold py-3.5 rounded-2xl shadow-[0_8px_25px_rgba(126,226,192,0.12)] active:scale-[0.98] transition-all"
         >
           <LogIn className="w-5 h-5" />
           Iniciar sesión
@@ -2854,13 +2899,18 @@ localStorage.setItem(
             setVolverA("publicar");
             setCrearCuentaAbierto(true);
           }}
-          className="w-full flex items-center justify-center gap-2 border border-[#1B6B63] text-[#1B6B63] font-semibold py-3 rounded-xl"
+          className="w-full flex items-center justify-center gap-2 bg-[#202A2D] border border-[#354145] text-[#F2F4F5] font-semibold py-3.5 rounded-2xl hover:bg-[#273235] active:scale-[0.98] transition-all"
         >
-          <UserRound className="w-5 h-5" />
+          <UserRound className="w-5 h-5 text-[#7EE2C0]" />
           Crear cuenta
         </button>
 
       </div>
+
+      {/* PIE */}
+      <p className="text-[10px] text-center text-[#68757A] mt-5">
+        MercadoCU · Compra y vende de forma sencilla
+      </p>
 
     </div>
   </div>

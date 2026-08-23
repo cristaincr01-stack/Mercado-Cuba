@@ -2931,15 +2931,22 @@ localStorage.setItem(
 
 
     {/* MIS PRODUCTOS */}
-    <button
-      onClick={buscarMisProductos}
-      className="h-full flex flex-col items-center justify-center gap-1 text-[#9AA6AD] hover:text-[#F2F4F5] transition-all active:scale-95"
-    >
-      <Package className="w-5 h-5" strokeWidth={2} />
-      <span className="text-[10px] font-semibold">
-        Mis productos
-      </span>
-    </button>
+<button
+  onClick={() => {
+    if (!usuarioActual) {
+      setOpcionesPublicar(true);
+      return;
+    }
+
+    buscarMisProductos();
+  }}
+  className="h-full flex flex-col items-center justify-center gap-1 text-[#9AA6AD] hover:text-[#F2F4F5] transition-all active:scale-95"
+>
+  <Package className="w-5 h-5" strokeWidth={2} />
+  <span className="text-[10px] font-semibold">
+    Mis productos
+  </span>
+</button>
 
 
     {/* TÚ / MÁS */}

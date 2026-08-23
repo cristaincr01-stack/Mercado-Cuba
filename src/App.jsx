@@ -481,7 +481,7 @@ function Tienda() {
   const [volverA, setVolverA] = useState("inicio");
   const [iniciarSesionAbierto, setIniciarSesionAbierto] = useState(false);
 const [whatsappSesion, setWhatsappSesion] = useState("");
-const [pinSesion, setPinSesion] = useState("");
+const [pinLogin, setPinLogin] = useState("");
 const [mostrarPinSesion, setMostrarPinSesion] = useState(false);
 const [sesionError, setSesionError] = useState("");
 const [cargandoSesion, setCargandoSesion] = useState(false);

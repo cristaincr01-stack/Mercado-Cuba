@@ -1047,7 +1047,7 @@ if (orden === "precioMayor") {
   Publicar
 </button>
 
-            <div className="absolute top-5 right-5">
+            <div className="flex items-center gap-2">
   <button
     onClick={() => setMenuAbierto(!menuAbierto)}
     className="relative w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-105"

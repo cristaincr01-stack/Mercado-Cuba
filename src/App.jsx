@@ -2363,17 +2363,50 @@ onChange={(e) => setPinSesion(e.target.value)}
     {p["Foto del Producto"] && (
   <div className="relative w-full bg-[#0B0F11] overflow-hidden">
 
-    <div className="aspect-[4/3] sm:aspect-[16/10] flex items-center justify-center">
+    <div className="aspect-[4/3] sm:aspect-[16/10] flex items-center justify-center overflow-x-auto">
+      <div className="flex gap-2 h-full">
 
-      <img
-        src={p["Foto del Producto"].replace(
-          "uc?export=view&id=",
-          "thumbnail?sz=w1000&id="
-        )}
-        alt={p["Nombre del producto"]}
-        className="w-full h-full object-contain transition-transform duration-500"
-      />
+        {String(p["Foto del Producto"])
+          .split("||")
+          .map((url, fotoIndex) => {
+            const foto = url.trim();
 
+            if (!foto) return null;
+
+            let fotoDirecta = foto;
+
+            if (foto.includes("drive.google.com/file/d/")) {
+              const partes = foto.split("/d/");
+
+              if (partes[1]) {
+                const id = partes[1].split("/")[0];
+
+                fotoDirecta =
+                  "https://drive.google.com/uc?export=view&id=" + id;
+              }
+            }
+
+            return (
+              <div
+                key={fotoIndex}
+                className="h-full min-w-full flex items-center justify-center bg-[#0B0F11] overflow-hidden"
+              >
+                <img
+                  src={fotoDirecta.replace(
+                    "uc?export=view&id=",
+                    "thumbnail?sz=w1000&id="
+                  )}
+                  onError={(e) => {
+                    e.currentTarget.src = fotoDirecta;
+                  }}
+                  alt={`${p["Nombre del producto"]} - foto ${fotoIndex + 1}`}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            );
+          })}
+
+      </div>
     </div>
 
     <div className="absolute bottom-0 left-0 right-0 h-px bg-[#2A3033]" />

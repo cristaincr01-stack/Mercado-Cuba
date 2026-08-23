@@ -448,6 +448,7 @@ const [guardandoMonedas, setGuardandoMonedas] = useState(false);
 
 function Tienda() {
   const [publicarAbierto, setPublicarAbierto] = useState(false);
+  const [opcionesPublicar, setOpcionesPublicar] = useState(false);
   const [provincia, setProvincia] = useState("Todas");
     const [misProductosAbierto, setMisProductosAbierto] = useState(false);
   const [buscarAbierto, setBuscarAbierto] = useState(false);

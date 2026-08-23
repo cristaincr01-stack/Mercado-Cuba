@@ -787,17 +787,21 @@ const [editandoProducto, setEditandoProducto] = useState(false);
       formulario.append(clave, datos[clave]);
     });
 
-    console.log("ANTES DE ENVIAR:", datos);
-    const respuesta = await fetch(
-      API_URL,
-      {
-        method: "POST",
-        body: formulario
-      }
-    );
+    alert("1. Fotos preparadas. Voy a enviar al servidor.");
 
-    const resultado = await respuesta.json();
-    console.log("RESPUESTA DEL SERVIDOR:", resultado);
+const respuesta = await fetch(
+  API_URL,
+  {
+    method: "POST",
+    body: formulario
+  }
+);
+
+alert("2. El servidor respondió.");
+
+const resultado = await respuesta.json();
+
+alert("3. Respuesta recibida: " + JSON.stringify(resultado));
 
     if (resultado.exito) {
       alert("Producto enviado para aprobación");

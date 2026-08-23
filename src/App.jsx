@@ -372,15 +372,50 @@ const [guardandoMonedas, setGuardandoMonedas] = useState(false);
               </div>
               <h3 className="font-semibold text-[15px]">{p["Nombre del producto"]}</h3>
               {p["Foto del Producto"] && (
-  <div className="w-full h-48 rounded-xl flex items-center justify-center bg-white overflow-hidden mt-3">
-    <img
-      src={p["Foto del Producto"].replace(
-        "uc?export=view&id=",
-        "thumbnail?sz=w1000&id="
-      )}
-      alt={p["Nombre del producto"]}
-      className="w-full h-full object-contain"
-    />
+  <div className="w-full h-48 rounded-xl flex items-center justify-center bg-white overflow-x-auto mt-3">
+    <div className="flex gap-2 h-full">
+
+      {String(p["Foto del Producto"])
+        .split("||")
+        .map((url, index) => {
+          const foto = url.trim();
+
+          if (!foto) return null;
+
+          let fotoDirecta = foto;
+
+          if (foto.includes("drive.google.com/file/d/")) {
+            const partes = foto.split("/d/");
+
+            if (partes[1]) {
+              const id = partes[1].split("/")[0];
+
+              fotoDirecta =
+                "https://drive.google.com/uc?export=view&id=" + id;
+            }
+          }
+
+          return (
+            <div
+              key={index}
+              className="h-full min-w-[240px] flex items-center justify-center bg-[#F7F5EF] rounded-lg overflow-hidden"
+            >
+              <img
+                src={fotoDirecta.replace(
+                  "uc?export=view&id=",
+                  "thumbnail?sz=w1000&id="
+                )}
+                onError={(e) => {
+                  e.currentTarget.src = fotoDirecta;
+                }}
+                alt={`${p["Nombre del producto"]} - foto ${index + 1}`}
+                className="w-full h-full object-contain"
+              />
+            </div>
+          );
+        })}
+
+    </div>
   </div>
 )}
               <p className="text-sm text-[#5c5848] mt-1">

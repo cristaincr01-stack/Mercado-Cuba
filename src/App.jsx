@@ -2248,8 +2248,8 @@ localStorage.setItem(
 
         <input
           type="tel"
-          value={whatsappLogin}
-          onChange={(e) => setWhatsappLogin(e.target.value)}
+          value={whatsappSesion}
+onChange={(e) => setWhatsappSesion(e.target.value)}
           placeholder="Tu número de WhatsApp"
           className="w-full bg-[#202A2D] border border-[#354145] rounded-2xl px-4 py-3.5 text-[#F2F4F5] placeholder:text-[#68757A] outline-none focus:border-[#7EE2C0] focus:ring-2 focus:ring-[#7EE2C0]/10 transition-all"
         />
@@ -2265,8 +2265,8 @@ localStorage.setItem(
 
           <input
             type={mostrarPinSesion ? "text" : "password"}
-            value={pinLogin}
-            onChange={(e) => setPinLogin(e.target.value)}
+            value={pinSesion}
+onChange={(e) => setPinSesion(e.target.value)}
             placeholder="Tu contraseña"
             className="w-full bg-[#202A2D] border border-[#354145] rounded-2xl px-4 py-3.5 pr-12 text-[#F2F4F5] placeholder:text-[#68757A] outline-none focus:border-[#7EE2C0] focus:ring-2 focus:ring-[#7EE2C0]/10 transition-all"
           />

@@ -2264,7 +2264,7 @@ localStorage.setItem(
         <div className="relative">
 
           <input
-            type={mostrarPinLogin ? "text" : "password"}
+            type={mostrarSesion ? "text" : "password"}
             value={pinLogin}
             onChange={(e) => setPinLogin(e.target.value)}
             placeholder="Tu contraseña"
@@ -2273,10 +2273,10 @@ localStorage.setItem(
 
           <button
             type="button"
-            onClick={() => setMostrarPinLogin(!mostrarPinLogin)}
+            onClick={() => setMostrarSesion(!mostrarPinSesion)}
             className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-xl flex items-center justify-center text-[#9AA6AD] hover:text-[#7EE2C0] transition-colors"
           >
-            {mostrarPinLogin ? (
+            {mostrarPinSesion ? (
               <EyeOff className="w-5 h-5" />
             ) : (
               <Eye className="w-5 h-5" />

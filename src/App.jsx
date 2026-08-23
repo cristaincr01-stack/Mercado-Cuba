@@ -2772,61 +2772,70 @@ onChange={(e) => setPinSesion(e.target.value)}
               <select
   value={categoriaProducto}
   onChange={(e) => setCategoriaProducto(e.target.value)}
-  className={`w-full border rounded-lg px-3 py-2 appearance-none bg-white ${
-  categoriaProducto ? "text-[#232620]" : "text-[#8fa9b8]"
-}`}
+  className={`w-full bg-[#0D1113] border border-[#303C40] rounded-xl px-3 py-3 outline-none focus:border-[#7EE2C0] focus:ring-1 focus:ring-[#7EE2C0]/30 transition-all appearance-none ${
+    categoriaProducto ? "text-[#F2F4F5]" : "text-[#718087]"
+  }`}
 >
-                <option value="" disabled>Categoría</option>
+  <option value="" disabled>Categoría</option>
 
   {CATEGORIAS.filter(c => c !== "Todas").map(c => (
-    <option key={c} value={c}>{c}</option>
+    <option key={c} value={c} className="bg-[#0D1113] text-[#F2F4F5]">
+      {c}
+    </option>
   ))}
 </select>
-
 
 <select
   value={provinciaProducto}
   onChange={(e) => setProvinciaProducto(e.target.value)}
-  className={`w-full border rounded-lg px-3 py-2 appearance-none bg-white ${
-  provinciaProducto ? "text-[#232620]" : "text-[#8fa9b8]"
-}`}
+  className={`w-full bg-[#0D1113] border border-[#303C40] rounded-xl px-3 py-3 outline-none focus:border-[#7EE2C0] focus:ring-1 focus:ring-[#7EE2C0]/30 transition-all appearance-none ${
+    provinciaProducto ? "text-[#F2F4F5]" : "text-[#718087]"
+  }`}
 >
   <option value="" disabled>Provincia</option>
+
   {PROVINCIAS.filter(p => p !== "Todas").map(p => (
-    <option key={p}>{p}</option>
+    <option key={p} value={p} className="bg-[#0D1113] text-[#F2F4F5]">
+      {p}
+    </option>
   ))}
 </select>
 
 <select
   value={monedaProducto}
   onChange={(e) => setMonedaProducto(e.target.value)}
-  className={`w-full border rounded-lg px-3 py-2 appearance-none bg-white ${
-  monedaProducto ? "text-[#232620]" : "text-[#8fa9b8]"
-}`}
+  className={`w-full bg-[#0D1113] border border-[#303C40] rounded-xl px-3 py-3 outline-none focus:border-[#7EE2C0] focus:ring-1 focus:ring-[#7EE2C0]/30 transition-all appearance-none ${
+    monedaProducto ? "text-[#F2F4F5]" : "text-[#718087]"
+  }`}
 >
   <option value="" disabled>Moneda</option>
-  <option value="CUP">CUP</option>
-  <option value="USD">USD</option>
-  <option value="EUR">EUR</option>
+  <option value="CUP" className="bg-[#0D1113] text-[#F2F4F5]">CUP</option>
+  <option value="USD" className="bg-[#0D1113] text-[#F2F4F5]">USD</option>
+  <option value="EUR" className="bg-[#0D1113] text-[#F2F4F5]">EUR</option>
 </select>
 
-              <input
-  type="file"
-  accept="image/*"
-  multiple
-  onChange={(e) => {
-    const archivos = Array.from(e.target.files || []);
+              <label className="w-full flex items-center justify-center gap-2 bg-[#0D1113] border border-[#303C40] hover:border-[#7EE2C0] text-[#F2F4F5] font-semibold py-3 rounded-xl cursor-pointer transition-all">
+  <ImageIcon className="w-5 h-5 text-[#7EE2C0]" />
+  <span>Elegir fotos</span>
 
-    if (archivos.length > 5) {
-      alert("Puedes seleccionar máximo 5 fotos");
-      setImagenesProducto(archivos.slice(0, 5));
-      return;
-    }
+  <input
+    type="file"
+    accept="image/*"
+    multiple
+    className="hidden"
+    onChange={(e) => {
+      const archivos = Array.from(e.target.files || []);
 
-    setImagenesProducto(archivos);
-  }}
-  className="w-full"
-/>
+      if (archivos.length > 5) {
+        alert("Puedes seleccionar máximo 5 fotos");
+        setImagenesProducto(archivos.slice(0, 5));
+        return;
+      }
+
+      setImagenesProducto(archivos);
+    }}
+  />
+</label>
 
 {imagenesProducto.length > 0 && (
   <p className="text-xs text-[#8a8370] mt-2">

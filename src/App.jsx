@@ -2815,6 +2815,56 @@ localStorage.setItem(
           </div>
         </div>
             )}
+    {opcionesPublicar && (
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+    <div className="bg-white rounded-2xl max-w-sm w-full p-5 relative shadow-xl">
+
+      <button
+        onClick={() => setOpcionesPublicar(false)}
+        className="absolute top-3 right-3 text-[#8a8370]"
+      >
+        <X className="w-5 h-5" />
+      </button>
+
+      <h2 className="text-xl font-bold text-[#232620] mb-2">
+        Para publicar un producto
+      </h2>
+
+      <p className="text-sm text-[#8a8370] mb-5">
+        Inicia sesión si ya tienes una cuenta o crea una nueva.
+      </p>
+
+      <div className="space-y-3">
+
+        <button
+          onClick={() => {
+            setOpcionesPublicar(false);
+            setSesionError("");
+            setIniciarSesionAbierto(true);
+          }}
+          className="w-full flex items-center justify-center gap-2 bg-[#1B6B63] text-white font-semibold py-3 rounded-xl"
+        >
+          <LogIn className="w-5 h-5" />
+          Iniciar sesión
+        </button>
+
+        <button
+          onClick={() => {
+            setOpcionesPublicar(false);
+            setVolverA("publicar");
+            setCrearCuentaAbierto(true);
+          }}
+          className="w-full flex items-center justify-center gap-2 border border-[#1B6B63] text-[#1B6B63] font-semibold py-3 rounded-xl"
+        >
+          <UserRound className="w-5 h-5" />
+          Crear cuenta
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+)}
 
       {/* BARRA DE NAVEGACIÓN INFERIOR */}
 <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#0D1113]/95 backdrop-blur-xl border-t border-[#2A3033] shadow-[0_-8px_30px_rgba(0,0,0,0.35)]">
@@ -2855,29 +2905,29 @@ localStorage.setItem(
 
 
     {/* PUBLICAR */}
-    <button
-      onClick={() => {
-        if (!usuarioActual) {
-          setCrearCuentaAbierto(true);
-          return;
-        }
+<button
+  onClick={() => {
+    if (!usuarioActual) {
+      setOpcionesPublicarAbierto(true);
+      return;
+    }
 
-        setPublicarAbierto(true);
-      }}
-      className="h-full flex flex-col items-center justify-center gap-1 text-[#7EE2C0] active:scale-95 transition-all"
-    >
-      <div className="relative -mt-7">
+    setPublicarAbierto(true);
+  }}
+  className="h-full flex flex-col items-center justify-center gap-1 text-[#7EE2C0] active:scale-95 transition-all"
+>
+  <div className="relative -mt-7">
 
-        <div className="w-14 h-14 rounded-full bg-[#7EE2C0] text-[#0D1113] flex items-center justify-center shadow-[0_6px_25px_rgba(126,226,192,0.25)] border-4 border-[#0D1113]">
-          <Plus className="w-7 h-7" strokeWidth={2.5} />
-        </div>
+    <div className="w-14 h-14 rounded-full bg-[#7EE2C0] text-[#0D1113] flex items-center justify-center shadow-[0_6px_25px_rgba(126,226,192,0.25)] border-4 border-[#0D1113]">
+      <Plus className="w-7 h-7" strokeWidth={2.5} />
+    </div>
 
-      </div>
+  </div>
 
-      <span className="text-[10px] font-bold -mt-1">
-        Publicar
-      </span>
-    </button>
+  <span className="text-[10px] font-bold -mt-1">
+    Publicar
+  </span>
+</button>
 
 
     {/* MIS PRODUCTOS */}

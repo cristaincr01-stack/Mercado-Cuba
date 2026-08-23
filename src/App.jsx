@@ -2735,17 +2735,22 @@ localStorage.setItem(
 )}
             {publicarAbierto && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg max-w-md w-full p-5 relative shadow-xl">
+          <div className="bg-[#151B1D] border border-[#2A3639] rounded-2xl max-w-md w-full p-5 relative shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
 
             <button
               onClick={() => setPublicarAbierto(false)}
-              className="absolute top-3 right-3 text-[#8a8370]"
+              className="absolute top-3 right-3 text-[#9AA6AD] hover:text-white transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <h2 className="text-xl font-bold mb-4">
-                   </h2>
+            <h2 className="text-xl font-bold text-[#F2F4F5] mb-1">
+  Publicar producto
+</h2>
+
+<p className="text-sm text-[#8FA0A6] mb-5">
+  Completa los datos de tu producto
+</p>
 
             <div className="space-y-3">
 
@@ -2754,7 +2759,7 @@ localStorage.setItem(
                 placeholder="Nombre del producto"
                 value={nombreProducto}
                 onChange={(e) => setNombreProducto(e.target.value)}
-                className="w-full border rounded-lg px-3 py-2"
+                className="w-full bg-[#0D1113] border border-[#303C40] text-[#F2F4F5] placeholder:text-[#718087] rounded-xl px-3 py-3 outline-none focus:border-[#7EE2C0] focus:ring-1 focus:ring-[#7EE2C0]/30 transition-all"
               />
 
               <input
@@ -2762,7 +2767,7 @@ localStorage.setItem(
                 placeholder="Precio"
                 value={precioProducto}
                 onChange={(e) => setPrecioProducto(e.target.value)}
-                className="w-full border rounded-lg px-3 py-2"
+                className="w-full bg-[#0D1113] border border-[#303C40] text-[#F2F4F5] placeholder:text-[#718087] rounded-xl px-3 py-3 outline-none focus:border-[#7EE2C0] focus:ring-1 focus:ring-[#7EE2C0]/30 transition-all"
               />
               <select
   value={categoriaProducto}

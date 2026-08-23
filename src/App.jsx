@@ -748,24 +748,65 @@ const [editandoProducto, setEditandoProducto] = useState(false);
 
     // Convertir cada foto a Base64
     for (const imagen of imagenesProducto) {
-      const lector = new FileReader();
+  const base64 = await new Promise((resolve, reject) => {
 
-      const base64 = await new Promise((resolve, reject) => {
-        lector.onloadend = () => {
-          resolve(lector.result.split(",")[1]);
-        };
+    const lector = new FileReader();
 
-        lector.onerror = reject;
+    lector.onload = () => {
+      const img = new Image();
 
-        lector.readAsDataURL(imagen);
-      });
+      img.onload = () => {
 
-      fotosBase64.push({
-        imagen: base64,
-        tipo: imagen.type,
-        nombre: imagen.name
-      });
-    }
+        const MAX_ANCHO = 1200;
+        const MAX_ALTO = 1200;
+
+        let ancho = img.width;
+        let alto = img.height;
+
+        if (ancho > MAX_ANCHO || alto > MAX_ALTO) {
+
+          const proporcion = Math.min(
+            MAX_ANCHO / ancho,
+            MAX_ALTO / alto
+          );
+
+          ancho = Math.round(ancho * proporcion);
+          alto = Math.round(alto * proporcion);
+        }
+
+        const canvas = document.createElement("canvas");
+
+        canvas.width = ancho;
+        canvas.height = alto;
+
+        const ctx = canvas.getContext("2d");
+
+        ctx.drawImage(img, 0, 0, ancho, alto);
+
+        const comprimida = canvas.toDataURL(
+          "image/jpeg",
+          0.75
+        );
+
+        resolve({
+          imagen: comprimida.split(",")[1],
+          tipo: "image/jpeg",
+          nombre: imagen.name.replace(/\.[^/.]+$/, "") + ".jpg"
+        });
+      };
+
+      img.onerror = reject;
+
+      img.src = lector.result;
+    };
+
+    lector.onerror = reject;
+
+    lector.readAsDataURL(imagen);
+  });
+
+  fotosBase64.push(base64);
+  }
 
     const datos = {
       nombreProducto: nombreProducto,

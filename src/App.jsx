@@ -2908,7 +2908,7 @@ localStorage.setItem(
 <button
   onClick={() => {
     if (!usuarioActual) {
-      setOpcionesPublicarAbierto(true);
+      setOpcionesPublicar(true);
       return;
     }
 

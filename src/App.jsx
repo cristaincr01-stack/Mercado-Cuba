@@ -1697,7 +1697,7 @@ localStorage.setItem(
 </button>
 
 {filtrosAbiertos && (
-  <div className="w-full bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4 shadow-xl mt-3">
+  <div className="w-full bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4 shadow-xl mt-3 max-h-[60vh] overflow-y-auto">
     <h3 className="text-sm font-semibold text-[#F2F4F5] mb-3">
       Filtros
     </h3>

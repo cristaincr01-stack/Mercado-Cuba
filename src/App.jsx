@@ -1300,16 +1300,16 @@ if (orden === "precioMayor") {
     </div>
   )}
               {crearCuentaAbierto && (
-  <div className="fixed inset-0 bg-black/50 flex items-end justify-center z-50">
-    <div className="bg-white w-full max-w-lg rounded-t-3xl p-5 shadow-2xl">
+  <div className="fixed inset-0 bg-black/70 flex items-end justify-center z-50">
+    <div className="bg-[#151A1D] w-full max-w-lg rounded-t-3xl p-5 shadow-2xl border-t border-[#2A3033]">
 
       <div className="flex items-center justify-between mb-5">
         <div>
-          <p className="text-xs uppercase tracking-wider text-[#8a8370] font-semibold">
+          <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold">
             MercadoCU
           </p>
 
-          <h2 className="text-2xl font-bold text-[#232620]">
+         <h2 className="text-2xl font-bold text-[#F2F4F5]">
             Crear cuenta
           </h2>
         </div>
@@ -1324,7 +1324,7 @@ if (orden === "precioMayor") {
     setMenuAbierto(false);
   }
 }}
-          className="w-10 h-10 rounded-full bg-[#232620] text-white flex items-center justify-center hover:bg-[#1B6B63] transition"
+          className="w-10 h-10 rounded-full bg-[#202629] border border-[#2A3033] text-[#9AA6AD] flex items-center justify-center hover:bg-[#2A3033] hover:text-[#F2F4F5] transition"
         >
           <X className="w-5 h-5" />
         </button>
@@ -1332,7 +1332,7 @@ if (orden === "precioMayor") {
 
       {registroPaso === 1 && (
   <>
-    <p className="text-sm text-[#5c5848] mb-4">
+    <p className="text-sm text-[#9AA6AD] mb-4">
       ¿Cómo quieres utilizar MercadoCU?
     </p>
 
@@ -1342,19 +1342,19 @@ if (orden === "precioMayor") {
   onClick={() => setTipoCuenta("vendedor")}
   className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
     tipoCuenta === "vendedor"
-      ? "border-2 border-[#1B6B63] bg-[#e6efec]"
-      : "border border-[#eee7d8] hover:bg-[#faf8f2]"
+      ? "border-2 border-[#7EE2C0] bg-[#7EE2C0]/10"
+      : "border border-[#2A3033] bg-[#151A1D] hover:bg-[#202629]"
   }`}
 >
-          <div className="w-11 h-11 rounded-xl bg-[#e6efec] flex items-center justify-center">
-            <UserRound className="w-6 h-6 text-[#1B6B63]" />
+          <div className="w-11 h-11 rounded-xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center">
+            <UserRound className="w-6 h-6 text-[#7EE2C0]" />
           </div>
 
           <div>
-            <p className="font-bold text-[#232620]">
+            <p className="font-bold text-[#F2F4F5]">
               Vendedor
             </p>
-            <p className="text-xs text-[#8a8370]">
+            <p className="text-xs text-[#9AA6AD]">
               Publica y vende tus productos
             </p>
           </div>
@@ -1364,19 +1364,19 @@ if (orden === "precioMayor") {
   onClick={() => setTipoCuenta("tienda")}
   className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
     tipoCuenta === "tienda"
-      ? "border-2 border-[#1B6B63] bg-[#e6efec]"
-      : "border border-[#eee7d8] hover:bg-[#faf8f2]"
+      ? "border-2 border-[#7EE2C0] bg-[#7EE2C0]/10"
+      : "border border-[#2A3033] bg-[#151A1D] hover:bg-[#202629]"
   }`}
 >
-          <div className="w-11 h-11 rounded-xl bg-[#e6efec] flex items-center justify-center">
-            <Store className="w-6 h-6 text-[#1B6B63]" />
+          <div className="w-11 h-11 rounded-xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center">
+            <Store className="w-6 h-6 text-[#7EE2C0]" />
           </div>
 
           <div>
-            <p className="font-bold text-[#232620]">
+            <p className="font-bold text-[#F2F4F5]">
               Tienda
             </p>
-            <p className="text-xs text-[#8a8370]">
+            <p className="text-xs text-[#9AA6AD]">
               Impulsa tu negocio dentro de MercadoCU
             </p>
           </div>
@@ -1386,19 +1386,19 @@ if (orden === "precioMayor") {
   onClick={() => setTipoCuenta("mensajero")}
   className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
     tipoCuenta === "mensajero"
-      ? "border-2 border-[#1B6B63] bg-[#e6efec]"
-      : "border border-[#eee7d8] hover:bg-[#faf8f2]"
+      ? "border-2 border-[#7EE2C0] bg-[#7EE2C0]/10"
+      : "border border-[#2A3033] bg-[#151A1D] hover:bg-[#202629]"
   }`}
 >
-          <div className="w-11 h-11 rounded-xl bg-[#e6efec] flex items-center justify-center">
-            <Truck className="w-6 h-6 text-[#1B6B63]" />
+          <div className="w-11 h-11 rounded-xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center">
+            <Truck className="w-6 h-6 text-[#7EE2C0]" />
           </div>
 
           <div>
-            <p className="font-bold text-[#232620]">
+            <p className="font-bold text-[#F2F4F5]">
               Mensajero
             </p>
-            <p className="text-xs text-[#8a8370]">
+            <p className="text-xs text-[#9AA6AD]">
               Ofrece servicios de domicilio
             </p>
           </div>
@@ -1408,7 +1408,7 @@ if (orden === "precioMayor") {
       {tipoCuenta && (
   <button
     onClick={() => setRegistroPaso(2)}
-    className="w-full mt-5 bg-[#1B6B63] text-white font-bold py-3 rounded-xl hover:bg-[#14534e] transition"
+    className="w-full mt-5 bg-[#7EE2C0] text-[#0D1113] font-bold py-3 rounded-xl hover:bg-[#9AEBD2] transition"
   >
     Continuar
   </button>
@@ -1425,25 +1425,25 @@ if (orden === "precioMayor") {
   setPinRegistro("");
   setRegistroPaso(1);
 }}
-      className="flex items-center gap-2 text-sm text-[#1B6B63] font-semibold mb-5"
+      className="flex items-center gap-2 text-sm text-[#7EE2C0] font-semibold mb-5 hover:text-[#9AEBD2] transition"
     >
       ← Atrás
     </button>
 
-    <h3 className="text-xl font-bold text-[#232620]">
+    <h3 className="text-xl font-bold text-[#F2F4F5]">
       {tipoCuenta === "vendedor" && "Crear cuenta de vendedor"}
       {tipoCuenta === "tienda" && "Crear cuenta de tienda"}
       {tipoCuenta === "mensajero" && "Crear cuenta de mensajero"}
     </h3>
 
-    <p className="text-sm text-[#8a8370] mt-1 mb-5">
+    <p className="text-sm text-[#9AA6AD] mt-1 mb-5">
       Solo necesitamos unos datos básicos para comenzar.
     </p>
 
     <div className="space-y-4">
 
       <div>
-        <label className="block text-sm font-semibold text-[#232620] mb-1">
+        <label className="block text-sm font-semibold text-[#F2F4F5] mb-1">
           Nombre
         </label>
 
@@ -1456,12 +1456,12 @@ if (orden === "precioMayor") {
   }
   value={nombreRegistro}
   onChange={(e) => setNombreRegistro(e.target.value)}
-  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63] text-[#232620]"
+  className="w-full bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3 outline-none focus:border-[#7EE2C0] text-[#F2F4F5] placeholder:text-[#69757B]"
 />
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-[#232620] mb-1">
+        <label className="block text-sm font-semibold text-[#F2F4F5] mb-1">
           WhatsApp
         </label>
 
@@ -1470,12 +1470,12 @@ if (orden === "precioMayor") {
   placeholder="Tu número de WhatsApp"
   value={whatsappRegistro}
   onChange={(e) => setWhatsappRegistro(e.target.value)}
-  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 outline-none focus:border-[#1B6B63] text-[#232620]"
+  className="w-full bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3 outline-none focus:border-[#7EE2C0] text-[#F2F4F5] placeholder:text-[#69757B]"
 />
       </div>
 
             <div>
-        <label className="block text-sm font-semibold text-[#232620] mb-1">
+        <label className="block text-sm font-semibold text-[#F2F4F5] mb-1">
           Contraseña
         </label>
 
@@ -1485,14 +1485,14 @@ if (orden === "precioMayor") {
             placeholder="Crea una contraseña"
             value={pinRegistro}
             onChange={(e) => setPinRegistro(e.target.value)}
-            className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 pr-12 outline-none focus:border-[#1B6B63] text-[#232620]"
+           className="w-full bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3 pr-12 outline-none focus:border-[#7EE2C0] text-[#F2F4F5] placeholder:text-[#69757B]"
           />
 
           <button
             type="button"
             onMouseDown={(e) => e.preventDefault()}
             onClick={() => setMostrarPin(!mostrarPin)}
-            className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-[#6f6a5c] hover:text-[#1B6B63]"
+            className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-[#69757B] hover:text-[#7EE2C0] transition"
             aria-label={mostrarPin ? "Ocultar contraseña" : "Mostrar contraseña"}
           >
             {mostrarPin ? (
@@ -1503,7 +1503,7 @@ if (orden === "precioMayor") {
           </button>
         </div>
 
-        <label className="block text-sm font-semibold text-[#232620] mt-4 mb-1">
+        <label className="block text-sm font-semibold text-[#F2F4F5] mt-4 mb-1">
           Confirmar contraseña
         </label>
 
@@ -1513,14 +1513,14 @@ if (orden === "precioMayor") {
             placeholder="Repite tu contraseña"
             value={confirmarPinRegistro}
             onChange={(e) => setConfirmarPinRegistro(e.target.value)}
-            className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 pr-12 outline-none focus:border-[#1B6B63] text-[#232620]"
+           className="w-full bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3 pr-12 outline-none focus:border-[#7EE2C0] text-[#F2F4F5] placeholder:text-[#69757B]"
           />
 
           <button
             type="button"
             onMouseDown={(e) => e.preventDefault()}
             onClick={() => setMostrarPin(!mostrarPin)}
-            className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-[#6f6a5c] hover:text-[#1B6B63]"
+           className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-[#69757B] hover:text-[#7EE2C0] transition"
             aria-label={mostrarPin ? "Ocultar contraseña" : "Mostrar contraseña"}
           >
             {mostrarPin ? (
@@ -1617,7 +1617,7 @@ localStorage.setItem(
 }
 
   }}
-  className="w-full mt-6 bg-[#1B6B63] text-white font-bold py-3 rounded-xl hover:bg-[#14534e] transition"
+  className="w-full mt-6 bg-[#7EE2C0] text-[#0D1113] font-bold py-3 rounded-xl hover:bg-[#9AEBD2] transition"
 >
   Crear mi cuenta
 </button>

@@ -2507,20 +2507,20 @@ onChange={(e) => setPinSesion(e.target.value)}
   </div>
 )}
       {editandoProducto && productoEditando && (
-  <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-    <div className="bg-white rounded-lg max-w-md w-full p-5 relative shadow-xl">
+  <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50">
+    <div className="bg-[#151A1D] border border-[#2A3033] rounded-3xl max-w-md w-full p-5 relative shadow-2xl">
 
       <button
         onClick={() => {
           setEditandoProducto(false);
           setProductoEditando(null);
         }}
-        className="absolute top-3 right-3 text-[#8a8370]"
+        className="absolute top-3 right-3 w-9 h-9 rounded-full bg-[#202629] border border-[#2A3033] text-[#9AA6AD] flex items-center justify-center hover:bg-[#2A3033] hover:text-[#F2F4F5] transition"
       >
         <X className="w-5 h-5" />
       </button>
 
-      <h2 className="text-xl font-bold mb-4">
+      <h2 className="text-xl font-bold mb-5 text-[#F2F4F5]">
         Editar producto
       </h2>
 
@@ -2529,13 +2529,13 @@ onChange={(e) => setPinSesion(e.target.value)}
         value={nombreProducto}
         onChange={(e) => setNombreProducto(e.target.value)}
         placeholder="Nombre del producto"
-        className="w-full border rounded-lg px-3 py-2 mb-3"
+        className="w-full bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3 mb-3 outline-none focus:border-[#7EE2C0] text-[#F2F4F5] placeholder:text-[#69757B]"
       />
 
       <select
         value={categoriaProducto}
         onChange={(e) => setCategoriaProducto(e.target.value)}
-        className="w-full border rounded-lg px-3 py-2 mb-3"
+        className="w-full bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3 mb-3 outline-none focus:border-[#7EE2C0] text-[#F2F4F5]"
       >
         {CATEGORIAS.filter(c => c !== "Todas").map((c) => (
           <option key={c} value={c}>
@@ -2547,7 +2547,7 @@ onChange={(e) => setPinSesion(e.target.value)}
       <select
         value={provinciaProducto}
         onChange={(e) => setProvinciaProducto(e.target.value)}
-        className="w-full border rounded-lg px-3 py-2 mb-3"
+        className="w-full bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3 mb-3 outline-none focus:border-[#7EE2C0] text-[#F2F4F5]"
       >
         {PROVINCIAS.filter(p => p !== "Todas").map((p) => (
           <option key={p} value={p}>
@@ -2559,7 +2559,7 @@ onChange={(e) => setPinSesion(e.target.value)}
       <select
         value={monedaProducto}
         onChange={(e) => setMonedaProducto(e.target.value)}
-        className="w-full border rounded-lg px-3 py-2 mb-3"
+        className="w-full bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3 mb-3 outline-none focus:border-[#7EE2C0] text-[#F2F4F5]"
       >
         <option value="CUP">CUP</option>
         <option value="USD">USD</option>
@@ -2571,18 +2571,18 @@ onChange={(e) => setPinSesion(e.target.value)}
         value={precioProducto}
         onChange={(e) => setPrecioProducto(e.target.value)}
         placeholder="Precio"
-        className="w-full border rounded-lg px-3 py-2 mb-4"
+        className="w-full bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3 mb-4 outline-none focus:border-[#7EE2C0] text-[#F2F4F5] placeholder:text-[#69757B]"
       />
       <div className="mb-4">
-  <label className="block text-sm font-semibold mb-2">
-    Cambiar foto
-  </label>
+  <label className="block text-sm font-semibold text-[#F2F4F5] mb-2">
+  Cambiar foto
+</label>
 
   <input
     type="file"
     accept="image/*"
     onChange={(e) => setImagenProducto(e.target.files[0] || null)}
-    className="w-full border rounded-lg px-3 py-2"
+    className="w-full bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3 text-sm text-[#9AA6AD] file:mr-3 file:rounded-lg file:border-0 file:bg-[#7EE2C0] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[#0D1113] hover:file:bg-[#9AEBD2] transition"
   />
 </div>
 
@@ -2677,7 +2677,7 @@ onChange={(e) => setPinSesion(e.target.value)}
       alert("Error al actualizar el producto");
     }
   }}
-  className="w-full bg-[#1B6B63] text-white font-semibold py-3 rounded-lg"
+  className="w-full bg-[#7EE2C0] text-[#0D1113] font-bold py-3 rounded-xl hover:bg-[#9AEBD2] transition"
 >
   Guardar cambios
 </button>

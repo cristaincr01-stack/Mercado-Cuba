@@ -477,6 +477,7 @@ function Tienda() {
 }, [seleccionado]);
   const [productos, setProductos] = useState([]);
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const [accesoPublicarAbierto, setAccesoPublicarAbierto] = useState(false);
   const [crearCuentaAbierto, setCrearCuentaAbierto] = useState(false);
   const [volverA, setVolverA] = useState("inicio");
   const [iniciarSesionAbierto, setIniciarSesionAbierto] = useState(false);
@@ -2058,7 +2059,7 @@ localStorage.setItem(
         )}
       </main>
 
-      <section className="bg-[#232620] text-[#F5F1E6] py-10">
+      <section className="bg-[#232620] text-[#F5F1E6] pt-10 pb-28">
         <div className="max-w-6xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             <h3 className="text-xl font-bold flex items-center gap-2" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
@@ -2071,7 +2072,7 @@ localStorage.setItem(
           <button
   onClick={() => {
   if (!usuarioActual) {
-    setMenuAbierto(true);
+    setAccesoPublicarAbierto(true);
     return;
   }
 
@@ -2083,6 +2084,87 @@ localStorage.setItem(
 </button>
         </div>
       </section>
+    {accesoPublicarAbierto && (
+  <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-end sm:items-center justify-center z-50 p-0 sm:p-4">
+    <div className="bg-[#151A1D] w-full max-w-md rounded-t-3xl sm:rounded-3xl p-5 shadow-2xl border border-[#2A3033]">
+
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold">
+            MercadoCU
+          </p>
+          <h2 className="text-2xl font-bold text-[#F2F4F5]">
+            Quiero publicar
+          </h2>
+        </div>
+
+        <button
+          onClick={() => setAccesoPublicarAbierto(false)}
+          className="w-10 h-10 rounded-full bg-[#202629] border border-[#2A3033] text-[#9AA6AD] flex items-center justify-center hover:bg-[#2A3033] hover:text-[#F2F4F5] transition"
+        >
+          <X className="w-5 h-5" />
+        </button>
+      </div>
+
+      <p className="text-sm text-[#9AA6AD] mb-5">
+        Para publicar un producto necesitas una cuenta. ¿Qué quieres hacer?
+      </p>
+
+      <div className="space-y-3">
+
+        <button
+          onClick={() => {
+            setAccesoPublicarAbierto(false);
+            setVolverA("publicar");
+            setCrearCuentaAbierto(true);
+          }}
+          className="w-full flex items-center gap-4 p-4 rounded-2xl border border-[#2A3033] bg-[#202629] hover:bg-[#272E31] transition text-left"
+        >
+          <div className="w-11 h-11 rounded-xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center">
+            <UserRound className="w-6 h-6 text-[#7EE2C0]" />
+          </div>
+
+          <div>
+            <p className="font-bold text-[#F2F4F5]">
+              Crear cuenta
+            </p>
+            <p className="text-xs text-[#9AA6AD]">
+              Regístrate y comienza a publicar
+            </p>
+          </div>
+
+          <ChevronRight className="w-4 h-4 text-[#69757B] ml-auto" />
+        </button>
+
+        <button
+          onClick={() => {
+            setAccesoPublicarAbierto(false);
+            setIniciarSesionAbierto(true);
+            setSesionError("");
+          }}
+          className="w-full flex items-center gap-4 p-4 rounded-2xl border border-[#2A3033] bg-[#202629] hover:bg-[#272E31] transition text-left"
+        >
+          <div className="w-11 h-11 rounded-xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center">
+            <LogIn className="w-6 h-6 text-[#7EE2C0]" />
+          </div>
+
+          <div>
+            <p className="font-bold text-[#F2F4F5]">
+              Iniciar sesión
+            </p>
+            <p className="text-xs text-[#9AA6AD]">
+              Ya tengo una cuenta
+            </p>
+          </div>
+
+          <ChevronRight className="w-4 h-4 text-[#69757B] ml-auto" />
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+)}
 
       {seleccionado && (
   <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 z-50 overflow-y-auto overscroll-contain">

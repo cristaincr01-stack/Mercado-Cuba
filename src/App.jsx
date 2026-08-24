@@ -1259,7 +1259,7 @@ if (orden === "precioMayor") {
     </div>
 
     <div>
-      <p className="font-semibold text-sm text-[#F2F4F5]>
+      <p className="font-semibold text-sm text-[#F2F4F5]">
         Domicilios
       </p>
       <p className="text-[11px] text-[#9AA6AD]">

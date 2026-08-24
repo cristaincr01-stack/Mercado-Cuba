@@ -1697,31 +1697,31 @@ localStorage.setItem(
 </button>
 
 {filtrosAbiertos && (
-  <div className="w-full bg-white border border-[#ddd6c4] rounded-2xl p-4 shadow-lg mt-3">
-    <h3 className="text-sm font-semibold mb-3">
+  <div className="w-full bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4 shadow-xl mt-3">
+    <h3 className="text-sm font-semibold text-[#F2F4F5] mb-3">
       Filtros
     </h3>
-<label className="text-sm font-medium text-[#5c5848]">
+<label className="text-sm font-medium text-[#9AA6AD]">
   Ordenar por
 </label>
 
 <select
   value={orden}
   onChange={e => setOrden(e.target.value)}
-  className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 text-sm bg-white mt-2"
+ className="w-full border border-[#2A3033] rounded-xl px-4 py-3 text-sm bg-[#0D1113] text-[#F2F4F5] mt-2 outline-none focus:border-[#7EE2C0]"
 >
   <option value="recientes">Más recientes</option>
   <option value="precioMenor">Precio menor a mayor</option>
   <option value="precioMayor">Precio mayor a menor</option>
 </select>
-     <label className="text-sm font-medium text-[#5c5848] mt-4 block">
+     <label className="text-sm font-medium text-[#9AA6AD] mt-4 block">
       Moneda
     </label>
 
     <select
       value={moneda}
       onChange={e => setMoneda(e.target.value)}
-      className="w-full border border-[#ddd6c4] rounded-xl px-4 py-3 text-sm bg-white mt-2"
+     className="w-full border border-[#2A3033] rounded-xl px-4 py-3 text-sm bg-[#0D1113] text-[#F2F4F5] mt-2 outline-none focus:border-[#7EE2C0]"
     >
       <option value="Todas">Todas</option>
       <option value="CUP">CUP</option>

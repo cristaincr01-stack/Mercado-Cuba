@@ -1339,7 +1339,9 @@ if (orden === "precioMayor") {
     <div className="space-y-3">
 
         <button
-  onClick={() => setTipoCuenta("vendedor")}
+  onClick={() =>
+  setTipoCuenta(tipoCuenta === "vendedor" ? "" : "vendedor")
+}
   className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
     tipoCuenta === "vendedor"
       ? "border-2 border-[#7EE2C0] bg-[#7EE2C0]/10"
@@ -1361,7 +1363,9 @@ if (orden === "precioMayor") {
         </button>
 
         <button
-  onClick={() => setTipoCuenta("tienda")}
+onClick={() =>
+  setTipoCuenta(tipoCuenta === "tienda" ? "" : "tienda")
+}
   className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
     tipoCuenta === "tienda"
       ? "border-2 border-[#7EE2C0] bg-[#7EE2C0]/10"
@@ -1383,7 +1387,9 @@ if (orden === "precioMayor") {
         </button>
 
         <button
-  onClick={() => setTipoCuenta("mensajero")}
+  onClick={() =>
+  setTipoCuenta(tipoCuenta === "mensajero" ? "" : "mensajero")
+  }
   className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
     tipoCuenta === "mensajero"
       ? "border-2 border-[#7EE2C0] bg-[#7EE2C0]/10"

@@ -1077,27 +1077,27 @@ if (orden === "precioMayor") {
 </div>
 
   {menuAbierto && (
-    <div className="fixed inset-x-0 bottom-0 bg-white text-[#232620] rounded-t-3xl shadow-2xl p-5 z-50 max-h-[85vh] overflow-y-auto">
+    <div className="fixed inset-x-0 bottom-0 bg-[#151A1D] text-[#F2F4F5] rounded-t-3xl shadow-2xl p-5 z-50 max-h-[85vh] overflow-y-auto border-t border-[#2A3033]">
 <div className="flex items-center justify-between mb-5">
   <div>
-    <p className="text-xs uppercase tracking-wider text-[#8a8370] font-semibold">
+    <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold">
       MercadoCU
     </p>
-    <h2 className="text-2xl font-bold text-[#232620]">
+    <h2 className="text-2xl font-bold text-[#F2F4F5]">
       Más
     </h2>
   </div>
 
   <button
     onClick={() => setMenuAbierto(false)}
-    className="w-10 h-10 rounded-full bg-[#EDE6D6] flex items-center justify-center hover:bg-[#ddd6c4] transition"
+   className="w-10 h-10 rounded-full bg-[#202629] border border-[#2A3033] text-[#9AA6AD] flex items-center justify-center hover:bg-[#2A3033] hover:text-[#F2F4F5] transition"
   >
     <X className="w-5 h-5" />
   </button>
 </div>
       <div className="flex items-center gap-2 mt-3 mb-2 px-2">
   <UserRound className="w-4 h-4 text-[#1B6B63]" />
-  <p className="text-xs uppercase tracking-wider font-bold text-[#8a8370]">
+  <p className="text-xs uppercase tracking-wider font-bold text-[#9AA6AD]">
     Tu cuenta
   </p>
 </div>
@@ -1109,7 +1109,7 @@ if (orden === "precioMayor") {
         setVolverA("mas");
         setCrearCuentaAbierto(true);
       }}
-      className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl"
+      className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#202629] rounded-xl"
     >
       <UserRound className="w-5 h-5 text-[#1B6B63]" />
       Crear cuenta
@@ -1121,7 +1121,7 @@ if (orden === "precioMayor") {
         setIniciarSesionAbierto(true);
         setSesionError("");
       }}
-      className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl"
+      className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#202629] rounded-xl"
     >
       <LogIn className="w-5 h-5 text-[#1B6B63]" />
       Iniciar sesión
@@ -1129,18 +1129,18 @@ if (orden === "precioMayor") {
   </>
 ) : (
   <>
-    <div className="px-3 py-3 mb-1 bg-[#EDE6D6] rounded-xl">
-      <p className="text-xs text-[#8a8370]">
-        Sesión iniciada
-      </p>
-      <p className="font-bold text-[#232620]">
-        {usuarioActual.nombre}
-      </p>
-    </div>
+    <div className="px-3 py-3 mb-1 bg-[#202629] border border-[#2A3033] rounded-xl">
+  <p className="text-xs text-[#9AA6AD]">
+    Sesión iniciada
+  </p>
+  <p className="font-bold text-[#F2F4F5]">
+    {usuarioActual.nombre}
+  </p>
+</div>
 
     <button
       onClick={buscarMisProductos}
-      className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl"
+      className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#202629] rounded-xl"
     >
       <Store className="w-5 h-5 text-[#1B6B63]" />
       Mis productos
@@ -1155,7 +1155,7 @@ if (orden === "precioMayor") {
         setMisProductosAbierto(false);
         alert("Sesión cerrada");
       }}
-      className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-xl text-[#C4472B]"
+      className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#202629] rounded-xl text-[#C4472B]"
     >
       <LogOut className="w-5 h-5" />
       Cerrar sesión
@@ -1164,7 +1164,7 @@ if (orden === "precioMayor") {
 )}
       <div className="flex items-center gap-2 mt-5 mb-2 px-2">
   <Store className="w-4 h-4 text-[#1B6B63]" />
-  <p className="text-xs uppercase tracking-wider font-bold text-[#8a8370]">
+  <p className="text-xs uppercase tracking-wider font-bold text-[#9AA6AD]">
     MercadoCU
   </p>
 </div>
@@ -1173,7 +1173,7 @@ if (orden === "precioMayor") {
     setMenuAbierto(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }}
-  className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#EDE6D6] rounded-xl transition"
+  className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#202629] rounded-xl transition"
 >
   <div className="flex items-center gap-3">
     <div className="w-9 h-9 rounded-xl bg-[#fff3d9] flex items-center justify-center">
@@ -1181,23 +1181,23 @@ if (orden === "precioMayor") {
     </div>
 
     <div>
-      <p className="font-semibold text-sm text-[#232620]">
+      <p className="font-semibold text-sm text-[#F2F4F5]">
         Tendencias
       </p>
-      <p className="text-[11px] text-[#8a8370]">
+      <p className="text-[11px] text-[#9AA6AD]">
         Lo que más se está buscando
       </p>
     </div>
   </div>
 
-  <ChevronRight className="w-4 h-4 text-[#8a8370]" />
+  <ChevronRight className="w-4 h-4 text-[#69757B]" />
 </button>
       <button
   onClick={() => {
     setMenuAbierto(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }}
-  className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#EDE6D6] rounded-xl transition"
+  className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#202629] rounded-xl transition"
 >
   <div className="flex items-center gap-3">
     <div className="w-9 h-9 rounded-xl bg-[#e6efec] flex items-center justify-center">
@@ -1205,23 +1205,23 @@ if (orden === "precioMayor") {
     </div>
 
     <div>
-      <p className="font-semibold text-sm text-[#232620]">
+      <p className="font-semibold text-sm text-[#F2F4F5]">
         Tiendas
       </p>
-      <p className="text-[11px] text-[#8a8370]">
+      <p className="text-[11px] text-[#9AA6AD]">
         Descubre tiendas y vendedores
       </p>
     </div>
   </div>
 
-  <ChevronRight className="w-4 h-4 text-[#8a8370]" />
+  <ChevronRight className="w-4 h-4 text-[#69757B]" />
 </button>
       <button
   onClick={() => {
     setMenuAbierto(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }}
-  className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#EDE6D6] rounded-xl transition"
+  className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#202629] rounded-xl transition"
 >
   <div className="flex items-center gap-3">
     <div className="w-9 h-9 rounded-xl bg-[#fff3d9] flex items-center justify-center">
@@ -1229,20 +1229,20 @@ if (orden === "precioMayor") {
     </div>
 
     <div>
-      <p className="font-semibold text-sm text-[#232620]">
+      <p className="font-semibold text-sm text-[#F2F4F5]">
         Verificados
       </p>
-      <p className="text-[11px] text-[#8a8370]">
+      <p className="text-[11px] text-[#9AA6AD]">
         Vendedores y tiendas de confianza
       </p>
     </div>
   </div>
 
-  <ChevronRight className="w-4 h-4 text-[#8a8370]" />
+  <ChevronRight className="w-4 h-4 text-[#69757B]" />
 </button>
       <div className="flex items-center gap-2 mt-5 mb-2 px-2">
   <Truck className="w-4 h-4 text-[#1B6B63]" />
-  <p className="text-xs uppercase tracking-wider font-bold text-[#8a8370]">
+ <p className="text-xs uppercase tracking-wider font-bold text-[#9AA6AD]">
     Servicios
   </p>
 </div>
@@ -1251,7 +1251,7 @@ if (orden === "precioMayor") {
     setMenuAbierto(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }}
-  className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#EDE6D6] rounded-xl transition"
+  className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#202629] rounded-xl transition"
 >
   <div className="flex items-center gap-3">
     <div className="w-9 h-9 rounded-xl bg-[#e6efec] flex items-center justify-center">
@@ -1259,16 +1259,16 @@ if (orden === "precioMayor") {
     </div>
 
     <div>
-      <p className="font-semibold text-sm text-[#232620]">
+      <p className="font-semibold text-sm text-[#F2F4F5]>
         Domicilios
       </p>
-      <p className="text-[11px] text-[#8a8370]">
+      <p className="text-[11px] text-[#9AA6AD]">
         Encuentra servicios de entrega
       </p>
     </div>
   </div>
 
-  <ChevronRight className="w-4 h-4 text-[#8a8370]" />
+  <ChevronRight className="w-4 h-4 text-[#69757B]" />
 </button>
       <div className="flex items-center gap-2 mt-5 mb-2 px-2">
   <Settings className="w-4 h-4 text-[#1B6B63]" />
@@ -1277,23 +1277,23 @@ if (orden === "precioMayor") {
   </p>
 </div>
 
-      <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
-  <Settings className="w-5 h-5 text-[#1B6B63]" />
+      <button className="w-full flex items-center gap-3 text-left px-3 py-3 hover:bg-[#202629] rounded-xl transition text-[#F2F4F5]">
+  <Settings className="w-5 h-5 text-[#7EE2C0]" />
   Configuración
 </button>
 
-      <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
-  <CircleHelp className="w-5 h-5 text-[#1B6B63]" />
+     <button className="w-full flex items-center gap-3 text-left px-3 py-3 hover:bg-[#202629] rounded-xl transition text-[#F2F4F5]">
+  <CircleHelp className="w-5 h-5 text-[#7EE2C0]" />
   Ayuda
 </button>
 
-      <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
-  <Headphones className="w-5 h-5 text-[#1B6B63]" />
+      <button className="w-full flex items-center gap-3 text-left px-3 py-3 hover:bg-[#202629] rounded-xl transition text-[#F2F4F5]">
+  <Headphones className="w-5 h-5 text-[#7EE2C0]" />
   Soporte
 </button>
 
-      <button className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#EDE6D6] rounded-sm">
-  <Info className="w-5 h-5 text-[#1B6B63]" />
+      <button className="w-full flex items-center gap-3 text-left px-3 py-3 hover:bg-[#202629] rounded-xl transition text-[#F2F4F5]">
+  <Info className="w-5 h-5 text-[#7EE2C0]" />
   Acerca de MercadoCU
 </button>
 

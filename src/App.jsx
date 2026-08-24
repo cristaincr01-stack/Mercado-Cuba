@@ -2069,7 +2069,14 @@ localStorage.setItem(
             </p>
           </div>
           <button
-  onClick={() => setPublicarAbierto(true)}
+  onClick={() => {
+  if (!usuarioActual) {
+    setMenuAbierto(true);
+    return;
+  }
+
+  setPublicarAbierto(true);
+}}
   className="bg-[#E8A33D] text-[#232620] font-bold px-6 py-3 rounded-xl hover:bg-[#d99429] transition whitespace-nowrap"
 >
   Quiero publicar

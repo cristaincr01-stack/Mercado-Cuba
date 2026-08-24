@@ -1034,14 +1034,14 @@ if (orden === "precioMayor") {
 </div>
             </div>
           <button
-  onClick={() => {
-    if (!usuarioActual) {
-      setCrearCuentaAbierto(true);
-      return;
-    }
+ onClick={() => {
+  if (!usuarioActual) {
+    setAccesoPublicarAbierto(true);
+    return;
+  }
 
-    setPublicarAbierto(true);
-  }}
+  setPublicarAbierto(true);
+}}
   className="flex items-center gap-1.5 bg-[#1B6B63] hover:bg-[#237D73] active:scale-95 transition-all text-white text-sm font-semibold px-4 py-2.5 rounded-full shadow-[0_5px_18px_rgba(27,107,99,0.28)]"
 >
   <Plus className="w-4 h-4" strokeWidth={2.5} />

@@ -2686,17 +2686,17 @@ onChange={(e) => setPinSesion(e.target.value)}
   </div>
 )}
       {buscarAbierto && (
-  <div className="fixed inset-0 bg-black/50 flex items-start justify-center p-4 z-50">
-    <div className="bg-white rounded-2xl max-w-md w-full mt-6 shadow-xl overflow-hidden">
+  <div className="fixed inset-0 bg-black/70 flex items-start justify-center p-4 z-50">
+    <div className="bg-[#151A1D] border border-[#2A3033] rounded-3xl max-w-md w-full mt-6 shadow-2xl overflow-hidden">
 
-      <div className="flex items-center justify-between p-4 border-b border-[#eee7d8]">
-        <h2 className="text-lg font-bold text-[#232620]">
+      <div className="flex items-center justify-between p-4 border-b border-[#2A3033]">
+      <h2 className="text-lg font-bold text-[#F2F4F5]">
           Buscar productos
         </h2>
 
         <button
           onClick={() => setBuscarAbierto(false)}
-          className="text-[#8a8370]"
+          className="w-9 h-9 rounded-full bg-[#202629] border border-[#2A3033] text-[#9AA6AD] flex items-center justify-center hover:bg-[#2A3033] hover:text-[#F2F4F5] transition"
         >
           <X className="w-5 h-5" />
         </button>
@@ -2704,24 +2704,24 @@ onChange={(e) => setPinSesion(e.target.value)}
 
       <div className="p-4 space-y-3">
 
-        <div className="flex items-center gap-2 border border-[#ddd6c4] rounded-xl px-4 py-3">
-          <Search className="w-4 h-4 text-[#8a8370]" />
+       <div className="flex items-center gap-2 bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3 focus-within:border-[#7EE2C0] transition">
+          <Search className="w-4 h-4 text-[#7EE2C0]" />
 
           <input
             type="text"
             value={busqueda}
             onChange={e => setBusqueda(e.target.value)}
             placeholder="¿Qué estás buscando?"
-            className="w-full outline-none text-sm bg-transparent"
+            className="w-full outline-none text-sm bg-transparent text-[#F2F4F5] placeholder:text-[#69757B]"
             autoFocus
           />
         </div>
-        <p className="text-xs text-[#8a8370] px-1 pt-1">
+        <p className="text-xs text-[#9AA6AD] px-1 pt-1">
   Busca productos por nombre o palabra clave
 </p>
         {busqueda && (
   <div className="pt-2">
-    <p className="text-xs font-semibold text-[#5c5848] mb-2">
+    <p className="text-xs font-semibold text-[#9AA6AD] mb-2">
       Resultados de búsqueda
     </p>
 
@@ -2735,7 +2735,7 @@ onChange={(e) => setPinSesion(e.target.value)}
     setBusqueda("");
     setBuscarAbierto(false);
   }}
-  className="flex items-center gap-3 p-3 rounded-xl border border-[#eee7d8] hover:bg-[#faf8f2] transition-colors cursor-pointer"
+   className="flex items-center gap-3 p-3 rounded-xl border border-[#2A3033] bg-[#151A1D] hover:bg-[#202629] hover:border-[#3A474B] transition-colors cursor-pointer"
 >
             {p.foto && (
               <img
@@ -2744,23 +2744,23 @@ onChange={(e) => setPinSesion(e.target.value)}
                   "thumbnail?sz=w200&id="
                 )}
                 alt={p.nombre}
-                className="w-12 h-12 rounded-lg object-contain bg-white"
+                className="w-12 h-12 rounded-lg object-contain bg-[#0D1113] border border-[#2A3033]"
               />
             )}
 
             <div className="min-w-0">
-              <p className="font-semibold text-sm text-[#232620] truncate">
+              <p className="font-semibold text-sm text-[#F2F4F5] truncate">
                 {p.nombre}
               </p>
 
-              <p className="text-xs text-[#8a8370]">
+              <p className="text-xs text-[#9AA6AD]">
                 {p.provincia} · {p.categoria}
               </p>
             </div>
           </div>
         ))
       ) : (
-        <p className="text-sm text-[#8a8370] py-4 text-center">
+        <p className="text-sm text-[#9AA6AD] py-4 text-center">
           No encontramos productos.
         </p>
       )}

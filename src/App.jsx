@@ -2095,20 +2095,11 @@ localStorage.setItem(
     return;
   }
 
-  const yaTieneMeGusta = productosMeGusta.some(
-    (producto) => producto._fila === p._fila
-  );
+
 
   alternarMeGusta(p);
 
-  if (!yaTieneMeGusta) {
-    registrarInteraccion({
-      tipo: "ME_GUSTA",
-      producto: p,
-      identificador: "CORAZON",
-      esUnica: "SI"
-    });
-  }
+  
 }}
   disabled={
     p.estado === "Vendido" ||

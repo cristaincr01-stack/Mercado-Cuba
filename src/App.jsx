@@ -2017,6 +2017,7 @@ localStorage.setItem(
     {/* ME GUSTA */}
     <button
       onClick={() => {
+  console.log("CORAZÓN PRESIONADO:", p);
   setSeleccionado(p);
 }}
       className="group flex items-center gap-2 transition-all active:scale-95"

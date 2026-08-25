@@ -1923,12 +1923,12 @@ localStorage.setItem(
 
 </div>
 
-    {/* INTERACCIONES */}
+   {/* INTERACCIONES */}
 <div className="px-4 pt-3 pb-1">
 
   <div className="flex items-center justify-between">
 
-    {/* INTERESADOS */}
+    {/* ME GUSTA */}
     <button
       onClick={() => setSeleccionado(p)}
       className="group flex items-center gap-2 transition-all active:scale-95"
@@ -1946,7 +1946,33 @@ localStorage.setItem(
         </p>
 
         <p className="text-[10px] text-[#9AA6AD]">
-          interesados
+          me gusta
+        </p>
+      </div>
+    </button>
+
+
+    {/* GUARDAR */}
+    <button
+      onClick={() => {
+        console.log("Guardar producto:", p.id);
+      }}
+      className="group flex items-center gap-2 transition-all active:scale-95"
+    >
+      <div className="w-9 h-9 rounded-full bg-[#202629] flex items-center justify-center group-hover:bg-[#2A3033] transition">
+        <ShoppingCart
+          className="w-4 h-4 text-[#9AA6AD] group-hover:text-[#E8A33D] transition"
+          strokeWidth={1.8}
+        />
+      </div>
+
+      <div className="text-left leading-tight">
+        <p className="text-sm font-bold text-[#F2F4F5]">
+          0
+        </p>
+
+        <p className="text-[10px] text-[#9AA6AD]">
+          guardados
         </p>
       </div>
     </button>

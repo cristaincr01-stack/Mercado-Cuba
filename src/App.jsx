@@ -521,6 +521,19 @@ const [imagenesProducto, setImagenesProducto] = useState([]);
   const [enviandoProducto, setEnviandoProducto] = useState(false);
   const [productoEditando, setProductoEditando] = useState(null);
 const [editandoProducto, setEditandoProducto] = useState(false);
+  useEffect(() => {
+  let sesion = localStorage.getItem("mercadoCU_sesion");
+
+  if (!sesion) {
+    sesion =
+      "SES-" +
+      Date.now().toString(36) +
+      "-" +
+      Math.random().toString(36).substring(2, 8);
+
+    localStorage.setItem("mercadoCU_sesion", sesion);
+  }
+}, []);
   const iniciarSesion = async () => {
   if (!whatsappSesion || !pinSesion) {
     setSesionError("Escribe tu WhatsApp y contraseña");

@@ -122,6 +122,8 @@ function mapearProducto(fila, index) {
     fotos: fotosDirectas,
 
     estado: fila?.["Estado"] || "EN VENTA",
+    idVendedor: fila?.["ID vendedor"] || "",
+fechaPublicacion: fila?.["Marca temporal"] || "",
   };
 }
 

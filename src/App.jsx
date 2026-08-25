@@ -2005,11 +2005,16 @@ localStorage.setItem(
     </button>
 
 
-  {/* GUARDAR */}
+ {/* GUARDAR */}
 <button
   onClick={() => {
+    const estadoProducto = String(p.estado || "")
+      .trim()
+      .toUpperCase();
+
     if (
-      String(p.estado || "").trim().toUpperCase() === "VENDIDO"
+      estadoProducto === "VENDIDO" ||
+      estadoProducto === "RESERVADO"
     ) {
       return;
     }
@@ -2017,10 +2022,13 @@ localStorage.setItem(
     alternarProductoGuardado(p);
   }}
   disabled={
-    String(p.estado || "").trim().toUpperCase() === "VENDIDO"
+    String(p.estado || "").trim().toUpperCase() === "VENDIDO" ||
+    String(p.estado || "").trim().toUpperCase() === "RESERVADO"
   }
   className={`group flex items-center gap-2 transition-all ${
-    String(p.estado || "").trim().toUpperCase() === "VENDIDO"
+    ["VENDIDO", "RESERVADO"].includes(
+      String(p.estado || "").trim().toUpperCase()
+    )
       ? "opacity-40 cursor-not-allowed"
       : "active:scale-95"
   }`}

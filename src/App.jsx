@@ -2005,10 +2005,18 @@ localStorage.setItem(
     </button>
 
 
-    {/* GUARDAR */}
+   {/* GUARDAR */}
 <button
-  onClick={() => alternarProductoGuardado(p)}
-  className="group flex items-center gap-2 transition-all active:scale-95"
+  onClick={() => {
+    if (p.estado === "VENDIDO") return;
+    alternarProductoGuardado(p);
+  }}
+  disabled={p.estado === "VENDIDO"}
+  className={`group flex items-center gap-2 transition-all ${
+    p.estado === "VENDIDO"
+      ? "opacity-40 cursor-not-allowed"
+      : "active:scale-95"
+  }`}
 >
   <div
     className={`w-9 h-9 rounded-full flex items-center justify-center transition ${
@@ -2025,7 +2033,7 @@ localStorage.setItem(
           (producto) => producto._fila === p._fila
         )
           ? "text-white"
-          : "text-[#9AA6AD] group-hover:text-[#E8A33D]"
+          : "text-[#9AA6AD]"
       }`}
       strokeWidth={1.8}
     />
@@ -2033,9 +2041,11 @@ localStorage.setItem(
 
   <div className="text-left leading-tight">
     <p className="text-sm font-bold text-[#F2F4F5]">
-      {productosGuardados.filter(
+      {productosGuardados.some(
         (producto) => producto._fila === p._fila
-      ).length}
+      )
+        ? "1"
+        : "0"}
     </p>
 
     <p className="text-[10px] text-[#9AA6AD]">

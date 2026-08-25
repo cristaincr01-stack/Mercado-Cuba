@@ -2018,13 +2018,6 @@ localStorage.setItem(
     <button
       onClick={() => {
   setSeleccionado(p);
-
-  registrarInteraccion({
-    tipo: "ME_GUSTA",
-    producto: p,
-    identificador: "CORAZON",
-    esUnica: "SI"
-  });
 }}
       className="group flex items-center gap-2 transition-all active:scale-95"
     >

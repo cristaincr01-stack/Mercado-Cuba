@@ -523,6 +523,9 @@ const [imagenesProducto, setImagenesProducto] = useState([]);
   const [enviandoProducto, setEnviandoProducto] = useState(false);
   const [productoEditando, setProductoEditando] = useState(null);
 const [editandoProducto, setEditandoProducto] = useState(false);
+  const [visualizacionesRegistradas, setVisualizacionesRegistradas] = useState(
+  () => new Set()
+);
   useEffect(() => {
   let sesion = localStorage.getItem("mercadoCU_sesion");
 
@@ -1169,6 +1172,68 @@ if (orden === "precioMayor") {
   return resultado;
 }, [productos, provincia, categoria, busqueda, orden, moneda]);
 
+  useEffect(() => {
+  if (!productosFiltrados.length) return;
+
+  const observadores = [];
+
+  productosFiltrados.forEach((producto) => {
+    const elemento = document.getElementById(
+      `producto-${producto.id}`
+    );
+
+    if (!elemento) return;
+
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        entradas.forEach((entrada) => {
+          if (!entrada.isIntersecting) return;
+
+          const idProducto = producto._fila;
+
+          if (!idProducto) return;
+
+          if (visualizacionesRegistradas.has(idProducto)) {
+            return;
+          }
+
+          setVisualizacionesRegistradas((actuales) => {
+            const nuevos = new Set(actuales);
+
+            if (nuevos.has(idProducto)) {
+              return actuales;
+            }
+
+            nuevos.add(idProducto);
+            return nuevos;
+          });
+
+          registrarInteraccion({
+            tipo: "VISUALIZACION",
+            producto: producto,
+            identificador: "OJO",
+            esUnica: "SI"
+          });
+
+          observador.unobserve(elemento);
+        });
+      },
+      {
+        threshold: 0.5
+      }
+    );
+
+    observador.observe(elemento);
+    observadores.push({ observador, elemento });
+  });
+
+  return () => {
+    observadores.forEach(({ observador, elemento }) => {
+      observador.unobserve(elemento);
+      observador.disconnect();
+    });
+  };
+}, [productosFiltrados, visualizacionesRegistradas]);
   return (
   <div
     className="min-h-screen bg-[#0D1113] text-[#F2F4F5]"

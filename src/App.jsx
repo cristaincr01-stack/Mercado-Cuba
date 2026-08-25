@@ -2340,6 +2340,7 @@ localStorage.setItem(
   </div>
 
 </div>
+    </div>
 
 {/* ACCIONES */}
 <div className="px-4 pt-3 pb-4">

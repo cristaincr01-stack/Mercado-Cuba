@@ -2215,27 +2215,49 @@ localStorage.setItem(
 
 
     {/* VISUALIZACIONES */}
-    <div className="flex items-center gap-2">
+<div className="flex items-center gap-2">
 
-      <div className="w-9 h-9 rounded-full bg-[#202629] flex items-center justify-center">
-        <Eye
-          className="w-4 h-4 text-[#9AA6AD]"
-          strokeWidth={1.8}
-        />
-      </div>
+  <div
+    className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
+      Number(p.visualizaciones || 0) === 0
+        ? "bg-[#202629]"
+        : Number(p.visualizaciones || 0) < 5
+        ? "bg-[#24566B]"
+        : Number(p.visualizaciones || 0) < 10
+        ? "bg-[#5A3D78]"
+        : Number(p.visualizaciones || 0) < 25
+        ? "bg-[#8A5A24]"
+        : Number(p.visualizaciones || 0) < 50
+        ? "bg-[#7A315E]"
+        : "bg-[#8A6A24]"
+    }`}
+  >
+    <Eye
+      className={`w-4 h-4 ${
+        Number(p.visualizaciones || 0) === 0
+          ? "text-[#9AA6AD]"
+          : Number(p.visualizaciones || 0) < 5
+          ? "text-[#7DD3FC]"
+          : Number(p.visualizaciones || 0) < 10
+          ? "text-[#C4A7E7]"
+          : Number(p.visualizaciones || 0) < 25
+          ? "text-[#F2B86B]"
+          : Number(p.visualizaciones || 0) < 50
+          ? "text-[#E78BC4]"
+          : "text-[#F2D27A]"
+      }`}
+      strokeWidth={1.8}
+    />
+  </div>
 
-      <div className="leading-tight">
-        <p className="text-sm font-bold text-[#F2F4F5]">
-          0
-        </p>
+  <div className="leading-tight">
+    <p className="text-sm font-bold text-[#F2F4F5]">
+      {Number(p.visualizaciones || 0)}
+    </p>
 
-        <p className="text-[10px] text-[#9AA6AD]">
-          visualizaciones
-        </p>
-      </div>
-
-    </div>
-
+    <p className="text-[10px] text-[#9AA6AD]">
+      visualizaciones
+    </p>
   </div>
 
 </div>
@@ -2282,7 +2304,16 @@ localStorage.setItem(
 
     {/* VER PRODUCTO */}
     <button
-      onClick={() => setSeleccionado(p)}
+      onClick={() => {
+  registrarInteraccion({
+    tipo: "VISTA",
+    producto: p,
+    identificador: "VER_PRODUCTO",
+    esUnica: "SI"
+  });
+
+  setSeleccionado(p);
+}}
       className="group flex items-center justify-center gap-1.5 bg-[#202629] hover:bg-[#272E31] active:scale-[0.97] transition-all text-[#F2F4F5] text-[12px] sm:text-[13px] font-semibold py-3.5 rounded-2xl border border-[#30383C] hover:border-[#3A464B]"
     >
       <ChevronRight

@@ -464,6 +464,10 @@ function Tienda() {
   const guardados = localStorage.getItem("mercadoCU_productos_guardados");
   return guardados ? JSON.parse(guardados) : [];
 });
+  const [productosMeGusta, setProductosMeGusta] = useState(() => {
+  const guardados = localStorage.getItem("mercadoCU_productos_me_gusta");
+  return guardados ? JSON.parse(guardados) : [];
+});
   const [avisoGuardado, setAvisoGuardado] = useState(false);
   const [cargandoMisProductos, setCargandoMisProductos] = useState(false);
   const [categoria, setCategoria] = useState("Todas");
@@ -658,6 +662,30 @@ const [editandoProducto, setEditandoProducto] = useState(false);
     setTimeout(() => {
       setAvisoGuardado(false);
     }, 2500);
+
+    return nuevos;
+  });
+};
+  const alternarMeGusta = (producto) => {
+  setProductosMeGusta((actuales) => {
+    const existe = actuales.some(
+      (p) => p._fila === producto._fila
+    );
+
+    let nuevos;
+
+    if (existe) {
+      nuevos = actuales.filter(
+        (p) => p._fila !== producto._fila
+      );
+    } else {
+      nuevos = [...actuales, producto];
+    }
+
+    localStorage.setItem(
+      "mercadoCU_productos_me_gusta",
+      JSON.stringify(nuevos)
+    );
 
     return nuevos;
   });
@@ -2015,34 +2043,70 @@ localStorage.setItem(
   <div className="flex items-center justify-between">
 
     {/* ME GUSTA */}
-    <button
-      onClick={() => {
-  registrarInteraccion({
-    tipo: "ME_GUSTA",
-    producto: p,
-    identificador: "CORAZON",
-    esUnica: "SI"
-  });
-}}
-      className="group flex items-center gap-2 transition-all active:scale-95"
-    >
-      <div className="w-9 h-9 rounded-full bg-[#202629] flex items-center justify-center group-hover:bg-[#2A3033] transition">
-        <Heart
-          className="w-4 h-4 text-[#9AA6AD] group-hover:text-[#FF8A76] transition"
-          strokeWidth={1.8}
-        />
-      </div>
+<button
+  onClick={() => {
+    if (
+      p.estado === "Vendido" ||
+      p.estado === "Reservado"
+    ) {
+      return;
+    }
 
-      <div className="text-left leading-tight">
-        <p className="text-sm font-bold text-[#F2F4F5]">
-          0
-        </p>
+    alternarMeGusta(p);
 
-        <p className="text-[10px] text-[#9AA6AD]">
-          me gusta
-        </p>
-      </div>
-    </button>
+    registrarInteraccion({
+      tipo: "ME_GUSTA",
+      producto: p,
+      identificador: "CORAZON",
+      esUnica: "SI"
+    });
+  }}
+  disabled={
+    p.estado === "Vendido" ||
+    p.estado === "Reservado"
+  }
+  className={`group flex items-center gap-2 transition-all ${
+    p.estado === "Vendido" ||
+    p.estado === "Reservado"
+      ? "opacity-40 cursor-not-allowed"
+      : "active:scale-95"
+  }`}
+>
+  <div
+    className={`w-9 h-9 rounded-full flex items-center justify-center transition ${
+      productosMeGusta.some(
+        (producto) => producto._fila === p._fila
+      )
+        ? "bg-[#C4472B]"
+        : "bg-[#202629] group-hover:bg-[#2A3033]"
+    }`}
+  >
+    <Heart
+      className={`w-4 h-4 transition ${
+        productosMeGusta.some(
+          (producto) => producto._fila === p._fila
+        )
+          ? "text-white fill-white"
+          : "text-[#9AA6AD]"
+      }`}
+      strokeWidth={1.8}
+    />
+  </div>
+
+  <div className="text-left leading-tight">
+    <p className="text-sm font-bold text-[#F2F4F5]">
+      {productosMeGusta.some(
+        (producto) => producto._fila === p._fila
+      )
+        ? "1"
+        : "0"}
+    </p>
+
+    <p className="text-[10px] text-[#9AA6AD]">
+      me gusta
+    </p>
+  </div>
+</button>
 
 
  {/* GUARDAR */}

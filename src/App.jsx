@@ -565,6 +565,39 @@ const [editandoProducto, setEditandoProducto] = useState(false);
     setCargandoSesion(false);
   }
 };
+  const registrarInteraccion = async ({
+  tipo,
+  producto = null,
+  identificador = "",
+  termino = "",
+  resultadoBusqueda = "",
+  duracion = "",
+  esUnica = ""
+}) => {
+  try {
+    await fetch(
+      `${API_URL}?accion=registrarInteraccion` +
+      `&idProducto=${encodeURIComponent(producto?._fila || producto?.id || "")}` +
+      `&tipo=${encodeURIComponent(tipo)}` +
+      `&identificador=${encodeURIComponent(identificador)}` +
+      `&provincia=${encodeURIComponent(producto?.provincia || "")}` +
+      `&termino=${encodeURIComponent(termino)}` +
+      `&resultadoBusqueda=${encodeURIComponent(resultadoBusqueda)}` +
+      `&estadoProducto=${encodeURIComponent(producto?.estado || "")}` +
+      `&idVendedor=${encodeURIComponent(producto?.idVendedor || "")}` +
+      `&idSesion=${encodeURIComponent(
+        localStorage.getItem("mercadoCU_sesion") || ""
+      )}` +
+      `&duracion=${encodeURIComponent(duracion)}` +
+      `&fechaPublicacion=${encodeURIComponent(producto?.fechaPublicacion || "")}` +
+      `&fechaVenta=${encodeURIComponent(producto?.fechaVenta || "")}` +
+      `&diasHastaVenta=${encodeURIComponent(producto?.diasHastaVenta || "")}` +
+      `&esUnica=${encodeURIComponent(esUnica)}`
+    );
+  } catch (error) {
+    console.error("Error registrando interacción:", error);
+  }
+};
   const buscarMisProductos = async () => {
   if (!usuarioActual) {
     setMisProductosAbierto(false);
@@ -1983,7 +2016,16 @@ localStorage.setItem(
 
     {/* ME GUSTA */}
     <button
-      onClick={() => setSeleccionado(p)}
+      onClick={() => {
+  setSeleccionado(p);
+
+  registrarInteraccion({
+    tipo: "ME_GUSTA",
+    producto: p,
+    identificador: "CORAZON",
+    esUnica: "SI"
+  });
+}}
       className="group flex items-center gap-2 transition-all active:scale-95"
     >
       <div className="w-9 h-9 rounded-full bg-[#202629] flex items-center justify-center group-hover:bg-[#2A3033] transition">

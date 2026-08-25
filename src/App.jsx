@@ -464,6 +464,7 @@ function Tienda() {
   const guardados = localStorage.getItem("mercadoCU_productos_guardados");
   return guardados ? JSON.parse(guardados) : [];
 });
+  const [avisoGuardado, setAvisoGuardado] = useState(false);
   const [cargandoMisProductos, setCargandoMisProductos] = useState(false);
   const [categoria, setCategoria] = useState("Todas");
   const [busqueda, setBusqueda] = useState("");
@@ -596,14 +597,34 @@ const [editandoProducto, setEditandoProducto] = useState(false);
       (p) => p._fila === producto._fila
     );
 
-    const nuevos = existe
-      ? actuales.filter((p) => p._fila !== producto._fila)
-      : [...actuales, producto];
+    // Si ya estaba guardado → quitarlo
+    if (existe) {
+      const nuevos = actuales.filter(
+        (p) => p._fila !== producto._fila
+      );
+
+      localStorage.setItem(
+        "mercadoCU_productos_guardados",
+        JSON.stringify(nuevos)
+      );
+
+      return nuevos;
+    }
+
+    // Si no estaba guardado → guardarlo
+    const nuevos = [...actuales, producto];
 
     localStorage.setItem(
       "mercadoCU_productos_guardados",
       JSON.stringify(nuevos)
     );
+
+    // Mostrar aviso solamente al guardar
+    setAvisoGuardado(true);
+
+    setTimeout(() => {
+      setAvisoGuardado(false);
+    }, 2500);
 
     return nuevos;
   });

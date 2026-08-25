@@ -1056,6 +1056,16 @@ if (orden === "precioMayor") {
     className="min-h-screen bg-[#0D1113] text-[#F2F4F5]"
     style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
   >
+    {avisoGuardado && (
+  <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[100]">
+    <div className="bg-[#202629] border border-[#2A3033] text-[#F2F4F5] px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-2">
+      <span className="text-[#7EE2C0] font-bold">✓</span>
+      <span className="text-sm font-semibold">
+        Producto guardado
+      </span>
+    </div>
+  </div>
+)}
       <header className="relative bg-[#151A1D] text-[#F2F4F5] border-b border-[#2A3033]">
         <div className="max-w-6xl mx-auto px-5 py-6">
           <div className="flex items-center justify-between gap-4 flex-wrap">

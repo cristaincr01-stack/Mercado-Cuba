@@ -2005,15 +2005,22 @@ localStorage.setItem(
     </button>
 
 
-   {/* GUARDAR */}
+  {/* GUARDAR */}
 <button
   onClick={() => {
-    if (p.estado === "VENDIDO") return;
+    if (
+      String(p.estado || "").trim().toUpperCase() === "VENDIDO"
+    ) {
+      return;
+    }
+
     alternarProductoGuardado(p);
   }}
-  disabled={p.estado === "VENDIDO"}
+  disabled={
+    String(p.estado || "").trim().toUpperCase() === "VENDIDO"
+  }
   className={`group flex items-center gap-2 transition-all ${
-    p.estado === "VENDIDO"
+    String(p.estado || "").trim().toUpperCase() === "VENDIDO"
       ? "opacity-40 cursor-not-allowed"
       : "active:scale-95"
   }`}

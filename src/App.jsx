@@ -1996,29 +1996,43 @@ localStorage.setItem(
 
 
     {/* GUARDAR */}
-    <button
-      onClick={() => {
-        console.log("Guardar producto:", p.id);
-      }}
-      className="group flex items-center gap-2 transition-all active:scale-95"
-    >
-      <div className="w-9 h-9 rounded-full bg-[#202629] flex items-center justify-center group-hover:bg-[#2A3033] transition">
-        <ShoppingCart
-          className="w-4 h-4 text-[#9AA6AD] group-hover:text-[#E8A33D] transition"
-          strokeWidth={1.8}
-        />
-      </div>
+<button
+  onClick={() => alternarProductoGuardado(p)}
+  className="group flex items-center gap-2 transition-all active:scale-95"
+>
+  <div
+    className={`w-9 h-9 rounded-full flex items-center justify-center transition ${
+      productosGuardados.some(
+        (producto) => producto._fila === p._fila
+      )
+        ? "bg-[#2563EB]"
+        : "bg-[#202629] group-hover:bg-[#2A3033]"
+    }`}
+  >
+    <ShoppingCart
+      className={`w-4 h-4 transition ${
+        productosGuardados.some(
+          (producto) => producto._fila === p._fila
+        )
+          ? "text-white"
+          : "text-[#9AA6AD] group-hover:text-[#E8A33D]"
+      }`}
+      strokeWidth={1.8}
+    />
+  </div>
 
-      <div className="text-left leading-tight">
-        <p className="text-sm font-bold text-[#F2F4F5]">
-          0
-        </p>
+  <div className="text-left leading-tight">
+    <p className="text-sm font-bold text-[#F2F4F5]">
+      {productosGuardados.filter(
+        (producto) => producto._fila === p._fila
+      ).length}
+    </p>
 
-        <p className="text-[10px] text-[#9AA6AD]">
-          guardados
-        </p>
-      </div>
-    </button>
+    <p className="text-[10px] text-[#9AA6AD]">
+      guardados
+    </p>
+  </div>
+</button>
 
 
     {/* VISUALIZACIONES */}

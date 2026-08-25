@@ -3081,11 +3081,20 @@ onChange={(e) => setPinSesion(e.target.value)}
         productosFiltrados.map(p => (
           <div
   key={p.id}
-  onClick={() => {
-     setProductoDestino(p);
-    setBusqueda("");
-    setBuscarAbierto(false);
-  }}
+ onClick={() => {
+  registrarInteraccion({
+    tipo: "BUSQUEDA",
+    producto: p,
+    identificador: "RESULTADO",
+    termino: busqueda,
+    resultadoBusqueda: "ENCONTRADO",
+    esUnica: "SI"
+  });
+
+  setProductoDestino(p);
+  setBusqueda("");
+  setBuscarAbierto(false);
+}}
    className="flex items-center gap-3 p-3 rounded-xl border border-[#2A3033] bg-[#151A1D] hover:bg-[#202629] hover:border-[#3A474B] transition-colors cursor-pointer"
 >
             {p.foto && (

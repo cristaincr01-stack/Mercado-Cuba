@@ -2045,22 +2045,28 @@ localStorage.setItem(
     {/* ME GUSTA */}
 <button
   onClick={() => {
-    if (
-      p.estado === "Vendido" ||
-      p.estado === "Reservado"
-    ) {
-      return;
-    }
+  if (
+    p.estado === "Vendido" ||
+    p.estado === "Reservado"
+  ) {
+    return;
+  }
 
-    alternarMeGusta(p);
+  const yaTieneMeGusta = productosMeGusta.some(
+    (producto) => producto._fila === p._fila
+  );
 
+  alternarMeGusta(p);
+
+  if (!yaTieneMeGusta) {
     registrarInteraccion({
       tipo: "ME_GUSTA",
       producto: p,
       identificador: "CORAZON",
       esUnica: "SI"
     });
-  }}
+  }
+}}
   disabled={
     p.estado === "Vendido" ||
     p.estado === "Reservado"

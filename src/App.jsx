@@ -706,8 +706,23 @@ const [editandoProducto, setEditandoProducto] = useState(false);
       nuevos = actuales.filter(
         (p) => p._fila !== producto._fila
       );
+
+      registrarInteraccion({
+        tipo: "QUITA_ME_GUSTA",
+        producto: producto,
+        identificador: "CORAZON",
+        esUnica: "NO"
+      });
+
     } else {
       nuevos = [...actuales, producto];
+
+      registrarInteraccion({
+        tipo: "ME_GUSTA",
+        producto: producto,
+        identificador: "CORAZON",
+        esUnica: "SI"
+      });
     }
 
     localStorage.setItem(

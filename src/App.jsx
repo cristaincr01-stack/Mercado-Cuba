@@ -590,6 +590,24 @@ const [editandoProducto, setEditandoProducto] = useState(false);
 
   setCargandoMisProductos(false);
 };
+  const alternarProductoGuardado = (producto) => {
+  setProductosGuardados((actuales) => {
+    const existe = actuales.some(
+      (p) => p._fila === producto._fila
+    );
+
+    const nuevos = existe
+      ? actuales.filter((p) => p._fila !== producto._fila)
+      : [...actuales, producto];
+
+    localStorage.setItem(
+      "mercadoCU_productos_guardados",
+      JSON.stringify(nuevos)
+    );
+
+    return nuevos;
+  });
+};
   const eliminarProducto = async (fila) => {
 
   const confirmar = window.confirm(

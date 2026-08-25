@@ -546,8 +546,6 @@ const [editandoProducto, setEditandoProducto] = useState(false);
 
     localStorage.setItem("mercadoCU_sesion", sesion);
   }
-
-  alert("Sesión MercadoCU: " + sesion);
 }, []);
   const iniciarSesion = async () => {
   if (!whatsappSesion || !pinSesion) {

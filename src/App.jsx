@@ -460,6 +460,10 @@ function Tienda() {
   const guardado = localStorage.getItem("mercadoCU_usuario");
   return guardado ? JSON.parse(guardado) : null;
 });
+  const [productosGuardados, setProductosGuardados] = useState(() => {
+  const guardados = localStorage.getItem("mercadoCU_productos_guardados");
+  return guardados ? JSON.parse(guardados) : [];
+});
   const [cargandoMisProductos, setCargandoMisProductos] = useState(false);
   const [categoria, setCategoria] = useState("Todas");
   const [busqueda, setBusqueda] = useState("");

@@ -715,13 +715,16 @@ const [editandoProducto, setEditandoProducto] = useState(false);
 
   setCargandoMisProductos(false);
 };
-  const alternarProductoGuardado = (producto) => {
+ const alternarProductoGuardado = (producto) => {
   setProductosGuardados((actuales) => {
     const existe = actuales.some(
       (p) => p._fila === producto._fila
     );
 
-    // Si ya estaba guardado → quitarlo
+    // =========================================
+    // SI YA ESTABA GUARDADO → QUITAR LOCALMENTE
+    // =========================================
+
     if (existe) {
       const nuevos = actuales.filter(
         (p) => p._fila !== producto._fila
@@ -735,13 +738,24 @@ const [editandoProducto, setEditandoProducto] = useState(false);
       return nuevos;
     }
 
-    // Si no estaba guardado → guardarlo
+    // =========================================
+    // NO ESTABA GUARDADO → GUARDAR
+    // =========================================
+
     const nuevos = [...actuales, producto];
 
     localStorage.setItem(
       "mercadoCU_productos_guardados",
       JSON.stringify(nuevos)
     );
+
+    // Registrar GUARDADO como métrica
+    registrarInteraccion({
+      tipo: "GUARDADO",
+      producto: producto,
+      identificador: "GUARDADO",
+      esUnica: "SI"
+    });
 
     // Mostrar aviso solamente al guardar
     setAvisoGuardado(true);

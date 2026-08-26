@@ -641,7 +641,7 @@ const [editandoProducto, setEditandoProducto] = useState(false);
 
     const identidad = obtenerIdentidadInteraccion();
 
-    await fetch(
+    const respuesta = await fetch(
       `${API_URL}?accion=registrarInteraccion` +
       `&idProducto=${encodeURIComponent(
         producto?._fila || producto?.id || ""

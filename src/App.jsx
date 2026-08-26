@@ -720,8 +720,7 @@ const [editandoProducto, setEditandoProducto] = useState(false);
 
   setCargandoMisProductos(false);
 };
- 
-   const alternarProductoGuardado = (producto) => {
+ const alternarProductoGuardado = (producto) => {
   setProductosGuardados((actuales) => {
     const existe = actuales.some(
       (p) => p._fila === producto._fila
@@ -740,6 +739,14 @@ const [editandoProducto, setEditandoProducto] = useState(false);
         "mercadoCU_productos_guardados",
         JSON.stringify(nuevos)
       );
+
+      // Registrar que se quitó el guardado
+      registrarInteraccion({
+        tipo: "GUARDADO",
+        producto: producto,
+        identificador: "GUARDADO",
+        esUnica: "NO"
+      });
 
       // Actualizar contador visual
       setProductos((productosActuales) =>

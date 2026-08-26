@@ -121,9 +121,14 @@ function mapearProducto(fila, index) {
     // Todas las fotos: para el carrusel
     fotos: fotosDirectas,
 
-    estado: fila?.["Estado"] || "EN VENTA",
+        estado: fila?.["Estado"] || "EN VENTA",
     idVendedor: fila?.["ID vendedor"] || "",
-fechaPublicacion: fila?.["Marca temporal"] || "",
+    fechaPublicacion: fila?.["Marca temporal"] || "",
+
+    // CONTADORES DE INTERACCIONES
+    visualizaciones: Number(fila?.visualizaciones || 0),
+    meGusta: Number(fila?.meGusta || 0),
+    guardados: Number(fila?.guardados || 0),
   };
 }
 

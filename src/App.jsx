@@ -1204,21 +1204,7 @@ alert("3. Respuesta recibida: " + JSON.stringify(resultado));
 
       console.log("PRODUCTOS MAPEADOS:", productosMapeados);
 
-      setProductos(productosMapeados);
-      fetch(`${API_URL}?accion=obtenerVisualizaciones`)
-  .then((res) => res.json())
-  .then((conteos) => {
-    const productosConVisualizaciones = productosMapeados.map((producto) => ({
-      ...producto,
-      visualizaciones:
-        Number(conteos[String(producto._fila)] || 0)
-    }));
-
-    setProductos(productosConVisualizaciones);
-  })
-  .catch((error) => {
-    console.error("ERROR CARGANDO VISUALIZACIONES:", error);
-  });
+            setProductos(productosMapeados);
     })
     .catch((error) => {
       console.error("ERROR CARGANDO PRODUCTOS:", error);

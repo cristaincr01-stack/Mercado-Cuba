@@ -623,7 +623,7 @@ const [editandoProducto, setEditandoProducto] = useState(false);
     setCargandoSesion(false);
   }
 };
-  const registrarInteraccion = async ({
+ const registrarInteraccion = async ({
   tipo,
   producto = null,
   identificador = "",
@@ -633,27 +633,60 @@ const [editandoProducto, setEditandoProducto] = useState(false);
   esUnica = ""
 }) => {
   try {
+
+    const identidad = obtenerIdentidadInteraccion();
+
     await fetch(
       `${API_URL}?accion=registrarInteraccion` +
-      `&idProducto=${encodeURIComponent(producto?._fila || producto?.id || "")}` +
+      `&idProducto=${encodeURIComponent(
+        producto?._fila || producto?.id || ""
+      )}` +
       `&tipo=${encodeURIComponent(tipo)}` +
       `&identificador=${encodeURIComponent(identificador)}` +
-      `&provincia=${encodeURIComponent(producto?.provincia || "")}` +
+      `&provincia=${encodeURIComponent(
+        producto?.provincia || ""
+      )}` +
       `&termino=${encodeURIComponent(termino)}` +
-      `&resultadoBusqueda=${encodeURIComponent(resultadoBusqueda)}` +
-      `&estadoProducto=${encodeURIComponent(producto?.estado || "")}` +
-      `&idVendedor=${encodeURIComponent(producto?.idVendedor || "")}` +
+      `&resultadoBusqueda=${encodeURIComponent(
+        resultadoBusqueda
+      )}` +
+      `&estadoProducto=${encodeURIComponent(
+        producto?.estado || ""
+      )}` +
+      `&idVendedor=${encodeURIComponent(
+        producto?.idVendedor || ""
+      )}` +
+
+      // ID SESION SE CONSERVA COMO ESTABA
       `&idSesion=${encodeURIComponent(
         localStorage.getItem("mercadoCU_sesion") || ""
       )}` +
+
+      // NUEVA IDENTIDAD PARA CONTROLAR INTERACCIONES
+      `&identidad=${encodeURIComponent(
+        identidad
+      )}` +
+
       `&duracion=${encodeURIComponent(duracion)}` +
-      `&fechaPublicacion=${encodeURIComponent(producto?.fechaPublicacion || "")}` +
-      `&fechaVenta=${encodeURIComponent(producto?.fechaVenta || "")}` +
-      `&diasHastaVenta=${encodeURIComponent(producto?.diasHastaVenta || "")}` +
+      `&fechaPublicacion=${encodeURIComponent(
+        producto?.fechaPublicacion || ""
+      )}` +
+      `&fechaVenta=${encodeURIComponent(
+        producto?.fechaVenta || ""
+      )}` +
+      `&diasHastaVenta=${encodeURIComponent(
+        producto?.diasHastaVenta || ""
+      )}` +
       `&esUnica=${encodeURIComponent(esUnica)}`
     );
+
   } catch (error) {
-    console.error("Error registrando interacción:", error);
+
+    console.error(
+      "Error registrando interacción:",
+      error
+    );
+
   }
 };
   const buscarMisProductos = async () => {

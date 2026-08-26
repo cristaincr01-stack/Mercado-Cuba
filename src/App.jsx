@@ -462,6 +462,29 @@ function Tienda() {
   const guardado = localStorage.getItem("mercadoCU_usuario");
   return guardado ? JSON.parse(guardado) : null;
 });
+  const obtenerIdentidadDispositivo = () => {
+  let dispositivo = localStorage.getItem("mercadoCU_dispositivo");
+
+  if (!dispositivo) {
+    dispositivo =
+      "DISP-" +
+      Math.random().toString(36).substring(2, 10).toUpperCase();
+
+    localStorage.setItem(
+      "mercadoCU_dispositivo",
+      dispositivo
+    );
+  }
+
+  return dispositivo;
+};
+  const obtenerIdentidadInteraccion = () => {
+  if (usuarioActual?.idVendedor) {
+    return usuarioActual.idVendedor;
+  }
+
+  return obtenerIdentidadDispositivo();
+};
   const [productosGuardados, setProductosGuardados] = useState(() => {
   const guardados = localStorage.getItem("mercadoCU_productos_guardados");
   return guardados ? JSON.parse(guardados) : [];

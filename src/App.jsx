@@ -715,14 +715,15 @@ const [editandoProducto, setEditandoProducto] = useState(false);
 
   setCargandoMisProductos(false);
 };
- const alternarProductoGuardado = (producto) => {
+ 
+   const alternarProductoGuardado = (producto) => {
   setProductosGuardados((actuales) => {
     const existe = actuales.some(
       (p) => p._fila === producto._fila
     );
 
     // =========================================
-    // SI YA ESTABA GUARDADO → QUITAR LOCALMENTE
+    // YA ESTABA GUARDADO → QUITAR
     // =========================================
 
     if (existe) {
@@ -733,6 +734,21 @@ const [editandoProducto, setEditandoProducto] = useState(false);
       localStorage.setItem(
         "mercadoCU_productos_guardados",
         JSON.stringify(nuevos)
+      );
+
+      // Actualizar contador visual
+      setProductos((productosActuales) =>
+        productosActuales.map((p) =>
+          p._fila === producto._fila
+            ? {
+                ...p,
+                guardados: Math.max(
+                  0,
+                  Number(p.guardados || 0) - 1
+                )
+              }
+            : p
+        )
       );
 
       return nuevos;
@@ -757,6 +773,19 @@ const [editandoProducto, setEditandoProducto] = useState(false);
       esUnica: "SI"
     });
 
+    // Actualizar contador visual
+    setProductos((productosActuales) =>
+      productosActuales.map((p) =>
+        p._fila === producto._fila
+          ? {
+              ...p,
+              guardados:
+                Number(p.guardados || 0) + 1
+            }
+          : p
+      )
+    );
+
     // Mostrar aviso solamente al guardar
     setAvisoGuardado(true);
 
@@ -767,7 +796,7 @@ const [editandoProducto, setEditandoProducto] = useState(false);
     return nuevos;
   });
 };
-  const alternarMeGusta = (producto) => {
+ const alternarMeGusta = (producto) => {
   setProductosMeGusta((actuales) => {
     const existe = actuales.some(
       (p) => p._fila === producto._fila
@@ -787,6 +816,21 @@ const [editandoProducto, setEditandoProducto] = useState(false);
         esUnica: "NO"
       });
 
+      // Actualizar contador visual
+      setProductos((productosActuales) =>
+        productosActuales.map((p) =>
+          p._fila === producto._fila
+            ? {
+                ...p,
+                meGusta: Math.max(
+                  0,
+                  Number(p.meGusta || 0) - 1
+                )
+              }
+            : p
+        )
+      );
+
     } else {
       nuevos = [...actuales, producto];
 
@@ -796,6 +840,19 @@ const [editandoProducto, setEditandoProducto] = useState(false);
         identificador: "CORAZON",
         esUnica: "SI"
       });
+
+      // Actualizar contador visual
+      setProductos((productosActuales) =>
+        productosActuales.map((p) =>
+          p._fila === producto._fila
+            ? {
+                ...p,
+                meGusta:
+                  Number(p.meGusta || 0) + 1
+              }
+            : p
+        )
+      );
     }
 
     localStorage.setItem(

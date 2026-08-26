@@ -2284,11 +2284,7 @@ localStorage.setItem(
 
   <div className="text-left leading-tight">
     <p className="text-sm font-bold text-[#F2F4F5]">
-      {productosMeGusta.some(
-        (producto) => producto._fila === p._fila
-      )
-        ? "1"
-        : "0"}
+      {Number(p.meGusta || 0)}
     </p>
 
     <p className="text-[10px] text-[#9AA6AD]">
@@ -2349,11 +2345,7 @@ localStorage.setItem(
 
   <div className="text-left leading-tight">
     <p className="text-sm font-bold text-[#F2F4F5]">
-      {productosGuardados.some(
-        (producto) => producto._fila === p._fila
-      )
-        ? "1"
-        : "0"}
+      {Number(p.guardados || 0)}
     </p>
 
     <p className="text-[10px] text-[#9AA6AD]">

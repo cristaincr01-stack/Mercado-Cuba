@@ -741,12 +741,12 @@ const [editandoProducto, setEditandoProducto] = useState(false);
       );
 
       // Registrar que se quitó el guardado
-      registrarInteraccion({
-        tipo: "GUARDADO",
-        producto: producto,
-        identificador: "GUARDADO",
-        esUnica: "NO"
-      });
+registrarInteraccion({
+  tipo: "QUITA_GUARDADO",
+  producto: producto,
+  identificador: "GUARDADO",
+  esUnica: "NO"
+});
 
       // Actualizar contador visual
       setProductos((productosActuales) =>

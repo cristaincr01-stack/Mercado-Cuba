@@ -885,7 +885,7 @@ registrarInteraccion({
     }
 
     localStorage.setItem(
-      "mercadoCU_productos_me_gusta",
+      obtenerClaveMeGusta(),
       JSON.stringify(nuevos)
     );
 

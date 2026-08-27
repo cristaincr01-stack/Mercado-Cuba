@@ -490,6 +490,11 @@ function Tienda() {
 
   return obtenerIdentidadDispositivo();
 };
+  const obtenerClaveGuardados = () =>
+  `mercadoCU_productos_guardados_${obtenerIdentidadInteraccion()}`;
+
+const obtenerClaveMeGusta = () =>
+  `mercadoCU_productos_me_gusta_${obtenerIdentidadInteraccion()}`;
   const [productosGuardados, setProductosGuardados] = useState(() => {
   const guardados = localStorage.getItem("mercadoCU_productos_guardados");
   return guardados ? JSON.parse(guardados) : [];

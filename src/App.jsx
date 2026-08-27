@@ -2509,7 +2509,7 @@ localStorage.setItem(
     <button
       onClick={() => {
   registrarInteraccion({
-    tipo: "VISTA",
+    tipo: "VER_PRODUCTO",
     producto: p,
     identificador: "VER_PRODUCTO",
     esUnica: "SI"
@@ -2768,19 +2768,26 @@ localStorage.setItem(
      {/* WHATSAPP */}
 <button
   onClick={() => {
-    if (seleccionado.estado === "Vendido") return;
+  if (seleccionado.estado === "Vendido") return;
 
-    const numero = `53${String(seleccionado.tel).replace(/\s+/g, "")}`;
+  registrarInteraccion({
+    tipo: "WHATSAPP",
+    producto: seleccionado,
+    identificador: "WHATSAPP",
+    esUnica: "SI"
+  });
 
-    const mensaje = `Hola, estoy interesado en el producto "${seleccionado.nombre}". ¿Sigue disponible?`;
+  const numero = `53${String(seleccionado.tel).replace(/\s+/g, "")}`;
 
-    console.log(seleccionado);
+  const mensaje = `Hola, estoy interesado en el producto "${seleccionado.nombre}". ¿Sigue disponible?`;
 
-    window.open(
-      `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
-      "_blank"
-    );
-  }}
+  console.log(seleccionado);
+
+  window.open(
+    `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
+    "_blank"
+  );
+}}
   disabled={seleccionado.estado === "Vendido"}
   className={`mt-5 w-full flex items-center justify-center gap-2 font-bold py-3.5 rounded-2xl transition-all ${
     seleccionado.estado === "Vendido"

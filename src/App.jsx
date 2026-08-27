@@ -495,14 +495,26 @@ function Tienda() {
 
 const obtenerClaveMeGusta = () =>
   `mercadoCU_productos_me_gusta_${obtenerIdentidadInteraccion()}`;
-  const [productosGuardados, setProductosGuardados] = useState(() => {
-  const guardados = localStorage.getItem("mercadoCU_productos_guardados");
-  return guardados ? JSON.parse(guardados) : [];
-});
-  const [productosMeGusta, setProductosMeGusta] = useState(() => {
-  const guardados = localStorage.getItem("mercadoCU_productos_me_gusta");
-  return guardados ? JSON.parse(guardados) : [];
-});
+  const [productosGuardados, setProductosGuardados] = useState([]);
+
+const [productosMeGusta, setProductosMeGusta] = useState([]);
+  useEffect(() => {
+  const guardados = localStorage.getItem(
+    obtenerClaveGuardados()
+  );
+
+  const meGusta = localStorage.getItem(
+    obtenerClaveMeGusta()
+  );
+
+  setProductosGuardados(
+    guardados ? JSON.parse(guardados) : []
+  );
+
+  setProductosMeGusta(
+    meGusta ? JSON.parse(meGusta) : []
+  );
+}, [usuarioActual]);
   const [avisoGuardado, setAvisoGuardado] = useState(false);
   const [cargandoMisProductos, setCargandoMisProductos] = useState(false);
   const [categoria, setCategoria] = useState("Todas");

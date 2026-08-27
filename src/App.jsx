@@ -753,7 +753,7 @@ const [editandoProducto, setEditandoProducto] = useState(false);
       );
 
       localStorage.setItem(
-        "mercadoCU_productos_guardados",
+        obtenerClaveGuardados(),
         JSON.stringify(nuevos)
       );
 
@@ -790,7 +790,7 @@ registrarInteraccion({
     const nuevos = [...actuales, producto];
 
     localStorage.setItem(
-      "mercadoCU_productos_guardados",
+      obtenerClaveGuardados(),
       JSON.stringify(nuevos)
     );
 

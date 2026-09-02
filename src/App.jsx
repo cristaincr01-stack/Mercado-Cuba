@@ -595,7 +595,13 @@ const [guardandoMonedas, setGuardandoMonedas] = useState(false);
 function Tienda() {
   const [publicarAbierto, setPublicarAbierto] = useState(false);
   const [opcionesPublicar, setOpcionesPublicar] = useState(false);
-  const [provincia, setProvincia] = useState("Todas");
+  const [provincia, setProvincia] = useState(() => {
+  return localStorage.getItem("mercadoCU_provincia") || "Todas";
+});
+const [selectorProvinciaAbierto, setSelectorProvinciaAbierto] = useState(false);
+  useEffect(() => {
+  localStorage.setItem("mercadoCU_provincia", provincia);
+}, [provincia]);
     const [misProductosAbierto, setMisProductosAbierto] = useState(false);
   const [buscarAbierto, setBuscarAbierto] = useState(false);
   const [productoDestino, setProductoDestino] = useState(null);

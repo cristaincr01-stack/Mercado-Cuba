@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck, Eye,
-EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, ChevronDown, MapPin, } from "lucide-react";
+EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, ChevronDown, } from "lucide-react";
 window.onerror = function (mensaje, archivo, linea, columna, error) {
   document.body.innerHTML = `
     <div style="

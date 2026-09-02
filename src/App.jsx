@@ -1066,6 +1066,7 @@ registrarInteraccion({
   setProductoEditando(producto);
   setNombreProducto(producto["Nombre del producto"] || "");
   setCategoriaProducto(producto["Categoría"] || "Electrónica");
+    setSubcategoriaProducto(producto["Subcategoría"] || "");
   setProvinciaProducto(producto["Provincia"] || "La Habana");
   setMonedaProducto(producto["Moneda"] || "CUP");
   setPrecioProducto(producto["Precio"] || "");

@@ -3753,6 +3753,9 @@ function Tendencias({ onCerrar }) {
           </div>
         ) : (
           <div className="space-y-3">
+            <pre className="text-xs text-white whitespace-pre-wrap break-all mb-4">
+  {JSON.stringify(datos, null, 2)}
+</pre>
             {datos.map((item, index) => (
               <div
                 key={index}

@@ -3570,6 +3570,68 @@ onChange={(e) => setPinSesion(e.target.value)}
     </div>
   </div>
 )}
+    {selectorProvinciaAbierto && (
+  <div className="fixed inset-0 bg-black/60 flex items-end justify-center z-50">
+    <div className="bg-[#151A1D] border-t border-[#2A3033] rounded-t-3xl w-full max-w-2xl p-5 shadow-2xl max-h-[80vh] overflow-y-auto">
+
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold">
+            Ubicación
+          </p>
+          <h2 className="text-xl font-bold text-[#F2F4F5]">
+            ¿Dónde quieres buscar?
+          </h2>
+        </div>
+
+        <button
+          onClick={() => setSelectorProvinciaAbierto(false)}
+          className="w-10 h-10 rounded-full bg-[#202629] border border-[#2A3033] flex items-center justify-center text-[#9AA6AD] hover:text-white transition"
+        >
+          <X className="w-5 h-5" />
+        </button>
+      </div>
+
+      <button
+        onClick={() => {
+          setProvincia("Todas");
+          setSelectorProvinciaAbierto(false);
+        }}
+        className={`w-full flex items-center justify-between px-4 py-3.5 rounded-2xl border mb-2 transition ${
+          provincia === "Todas"
+            ? "bg-[#1B6B63] border-[#2A8178] text-white"
+            : "bg-[#202629] border-[#2A3033] text-[#F2F4F5]"
+        }`}
+      >
+        <span className="font-semibold">Toda Cuba</span>
+
+        {provincia === "Todas" && (
+          <span className="text-[#7EE2C0] font-bold">✓</span>
+        )}
+      </button>
+
+      <div className="grid grid-cols-2 gap-2">
+        {PROVINCIAS.filter(p => p !== "Todas").map(p => (
+          <button
+            key={p}
+            onClick={() => {
+              setProvincia(p);
+              setSelectorProvinciaAbierto(false);
+            }}
+            className={`text-left px-4 py-3 rounded-2xl border transition ${
+              provincia === p
+                ? "bg-[#1B6B63] border-[#2A8178] text-white"
+                : "bg-[#202629] border-[#2A3033] text-[#D5DBDE] hover:border-[#3A474B]"
+            }`}
+          >
+            {p}
+          </button>
+        ))}
+      </div>
+
+    </div>
+  </div>
+)}
             {publicarAbierto && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <div className="bg-[#151B1D] border border-[#2A3639] rounded-2xl max-w-md w-full p-5 relative shadow-[0_20px_60px_rgba(0,0,0,0.45)]">

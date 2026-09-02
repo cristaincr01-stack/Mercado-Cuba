@@ -58,9 +58,147 @@ const PROVINCIAS = [
 ];
 
 const CATEGORIAS = [
-  "Todas", "Electrónica", "Ropa y calzado", "Hogar", "Alimentos", "Belleza", "Vehículos"
+  "Todas",
+  "Productos",
+  "Electrónica",
+  "Vehículos",
+  "Inmuebles",
+  "Farmacia",
+  "Servicios",
+  "Empleo"
 ];
 
+
+  const ESTRUCTURA_CATEGORIAS = {
+  Productos: {
+    subcategorias: [
+      "Hogar",
+      "Ropa y calzado",
+      "Alimentos",
+      "Belleza",
+      "Deportes y ocio",
+      "Bebés y niños",
+      "Mascotas",
+      "Herramientas",
+      "Negocios y equipos"
+    ]
+  },
+
+  Electrónica: {
+    subcategorias: [
+      "Celulares",
+      "Computadoras",
+      "Tablets",
+      "Televisores",
+      "Audio",
+      "Cámaras",
+      "Videojuegos",
+      "Accesorios electrónicos"
+    ]
+  },
+
+  Vehículos: {
+    subcategorias: [
+      "Autos",
+      "Motos",
+      "Camiones",
+      "Camionetas",
+      "Ómnibus y minibuses",
+      "Bicicletas",
+      "Triciclos",
+      "Vehículos eléctricos",
+      "Remolques",
+      "Piezas y repuestos",
+      "Accesorios para vehículos"
+    ]
+  },
+
+  Inmuebles: {
+    opciones: {
+      "Comprar": [
+        "Casas",
+        "Apartamentos",
+        "Terrenos",
+        "Locales comerciales",
+        "Fincas y terrenos agrícolas",
+        "Oficinas",
+        "Garajes y parqueos"
+      ],
+
+      "Alquilar": [
+        "Casas",
+        "Apartamentos",
+        "Habitaciones",
+        "Locales comerciales",
+        "Oficinas",
+        "Garajes y parqueos",
+        "Alquiler temporal / turístico"
+      ]
+    }
+  },
+
+  Farmacia: {
+    subcategorias: [
+      "Medicamentos",
+      "Vitaminas y suplementos",
+      "Higiene personal",
+      "Cuidado de la piel",
+      "Equipos médicos",
+      "Material médico",
+      "Óptica",
+      "Productos para bebés",
+      "Productos para adultos mayores"
+    ]
+  },
+
+  Servicios: {
+    subcategorias: [
+      "Reparaciones",
+      "Electricidad",
+      "Plomería",
+      "Construcción",
+      "Carpintería",
+      "Mecánica",
+      "Transporte",
+      "Mudanzas",
+      "Limpieza",
+      "Belleza y estética",
+      "Informática y tecnología",
+      "Diseño y publicidad",
+      "Fotografía y video",
+      "Clases y tutorías",
+      "Servicios profesionales",
+      "Servicios para eventos",
+      "Cuidado de personas"
+    ]
+  },
+
+  Empleo: {
+    subcategorias: [
+      "Ofertas de empleo",
+      "Trabajo por cuenta propia"
+    ],
+
+    modalidades: [
+      "Tiempo completo",
+      "Tiempo parcial",
+      "Trabajo temporal",
+      "Trabajo remoto"
+    ],
+
+    sectores: [
+      "Construcción",
+      "Gastronomía",
+      "Transporte",
+      "Comercio",
+      "Tecnología",
+      "Salud",
+      "Educación",
+      "Turismo",
+      "Administración"
+    ]
+  }
+};
 const TASAS_CAMBIO = {
   USD: 0,
   EUR: 0,

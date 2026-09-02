@@ -1456,6 +1456,72 @@ if (orden === "precioMayor") {
   return resultado;
 }, [productos, provincia, categoria, subcategoria, busqueda, orden, moneda]);
 
+  const productosFeed = useMemo(() => {
+  if (provincia === "Todas") {
+    return productosFiltrados;
+  }
+
+  const locales = productosFiltrados;
+
+  const nacionales = productos.filter(p => {
+    const esOtraProvincia =
+      p.provincia?.trim().toLowerCase() !== provincia.trim().toLowerCase();
+
+    const okCategoria =
+      categoria === "Todas" ||
+      p.categoria?.trim() === categoria.trim();
+
+    const okSubcategoria =
+      subcategoria === "" ||
+      p.subcategoria?.trim() === subcategoria.trim();
+
+    const okBusqueda =
+      busqueda.trim() === "" ||
+      p.nombre?.toLowerCase().includes(busqueda.toLowerCase());
+
+    const okMoneda =
+      moneda === "Todas" ||
+      p.moneda?.trim().toUpperCase() === moneda;
+
+    return (
+      esOtraProvincia &&
+      okCategoria &&
+      okSubcategoria &&
+      okBusqueda &&
+      okMoneda
+    );
+  });
+
+  const resultado = [];
+
+  let iLocal = 0;
+  let iNacional = 0;
+
+  while (
+    iLocal < locales.length ||
+    iNacional < nacionales.length
+  ) {
+    for (let i = 0; i < 4 && iLocal < locales.length; i++) {
+      resultado.push(locales[iLocal]);
+      iLocal++;
+    }
+
+    if (iNacional < nacionales.length) {
+      resultado.push(nacionales[iNacional]);
+      iNacional++;
+    }
+  }
+
+  return resultado;
+}, [
+  productos,
+  productosFiltrados,
+  provincia,
+  categoria,
+  subcategoria,
+  busqueda,
+  moneda
+]);
   useEffect(() => {
   if (!productosFiltrados.length) return;
 

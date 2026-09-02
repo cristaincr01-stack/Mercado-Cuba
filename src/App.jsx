@@ -3406,8 +3406,8 @@ onChange={(e) => setPinSesion(e.target.value)}
 
       // Actualizar los datos del producto
       const respuesta = await fetch(
-        `${API_URL}?accion=editarProducto&fila=${productoEditando._fila}&nombre=${encodeURIComponent(nombreProducto)}&categoria=${encodeURIComponent(categoriaProducto)}&provincia=${encodeURIComponent(provinciaProducto)}&moneda=${encodeURIComponent(monedaProducto)}&precio=${encodeURIComponent(precioProducto)}`
-      );
+  `${API_URL}?accion=editarProducto&fila=${productoEditando._fila}&nombre=${encodeURIComponent(nombreProducto)}&categoria=${encodeURIComponent(categoriaProducto)}&subcategoria=${encodeURIComponent(subcategoriaProducto)}&provincia=${encodeURIComponent(provinciaProducto)}&moneda=${encodeURIComponent(monedaProducto)}&precio=${encodeURIComponent(precioProducto)}`
+);
 
       const resultado = await respuesta.json();
 

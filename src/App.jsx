@@ -656,6 +656,7 @@ const [productosMeGusta, setProductosMeGusta] = useState([]);
   const [avisoGuardado, setAvisoGuardado] = useState(false);
   const [cargandoMisProductos, setCargandoMisProductos] = useState(false);
   const [categoria, setCategoria] = useState("Todas");
+  const [subcategoria, setSubcategoria] = useState("");
   const [busqueda, setBusqueda] = useState("");
   const [seleccionado, setSeleccionado] = useState(null);
   useEffect(() => {
@@ -2176,13 +2177,39 @@ localStorage.setItem(
               className="w-full outline-none text-sm bg-transparent text-[#F2F4F5] placeholder:text-[#69757B]"
             />
           </div>
-          <select
-            value={categoria}
-            onChange={e => setCategoria(e.target.value)}
-            className="border border-[#2A3033] rounded-xl px-4 py-3 text-sm bg-[#151A1D] text-[#F2F4F5] outline-none"
-          >
-            {CATEGORIAS.map(c => <option key={c}>{c}</option>)}
-          </select>
+          <div className="flex-1">
+  <select
+    value={categoria}
+    onChange={e => setCategoria(e.target.value)}
+    className="w-full border border-[#2A3033] rounded-xl px-4 py-3 text-sm bg-[#151A1D] text-[#F2F4F5] outline-none"
+  >
+    {CATEGORIAS.map(c => (
+      <option key={c} value={c}>
+        {c}
+      </option>
+    ))}
+  </select>
+</div>
+          {categoria !== "Todas" &&
+  ESTRUCTURA_CATEGORIAS[categoria]?.subcategorias && (
+    <div className="flex-1">
+     <select
+  value={subcategoria}
+  onChange={e => setSubcategoria(e.target.value)}
+  className="w-full border border-[#2A3033] rounded-xl px-4 py-3 text-sm bg-[#151A1D] text-[#F2F4F5] outline-none"
+>
+        <option value="">Todas las subcategorías</option>
+
+        {ESTRUCTURA_CATEGORIAS[categoria].subcategorias.map(
+          subcategoria => (
+            <option key={subcategoria} value={subcategoria}>
+              {subcategoria}
+            </option>
+          )
+        )}
+      </select>
+    </div>
+  )}
           <button
   onClick={() => setFiltrosAbiertos(!filtrosAbiertos)}
   className="bg-[#1B6B63] hover:bg-[#237D73] text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2"
@@ -2195,6 +2222,7 @@ localStorage.setItem(
   onClick={() => {
     setBusqueda("");
     setCategoria("Todas");
+    setSubcategoria("");
     setProvincia("Todas");
   }}
   className="bg-[#202629] hover:bg-[#2A3033] border border-[#3A474B] text-[#F2F4F5] px-6 py-3 rounded-xl font-semibold transition"

@@ -3709,8 +3709,9 @@ function Tendencias({ onCerrar }) {
     fetch(API_URL + "?accion=tendencias")
       .then(res => res.json())
       .then(data => {
-        setDatos(Array.isArray(data) ? data : []);
-      })
+  console.log("DATOS TENDENCIAS:", data);
+  setDatos(Array.isArray(data) ? data : []);
+})
       .catch(error => {
         console.error("Error cargando tendencias:", error);
         setDatos([]);

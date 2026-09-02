@@ -246,6 +246,7 @@ function mapearProducto(fila, index) {
     _fila: fila?._fila || "",
     nombre: fila?.["Nombre del producto"] || "",
     categoria: fila?.["Categoría"] || "",
+    subcategoria: fila?.["Subcategoría"] || "",
     provincia: fila?.["Provincia"] || "",
     precio: fila?.["Precio"] || "",
     moneda: fila?.["Moneda"] || "",
@@ -1325,6 +1326,7 @@ alert("3. Respuesta recibida: " + JSON.stringify(resultado));
 
       setNombreProducto("");
       setCategoriaProducto("");
+      setSubcategoriaProducto("");
       setProvinciaProducto("");
       setMonedaProducto("");
       setPrecioProducto("");

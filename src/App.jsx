@@ -1583,12 +1583,12 @@ if (orden === "precioMayor") {
     )}
   </button>
 </div>
-            <div className="max-w-6xl mx-auto px-5 pb-4">
+            <div className="px-5 pb-4">
   <button
     onClick={() => setSelectorProvinciaAbierto(true)}
     className="flex items-center gap-2 text-sm font-semibold text-[#F2F4F5] hover:text-white transition"
   >
-    <MapPin className="w-4 h-4 text-[#7EE2C0]" />
+    <MapPin className="w-4 h-4 text-red-500" />
     <span>
       {provincia === "Todas" ? "Toda Cuba" : provincia}
     </span>

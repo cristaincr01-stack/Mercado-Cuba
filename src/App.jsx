@@ -3420,6 +3420,7 @@ onChange={(e) => setPinSesion(e.target.value)}
                   ...p,
                   "Nombre del producto": nombreProducto,
                   "Categoría": categoriaProducto,
+                "Subcategoría": subcategoriaProducto,
                   "Provincia": provinciaProducto,
                   "Moneda": monedaProducto,
                   "Precio": precioProducto
@@ -3435,6 +3436,7 @@ onChange={(e) => setPinSesion(e.target.value)}
                   ...p,
                   nombre: nombreProducto,
                   categoria: categoriaProducto,
+                subcategoria: subcategoriaProducto,
                   provincia: provinciaProducto,
                   moneda: monedaProducto,
                   precio: precioProducto

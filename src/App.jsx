@@ -1419,12 +1419,15 @@ TASAS_CAMBIO.EUR = data.EUR;
     const okBusqueda =
       busqueda.trim() === "" ||
       p.nombre?.toLowerCase().includes(busqueda.toLowerCase());
+    const okSubcategoria =
+  subcategoria === "" ||
+  p.subcategoria?.trim() === subcategoria.trim();
 
     const okMoneda =
       moneda === "Todas" ||
       p.moneda?.trim().toUpperCase() === moneda;
 
-    return okProvincia && okCategoria && okBusqueda && okMoneda;
+    return okProvincia && okCategoria && okSubcategoria && okBusqueda && okMoneda;
   });
 
   if (orden === "precioMenor") {
@@ -1440,7 +1443,7 @@ if (orden === "precioMayor") {
 }
 
   return resultado;
-}, [productos, provincia, categoria, busqueda, orden, moneda]);
+}, [productos, provincia, categoria, subcategoria, busqueda, orden, moneda]);
 
   useEffect(() => {
   if (!productosFiltrados.length) return;

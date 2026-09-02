@@ -3709,9 +3709,8 @@ function Tendencias({ onCerrar }) {
     fetch(API_URL + "?accion=tendencias")
       .then(res => res.json())
       .then(data => {
-  console.log("DATOS TENDENCIAS:", data);
-  setDatos(Array.isArray(data) ? data : []);
-})
+        setDatos(Array.isArray(data) ? data : []);
+      })
       .catch(error => {
         console.error("Error cargando tendencias:", error);
         setDatos([]);
@@ -3731,7 +3730,7 @@ function Tendencias({ onCerrar }) {
           <button
             onClick={onCerrar}
             className="text-[#9AA6AD] text-sm"
-          >
+            >
             ← Volver
           </button>
 
@@ -3747,43 +3746,111 @@ function Tendencias({ onCerrar }) {
           <div className="text-center py-16 text-[#9AA6AD]">
             Cargando tendencias...
           </div>
+
         ) : datos.length === 0 ? (
           <div className="text-center py-16 text-[#9AA6AD]">
-            Todavía no hay datos suficientes para mostrar tendencias.
+            Todavía no hay productos con suficiente actividad.
           </div>
+
         ) : (
-          <div className="space-y-3">
-            <pre className="text-xs text-white whitespace-pre-wrap break-all mb-4">
-  {JSON.stringify(datos, null, 2)}
-</pre>
-            {datos.map((item, index) => (
-              <div
-                key={index}
-                className="bg-[#151B1E] border border-[#2A3033] rounded-2xl p-4"
-              >
-                <div className="flex items-center gap-3">
+          <div className="space-y-4">
 
-                  <div className="w-9 h-9 rounded-full bg-[#fff3d9] flex items-center justify-center text-[#C4472B] font-bold">
-                    {index + 1}
-                  </div>
+            {datos.map((item, index) => {
 
-                  <div>
-                    <p className="font-semibold text-[#F2F4F5]">
-                      {item.termino || item.Termino || item.nombre || item.Nombre || "Tendencia"}
-                    </p>
+              const foto = String(
+                item["Foto del Producto"] || ""
+              )
+                .split("||")
+                .map(url => url.trim())
+                .filter(Boolean)[0] || "";
+            return (
+                <div
+                  key={item._fila || index}
+                  className="bg-[#151B1E] border border-[#2A3033] rounded-2xl overflow-hidden"
+                >
 
-                    <p className="text-xs text-[#9AA6AD]">
-                      {item.puntuacion ??
-                        item.Puntuacion ??
-                        item.busquedas ??
-                        item.Busquedas ??
-                        0} puntos
-                    </p>
+                  <div className="flex gap-4 p-3">
+
+                    {foto ? (
+                      <img
+                        src={foto.replace(
+                          "uc?export=view&id=",
+                          "thumbnail?sz=w300&id="
+                        )}
+                        onError={(e) => {
+                          e.currentTarget.src = foto;
+                        }}
+                        alt={item["Nombre del producto"] || "Producto"}
+                        className="w-24 h-24 rounded-xl object-cover bg-[#0B0F11]"
+                      />
+                    ) : (
+                      <div className="w-24 h-24 rounded-xl bg-[#0B0F11] flex items-center justify-center text-[#69757B] text-xs">
+                        Sin foto
+                      </div>
+                    )}
+
+                    <div className="flex-1 min-w-0">
+
+                      <div className="flex items-start justify-between gap-2">
+
+                        <div className="flex-1 min-w-0">
+
+                          <p className="text-xs text-[#C4472B] font-bold mb-1">
+                            #{index + 1} EN TENDENCIA
+                          </p>
+
+                          <h2 className="font-bold text-[#F2F4F5] truncate">
+                            {item["Nombre del producto"] || "Producto"}
+                          </h2>
+
+                          <p className="text-xs text-[#9AA6AD] mt-1">
+                            {item["Provincia"] || ""}
+                          </p>
+
+                        </div>
+
+                        <div className="text-right shrink-0">
+
+                          <p className="text-lg font-bold text-[#7EE2C0]">
+                            {Number(item.puntuacion || 0).toFixed(1)}
+                          </p>
+
+                          <p className="text-[10px] text-[#69757B]">
+                            puntos
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                      <div className="flex flex-wrap gap-2 mt-3">
+
+                        <span className="text-[10px] bg-[#202629] text-[#9AA6AD] px-2 py-1 rounded-lg">
+                          👁 {item.visualizaciones || 0}
+                        </span>
+
+                        <span className="text-[10px] bg-[#202629] text-[#9AA6AD] px-2 py-1 rounded-lg">
+                          ♥ {item.meGusta || 0}
+                        </span>
+
+                        <span className="text-[10px] bg-[#202629] text-[#9AA6AD] px-2 py-1 rounded-lg">
+                          Guardados {item.guardados || 0}
+                        </span>
+
+                        <span className="text-[10px] bg-[#202629] text-[#9AA6AD] px-2 py-1 rounded-lg">
+                          WhatsApp {item.whatsapp || 0}
+                          </span>
+
+                      </div>
+
+                    </div>
+
                   </div>
 
                 </div>
-              </div>
-            ))}
+              );
+            })}
+
           </div>
         )}
 
@@ -3791,7 +3858,6 @@ function Tendencias({ onCerrar }) {
     </div>
   );
 }
-
 export default function App() {
   const esAdmin = window.location.hash === "#admin";
   return esAdmin ? <PanelAdmin /> : <Tienda />;

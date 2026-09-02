@@ -3574,6 +3574,7 @@ onChange={(e) => setPinSesion(e.target.value)}
     {tendenciasAbierto && (
   <Tendencias
     onCerrar={() => setTendenciasAbierto(false)}
+    onSeleccionarProducto={setSeleccionado}
   />
 )}
 
@@ -3701,7 +3702,7 @@ onChange={(e) => setPinSesion(e.target.value)}
     </div>
   );
 }
-function Tendencias({ onCerrar }) {
+function Tendencias({ onCerrar, onSeleccionarProducto }) {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
 
@@ -3764,10 +3765,11 @@ function Tendencias({ onCerrar }) {
                 .map(url => url.trim())
                 .filter(Boolean)[0] || "";
             return (
-                <div
-                  key={item._fila || index}
-                  className="bg-[#151B1E] border border-[#2A3033] rounded-2xl overflow-hidden"
-                >
+               <div
+  key={item._fila || index}
+  onClick={() => onSeleccionarProducto(item)}
+  className="bg-[#151B1E] border border-[#2A3033] rounded-2xl overflow-hidden cursor-pointer active:scale-[0.98] transition-transform"
+>
 
                   <div className="flex gap-4 p-3">
 
@@ -3805,18 +3807,6 @@ function Tendencias({ onCerrar }) {
 
                           <p className="text-xs text-[#9AA6AD] mt-1">
                             {item["Provincia"] || ""}
-                          </p>
-
-                        </div>
-
-                        <div className="text-right shrink-0">
-
-                          <p className="text-lg font-bold text-[#7EE2C0]">
-                            {Number(item.puntuacion || 0).toFixed(1)}
-                          </p>
-
-                          <p className="text-[10px] text-[#69757B]">
-                            puntos
                           </p>
 
                         </div>

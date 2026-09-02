@@ -3574,7 +3574,10 @@ onChange={(e) => setPinSesion(e.target.value)}
     {tendenciasAbierto && (
   <Tendencias
     onCerrar={() => setTendenciasAbierto(false)}
-    onSeleccionarProducto={setSeleccionado}
+    onSeleccionarProducto={(producto) => {
+      setTendenciasAbierto(false);
+      setSeleccionado(mapearProducto(producto, producto._fila));
+    }}
   />
 )}
 

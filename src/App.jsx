@@ -700,6 +700,7 @@ const [mostrarPin, setMostrarPin] = useState(false);
 
   const [nombreProducto, setNombreProducto] = useState("");
 const [categoriaProducto, setCategoriaProducto] = useState("");
+  const [subcategoriaProducto, setSubcategoriaProducto] = useState("");
 const [provinciaProducto, setProvinciaProducto] = useState("");
 const [monedaProducto, setMonedaProducto] = useState("");
 const [precioProducto, setPrecioProducto] = useState("");

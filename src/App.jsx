@@ -3596,6 +3596,28 @@ onChange={(e) => setPinSesion(e.target.value)}
     </option>
   ))}
 </select>
+              <select
+  value={subcategoriaProducto}
+  onChange={(e) => setSubcategoriaProducto(e.target.value)}
+  disabled={!categoriaProducto}
+  className={`w-full bg-[#0D1113] border border-[#303C40] rounded-xl px-3 py-3 outline-none focus:border-[#7EE2C0] focus:ring-1 focus:ring-[#7EE2C0]/30 transition-all appearance-none ${
+    subcategoriaProducto ? "text-[#F2F4F5]" : "text-[#718087]"
+  }`}
+>
+  <option value="">Subcategoría</option>
+
+  {ESTRUCTURA_CATEGORIAS[categoriaProducto]?.subcategorias?.map(
+    subcategoria => (
+      <option
+        key={subcategoria}
+        value={subcategoria}
+        className="bg-[#0D1113] text-[#F2F4F5]"
+      >
+        {subcategoria}
+      </option>
+    )
+  )}
+</select>
 
 <select
   value={provinciaProducto}

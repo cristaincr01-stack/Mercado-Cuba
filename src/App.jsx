@@ -1283,6 +1283,7 @@ registrarInteraccion({
     const datos = {
       nombreProducto: nombreProducto,
       categoria: categoriaProducto,
+      subcategoria: subcategoriaProducto,
       provincia: provinciaProducto,
       moneda: monedaProducto,
       precio: precioProducto,

@@ -3306,6 +3306,22 @@ onChange={(e) => setPinSesion(e.target.value)}
           </option>
         ))}
       </select>
+      <select
+  value={subcategoriaProducto}
+  onChange={(e) => setSubcategoriaProducto(e.target.value)}
+  disabled={!categoriaProducto}
+  className="w-full bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3 mb-3 outline-none focus:border-[#7EE2C0] text-[#F2F4F5]"
+>
+  <option value="">Subcategoría</option>
+
+  {ESTRUCTURA_CATEGORIAS[categoriaProducto]?.subcategorias?.map(
+    subcategoria => (
+      <option key={subcategoria} value={subcategoria}>
+        {subcategoria}
+      </option>
+    )
+  )}
+</select>
 
       <select
         value={provinciaProducto}

@@ -3571,6 +3571,11 @@ onChange={(e) => setPinSesion(e.target.value)}
     </div>
   </div>
 )}
+    {tendenciasAbierto && (
+  <Tendencias
+    onCerrar={() => setTendenciasAbierto(false)}
+  />
+)}
 
       {/* BARRA DE NAVEGACIÓN INFERIOR */}
 <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#0D1113]/95 backdrop-blur-xl border-t border-[#2A3033] shadow-[0_-8px_30px_rgba(0,0,0,0.35)]">
@@ -3693,6 +3698,92 @@ onChange={(e) => setPinSesion(e.target.value)}
 
 </nav>
 
+    </div>
+  );
+}
+function Tendencias({ onCerrar }) {
+  const [datos, setDatos] = useState([]);
+  const [cargando, setCargando] = useState(true);
+
+  useEffect(() => {
+    fetch(API_URL + "?accion=tendencias")
+      .then(res => res.json())
+      .then(data => {
+        setDatos(Array.isArray(data) ? data : []);
+      })
+      .catch(error => {
+        console.error("Error cargando tendencias:", error);
+        setDatos([]);
+      })
+      .finally(() => {
+        setCargando(false);
+      });
+  }, []);
+
+  return (
+    <div className="fixed inset-0 z-50 bg-[#0D1113] overflow-y-auto pb-24">
+
+      <div className="max-w-2xl mx-auto px-4 pt-5">
+
+        <div className="flex items-center justify-between mb-6">
+
+          <button
+            onClick={onCerrar}
+            className="text-[#9AA6AD] text-sm"
+          >
+            ← Volver
+          </button>
+
+          <h1 className="text-xl font-bold text-[#F2F4F5]">
+            🔥 Tendencias
+          </h1>
+
+          <div className="w-12" />
+
+        </div>
+
+        {cargando ? (
+          <div className="text-center py-16 text-[#9AA6AD]">
+            Cargando tendencias...
+          </div>
+        ) : datos.length === 0 ? (
+          <div className="text-center py-16 text-[#9AA6AD]">
+            Todavía no hay datos suficientes para mostrar tendencias.
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {datos.map((item, index) => (
+              <div
+                key={index}
+                className="bg-[#151B1E] border border-[#2A3033] rounded-2xl p-4"
+              >
+                <div className="flex items-center gap-3">
+
+                  <div className="w-9 h-9 rounded-full bg-[#fff3d9] flex items-center justify-center text-[#C4472B] font-bold">
+                    {index + 1}
+                  </div>
+
+                  <div>
+                    <p className="font-semibold text-[#F2F4F5]">
+                      {item.termino || item.Termino || item.nombre || item.Nombre || "Tendencia"}
+                    </p>
+
+                    <p className="text-xs text-[#9AA6AD]">
+                      {item.puntuacion ??
+                        item.Puntuacion ??
+                        item.busquedas ??
+                        item.Busquedas ??
+                        0} puntos
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+      </div>
     </div>
   );
 }

@@ -2276,7 +2276,30 @@ localStorage.setItem(
 
 </div>
 </div>
+<div className="max-w-6xl mx-auto px-5 mt-5">
 
+  <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+
+    {CATEGORIAS.map(c => (
+      <button
+        key={c}
+        onClick={() => {
+          setCategoria(c);
+          setSubcategoria("");
+        }}
+        className={`whitespace-nowrap px-4 py-2.5 rounded-full text-[13px] font-semibold border transition-all duration-200 active:scale-95 ${
+          categoria === c
+            ? "bg-[#1B6B63] text-[#F2F4F5] border-[#2A8178] shadow-[0_4px_14px_rgba(27,107,99,0.20)]"
+            : "bg-[#151A1D] text-[#9AA6AD] border-[#30383C] hover:border-[#4A555A] hover:text-[#F2F4F5]"
+        }`}
+      >
+        {c}
+      </button>
+    ))}
+
+  </div>
+
+</div>
 <div className="max-w-6xl mx-auto px-5 mt-6">
 
   <div className="flex items-center gap-2 mb-2 text-xs uppercase tracking-wide text-[#9AA6AD] font-semibold">

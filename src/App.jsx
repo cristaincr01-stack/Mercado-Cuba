@@ -1547,20 +1547,7 @@ if (orden === "precioMayor") {
   </span>
 </div>
             </div>
-          <button
- onClick={() => {
-  if (!usuarioActual) {
-    setAccesoPublicarAbierto(true);
-    return;
-  }
-
-  setPublicarAbierto(true);
-}}
-  className="flex items-center gap-1.5 bg-[#1B6B63] hover:bg-[#237D73] active:scale-95 transition-all text-white text-sm font-semibold px-4 py-2.5 rounded-full shadow-[0_5px_18px_rgba(27,107,99,0.28)]"
->
-  <Plus className="w-4 h-4" strokeWidth={2.5} />
-  Publicar
-</button>
+         
 
             <div className="flex items-center gap-2">
   <button
@@ -1588,6 +1575,18 @@ if (orden === "precioMayor") {
         <UserRound className="w-5 h-5" />
       </div>
     )}
+  </button>
+</div>
+            <div className="max-w-6xl mx-auto px-5 pb-4">
+  <button
+    onClick={() => setSelectorProvinciaAbierto(true)}
+    className="flex items-center gap-2 text-sm font-semibold text-[#F2F4F5] hover:text-white transition"
+  >
+    <MapPin className="w-4 h-4 text-[#7EE2C0]" />
+    <span>
+      {provincia === "Todas" ? "Toda Cuba" : provincia}
+    </span>
+    <ChevronDown className="w-4 h-4 text-[#9AA6AD]" />
   </button>
 </div>
 

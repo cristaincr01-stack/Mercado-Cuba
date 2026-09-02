@@ -2300,32 +2300,7 @@ localStorage.setItem(
   </div>
 
 </div>
-<div className="max-w-6xl mx-auto px-5 mt-6">
 
-  <div className="flex items-center gap-2 mb-2 text-xs uppercase tracking-wide text-[#9AA6AD] font-semibold">
-    <MapPin className="w-3.5 h-3.5" />
-    Provincia
-  </div>
-
-  <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-
-    {PROVINCIAS.map(p => (
-      <button
-        key={p}
-        onClick={() => setProvincia(p)}
-        className={`whitespace-nowrap px-4 py-2.5 rounded-full text-[13px] font-semibold border transition-all duration-200 active:scale-95 ${
-          provincia === p
-  ? "bg-[#1B6B63] text-[#F2F4F5] border-[#2A8178] shadow-[0_4px_14px_rgba(27,107,99,0.20)]"
-  : "bg-[#151A1D] text-[#9AA6AD] border-[#30383C] hover:border-[#4A555A] hover:text-[#F2F4F5]"
-        }`}
-      >
-        {p}
-      </button>
-    ))}
-
-  </div>
-
-</div>
 
 <main className="max-w-6xl mx-auto px-5 mt-6 pb-16">
         <div className="flex items-center justify-between mb-3">

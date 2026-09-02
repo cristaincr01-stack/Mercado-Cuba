@@ -1583,7 +1583,7 @@ if (orden === "precioMayor") {
     )}
   </button>
 </div>
-            <div className="px-5 pb-4">
+            <div className="px-2 pb-4">
   <button
     onClick={() => setSelectorProvinciaAbierto(true)}
     className="flex items-center gap-2 text-sm font-semibold text-[#F2F4F5] hover:text-white transition"

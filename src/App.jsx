@@ -2376,7 +2376,7 @@ localStorage.setItem(
 <main className="max-w-6xl mx-auto px-5 mt-6 pb-16">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-sm font-semibold text-[#9AA6AD] uppercase tracking-wide">
-            {productosFiltrados.length} anuncio{productosFiltrados.length !== 1 ? "s" : ""} encontrado{productosFiltrados.length !== 1 ? "s" : ""}
+            {productosFeed.length} anuncio{productosFeed.length !== 1 ? "s" : ""} encontrado{productosFeed.length !== 1 ? "s" : ""}
           </h2>
         </div>
 

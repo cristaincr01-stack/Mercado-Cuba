@@ -3453,8 +3453,7 @@ onChange={(e) => setPinSesion(e.target.value)}
 )}
       {buscarAbierto && (
   <div className="fixed inset-0 bg-black/70 flex items-start justify-center p-4 z-50">
-    <div className="bg-[#151A1D] border border-[#2A3033] rounded-3xl max-w-md w-full mt-6 shadow-2xl overflow-hidden">
-
+    <div className="bg-[#151A1D] border border-[#2A3033] rounded-3xl max-w-md w-full mt-6 shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto overscroll-contain">
       <div className="flex items-center justify-between p-4 border-b border-[#2A3033]">
       <h2 className="text-lg font-bold text-[#F2F4F5]">
           Buscar productos

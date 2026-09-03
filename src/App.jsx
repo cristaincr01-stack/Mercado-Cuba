@@ -2388,7 +2388,7 @@ localStorage.setItem(
 </div>
         ) : (
           <div className="max-w-2xl mx-auto space-y-5">
-            {productosFiltrados.map(p => (
+            {productosFeed.map(p => (
   <article
     key={p.id}
     id={`producto-${p.id}`}

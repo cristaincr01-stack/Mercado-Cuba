@@ -1661,6 +1661,18 @@ if (orden === "precioMayor") {
     <ChevronDown className="w-4 h-4 text-[#9AA6AD]" />
   </button>
 </div>
+            <div className="px-2 pb-4">
+  <div className="flex items-center gap-3 bg-[#0D1113] border border-[#2A3033] rounded-2xl px-4 py-3.5">
+    <Search className="w-5 h-5 text-[#7EE2C0] shrink-0" />
+
+    <input
+      value={busqueda}
+      onChange={e => setBusqueda(e.target.value)}
+      placeholder="¿Qué estás buscando?"
+      className="w-full outline-none text-sm bg-transparent text-[#F2F4F5] placeholder:text-[#69757B]"
+    />
+  </div>
+</div>
 
   {menuAbierto && (
     <div className="fixed inset-x-0 bottom-0 bg-[#151A1D] text-[#F2F4F5] rounded-t-3xl shadow-2xl p-5 z-50 max-h-[85vh] overflow-y-auto border-t border-[#2A3033]">

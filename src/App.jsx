@@ -2380,7 +2380,7 @@ localStorage.setItem(
           </h2>
         </div>
 
-        {productosFiltrados.length === 0 ? (
+        {productosFeed.length === 0 ? (
           <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-10 text-center text-[#9AA6AD] text-sm">
   No hay publicaciones con esos filtros todavía.
   <br />

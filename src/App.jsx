@@ -4220,25 +4220,11 @@ function Tendencias({ onCerrar, onSeleccionarProducto }) {
 
                       </div>
 
-                      <div className="flex flex-wrap gap-2 mt-3">
-
-                        <span className="text-[10px] bg-[#202629] text-[#9AA6AD] px-2 py-1 rounded-lg">
-                          👁 {item.visualizaciones || 0}
-                        </span>
-
-                        <span className="text-[10px] bg-[#202629] text-[#9AA6AD] px-2 py-1 rounded-lg">
-                          ♥ {item.meGusta || 0}
-                        </span>
-
-                        <span className="text-[10px] bg-[#202629] text-[#9AA6AD] px-2 py-1 rounded-lg">
-                          Guardados {item.guardados || 0}
-                        </span>
-
-                        <span className="text-[10px] bg-[#202629] text-[#9AA6AD] px-2 py-1 rounded-lg">
-                          WhatsApp {item.whatsapp || 0}
-                          </span>
-
-                      </div>
+                    <div className="mt-3">
+  <span className="text-[10px] bg-[#202629] text-[#9AA6AD] px-2 py-1 rounded-lg">
+    🔥 En tendencia
+  </span>
+</div>
 
                     </div>
 

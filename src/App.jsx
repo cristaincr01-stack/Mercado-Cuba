@@ -1680,7 +1680,8 @@ if (orden === "precioMayor") {
     aria-label="Abrir búsqueda avanzada"
   >
     <SlidersHorizontal className="w-5 h-5" />
-  </button>
+    </button>
+</div>
 </div>
 
   {menuAbierto && (

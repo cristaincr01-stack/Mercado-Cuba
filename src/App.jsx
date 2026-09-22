@@ -4523,52 +4523,8 @@ onChange={(e) => setPinSesion(e.target.value)}
 </div>
 
         
-        {/* BUSCADOR DE TIENDAS */}
-
-<div className="mt-6">
-
-  <div className="flex items-center gap-3 bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl px-4 py-3 backdrop-blur-xl">
-
-    <Search className="w-5 h-5 text-[#69757B] shrink-0" />
-
-    <input
-      type="text"
-      placeholder="Buscar tiendas o vendedores"
-      className="w-full bg-transparent outline-none text-sm text-[#F2F4F5] placeholder:text-[#69757B]"
-    />
-
-  </div>
-
-</div>
-        {/* FILTROS DE TIENDAS */}
-
-<div className="mt-4 flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
-
-  <button
-    className="shrink-0 px-4 py-2 rounded-full bg-[#1B6B63] text-[#F2F4F5] text-xs font-semibold border border-[#2A8178]"
-  >
-    Todas
-  </button>
-
-  <button
-    className="shrink-0 px-4 py-2 rounded-full bg-[#151A1D] text-[#9AA6AD] text-xs font-semibold border border-[#2A3033]"
-  >
-    Tiendas
-  </button>
-
-  <button
-    className="shrink-0 px-4 py-2 rounded-full bg-[#151A1D] text-[#9AA6AD] text-xs font-semibold border border-[#2A3033]"
-  >
-    Vendedores
-  </button>
-
-  <button
-    className="shrink-0 px-4 py-2 rounded-full bg-[#151A1D] text-[#9AA6AD] text-xs font-semibold border border-[#2A3033]"
-  >
-    Verificados
-  </button>
-
-</div>
+       {/* ESPACIO */}
+<div className="mt-4" />
         {/* TIENDAS DESTACADAS */}
 
 <div className="mt-7">

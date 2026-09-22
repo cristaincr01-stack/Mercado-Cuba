@@ -4144,8 +4144,7 @@ onChange={(e) => setPinSesion(e.target.value)}
 
             </div>
             {/* ESTADÍSTICAS DE LA TIENDA */}
-
-<div className="grid grid-cols-3 gap-2 mt-6">
+<div className="grid grid-cols-3 gap-2 mt-5">
 
   <div className="bg-[#151A1D]/80 border border-[#2A3033] rounded-2xl p-3 text-center">
     <p className="text-lg font-bold text-[#F2F4F5]">
@@ -4177,18 +4176,17 @@ onChange={(e) => setPinSesion(e.target.value)}
 </div>
 
 {/* ACCIONES */}
-
-<div className="flex gap-3 mt-4">
+<div className="flex gap-3 mt-5">
 
   <button
-    className="flex-1 flex items-center justify-center gap-2 bg-[#1B6B63] text-[#F2F4F5] rounded-xl py-3 text-sm font-bold active:scale-95 transition"
+    className="flex-1 flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#237A70] text-[#F2F4F5] rounded-2xl py-3.5 text-sm font-bold active:scale-[0.98] transition-all shadow-[0_8px_25px_rgba(27,107,99,0.20)]"
   >
     <MessageCircle className="w-4 h-4" />
     Contactar
   </button>
 
   <button
-    className="w-12 h-12 rounded-xl bg-[#151A1D] border border-[#2A3033] flex items-center justify-center active:scale-95 transition"
+    className="w-14 h-14 rounded-2xl bg-[#151A1D] border border-[#2A3033] flex items-center justify-center active:scale-[0.95] transition-all"
   >
     <Heart className="w-5 h-5 text-[#9AA6AD]" />
   </button>

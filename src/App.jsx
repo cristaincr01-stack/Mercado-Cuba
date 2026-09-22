@@ -4121,35 +4121,146 @@ onChange={(e) => setPinSesion(e.target.value)}
               </div>
 
             </div>
+            {/* ESTADÍSTICAS DE LA TIENDA */}
+
+<div className="grid grid-cols-3 gap-2 mt-6">
+
+  <div className="bg-[#151A1D]/80 border border-[#2A3033] rounded-2xl p-3 text-center">
+    <p className="text-lg font-bold text-[#F2F4F5]">
+      {tiendaSeleccionada.productos || 0}
+    </p>
+    <p className="text-[10px] text-[#69757B] mt-1">
+      Publicaciones
+    </p>
+  </div>
+
+  <div className="bg-[#151A1D]/80 border border-[#2A3033] rounded-2xl p-3 text-center">
+    <p className="text-lg font-bold text-[#F2F4F5]">
+      {tiendaSeleccionada.seguidores || 0}
+    </p>
+    <p className="text-[10px] text-[#69757B] mt-1">
+      Seguidores
+    </p>
+  </div>
+
+  <div className="bg-[#151A1D]/80 border border-[#2A3033] rounded-2xl p-3 text-center">
+    <p className="text-lg font-bold text-[#F2F4F5]">
+      {tiendaSeleccionada.ventas || 0}
+    </p>
+    <p className="text-[10px] text-[#69757B] mt-1">
+      Ventas
+    </p>
+  </div>
+
+</div>
+
+{/* ACCIONES */}
+
+<div className="flex gap-3 mt-4">
+
+  <button
+    className="flex-1 flex items-center justify-center gap-2 bg-[#1B6B63] text-[#F2F4F5] rounded-xl py-3 text-sm font-bold active:scale-95 transition"
+  >
+    <MessageCircle className="w-4 h-4" />
+    Contactar
+  </button>
+
+  <button
+    className="w-12 h-12 rounded-xl bg-[#151A1D] border border-[#2A3033] flex items-center justify-center active:scale-95 transition"
+  >
+    <Heart className="w-5 h-5 text-[#9AA6AD]" />
+  </button>
+
+</div>
 
 
-            {/* PRODUCTOS */}
-            <div className="mt-9">
+          {/* PRODUCTOS DE LA TIENDA */}
 
-              <div className="flex items-center justify-between mb-4">
+<div className="mt-8">
 
-                <h2 className="text-lg font-bold">
-                  Productos
-                </h2>
+  <div className="flex items-center justify-between mb-4">
 
-                <span className="text-xs text-[#69757B]">
-                  Próximamente
-                </span>
+    <div>
+      <h3 className="text-lg font-bold">
+        Productos
+      </h3>
 
-              </div>
+      <p className="text-xs text-[#69757B] mt-1">
+        Publicaciones de {tiendaSeleccionada.nombre}
+      </p>
+    </div>
 
+    <span className="text-xs text-[#7EE2C0] font-semibold">
+      Ver todos
+    </span>
 
-              <div className="bg-[#151A1D]/80 border border-[#2A3033] rounded-2xl p-8 text-center">
+  </div>
 
-                <Package className="w-9 h-9 mx-auto text-[#69757B]" />
+  <div className="grid grid-cols-2 gap-3">
 
-                <p className="text-sm text-[#9AA6AD] mt-3">
-                  Los productos de esta tienda aparecerán aquí.
-                </p>
+    {[
+      {
+        nombre: "Producto destacado",
+        precio: "Consultar",
+        provincia: tiendaSeleccionada.provincia
+      },
+      {
+        nombre: "Nueva publicación",
+        precio: "Consultar",
+        provincia: tiendaSeleccionada.provincia
+      },
+      {
+        nombre: "Oferta especial",
+        precio: "Consultar",
+        provincia: tiendaSeleccionada.provincia
+      },
+      {
+        nombre: "Más vendido",
+        precio: "Consultar",
+        provincia: tiendaSeleccionada.provincia
+      }
+    ].map((producto, indice) => (
 
-              </div>
+      <button
+        key={indice}
+        className="text-left bg-[#151A1D] border border-[#2A3033] rounded-2xl overflow-hidden active:scale-[0.98] transition"
+      >
 
-            </div>
+        <div className="aspect-square bg-gradient-to-br from-[#172522] via-[#111819] to-[#0B0F10] flex items-center justify-center">
+
+          <ShoppingBag className="w-10 h-10 text-[#1B6B63]" />
+
+        </div>
+
+        <div className="p-3">
+
+          <h4 className="text-sm font-semibold truncate">
+            {producto.nombre}
+          </h4>
+
+          <p className="text-xs text-[#7EE2C0] font-bold mt-1">
+            {producto.precio}
+          </p>
+
+          <div className="flex items-center gap-1 mt-2 text-[10px] text-[#69757B]">
+
+            <MapPin className="w-3 h-3" />
+
+            <span className="truncate">
+              {producto.provincia}
+            </span>
+
+          </div>
+
+        </div>
+
+      </button>
+
+    ))}
+
+  </div>
+
+</div>
 
           </div>
 
@@ -4283,107 +4394,270 @@ onChange={(e) => setPinSesion(e.target.value)}
 
           </div>
 
+               {/* PERFILES */}
 
-          {/* PERFILES */}
+<div className="mt-8">
 
-          <div className="mt-8">
+  <div className="flex items-center justify-between mb-5">
 
-            <div className="flex items-center justify-between mb-5">
+    <h3 className="text-lg font-bold">
+      Tiendas y vendedores
+    </h3>
 
-              <h3 className="text-lg font-bold">
-                Tiendas y vendedores
-              </h3>
+    <span className="text-xs text-[#69757B]">
+      Explorar
+    </span>
 
-              <span className="text-xs text-[#69757B]">
-                Explorar
-              </span>
+  </div>
 
-            </div>
+  {/* CÍRCULOS */}
 
+  <div className="flex gap-5 overflow-x-auto pb-3 -mx-1 px-1 scrollbar-hide">
 
-            {/* CÍRCULOS */}
+    {[
+      {
+        nombre: "Tu tienda",
+        tipo: "Tienda",
+        provincia: "Cuba",
+        verificado: true,
+        descripcion: "Tienda de MercadoCU"
+      },
+      {
+        nombre: "Vendedor",
+        tipo: "Vendedor",
+        provincia: "Cuba",
+        verificado: false,
+        descripcion: "Vendedor de MercadoCU"
+      },
+      {
+        nombre: "Tienda",
+        tipo: "Tienda",
+        provincia: "Cuba",
+        verificado: false,
+        descripcion: "Tienda de MercadoCU"
+      },
+      {
+        nombre: "Vendedor",
+        tipo: "Vendedor",
+        provincia: "Cuba",
+        verificado: false,
+        descripcion: "Vendedor de MercadoCU"
+      }
+    ].map((tienda, indice) => (
 
-            <div className="grid grid-cols-4 gap-5">
+      <button
+        key={indice}
+        onClick={() => setTiendaSeleccionada(tienda)}
+        className="shrink-0 flex flex-col items-center w-[82px] active:scale-95 transition-transform"
+      >
 
-              {[
-                {
-                  nombre: "Tu tienda",
-                  tipo: "Tienda",
-                  provincia: "Cuba",
-                  verificado: true,
-                  descripcion: "Tienda de MercadoCU"
-                },
-                {
-                  nombre: "Vendedor",
-                  tipo: "Vendedor",
-                  provincia: "Cuba",
-                  verificado: false,
-                  descripcion: "Vendedor de MercadoCU"
-                },
-                {
-                  nombre: "Tienda",
-                  tipo: "Tienda",
-                  provincia: "Cuba",
-                  verificado: false,
-                  descripcion: "Tienda de MercadoCU"
-                },
-                {
-                  nombre: "Vendedor",
-                  tipo: "Vendedor",
-                  provincia: "Cuba",
-                  verificado: false,
-                  descripcion: "Vendedor de MercadoCU"
-                }
-              ].map((tienda, indice) => (
+        <div className="relative">
 
-                <button
-                  key={indice}
-                  onClick={() => setTiendaSeleccionada(tienda)}
-                  className="flex flex-col items-center min-w-0"
-                >
+          <div className="w-[78px] h-[78px] rounded-full p-[3px] bg-gradient-to-br from-[#7EE2C0] via-[#1B6B63] to-[#263B38] shadow-[0_0_25px_rgba(27,107,99,0.28)]">
 
-                  <div className="relative">
+            <div className="w-full h-full rounded-full bg-[#151A1D] flex items-center justify-center">
 
-                    <div className="w-[68px] h-[68px] rounded-full bg-[#151A1D] border-2 border-[#2A3033] flex items-center justify-center shadow-lg">
+              <div className="w-[62px] h-[62px] rounded-full bg-[#1B6B63]/80 flex items-center justify-center">
 
-                      <div className="w-[58px] h-[58px] rounded-full bg-[#1B6B63] flex items-center justify-center">
+                <Store className="w-7 h-7 text-[#7EE2C0]" />
 
-                        <Store className="w-6 h-6 text-[#7EE2C0]" />
-
-                      </div>
-
-                    </div>
-
-
-                    {tienda.verificado && (
-                      <div className="absolute -right-1 bottom-0 w-5 h-5 rounded-full bg-[#0D1113] flex items-center justify-center">
-
-                        <BadgeCheck className="w-4 h-4 text-[#7EE2C0]" />
-
-                      </div>
-                    )}
-
-                  </div>
-
-
-                  <p className="text-xs font-semibold mt-2 truncate w-full text-center">
-                    {tienda.nombre}
-                  </p>
-
-                  <p className="text-[10px] text-[#69757B] mt-0.5">
-                    {tienda.tipo}
-                  </p>
-
-                </button>
-
-              ))}
+              </div>
 
             </div>
 
           </div>
 
+          {tienda.verificado && (
+            <div className="absolute right-0 bottom-0 w-6 h-6 rounded-full bg-[#0D1113] border border-[#2A3033] flex items-center justify-center">
 
-          {/* SEPARADOR */}
+              <BadgeCheck className="w-4 h-4 text-[#7EE2C0]" />
+
+            </div>
+          )}
+
+        </div>
+
+        <p className="text-xs font-semibold text-[#F2F4F5] mt-2 truncate w-full text-center">
+          {tienda.nombre}
+        </p>
+
+        <p className="text-[10px] text-[#69757B] mt-0.5">
+          {tienda.tipo}
+        </p>
+
+      </button>
+
+    ))}
+
+  </div>
+
+</div>
+        {/* BUSCADOR DE TIENDAS */}
+
+<div className="mt-6">
+
+  <div className="flex items-center gap-3 bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl px-4 py-3 backdrop-blur-xl">
+
+    <Search className="w-5 h-5 text-[#69757B] shrink-0" />
+
+    <input
+      type="text"
+      placeholder="Buscar tiendas o vendedores"
+      className="w-full bg-transparent outline-none text-sm text-[#F2F4F5] placeholder:text-[#69757B]"
+    />
+
+  </div>
+
+</div>
+        {/* FILTROS DE TIENDAS */}
+
+<div className="mt-4 flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+
+  <button
+    className="shrink-0 px-4 py-2 rounded-full bg-[#1B6B63] text-[#F2F4F5] text-xs font-semibold border border-[#2A8178]"
+  >
+    Todas
+  </button>
+
+  <button
+    className="shrink-0 px-4 py-2 rounded-full bg-[#151A1D] text-[#9AA6AD] text-xs font-semibold border border-[#2A3033]"
+  >
+    Tiendas
+  </button>
+
+  <button
+    className="shrink-0 px-4 py-2 rounded-full bg-[#151A1D] text-[#9AA6AD] text-xs font-semibold border border-[#2A3033]"
+  >
+    Vendedores
+  </button>
+
+  <button
+    className="shrink-0 px-4 py-2 rounded-full bg-[#151A1D] text-[#9AA6AD] text-xs font-semibold border border-[#2A3033]"
+  >
+    Verificados
+  </button>
+
+</div>
+        {/* TIENDAS DESTACADAS */}
+
+<div className="mt-7">
+
+  <div className="flex items-center justify-between mb-4">
+
+    <div>
+      <h3 className="text-lg font-bold text-[#F2F4F5]">
+        Tiendas destacadas
+      </h3>
+
+      <p className="text-xs text-[#69757B] mt-1">
+        Descubre negocios dentro de MercadoCU
+      </p>
+    </div>
+
+    <span className="text-xs text-[#7EE2C0] font-semibold">
+      Ver todas
+    </span>
+
+  </div>
+
+  <div className="space-y-3">
+
+    {[
+      {
+        nombre: "Mercado Habana",
+        tipo: "Tienda",
+        provincia: "La Habana",
+        verificado: true,
+        productos: 24
+      },
+      {
+        nombre: "Tecnología Cuba",
+        tipo: "Tienda",
+        provincia: "Villa Clara",
+        verificado: true,
+        productos: 18
+      },
+      {
+        nombre: "Vendedor Carlos",
+        tipo: "Vendedor",
+        provincia: "Matanzas",
+        verificado: false,
+        productos: 9
+      }
+    ].map((tienda, indice) => (
+
+      <button
+        key={indice}
+        onClick={() => setTiendaSeleccionada(tienda)}
+        className="w-full text-left bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl p-4 hover:border-[#3A4A47] active:scale-[0.99] transition-all backdrop-blur-xl"
+      >
+
+        <div className="flex items-center gap-4">
+
+          <div className="relative shrink-0">
+
+            <div className="w-16 h-16 rounded-full p-[2px] bg-gradient-to-br from-[#7EE2C0] via-[#1B6B63] to-[#263B38]">
+
+              <div className="w-full h-full rounded-full bg-[#151A1D] flex items-center justify-center">
+
+                <Store className="w-7 h-7 text-[#7EE2C0]" />
+
+              </div>
+
+            </div>
+
+            {tienda.verificado && (
+              <div className="absolute -right-1 bottom-0 w-5 h-5 rounded-full bg-[#0D1113] flex items-center justify-center">
+
+                <BadgeCheck className="w-4 h-4 text-[#7EE2C0]" />
+
+              </div>
+            )}
+
+          </div>
+
+          <div className="flex-1 min-w-0">
+
+            <div className="flex items-center gap-2">
+
+              <h4 className="font-bold text-sm truncate">
+                {tienda.nombre}
+              </h4>
+
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#1B6B63]/20 text-[#7EE2C0] shrink-0">
+                {tienda.tipo}
+              </span>
+
+            </div>
+
+            <div className="flex items-center gap-1 mt-1 text-xs text-[#69757B]">
+
+              <MapPin className="w-3.5 h-3.5" />
+
+              <span>{tienda.provincia}</span>
+
+            </div>
+
+            <p className="text-xs text-[#9AA6AD] mt-2">
+              {tienda.productos} publicaciones
+            </p>
+
+          </div>
+
+          <ChevronRight className="w-5 h-5 text-[#69757B] shrink-0" />
+
+        </div>
+
+      </button>
+
+    ))}
+
+  </div>
+
+</div>
+
+
+{/* SEPARADOR */}
 
           <div className="h-px bg-[#2A3033] mt-9 mb-7" />
 

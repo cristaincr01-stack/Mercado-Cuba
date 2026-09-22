@@ -4144,13 +4144,7 @@ function Tendencias({ onCerrar, onSeleccionarProducto }) {
         <div className="flex items-center justify-between mb-6">
 
           <button
-  onClick={() => {
-    setTendenciasAbierto(false);
-
-    if (volverA === "mas") {
-      setMenuAbierto(true);
-    }
-  }}
+  onClick={onCerrar}
   className="text-[#9AA6AD] text-sm"
 >
   ← Volver

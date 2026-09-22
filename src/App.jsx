@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+0import React, { useState, useMemo, useEffect } from "react";
 import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck, Eye,
 EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, Smartphone, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill } from "lucide-react";
 window.onerror = function (mensaje, archivo, linea, columna, error) {
@@ -4004,50 +4004,147 @@ onChange={(e) => setPinSesion(e.target.value)}
 
     <div className="max-w-2xl mx-auto px-4 pt-5">
 
+      {/* ENCABEZADO */}
       <div className="flex items-center justify-between mb-6">
 
         <button
-          onClick={() => setTiendasAbierto(false)}
-          className="text-[#9AA6AD] text-sm"
+          onClick={() => {
+            setTiendasAbierto(false);
+
+            if (volverA === "mas") {
+              setMenuAbierto(true);
+            }
+          }}
+          className="w-10 h-10 rounded-xl bg-[#151A1D] border border-[#2A3033] flex items-center justify-center text-[#9AA6AD] hover:text-[#F2F4F5] transition"
         >
-          ← Volver
+          <ChevronLeft className="w-5 h-5" />
         </button>
 
         <h1 className="text-xl font-bold text-[#F2F4F5]">
-          🏪 Tiendas
+          Tiendas
         </h1>
 
-        <div className="w-12" />
+        <div className="w-10" />
 
       </div>
 
-      <div className="mb-6">
+
+      {/* TÍTULO */}
+      <div className="mb-5">
+
         <h2 className="text-2xl font-bold text-[#F2F4F5]">
           Descubre tiendas y vendedores
         </h2>
 
         <p className="text-sm text-[#9AA6AD] mt-1">
-          Encuentra vendedores y negocios que publican en MercadoCU.
+          Encuentra negocios y vendedores en MercadoCU.
         </p>
+
       </div>
 
+
+      {/* BUSCADOR */}
+      <div className="relative mb-5">
+
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#69757B]" />
+
+        <input
+          type="text"
+          placeholder="Buscar tienda o vendedor..."
+          className="w-full bg-[#151A1D] border border-[#2A3033] rounded-2xl pl-12 pr-4 py-4 text-sm text-[#F2F4F5] placeholder:text-[#69757B] outline-none focus:border-[#1B6B63] transition"
+        />
+
+      </div>
+
+
+      {/* UBICACIÓN */}
+      <div className="flex items-center justify-between mb-4">
+
+        <div className="flex items-center gap-2 text-sm text-[#F2F4F5]">
+
+          <MapPin className="w-4 h-4 text-[#7EE2C0]" />
+
+          <span>
+            Todas las provincias
+          </span>
+
+        </div>
+
+        <ChevronDown className="w-4 h-4 text-[#69757B]" />
+
+      </div>
+
+
+      {/* FILTROS */}
+      <div className="flex gap-2 overflow-x-auto pb-2 mb-6">
+
+        <button className="shrink-0 px-4 py-2.5 rounded-xl bg-[#1B6B63] border border-[#7EE2C0] text-[#F2F4F5] text-sm font-semibold">
+          Todos
+        </button>
+
+        <button className="shrink-0 px-4 py-2.5 rounded-xl bg-[#151A1D] border border-[#2A3033] text-[#9AA6AD] text-sm font-semibold">
+          Tiendas
+        </button>
+
+        <button className="shrink-0 px-4 py-2.5 rounded-xl bg-[#151A1D] border border-[#2A3033] text-[#9AA6AD] text-sm font-semibold">
+          Vendedores
+        </button>
+
+      </div>
+
+
+      {/* SECCIÓN */}
+      <div className="flex items-center justify-between mb-3">
+
+        <h3 className="text-sm font-bold uppercase tracking-wide text-[#9AA6AD]">
+          Tiendas y vendedores
+        </h3>
+
+        <span className="text-xs text-[#69757B]">
+          Próximamente
+        </span>
+
+      </div>
+
+
+      {/* TARJETA DE EJEMPLO */}
       <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4">
+
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-xl bg-[#e6efec] flex items-center justify-center">
-            <Store className="w-6 h-6 text-[#1B6B63]" />
+
+          <div className="w-12 h-12 rounded-full bg-[#1B6B63] flex items-center justify-center shrink-0">
+
+            <Store className="w-6 h-6 text-[#7EE2C0]" />
+
           </div>
 
-          <div>
-            <p className="font-semibold text-[#F2F4F5]">
-              Próximamente
-            </p>
+
+          <div className="flex-1 min-w-0">
+
+            <div className="flex items-center gap-2">
+
+              <p className="font-bold text-[#F2F4F5] truncate">
+                Tu tienda puede aparecer aquí
+              </p>
+
+            </div>
 
             <p className="text-xs text-[#9AA6AD] mt-1">
-              Estamos preparando el directorio de tiendas y vendedores.
+              Tiendas y vendedores de MercadoCU
             </p>
+
+            <p className="text-xs text-[#69757B] mt-2">
+              Publica tus productos y forma parte del directorio.
+            </p>
+
           </div>
+
+          <ChevronRight className="w-5 h-5 text-[#69757B] shrink-0" />
+
         </div>
+
       </div>
+
 
     </div>
   </div>

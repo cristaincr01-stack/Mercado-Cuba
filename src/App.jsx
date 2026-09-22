@@ -4456,20 +4456,68 @@ onChange={(e) => setPinSesion(e.target.value)}
   {/* CÍRCULOS */}
 <div className="flex gap-5 overflow-x-auto pb-3 -mx-1 px-1 scrollbar-hide">
 
-  {vendedoresDisponibles.map((tienda, indice) => (
+  {[
+    {
+      nombre: "Mercado Habana",
+      tipo: "Tienda",
+      provincia: "La Habana",
+      verificado: true,
+      productos: 24
+    },
+    {
+      nombre: "Tecnología Cuba",
+      tipo: "Tienda",
+      provincia: "Villa Clara",
+      verificado: true,
+      productos: 18
+    },
+    {
+      nombre: "Vendedor Carlos",
+      tipo: "Vendedor",
+      provincia: "Matanzas",
+      verificado: false,
+      productos: 9
+    }
+  ].map((tienda, indice) => (
+
     <button
-      key={tienda.idVendedor || indice}
+      key={indice}
       onClick={() => setTiendaSeleccionada(tienda)}
-      className="shrink-0"
+      className="shrink-0 flex flex-col items-center w-[82px] active:scale-95 transition-transform"
     >
-      <div className="w-[78px] h-[78px] rounded-full bg-[#1B6B63] flex items-center justify-center">
-        <Store className="w-7 h-7 text-[#7EE2C0]" />
+
+      <div className="relative">
+
+        <div className="w-[78px] h-[78px] rounded-full p-[3px] bg-gradient-to-br from-[#7EE2C0] via-[#1B6B63] to-[#263B38] shadow-[0_0_25px_rgba(27,107,99,0.28)]">
+
+          <div className="w-full h-full rounded-full bg-[#151A1D] flex items-center justify-center">
+
+            <div className="w-[62px] h-[62px] rounded-full bg-[#1B6B63]/80 flex items-center justify-center">
+              <Store className="w-7 h-7 text-[#7EE2C0]" />
+            </div>
+
+          </div>
+
+        </div>
+
+        {tienda.verificado && (
+          <div className="absolute right-0 bottom-0 w-6 h-6 rounded-full bg-[#0D1113] border border-[#2A3033] flex items-center justify-center">
+            <BadgeCheck className="w-4 h-4 text-[#7EE2C0]" />
+          </div>
+        )}
+
       </div>
 
-      <p className="text-xs mt-2 text-center">
+      <p className="text-xs font-semibold text-[#F2F4F5] mt-2 truncate w-full text-center">
         {tienda.nombre}
       </p>
+
+      <p className="text-[10px] text-[#69757B] mt-0.5">
+        {tienda.tipo}
+      </p>
+
     </button>
+
   ))}
 
 </div>

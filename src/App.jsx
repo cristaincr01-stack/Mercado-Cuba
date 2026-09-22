@@ -681,6 +681,7 @@ const [productosMeGusta, setProductosMeGusta] = useState([]);
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [tendenciasAbierto, setTendenciasAbierto] = useState(false);
   const [tiendasAbierto, setTiendasAbierto] = useState(false);
+  const [tiendaSeleccionada, setTiendaSeleccionada] = useState(null);
   const [accesoPublicarAbierto, setAccesoPublicarAbierto] = useState(false);
   const [crearCuentaAbierto, setCrearCuentaAbierto] = useState(false);
   const [volverA, setVolverA] = useState("inicio");
@@ -3999,63 +4000,7 @@ onChange={(e) => setPinSesion(e.target.value)}
 }}
   />
 )}
-    {tiendasAbierto && (
-  <div className="fixed inset-0 z-50 bg-[#0D1113] overflow-y-auto pb-24">
-
-    <div className="max-w-2xl mx-auto px-4 pt-5">
-
-      {/* ENCABEZADO */}
-      <div className="flex items-center justify-between mb-6">
-
-        <button
-          onClick={() => {
-            setTiendasAbierto(false);
-
-            if (volverA === "mas") {
-              setMenuAbierto(true);
-            }
-          }}
-          className="w-10 h-10 rounded-xl bg-[#151A1D] border border-[#2A3033] flex items-center justify-center text-[#9AA6AD] hover:text-[#F2F4F5] transition"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
-
-        <h1 className="text-xl font-bold text-[#F2F4F5]">
-          Tiendas
-        </h1>
-
-        <div className="w-10" />
-
-      </div>
-
-
-      {/* TÍTULO */}
-      <div className="mb-5">
-
-        <h2 className="text-2xl font-bold text-[#F2F4F5]">
-          Descubre tiendas y vendedores
-        </h2>
-
-        <p className="text-sm text-[#9AA6AD] mt-1">
-          Encuentra negocios y vendedores en MercadoCU.
-        </p>
-
-      </div>
-
-
-      {/* BUSCADOR */}
-      <div className="relative mb-5">
-
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#69757B]" />
-
-        <input
-          type="text"
-          placeholder="Buscar tienda o vendedor..."
-          className="w-full bg-[#151A1D] border border-[#2A3033] rounded-2xl pl-12 pr-4 py-4 text-sm text-[#F2F4F5] placeholder:text-[#69757B] outline-none focus:border-[#1B6B63] transition"
-        />
-
-      </div>
-
+   
 
       {/* UBICACIÓN */}
       <div className="flex items-center justify-between mb-4">
@@ -4096,57 +4041,419 @@ onChange={(e) => setPinSesion(e.target.value)}
       {/* SECCIÓN */}
       <div className="flex items-center justify-between mb-3">
 
-        <h3 className="text-sm font-bold uppercase tracking-wide text-[#9AA6AD]">
-          Tiendas y vendedores
-        </h3>
+{tiendasAbierto && (
+  <div className="fixed inset-0 z-50 overflow-y-auto bg-[#0D1113] text-[#F2F4F5]">
 
-        <span className="text-xs text-[#69757B]">
-          Próximamente
-        </span>
+    {/* FONDO DEGRADADO */}
+    <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_-10%,rgba(27,107,99,0.40),transparent_42%),radial-gradient(circle_at_0%_35%,rgba(126,226,192,0.10),transparent_28%),radial-gradient(circle_at_100%_65%,rgba(27,107,99,0.12),transparent_30%),linear-gradient(180deg,#111A1B_0%,#0D1113_48%,#090C0D_100%)]" />
 
-      </div>
+    <div className="relative min-h-screen pb-24">
 
+      {/* ========================= */}
+      {/* VISTA INDIVIDUAL DE TIENDA */}
+      {/* ========================= */}
 
-      {/* TARJETA DE EJEMPLO */}
-      <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4">
+      {tiendaSeleccionada ? (
 
-        <div className="flex items-center gap-3">
+        <div className="min-h-screen">
 
-          <div className="w-12 h-12 rounded-full bg-[#1B6B63] flex items-center justify-center shrink-0">
+          {/* CABECERA */}
+          <div className="sticky top-0 z-20 bg-[#0D1113]/85 backdrop-blur-xl border-b border-[#2A3033]">
 
-            <Store className="w-6 h-6 text-[#7EE2C0]" />
+            <div className="max-w-2xl mx-auto px-4 py-3 flex items-center">
+
+              <button
+                onClick={() => setTiendaSeleccionada(null)}
+                className="w-10 h-10 rounded-full bg-[#151A1D] border border-[#2A3033] flex items-center justify-center"
+              >
+                <ChevronLeft className="w-5 h-5 text-[#F2F4F5]" />
+              </button>
+
+              <div className="flex-1 text-center">
+
+                <p className="font-bold text-sm">
+                  {tiendaSeleccionada.nombre}
+                </p>
+
+              </div>
+
+              <div className="w-10" />
+
+            </div>
 
           </div>
 
 
-          <div className="flex-1 min-w-0">
+          {/* PERFIL */}
+          <div className="max-w-2xl mx-auto px-5 pt-8">
 
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col items-center text-center">
 
-              <p className="font-bold text-[#F2F4F5] truncate">
-                Tu tienda puede aparecer aquí
+              <div className="w-28 h-28 rounded-full bg-[#1B6B63] border-4 border-[#7EE2C0]/30 flex items-center justify-center shadow-[0_0_45px_rgba(27,107,99,0.35)]">
+
+                <Store className="w-12 h-12 text-[#7EE2C0]" />
+
+              </div>
+
+
+              <div className="flex items-center gap-2 mt-4">
+
+                <h1 className="text-2xl font-bold">
+                  {tiendaSeleccionada.nombre}
+                </h1>
+
+                {tiendaSeleccionada.verificado && (
+                  <BadgeCheck className="w-5 h-5 text-[#7EE2C0]" />
+                )}
+
+              </div>
+
+
+              <p className="text-sm text-[#9AA6AD] mt-1">
+                {tiendaSeleccionada.tipo}
+              </p>
+
+
+              <div className="flex items-center gap-2 mt-3 text-xs text-[#9AA6AD]">
+
+                <MapPin className="w-4 h-4 text-[#7EE2C0]" />
+
+                <span>
+                  {tiendaSeleccionada.provincia}
+                </span>
+
+              </div>
+
+
+              <p className="text-sm text-[#9AA6AD] max-w-md mt-4 leading-relaxed">
+                {tiendaSeleccionada.descripcion}
               </p>
 
             </div>
 
-            <p className="text-xs text-[#9AA6AD] mt-1">
-              Tiendas y vendedores de MercadoCU
+
+            {/* INFORMACIÓN */}
+            <div className="grid grid-cols-2 gap-3 mt-7">
+
+              <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl p-4 text-center">
+
+                <p className="text-xl font-bold text-[#F2F4F5]">
+                  0
+                </p>
+
+                <p className="text-xs text-[#69757B] mt-1">
+                  Productos
+                </p>
+
+              </div>
+
+
+              <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl p-4 text-center">
+
+                <p className="text-xl font-bold text-[#F2F4F5]">
+                  MercadoCU
+                </p>
+
+                <p className="text-xs text-[#69757B] mt-1">
+                  Vendedor
+                </p>
+
+              </div>
+
+            </div>
+
+
+            {/* PRODUCTOS */}
+            <div className="mt-9">
+
+              <div className="flex items-center justify-between mb-4">
+
+                <h2 className="text-lg font-bold">
+                  Productos
+                </h2>
+
+                <span className="text-xs text-[#69757B]">
+                  Próximamente
+                </span>
+
+              </div>
+
+
+              <div className="bg-[#151A1D]/80 border border-[#2A3033] rounded-2xl p-8 text-center">
+
+                <Package className="w-9 h-9 mx-auto text-[#69757B]" />
+
+                <p className="text-sm text-[#9AA6AD] mt-3">
+                  Los productos de esta tienda aparecerán aquí.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      ) : (
+
+        /* ========================= */
+        /* DIRECTORIO DE TIENDAS */
+        /* ========================= */
+
+        <div className="max-w-2xl mx-auto px-4 pt-5">
+
+          {/* CABECERA */}
+
+          <div className="flex items-center justify-between">
+
+            <button
+              onClick={() => {
+                setTiendasAbierto(false);
+
+                if (volverA === "mas") {
+                  setMenuAbierto(true);
+                }
+              }}
+              className="w-10 h-10 rounded-full bg-[#151A1D]/90 border border-[#2A3033] flex items-center justify-center"
+            >
+              <ChevronLeft className="w-5 h-5 text-[#F2F4F5]" />
+            </button>
+
+
+            <h1 className="text-xl font-bold">
+              Tiendas
+            </h1>
+
+
+            <div className="w-10" />
+
+          </div>
+
+
+          {/* TITULO */}
+
+          <div className="mt-8">
+
+            <p className="text-xs uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold">
+              MercadoCU
             </p>
 
-            <p className="text-xs text-[#69757B] mt-2">
-              Publica tus productos y forma parte del directorio.
+            <h2 className="text-3xl font-bold mt-2 leading-tight">
+              Descubre tiendas
+            </h2>
+
+            <p className="text-sm text-[#9AA6AD] mt-2">
+              Encuentra tiendas y vendedores cerca de ti.
             </p>
 
           </div>
 
-          <ChevronRight className="w-5 h-5 text-[#69757B] shrink-0" />
+
+          {/* BUSCADOR */}
+
+          <div className="relative mt-6">
+
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#69757B]" />
+
+            <input
+              type="text"
+              placeholder="Buscar tienda o vendedor..."
+              className="w-full bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl pl-12 pr-4 py-4 text-sm text-[#F2F4F5] placeholder:text-[#69757B] outline-none focus:border-[#1B6B63] transition"
+            />
+
+          </div>
+
+
+          {/* UBICACIÓN */}
+
+          <button
+            className="w-full flex items-center justify-between mt-4 bg-[#151A1D]/70 border border-[#2A3033] rounded-2xl px-4 py-3"
+          >
+
+            <div className="flex items-center gap-3">
+
+              <div className="w-9 h-9 rounded-xl bg-[#1B6B63]/20 flex items-center justify-center">
+
+                <MapPin className="w-4 h-4 text-[#7EE2C0]" />
+
+              </div>
+
+              <div className="text-left">
+
+                <p className="text-[10px] uppercase tracking-wide text-[#69757B]">
+                  Ubicación
+                </p>
+
+                <p className="text-sm font-semibold mt-0.5">
+                  Todas las provincias
+                </p>
+
+              </div>
+
+            </div>
+
+            <ChevronDown className="w-4 h-4 text-[#69757B]" />
+
+          </button>
+
+
+          {/* FILTROS */}
+
+          <div className="flex gap-2 overflow-x-auto mt-5 pb-1">
+
+            <button className="shrink-0 px-5 py-2.5 rounded-full bg-[#1B6B63] border border-[#7EE2C0]/50 text-[#F2F4F5] text-sm font-semibold">
+              Todos
+            </button>
+
+            <button className="shrink-0 px-5 py-2.5 rounded-full bg-[#151A1D]/90 border border-[#2A3033] text-[#9AA6AD] text-sm font-semibold">
+              Tiendas
+            </button>
+
+            <button className="shrink-0 px-5 py-2.5 rounded-full bg-[#151A1D]/90 border border-[#2A3033] text-[#9AA6AD] text-sm font-semibold">
+              Vendedores
+            </button>
+
+          </div>
+
+
+          {/* PERFILES */}
+
+          <div className="mt-8">
+
+            <div className="flex items-center justify-between mb-5">
+
+              <h3 className="text-lg font-bold">
+                Tiendas y vendedores
+              </h3>
+
+              <span className="text-xs text-[#69757B]">
+                Explorar
+              </span>
+
+            </div>
+
+
+            {/* CÍRCULOS */}
+
+            <div className="grid grid-cols-4 gap-5">
+
+              {[
+                {
+                  nombre: "Tu tienda",
+                  tipo: "Tienda",
+                  provincia: "Cuba",
+                  verificado: true,
+                  descripcion: "Tienda de MercadoCU"
+                },
+                {
+                  nombre: "Vendedor",
+                  tipo: "Vendedor",
+                  provincia: "Cuba",
+                  verificado: false,
+                  descripcion: "Vendedor de MercadoCU"
+                },
+                {
+                  nombre: "Tienda",
+                  tipo: "Tienda",
+                  provincia: "Cuba",
+                  verificado: false,
+                  descripcion: "Tienda de MercadoCU"
+                },
+                {
+                  nombre: "Vendedor",
+                  tipo: "Vendedor",
+                  provincia: "Cuba",
+                  verificado: false,
+                  descripcion: "Vendedor de MercadoCU"
+                }
+              ].map((tienda, indice) => (
+
+                <button
+                  key={indice}
+                  onClick={() => setTiendaSeleccionada(tienda)}
+                  className="flex flex-col items-center min-w-0"
+                >
+
+                  <div className="relative">
+
+                    <div className="w-[68px] h-[68px] rounded-full bg-[#151A1D] border-2 border-[#2A3033] flex items-center justify-center shadow-lg">
+
+                      <div className="w-[58px] h-[58px] rounded-full bg-[#1B6B63] flex items-center justify-center">
+
+                        <Store className="w-6 h-6 text-[#7EE2C0]" />
+
+                      </div>
+
+                    </div>
+
+
+                    {tienda.verificado && (
+                      <div className="absolute -right-1 bottom-0 w-5 h-5 rounded-full bg-[#0D1113] flex items-center justify-center">
+
+                        <BadgeCheck className="w-4 h-4 text-[#7EE2C0]" />
+
+                      </div>
+                    )}
+
+                  </div>
+
+
+                  <p className="text-xs font-semibold mt-2 truncate w-full text-center">
+                    {tienda.nombre}
+                  </p>
+
+                  <p className="text-[10px] text-[#69757B] mt-0.5">
+                    {tienda.tipo}
+                  </p>
+
+                </button>
+
+              ))}
+
+            </div>
+
+          </div>
+
+
+          {/* SEPARADOR */}
+
+          <div className="h-px bg-[#2A3033] mt-9 mb-7" />
+
+
+          {/* BLOQUE INFORMATIVO */}
+
+          <div className="relative overflow-hidden bg-[#151A1D]/80 border border-[#2A3033] rounded-3xl p-5">
+
+            <div className="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-[#1B6B63]/20 blur-2xl" />
+
+            <div className="relative">
+
+              <div className="w-11 h-11 rounded-2xl bg-[#1B6B63]/20 flex items-center justify-center">
+
+                <Store className="w-5 h-5 text-[#7EE2C0]" />
+
+              </div>
+
+              <h3 className="font-bold text-base mt-4">
+                ¿Tienes un negocio?
+              </h3>
+
+              <p className="text-sm text-[#9AA6AD] mt-1 leading-relaxed">
+                Crea tu cuenta de tienda y muestra tus productos dentro de MercadoCU.
+              </p>
+
+            </div>
+
+          </div>
+
 
         </div>
 
-      </div>
-
+      )}
 
     </div>
+
   </div>
 )}
 

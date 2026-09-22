@@ -2285,8 +2285,14 @@ localStorage.setItem(
       : c === "Vehículos"
       ? Truck
       : c === "Farmacia"
-      ? Plus
-      : Tag;
+? Plus
+: c === "Electrónica"
+? Eye
+: c === "Servicios"
+? Settings
+: c === "Empleo"
+? UserRound
+: Tag;
 
   return (
     <button

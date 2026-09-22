@@ -1779,6 +1779,7 @@ if (orden === "precioMayor") {
 </div>
       <button
   onClick={() => {
+  setVolverA("mas");
   setMenuAbierto(false);
   setTendenciasAbierto(true);
 }}

@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck, Eye,
-EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, ChevronDown, } from "lucide-react";
+EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill } from "lucide-react";
 window.onerror = function (mensaje, archivo, linea, columna, error) {
   document.body.innerHTML = `
     <div style="
@@ -2274,22 +2274,38 @@ localStorage.setItem(
 
   <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
 
-    {CATEGORIAS.map(c => (
-      <button
-        key={c}
-        onClick={() => {
-          setCategoria(c);
-          setSubcategoria("");
-        }}
-        className={`whitespace-nowrap px-4 py-2.5 rounded-full text-[13px] font-semibold border transition-all duration-200 active:scale-95 ${
-          categoria === c
-            ? "bg-[#1B6B63] text-[#F2F4F5] border-[#2A8178] shadow-[0_4px_14px_rgba(27,107,99,0.20)]"
-            : "bg-[#151A1D] text-[#9AA6AD] border-[#30383C] hover:border-[#4A555A] hover:text-[#F2F4F5]"
-        }`}
-      >
-        {c}
-      </button>
-    ))}
+    {CATEGORIAS.map(c => {
+  const IconoCategoria =
+    c === "Todas"
+      ? Home
+      : c === "Productos"
+      ? Package
+      : c === "Inmuebles"
+      ? Home
+      : c === "Vehículos"
+      ? Truck
+      : c === "Farmacia"
+      ? Plus
+      : Tag;
+
+  return (
+    <button
+      key={c}
+      onClick={() => {
+        setCategoria(c);
+        setSubcategoria("");
+      }}
+      className={`whitespace-nowrap px-4 py-2.5 rounded-full text-[13px] font-semibold border transition-all duration-200 active:scale-95 flex items-center gap-2 ${
+        categoria === c
+          ? "bg-[#1B6B63] text-[#F2F4F5] border-[#2A8178] shadow-[0_4px_14px_rgba(27,107,99,0.20)]"
+          : "bg-[#151A1D] text-[#9AA6AD] border-[#30383C] hover:border-[#4A555A] hover:text-[#F2F4F5]"
+      }`}
+    >
+      <IconoCategoria className="w-4 h-4 shrink-0" />
+      {c}
+    </button>
+  );
+})}
 
   </div>
 

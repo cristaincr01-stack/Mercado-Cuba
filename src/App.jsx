@@ -2272,7 +2272,7 @@ localStorage.setItem(
           
 <div className="max-w-6xl mx-auto px-5 mt-5">
 
-  <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+  <div className="flex gap-2 overflow-x-auto pb-3 pt-1 scrollbar-hide">
 
     {CATEGORIAS.map(c => {
   const IconoCategoria =

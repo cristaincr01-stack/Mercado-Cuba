@@ -847,16 +847,17 @@ const [editandoProducto, setEditandoProducto] = useState(false);
 
   }
 };
-  const buscarMisProductos = async () => {
+  const buscarMisProductos = async (origen = "inicio") => {
   if (!usuarioActual) {
     setMisProductosAbierto(false);
-    setVolverA("inicio");
+    setVolverA(origen);
     setCrearCuentaAbierto(true);
     return;
   }
 
+  setVolverA(origen);
   setMisProductosAbierto(true);
-    setCargandoMisProductos(true);
+  setCargandoMisProductos(true);
 
   try {
     const respuesta = await fetch(

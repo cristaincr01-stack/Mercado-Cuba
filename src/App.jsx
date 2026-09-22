@@ -3999,6 +3999,59 @@ onChange={(e) => setPinSesion(e.target.value)}
 }}
   />
 )}
+    {tiendasAbierto && (
+  <div className="fixed inset-0 z-50 bg-[#0D1113] overflow-y-auto pb-24">
+
+    <div className="max-w-2xl mx-auto px-4 pt-5">
+
+      <div className="flex items-center justify-between mb-6">
+
+        <button
+          onClick={() => setTiendasAbierto(false)}
+          className="text-[#9AA6AD] text-sm"
+        >
+          ← Volver
+        </button>
+
+        <h1 className="text-xl font-bold text-[#F2F4F5]">
+          🏪 Tiendas
+        </h1>
+
+        <div className="w-12" />
+
+      </div>
+
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-[#F2F4F5]">
+          Descubre tiendas y vendedores
+        </h2>
+
+        <p className="text-sm text-[#9AA6AD] mt-1">
+          Encuentra vendedores y negocios que publican en MercadoCU.
+        </p>
+      </div>
+
+      <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4">
+        <div className="flex items-center gap-3">
+          <div className="w-11 h-11 rounded-xl bg-[#e6efec] flex items-center justify-center">
+            <Store className="w-6 h-6 text-[#1B6B63]" />
+          </div>
+
+          <div>
+            <p className="font-semibold text-[#F2F4F5]">
+              Próximamente
+            </p>
+
+            <p className="text-xs text-[#9AA6AD] mt-1">
+              Estamos preparando el directorio de tiendas y vendedores.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+)}
 
       {/* BARRA DE NAVEGACIÓN INFERIOR */}
 <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#0D1113]/95 backdrop-blur-xl border-t border-[#2A3033] shadow-[0_-8px_30px_rgba(0,0,0,0.35)]">

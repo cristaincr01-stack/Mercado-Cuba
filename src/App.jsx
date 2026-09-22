@@ -4000,46 +4000,6 @@ onChange={(e) => setPinSesion(e.target.value)}
 }}
   />
 )}
-   
-
-      {/* UBICACIÓN */}
-      <div className="flex items-center justify-between mb-4">
-
-        <div className="flex items-center gap-2 text-sm text-[#F2F4F5]">
-
-          <MapPin className="w-4 h-4 text-[#7EE2C0]" />
-
-          <span>
-            Todas las provincias
-          </span>
-
-        </div>
-
-        <ChevronDown className="w-4 h-4 text-[#69757B]" />
-
-      </div>
-
-
-      {/* FILTROS */}
-      <div className="flex gap-2 overflow-x-auto pb-2 mb-6">
-
-        <button className="shrink-0 px-4 py-2.5 rounded-xl bg-[#1B6B63] border border-[#7EE2C0] text-[#F2F4F5] text-sm font-semibold">
-          Todos
-        </button>
-
-        <button className="shrink-0 px-4 py-2.5 rounded-xl bg-[#151A1D] border border-[#2A3033] text-[#9AA6AD] text-sm font-semibold">
-          Tiendas
-        </button>
-
-        <button className="shrink-0 px-4 py-2.5 rounded-xl bg-[#151A1D] border border-[#2A3033] text-[#9AA6AD] text-sm font-semibold">
-          Vendedores
-        </button>
-
-      </div>
-
-
-      {/* SECCIÓN */}
-      <div className="flex items-center justify-between mb-3">
 
 {tiendasAbierto && (
   <div className="fixed inset-0 z-50 overflow-y-auto bg-[#0D1113] text-[#F2F4F5]">

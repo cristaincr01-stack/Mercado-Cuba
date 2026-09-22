@@ -4045,51 +4045,73 @@ onChange={(e) => setPinSesion(e.target.value)}
 
 
           {/* PERFIL */}
-          <div className="max-w-2xl mx-auto px-5 pt-8">
+<div className="max-w-2xl mx-auto px-5 pt-6">
 
-            <div className="flex flex-col items-center text-center">
+  <div className="relative overflow-hidden rounded-[32px] border border-[#2A3033] bg-[#151A1D]/90">
 
-              <div className="w-28 h-28 rounded-full bg-[#1B6B63] border-4 border-[#7EE2C0]/30 flex items-center justify-center shadow-[0_0_45px_rgba(27,107,99,0.35)]">
+    {/* HALO DE FONDO */}
+    <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-[#1B6B63]/25 blur-3xl pointer-events-none" />
 
-                <Store className="w-12 h-12 text-[#7EE2C0]" />
+    <div className="relative px-5 pt-8 pb-7 flex flex-col items-center text-center">
 
-              </div>
+      {/* AVATAR */}
+      <div className="relative">
+        <div className="w-28 h-28 rounded-full p-[3px] bg-gradient-to-br from-[#7EE2C0] via-[#1B6B63] to-[#263B38] shadow-[0_0_45px_rgba(27,107,99,0.40)]">
 
+          <div className="w-full h-full rounded-full bg-[#0D1113] flex items-center justify-center">
 
-              <div className="flex items-center gap-2 mt-4">
+            <div className="w-[82px] h-[82px] rounded-full bg-[#1B6B63]/80 flex items-center justify-center">
 
-                <h1 className="text-2xl font-bold">
-                  {tiendaSeleccionada.nombre}
-                </h1>
-
-                {tiendaSeleccionada.verificado && (
-                  <BadgeCheck className="w-5 h-5 text-[#7EE2C0]" />
-                )}
-
-              </div>
-
-
-              <p className="text-sm text-[#9AA6AD] mt-1">
-                {tiendaSeleccionada.tipo}
-              </p>
-
-
-              <div className="flex items-center gap-2 mt-3 text-xs text-[#9AA6AD]">
-
-                <MapPin className="w-4 h-4 text-[#7EE2C0]" />
-
-                <span>
-                  {tiendaSeleccionada.provincia}
-                </span>
-
-              </div>
-
-
-              <p className="text-sm text-[#9AA6AD] max-w-md mt-4 leading-relaxed">
-                {tiendaSeleccionada.descripcion}
-              </p>
+              <Store className="w-10 h-10 text-[#7EE2C0]" />
 
             </div>
+
+          </div>
+
+        </div>
+
+        {/* VERIFICADO */}
+        {tiendaSeleccionada.verificado && (
+          <div className="absolute right-1 bottom-1 w-7 h-7 rounded-full bg-[#0D1113] border border-[#2A3033] flex items-center justify-center shadow-lg">
+            <BadgeCheck className="w-5 h-5 text-[#7EE2C0]" />
+          </div>
+        )}
+
+      </div>
+
+      {/* NOMBRE */}
+      <div className="flex items-center gap-2 mt-5">
+
+        <h1 className="text-2xl font-bold text-[#F2F4F5]">
+          {tiendaSeleccionada.nombre}
+        </h1>
+
+      </div>
+
+      {/* TIPO */}
+      <span className="mt-2 px-3 py-1 rounded-full bg-[#1B6B63]/20 border border-[#1B6B63]/40 text-xs font-semibold text-[#7EE2C0]">
+        {tiendaSeleccionada.tipo}
+      </span>
+
+      {/* UBICACIÓN */}
+      <div className="flex items-center gap-2 mt-3 text-xs text-[#9AA6AD]">
+
+        <MapPin className="w-4 h-4 text-[#7EE2C0]" />
+
+        <span>
+          {tiendaSeleccionada.provincia}
+        </span>
+
+      </div>
+
+      {/* DESCRIPCIÓN */}
+      <p className="text-sm text-[#9AA6AD] max-w-md mt-4 leading-relaxed">
+        {tiendaSeleccionada.descripcion || "Descubre productos y publicaciones de este vendedor en MercadoCU."}
+      </p>
+
+    </div>
+
+  </div>
 
 
             {/* INFORMACIÓN */}

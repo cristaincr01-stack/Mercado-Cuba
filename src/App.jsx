@@ -682,6 +682,25 @@ const [productosMeGusta, setProductosMeGusta] = useState([]);
   const [tendenciasAbierto, setTendenciasAbierto] = useState(false);
   const [tiendasAbierto, setTiendasAbierto] = useState(false);
   const [tiendaSeleccionada, setTiendaSeleccionada] = useState(null);
+  const vendedoresDisponibles = [...new Map(
+  productos
+    .filter((producto) => producto.idVendedor && producto.vendedor)
+    .map((producto) => [
+      producto.idVendedor,
+      {
+        idVendedor: producto.idVendedor,
+        nombre: producto.vendedor,
+        tipo: "Vendedor",
+        provincia: producto.provincia || "Cuba",
+        productos: productos.filter(
+          (p) => p.idVendedor === producto.idVendedor
+        ).length,
+        whatsapp: producto.tel || "",
+        verificado: false,
+        descripcion: "Vendedor de MercadoCU"
+      }
+    ])
+).values()];
   const [accesoPublicarAbierto, setAccesoPublicarAbierto] = useState(false);
   const [crearCuentaAbierto, setCrearCuentaAbierto] = useState(false);
   const [volverA, setVolverA] = useState("inicio");

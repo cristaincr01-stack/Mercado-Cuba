@@ -1662,26 +1662,25 @@ if (orden === "precioMayor") {
   </button>
 </div>
             <div className="px-2 pb-5">
-  <div className="flex items-center bg-[#F2F4F5] rounded-2xl shadow-lg overflow-hidden">
-    <div className="flex items-center flex-1 px-4 py-3.5 gap-3">
-      <Search className="w-5 h-5 text-[#69757B] shrink-0" />
+<div className="flex items-center bg-[#151A1D] rounded-2xl border border-[#2A3033] shadow-lg overflow-hidden">
+  <div className="flex items-center flex-1 px-4 py-3.5 gap-3">
+    <Search className="w-5 h-5 text-[#9AA6AD] shrink-0" />
 
-      <input
-        value={busqueda}
-        onChange={e => setBusqueda(e.target.value)}
-        placeholder="Buscar en MercadoCU"
-        className="w-full outline-none text-sm bg-transparent text-[#151A1D] placeholder:text-[#69757B]"
-      />
-    </div>
-
-    <button
-      onClick={() => setBuscarAbierto(true)}
-      className="h-12 px-5 bg-[#1B6B63] text-white flex items-center justify-center hover:bg-[#237D73] transition active:scale-95"
-      aria-label="Abrir búsqueda avanzada"
-    >
-      <SlidersHorizontal className="w-5 h-5" />
-    </button>
+    <input
+      value={busqueda}
+      onChange={e => setBusqueda(e.target.value)}
+      placeholder="Buscar en MercadoCU"
+      className="w-full outline-none text-sm bg-transparent text-[#F2F4F5] placeholder:text-[#9AA6AD]"
+    />
   </div>
+
+  <button
+    onClick={() => setBuscarAbierto(true)}
+    className="h-12 px-5 bg-[#1B6B63] text-white flex items-center justify-center hover:bg-[#237D73] transition active:scale-95"
+    aria-label="Abrir búsqueda avanzada"
+  >
+    <SlidersHorizontal className="w-5 h-5" />
+  </button>
 </div>
 
   {menuAbierto && (

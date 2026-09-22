@@ -3111,8 +3111,8 @@ onChange={(e) => setPinSesion(e.target.value)}
   </div>
 )}
         {misProductosAbierto && (
-  <div className="fixed inset-0 bg-black/70 overflow-y-auto p-4 z-50">
-    <div className="bg-[#151A1D] border border-[#2A3033] rounded-3xl max-w-lg w-full p-5 relative shadow-2xl mx-auto mt-10 mb-10 text-[#F2F4F5]">
+  <div className="fixed inset-0 bg-[#0D1113] overflow-y-auto z-50 text-[#F2F4F5]">
+    <div className="w-full min-h-screen p-5 relative">
 
       <button
         onClick={() => setMisProductosAbierto(false)}

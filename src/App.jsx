@@ -3984,7 +3984,13 @@ onChange={(e) => setPinSesion(e.target.value)}
 )}
     {tendenciasAbierto && (
   <Tendencias
-    onCerrar={() => setTendenciasAbierto(false)}
+    onCerrar={() => {
+  setTendenciasAbierto(false);
+
+  if (volverA === "mas") {
+    setMenuAbierto(true);
+  }
+}}
     onSeleccionarProducto={(producto) => {
   setVolverA("tendencias");
   setTendenciasAbierto(false);

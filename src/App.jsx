@@ -4222,9 +4222,13 @@ onChange={(e) => setPinSesion(e.target.value)}
     ].map((producto, indice) => (
 
       <button
-        key={indice}
-        className="text-left bg-[#151A1D] border border-[#2A3033] rounded-2xl overflow-hidden active:scale-[0.98] transition"
-      >
+  key={indice}
+  onClick={() => {
+    setTiendaSeleccionada(null);
+    setTiendasAbierto(false);
+  }}
+  className="text-left bg-[#151A1D] border border-[#2A3033] rounded-2xl overflow-hidden active:scale-[0.98] transition"
+>
 
         <div className="aspect-square bg-gradient-to-br from-[#172522] via-[#111819] to-[#0B0F10] flex items-center justify-center">
 

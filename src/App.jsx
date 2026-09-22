@@ -4161,34 +4161,40 @@ onChange={(e) => setPinSesion(e.target.value)}
         /* DIRECTORIO DE TIENDAS */
         /* ========================= */
 
-        <div className="max-w-2xl mx-auto px-4 pt-5">
+      <div className="relative max-w-2xl mx-auto px-4 pt-5">
+         {/* CABECERA */}
+<div className="flex items-center justify-between">
 
-          {/* CABECERA */}
+  <button
+    onClick={() => {
+      setTiendasAbierto(false);
 
-          <div className="flex items-center justify-between">
+      if (volverA === "mas") {
+        setMenuAbierto(true);
+      }
+    }}
+    className="w-10 h-10 rounded-full bg-[#151A1D]/80 border border-[#2A3033] backdrop-blur-xl flex items-center justify-center active:scale-95 transition"
+  >
+    <ChevronLeft className="w-5 h-5 text-[#F2F4F5]" />
+  </button>
 
-            <button
-              onClick={() => {
-                setTiendasAbierto(false);
+  <div className="flex flex-col items-center">
+    <span className="text-[10px] uppercase tracking-[0.25em] text-[#7EE2C0] font-semibold">
+      MercadoCU
+    </span>
 
-                if (volverA === "mas") {
-                  setMenuAbierto(true);
-                }
-              }}
-              className="w-10 h-10 rounded-full bg-[#151A1D]/90 border border-[#2A3033] flex items-center justify-center"
-            >
-              <ChevronLeft className="w-5 h-5 text-[#F2F4F5]" />
-            </button>
+    <h1 className="text-lg font-bold text-[#F2F4F5]">
+      Tiendas
+    </h1>
+  </div>
 
+  <button
+    className="w-10 h-10 rounded-full bg-[#151A1D]/80 border border-[#2A3033] backdrop-blur-xl flex items-center justify-center"
+  >
+    <MoreHorizontal className="w-5 h-5 text-[#9AA6AD]" />
+  </button>
 
-            <h1 className="text-xl font-bold">
-              Tiendas
-            </h1>
-
-
-            <div className="w-10" />
-
-          </div>
+</div>
 
 
           {/* TITULO */}
@@ -4199,9 +4205,10 @@ onChange={(e) => setPinSesion(e.target.value)}
               MercadoCU
             </p>
 
-            <h2 className="text-3xl font-bold mt-2 leading-tight">
-              Descubre tiendas
-            </h2>
+           <h2 className="text-3xl font-bold mt-2 leading-tight">
+  Descubre
+  <span className="text-[#7EE2C0]"> tiendas</span>
+</h2>
 
             <p className="text-sm text-[#9AA6AD] mt-2">
               Encuentra tiendas y vendedores cerca de ti.

@@ -680,6 +680,7 @@ const [productosMeGusta, setProductosMeGusta] = useState([]);
   const [productos, setProductos] = useState([]);
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [tendenciasAbierto, setTendenciasAbierto] = useState(false);
+  const [tiendasAbierto, setTiendasAbierto] = useState(false);
   const [accesoPublicarAbierto, setAccesoPublicarAbierto] = useState(false);
   const [crearCuentaAbierto, setCrearCuentaAbierto] = useState(false);
   const [volverA, setVolverA] = useState("inicio");
@@ -1804,9 +1805,9 @@ if (orden === "precioMayor") {
 </button>
       <button
   onClick={() => {
-    setMenuAbierto(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }}
+  setMenuAbierto(false);
+  setTiendasAbierto(true);
+}}
   className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#202629] rounded-xl transition"
 >
   <div className="flex items-center gap-3">

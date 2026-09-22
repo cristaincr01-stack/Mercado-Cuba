@@ -4144,11 +4144,17 @@ function Tendencias({ onCerrar, onSeleccionarProducto }) {
         <div className="flex items-center justify-between mb-6">
 
           <button
-            onClick={onCerrar}
-            className="text-[#9AA6AD] text-sm"
-            >
-            ← Volver
-          </button>
+  onClick={() => {
+    setTendenciasAbierto(false);
+
+    if (volverA === "mas") {
+      setMenuAbierto(true);
+    }
+  }}
+  className="text-[#9AA6AD] text-sm"
+>
+  ← Volver
+</button>
 
           <h1 className="text-xl font-bold text-[#F2F4F5]">
             🔥 Tendencias

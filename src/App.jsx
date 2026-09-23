@@ -4311,9 +4311,9 @@ onChange={(e) => setPinSesion(e.target.value)}
     esUnica: "SI"
   });
 
-  setSeleccionado(
-  mapearProducto(producto, producto._fila)
-);
+  setVolverA("tiendas");
+  setTiendasAbierto(false);
+  setSeleccionado(producto);
 }}
   className="text-left bg-[#151A1D]/95 border border-[#2A3033] rounded-2xl overflow-hidden active:scale-[0.97] transition-all shadow-[0_8px_24px_rgba(0,0,0,0.18)]"
 >

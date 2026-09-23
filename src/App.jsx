@@ -4456,36 +4456,12 @@ onChange={(e) => setPinSesion(e.target.value)}
   {/* CÍRCULOS */}
 <div className="flex gap-5 overflow-x-auto pb-3 -mx-1 px-1 scrollbar-hide">
 
-  {[
-    {
-      nombre: "Mercado Habana",
-      tipo: "Tienda",
-      provincia: "La Habana",
-      verificado: true,
-      productos: 24
-    },
-    {
-      nombre: "Tecnología Cuba",
-      tipo: "Tienda",
-      provincia: "Villa Clara",
-      verificado: true,
-      productos: 18
-    },
-    {
-      nombre: "Vendedor Carlos",
-      tipo: "Vendedor",
-      provincia: "Matanzas",
-      verificado: false,
-      productos: 9
-    }
-  ].map((tienda, indice) => (
-
+  {vendedoresDisponibles.map((tienda, indice) => (
     <button
-      key={indice}
+      key={tienda.idVendedor || indice}
       onClick={() => setTiendaSeleccionada(tienda)}
       className="shrink-0 flex flex-col items-center w-[82px] active:scale-95 transition-transform"
     >
-
       <div className="relative">
 
         <div className="w-[78px] h-[78px] rounded-full p-[3px] bg-gradient-to-br from-[#7EE2C0] via-[#1B6B63] to-[#263B38] shadow-[0_0_25px_rgba(27,107,99,0.28)]">
@@ -4517,7 +4493,6 @@ onChange={(e) => setPinSesion(e.target.value)}
       </p>
 
     </button>
-
   ))}
 
 </div>
@@ -4639,6 +4614,7 @@ onChange={(e) => setPinSesion(e.target.value)}
 
     ))}
 
+  </div>
   </div>
 
 </div>

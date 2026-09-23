@@ -4273,39 +4273,17 @@ onChange={(e) => setPinSesion(e.target.value)}
 
         <div className="aspect-square bg-[#0B0F11] overflow-hidden">
 
-  {producto["Foto del Producto"] ? (
+  {producto.foto ? (
 
     <img
-      src={(() => {
-        const foto = String(producto["Foto del Producto"])
-          .split("||")[0]
-          .trim();
-
-        let fotoDirecta = foto;
-
-        if (foto.includes("drive.google.com/file/d/")) {
-          const partes = foto.split("/d/");
-
-          if (partes[1]) {
-            const id = partes[1].split("/")[0];
-
-            fotoDirecta =
-              "https://drive.google.com/uc?export=view&id=" + id;
-          }
-        }
-
-        return fotoDirecta.replace(
-          "uc?export=view&id=",
-          "thumbnail?sz=w1000&id="
-        );
-      })()}
+      src={producto.foto.replace(
+        "uc?export=view&id=",
+        "thumbnail?sz=w1000&id="
+      )}
       onError={(e) => {
-        e.currentTarget.src =
-          String(producto["Foto del Producto"])
-            .split("||")[0]
-            .trim();
+        e.currentTarget.src = producto.foto;
       }}
-      alt={producto["Nombre del producto"] || "Producto"}
+      alt={producto.nombre || "Producto"}
       className="w-full h-full object-cover"
     />
 

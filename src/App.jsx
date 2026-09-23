@@ -4271,18 +4271,50 @@ onChange={(e) => setPinSesion(e.target.value)}
   className="text-left bg-[#151A1D] border border-[#2A3033] rounded-2xl overflow-hidden active:scale-[0.98] transition"
 >
 
-        <div className="aspect-square bg-[#111819] overflow-hidden">
+        <div className="aspect-square bg-[#0B0F11] overflow-hidden">
 
-  {producto["Foto(s)"] ? (
+  {producto["Foto del Producto"] ? (
+
     <img
-      src={String(producto["Foto(s)"]).split(" || ")[0]}
-      alt={producto.nombre || "Producto"}
+      src={(() => {
+        const foto = String(producto["Foto del Producto"])
+          .split("||")[0]
+          .trim();
+
+        let fotoDirecta = foto;
+
+        if (foto.includes("drive.google.com/file/d/")) {
+          const partes = foto.split("/d/");
+
+          if (partes[1]) {
+            const id = partes[1].split("/")[0];
+
+            fotoDirecta =
+              "https://drive.google.com/uc?export=view&id=" + id;
+          }
+        }
+
+        return fotoDirecta.replace(
+          "uc?export=view&id=",
+          "thumbnail?sz=w1000&id="
+        );
+      })()}
+      onError={(e) => {
+        e.currentTarget.src =
+          String(producto["Foto del Producto"])
+            .split("||")[0]
+            .trim();
+      }}
+      alt={producto["Nombre del producto"] || "Producto"}
       className="w-full h-full object-cover"
     />
+
   ) : (
+
     <div className="w-full h-full flex items-center justify-center">
       <ShoppingBag className="w-10 h-10 text-[#1B6B63]" />
     </div>
+
   )}
 
 </div>

@@ -4111,10 +4111,22 @@ onChange={(e) => setPinSesion(e.target.value)}
 
       </div>
 
-      {/* TIPO */}
-      <span className="mt-2 px-3 py-1 rounded-full bg-[#1B6B63]/20 border border-[#1B6B63]/40 text-xs font-semibold text-[#7EE2C0]">
-        {tiendaSeleccionada.tipo}
-      </span>
+      {/* TIPO + ESTADO */}
+<div className="flex items-center gap-2 mt-2">
+
+  <span className="px-3 py-1 rounded-full bg-[#1B6B63]/20 border border-[#1B6B63]/40 text-xs font-semibold text-[#7EE2C0]">
+    {tiendaSeleccionada.tipo}
+  </span>
+
+  <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#12352F]/40 border border-[#7EE2C0]/30 text-xs font-semibold text-[#7EE2C0] shadow-[0_0_12px_rgba(126,226,192,0.10)]">
+
+    <span className="w-2 h-2 rounded-full bg-[#7EE2C0] shadow-[0_0_8px_rgba(126,226,192,0.8)]"></span>
+
+    Abierto
+
+  </span>
+
+</div>
 
       {/* UBICACIÓN */}
       <div className="flex items-center gap-2 mt-3 text-xs text-[#9AA6AD]">

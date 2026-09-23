@@ -4460,7 +4460,20 @@ onChange={(e) => setPinSesion(e.target.value)}
   {/* CÍRCULOS */}
 <div className="flex gap-5 overflow-x-auto pb-3 -mx-1 px-1 scrollbar-hide">
 
-  {vendedoresDisponibles.map((tienda, indice) => (
+  {[...new Map(
+  productos
+    .filter((producto) => producto.vendedor)
+    .map((producto) => [
+      producto.idVendedor || producto.vendedor,
+      {
+        idVendedor: producto.idVendedor || "",
+        nombre: producto.vendedor,
+        tipo: "Vendedor",
+        provincia: producto.provincia || "Cuba",
+        verificado: false
+      }
+    ])
+).values()].map((tienda, indice) => (
     <button
       key={tienda.idVendedor || indice}
       onClick={() => setTiendaSeleccionada(tienda)}
@@ -4487,9 +4500,7 @@ onChange={(e) => setPinSesion(e.target.value)}
         )}
 
       </div>
-      <p className="text-xs text-red-400">
-  {vendedoresDisponibles.length} vendedores
-</p>
+     
 
       <p className="text-xs font-semibold text-[#F2F4F5] mt-2 truncate w-full text-center">
         {tienda.nombre}

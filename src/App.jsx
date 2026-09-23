@@ -3427,6 +3427,13 @@ onChange={(e) => setPinSesion(e.target.value)}
         placeholder="Precio"
         className="w-full bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3 mb-4 outline-none focus:border-[#7EE2C0] text-[#F2F4F5] placeholder:text-[#69757B]"
       />
+      <textarea
+  placeholder="Información del producto (opcional)"
+  value={informacionProducto}
+  onChange={(e) => setInformacionProducto(e.target.value)}
+  rows={4}
+  className="w-full bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3 mb-4 outline-none focus:border-[#7EE2C0] text-[#F2F4F5] placeholder:text-[#69757B] resize-none"
+/>
       <div className="mb-4">
   <label className="block text-sm font-semibold text-[#F2F4F5] mb-2">
   Cambiar foto

@@ -4464,7 +4464,7 @@ onChange={(e) => setPinSesion(e.target.value)}
   .slice(0, 10)
   .map((producto, indice) => (
     <button
-      key={producto.idVendedor || producto.vendedor || indice}
+      key={`${producto.vendedor}-${indice}`}
       onClick={() => setTiendaSeleccionada({
         idVendedor: producto.idVendedor || "",
         nombre: producto.vendedor,

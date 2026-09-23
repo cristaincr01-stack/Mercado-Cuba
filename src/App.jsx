@@ -4483,6 +4483,9 @@ onChange={(e) => setPinSesion(e.target.value)}
         )}
 
       </div>
+      <p className="text-xs text-red-400">
+  {vendedoresDisponibles.length} vendedores
+</p>
 
       <p className="text-xs font-semibold text-[#F2F4F5] mt-2 truncate w-full text-center">
         {tienda.nombre}

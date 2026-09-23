@@ -4241,28 +4241,26 @@ onChange={(e) => setPinSesion(e.target.value)}
 
   <div className="grid grid-cols-2 gap-3">
 
-    {[
-      {
-        nombre: "Producto destacado",
-        precio: "Consultar",
-        provincia: tiendaSeleccionada.provincia
-      },
-      {
-        nombre: "Nueva publicación",
-        precio: "Consultar",
-        provincia: tiendaSeleccionada.provincia
-      },
-      {
-        nombre: "Oferta especial",
-        precio: "Consultar",
-        provincia: tiendaSeleccionada.provincia
-      },
-      {
-        nombre: "Más vendido",
-        precio: "Consultar",
-        provincia: tiendaSeleccionada.provincia
-      }
-    ].map((producto, indice) => (
+    {productos
+  .filter((producto) => {
+
+    if (
+      tiendaSeleccionada.idVendedor &&
+      producto.idVendedor
+    ) {
+      return (
+        String(producto.idVendedor).trim() ===
+        String(tiendaSeleccionada.idVendedor).trim()
+      );
+    }
+
+    return (
+      String(producto.vendedor || "").trim() ===
+      String(tiendaSeleccionada.nombre || "").trim()
+    );
+
+  })
+  .map((producto, indice) => (
 
       <button
   key={indice}

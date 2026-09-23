@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck, Eye,
-EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, Smartphone, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill, ChevronLeft } from "lucide-react";
+EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, Smartphone, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill, ChevronLeft, UserPlus } from "lucide-react";
 window.onerror = function (mensaje, archivo, linea, columna, error) {
   document.body.innerHTML = `
     <div style="
@@ -4242,9 +4242,13 @@ onChange={(e) => setPinSesion(e.target.value)}
   </button>
 
   <button
-    className="w-14 h-14 rounded-2xl bg-[#151A1D] border border-[#2A3033] flex items-center justify-center active:scale-[0.95] transition-all"
+    className="px-5 h-14 rounded-2xl bg-[#151A1D] border border-[#2A3033] flex items-center justify-center gap-2 active:scale-[0.95] transition-all"
   >
-    <Heart className="w-5 h-5 text-[#9AA6AD]" />
+    <UserPlus className="w-5 h-5 text-[#9AA6AD]" />
+
+    <span className="text-sm font-semibold text-[#F2F4F5]">
+      Seguir
+    </span>
   </button>
 
 </div>

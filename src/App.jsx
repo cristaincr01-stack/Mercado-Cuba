@@ -685,29 +685,26 @@ const [productosMeGusta, setProductosMeGusta] = useState([]);
   const [tendenciasAbierto, setTendenciasAbierto] = useState(false);
   const [tiendasAbierto, setTiendasAbierto] = useState(false);
   const [tiendaSeleccionada, setTiendaSeleccionada] = useState(null);
-  const vendedoresDisponibles = [...new Map(
-  productos
-    .filter((producto) => producto.vendedor)
-    .map((producto) => [
-      producto.idVendedor || producto.vendedor,
-      {
-        idVendedor: producto.idVendedor || "",
-        nombre: producto.vendedor,
-        tipo: "Vendedor",
-        provincia: producto.provincia || "Cuba",
-        productos: productos.filter(
-          (p) =>
-            (p.idVendedor && producto.idVendedor &&
-              p.idVendedor === producto.idVendedor) ||
-            (!producto.idVendedor &&
-              p.vendedor === producto.vendedor)
-        ).length,
-        whatsapp: producto.tel || "",
-        verificado: false,
-        descripcion: "Vendedor de MercadoCU"
+  const [vendedoresDisponibles, setVendedoresDisponibles] = useState([]);
+
+useEffect(() => {
+
+  fetch(`${API_URL}?accion=usuarios`)
+    .then(res => res.json())
+    .then(usuarios => {
+
+      if (!Array.isArray(usuarios)) {
+        return;
       }
-    ])
-).values()];
+
+      setVendedoresDisponibles(usuarios);
+
+    })
+    .catch(error => {
+      console.log("Error cargando usuarios:", error);
+    });
+
+}, []);
   const [accesoPublicarAbierto, setAccesoPublicarAbierto] = useState(false);
   const [crearCuentaAbierto, setCrearCuentaAbierto] = useState(false);
   const [volverA, setVolverA] = useState("inicio");
@@ -4463,19 +4460,11 @@ onChange={(e) => setPinSesion(e.target.value)}
   {/* CÍRCULOS */}
 <div className="flex gap-5 overflow-x-auto pb-3 -mx-1 px-1 scrollbar-hide">
 
-  {productos
-  .slice(0, 10)
-  .map((producto, indice) => (
+  {vendedoresDisponibles.map((tienda, indice) => (
+
     <button
-      key={`${producto.vendedor}-${indice}`}
-      onClick={() => setTiendaSeleccionada({
-        idVendedor: producto.idVendedor || "",
-        nombre: producto.vendedor,
-        tipo: "Vendedor",
-        provincia: producto.provincia || "Cuba",
-        whatsapp: producto.tel || "",
-        verificado: false
-      })}
+      key={tienda.idVendedor || indice}
+      onClick={() => setTiendaSeleccionada(tienda)}
       className="shrink-0 flex flex-col items-center w-[82px] active:scale-95 transition-transform"
     >
 
@@ -4486,28 +4475,35 @@ onChange={(e) => setPinSesion(e.target.value)}
           <div className="w-full h-full rounded-full bg-[#151A1D] flex items-center justify-center">
 
             <div className="w-[62px] h-[62px] rounded-full bg-[#1B6B63]/80 flex items-center justify-center">
+
               <Store className="w-7 h-7 text-[#7EE2C0]" />
+
             </div>
 
           </div>
 
         </div>
 
-        <div className="absolute right-0 bottom-0 w-6 h-6 rounded-full bg-[#0D1113] border border-[#2A3033] flex items-center justify-center">
-          <BadgeCheck className="w-4 h-4 text-[#7EE2C0]" />
-        </div>
+        {tienda.verificado && (
+          <div className="absolute right-0 bottom-0 w-6 h-6 rounded-full bg-[#0D1113] border border-[#2A3033] flex items-center justify-center">
+
+            <BadgeCheck className="w-4 h-4 text-[#7EE2C0]" />
+
+          </div>
+        )}
 
       </div>
 
       <p className="text-xs font-semibold text-[#F2F4F5] mt-2 truncate w-full text-center">
-        {producto.vendedor}
+        {tienda.nombre}
       </p>
 
       <p className="text-[10px] text-[#69757B] mt-0.5">
-        Vendedor
+        {tienda.tipo}
       </p>
 
     </button>
+
   ))}
 
 </div>

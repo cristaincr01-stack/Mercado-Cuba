@@ -684,16 +684,20 @@ const [productosMeGusta, setProductosMeGusta] = useState([]);
   const [tiendaSeleccionada, setTiendaSeleccionada] = useState(null);
   const vendedoresDisponibles = [...new Map(
   productos
-    .filter((producto) => producto.idVendedor && producto.vendedor)
+    .filter((producto) => producto.vendedor)
     .map((producto) => [
-      producto.idVendedor,
+      producto.idVendedor || producto.vendedor,
       {
-        idVendedor: producto.idVendedor,
+        idVendedor: producto.idVendedor || "",
         nombre: producto.vendedor,
         tipo: "Vendedor",
         provincia: producto.provincia || "Cuba",
         productos: productos.filter(
-          (p) => p.idVendedor === producto.idVendedor
+          (p) =>
+            (p.idVendedor && producto.idVendedor &&
+              p.idVendedor === producto.idVendedor) ||
+            (!producto.idVendedor &&
+              p.vendedor === producto.vendedor)
         ).length,
         whatsapp: producto.tel || "",
         verificado: false,

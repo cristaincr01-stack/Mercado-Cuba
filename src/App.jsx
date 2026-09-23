@@ -731,6 +731,7 @@ const [mostrarPin, setMostrarPin] = useState(false);
 });
 
   const [nombreProducto, setNombreProducto] = useState("");
+  const [informacionProducto, setInformacionProducto] = useState("");
 const [categoriaProducto, setCategoriaProducto] = useState("");
   const [subcategoriaProducto, setSubcategoriaProducto] = useState("");
 const [provinciaProducto, setProvinciaProducto] = useState("");
@@ -3846,6 +3847,13 @@ onChange={(e) => setPinSesion(e.target.value)}
                 onChange={(e) => setPrecioProducto(e.target.value)}
                 className="w-full bg-[#0D1113] border border-[#303C40] text-[#F2F4F5] placeholder:text-[#718087] rounded-xl px-3 py-3 outline-none focus:border-[#7EE2C0] focus:ring-1 focus:ring-[#7EE2C0]/30 transition-all"
               />
+              <textarea
+  placeholder="Información del producto (opcional)"
+  value={informacionProducto}
+  onChange={(e) => setInformacionProducto(e.target.value)}
+  rows={4}
+  className="w-full bg-[#0D1113] border border-[#303C40] text-[#F2F4F5] placeholder:text-[#718087] rounded-xl px-3 py-3 outline-none focus:border-[#7EE2C0] focus:ring-1 focus:ring-[#7EE2C0]/30 transition-all resize-none"
+/>
               <select
   value={categoriaProducto}
   onChange={(e) => setCategoriaProducto(e.target.value)}

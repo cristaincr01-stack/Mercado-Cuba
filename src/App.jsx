@@ -4105,9 +4105,9 @@ onChange={(e) => setPinSesion(e.target.value)}
       {/* NOMBRE */}
       <div className="flex items-center gap-2 mt-5">
 
-        <h1 className="text-2xl font-bold text-[#F2F4F5]">
-          {tiendaSeleccionada.nombre}
-        </h1>
+        <h1 className="text-2xl font-black tracking-tight text-[#F2F4F5] text-center">
+  {tiendaSeleccionada.nombre}
+</h1>
 
       </div>
 
@@ -4140,9 +4140,11 @@ onChange={(e) => setPinSesion(e.target.value)}
       </div>
 
       {/* DESCRIPCIÓN */}
-      <p className="text-sm text-[#9AA6AD] max-w-md mt-4 leading-relaxed">
-        {tiendaSeleccionada.descripcion || "Descubre productos y publicaciones de este vendedor en MercadoCU."}
-      </p>
+<div className="mt-5 bg-[#151A1D]/70 border border-[#2A3033] rounded-2xl px-4 py-3.5">
+  <p className="text-sm text-[#9AA6AD] leading-relaxed text-left">
+    {tiendaSeleccionada.descripcion || "Descubre productos y publicaciones de este vendedor en MercadoCU."}
+  </p>
+</div>
 
     </div>
 
@@ -4178,10 +4180,10 @@ onChange={(e) => setPinSesion(e.target.value)}
 
             </div>
             {/* ESTADÍSTICAS DE LA TIENDA */}
-<div className="grid grid-cols-3 gap-2 mt-5">
+<div className="grid grid-cols-3 gap-3 mt-6">
 
-  <div className="bg-[#151A1D]/80 border border-[#2A3033] rounded-2xl p-3 text-center">
-    <p className="text-lg font-bold text-[#F2F4F5]">
+  <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl p-3.5 text-center shadow-[0_8px_25px_rgba(0,0,0,0.18)]">
+    <p className="text-xl font-black text-[#F2F4F5] tracking-tight">
       {productos.filter((producto) =>
   tiendaSeleccionada.idVendedor &&
   producto.idVendedor
@@ -4196,8 +4198,8 @@ onChange={(e) => setPinSesion(e.target.value)}
     </p>
   </div>
 
-  <div className="bg-[#151A1D]/80 border border-[#2A3033] rounded-2xl p-3 text-center">
-    <p className="text-lg font-bold text-[#F2F4F5]">
+  <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl p-3.5 text-center shadow-[0_8px_25px_rgba(0,0,0,0.18)]">
+   <p className="text-xl font-black text-[#F2F4F5] tracking-tight">
      —
     </p>
     <p className="text-[10px] text-[#69757B] mt-1">
@@ -4205,8 +4207,8 @@ onChange={(e) => setPinSesion(e.target.value)}
     </p>
   </div>
 
-  <div className="bg-[#151A1D]/80 border border-[#2A3033] rounded-2xl p-3 text-center">
-    <p className="text-lg font-bold text-[#F2F4F5]">
+  <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl p-3.5 text-center shadow-[0_8px_25px_rgba(0,0,0,0.18)]">
+    <p className="text-xl font-black text-[#F2F4F5] tracking-tight">
       {productos.filter((producto) => {
 
   const pertenece =
@@ -4232,17 +4234,17 @@ onChange={(e) => setPinSesion(e.target.value)}
 </div>
 
 {/* ACCIONES */}
-<div className="flex gap-3 mt-5">
+<div className="flex gap-3 mt-6">
 
   <button
-    className="flex-1 flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#237A70] text-[#F2F4F5] rounded-2xl py-3.5 text-sm font-bold active:scale-[0.98] transition-all shadow-[0_8px_25px_rgba(27,107,99,0.20)]"
+  className="flex-1 flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#237A70] text-[#F2F4F5] rounded-2xl py-3.5 text-sm font-bold active:scale-[0.97] transition-all shadow-[0_8px_28px_rgba(27,107,99,0.24)]"
   >
     <MessageCircle className="w-4 h-4" />
     Contactar
   </button>
 
   <button
-    className="px-5 h-14 rounded-2xl bg-[#151A1D] border border-[#2A3033] flex items-center justify-center gap-2 active:scale-[0.95] transition-all"
+   className="px-5 h-14 rounded-2xl bg-[#151A1D]/90 border border-[#2A3033] flex items-center justify-center gap-2 active:scale-[0.97] transition-all shadow-[0_6px_18px_rgba(0,0,0,0.15)]"
   >
     <UserPlus className="w-5 h-5 text-[#9AA6AD]" />
 
@@ -4305,7 +4307,7 @@ onChange={(e) => setPinSesion(e.target.value)}
     setTiendaSeleccionada(null);
     setTiendasAbierto(false);
   }}
-  className="text-left bg-[#151A1D] border border-[#2A3033] rounded-2xl overflow-hidden active:scale-[0.98] transition"
+  className="text-left bg-[#151A1D]/95 border border-[#2A3033] rounded-2xl overflow-hidden active:scale-[0.97] transition-all shadow-[0_8px_24px_rgba(0,0,0,0.18)]"
 >
 
         <div className="aspect-square bg-[#0B0F11] overflow-hidden">

@@ -4207,7 +4207,22 @@ onChange={(e) => setPinSesion(e.target.value)}
 
   <div className="bg-[#151A1D]/80 border border-[#2A3033] rounded-2xl p-3 text-center">
     <p className="text-lg font-bold text-[#F2F4F5]">
-      {tiendaSeleccionada.ventas || 0}
+      {productos.filter((producto) => {
+
+  const pertenece =
+    tiendaSeleccionada.idVendedor &&
+    producto.idVendedor
+      ? String(producto.idVendedor).trim() ===
+        String(tiendaSeleccionada.idVendedor).trim()
+      : String(producto.vendedor || "").trim() ===
+        String(tiendaSeleccionada.nombre || "").trim();
+
+  const estado =
+    String(producto.estado || "").trim().toLowerCase();
+
+  return pertenece && estado === "vendido";
+
+}).length}
     </p>
     <p className="text-[10px] text-[#69757B] mt-1">
       Ventas

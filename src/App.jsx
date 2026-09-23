@@ -251,7 +251,10 @@ function mapearProducto(fila, index) {
     precio: fila?.["Precio"] || "",
     moneda: fila?.["Moneda"] || "",
     vendedor:
-      fila?.["Tu nombre (como quieres que aparezca en el anuncio)"] || "",
+  fila?.["Tu nombre (como quieres que aparezca en el anuncio)"] ||
+  fila?.["Nombre"] ||
+  fila?.["Vendedor"] ||
+  "Vendedor",
     tel: fila?.["Tu número de WhatsApp"] || "",
 
     // Primera foto: compatibilidad con el código actual

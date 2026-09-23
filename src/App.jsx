@@ -2882,7 +2882,7 @@ localStorage.setItem(
 )}
 
       {seleccionado && (
-  <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 z-50 overflow-y-auto overscroll-contain">
+  <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-start sm:items-center justify-center p-0 sm:p-4 z-50 overflow-y-auto overscroll-contain">
 
      <div className="bg-[#151A1D] border border-[#2A3033] rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 pt-16 relative shadow-[0_20px_60px_rgba(0,0,0,0.45)] text-[#F2F4F5] max-h-[95vh] overflow-y-auto">
 

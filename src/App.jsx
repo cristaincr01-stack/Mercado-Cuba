@@ -2891,6 +2891,10 @@ localStorage.setItem(
   if (volverA === "tendencias") {
     setTendenciasAbierto(true);
   }
+
+  if (volverA === "tiendas") {
+    setTiendasAbierto(true);
+  }
 }}
         className="absolute top-3 right-3 w-10 h-10 rounded-full bg-[#202629] border border-[#30383C] text-[#9AA6AD] flex items-center justify-center hover:text-white hover:bg-[#272E31] active:scale-95 transition-all"
       >

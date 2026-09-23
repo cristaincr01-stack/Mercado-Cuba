@@ -4271,12 +4271,21 @@ onChange={(e) => setPinSesion(e.target.value)}
   className="text-left bg-[#151A1D] border border-[#2A3033] rounded-2xl overflow-hidden active:scale-[0.98] transition"
 >
 
-        <div className="aspect-square bg-gradient-to-br from-[#172522] via-[#111819] to-[#0B0F10] flex items-center justify-center">
+        <div className="aspect-square bg-[#111819] overflow-hidden">
 
-          <ShoppingBag className="w-10 h-10 text-[#1B6B63]" />
+  {producto["Foto(s)"] ? (
+    <img
+      src={String(producto["Foto(s)"]).split(" || ")[0]}
+      alt={producto.nombre || "Producto"}
+      className="w-full h-full object-cover"
+    />
+  ) : (
+    <div className="w-full h-full flex items-center justify-center">
+      <ShoppingBag className="w-10 h-10 text-[#1B6B63]" />
+    </div>
+  )}
 
-        </div>
-
+</div>
         <div className="p-3">
 
           <h4 className="text-sm font-semibold truncate">

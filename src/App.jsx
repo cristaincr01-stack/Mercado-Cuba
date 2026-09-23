@@ -1364,6 +1364,7 @@ alert("3. Respuesta recibida: " + JSON.stringify(resultado));
       setProvinciaProducto("");
       setMonedaProducto("");
       setPrecioProducto("");
+      setInformacionProducto("");
       setImagenesProducto([]);
 
     } else {

@@ -4304,9 +4304,15 @@ onChange={(e) => setPinSesion(e.target.value)}
       <button
   key={indice}
   onClick={() => {
-    setTiendaSeleccionada(null);
-    setTiendasAbierto(false);
-  }}
+  registrarInteraccion({
+    tipo: "VER_PRODUCTO",
+    producto: producto,
+    identificador: "VER_PRODUCTO",
+    esUnica: "SI"
+  });
+
+  setSeleccionado(producto);
+}}
   className="text-left bg-[#151A1D]/95 border border-[#2A3033] rounded-2xl overflow-hidden active:scale-[0.97] transition-all shadow-[0_8px_24px_rgba(0,0,0,0.18)]"
 >
 

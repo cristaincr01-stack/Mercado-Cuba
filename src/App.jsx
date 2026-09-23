@@ -4461,7 +4461,6 @@ onChange={(e) => setPinSesion(e.target.value)}
 <div className="flex gap-5 overflow-x-auto pb-3 -mx-1 px-1 scrollbar-hide">
 
   {productos
-  .filter((producto) => producto.vendedor)
   .slice(0, 10)
   .map((producto, indice) => (
     <button

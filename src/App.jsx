@@ -1322,6 +1322,7 @@ registrarInteraccion({
       provincia: provinciaProducto,
       moneda: monedaProducto,
       precio: precioProducto,
+      informacion: informacionProducto,
 
       whatsapp: usuarioActual.whatsapp,
       nombreVendedor: usuarioActual.nombre,

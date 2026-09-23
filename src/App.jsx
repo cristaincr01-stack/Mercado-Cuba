@@ -2986,10 +2986,27 @@ localStorage.setItem(
 
       </div>
 
-      {/* INFORMACIÓN */}
-      <p className="text-sm text-[#9AA6AD] mt-4 leading-relaxed">
-        El pago y la entrega se coordinan directamente con el vendedor.
-      </p>
+     {/* INFORMACIÓN DEL PRODUCTO */}
+<div className="mt-5 bg-[#252C2F] border border-[#343E42] rounded-2xl p-4 shadow-inner">
+
+  <p className="text-[10px] uppercase tracking-[0.12em] text-[#7EE2C0] font-bold mb-2">
+    Información del producto
+  </p>
+
+  <div className="bg-[#2B3336] border border-[#3A4448] rounded-xl px-4 py-3">
+    <p className="text-sm text-[#F2F4F5] leading-relaxed whitespace-pre-line">
+      {seleccionado.informacion
+        ? seleccionado.informacion
+        : "Sin información de este producto"}
+    </p>
+  </div>
+
+</div>
+
+{/* INFORMACIÓN GENERAL */}
+<p className="text-sm text-[#9AA6AD] mt-4 leading-relaxed">
+  El pago y la entrega se coordinan directamente con el vendedor.
+</p>
 
      {/* WHATSAPP */}
 <button

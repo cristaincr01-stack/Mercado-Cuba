@@ -4303,8 +4303,8 @@ onChange={(e) => setPinSesion(e.target.value)}
           </h4>
 
           <p className="text-xs text-[#7EE2C0] font-bold mt-1">
-            {producto.precio}
-          </p>
+  {producto.precio} {producto.moneda}
+</p>
 
           <div className="flex items-center gap-1 mt-2 text-[10px] text-[#69757B]">
 

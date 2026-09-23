@@ -4142,13 +4142,12 @@ onChange={(e) => setPinSesion(e.target.value)}
 
               <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl p-4 text-center">
 
-                <p className="text-xl font-bold text-[#F2F4F5]">
-                  0
-                </p>
-
-                <p className="text-xs text-[#69757B] mt-1">
-                  Productos
-                </p>
+                <p className="text-lg font-bold text-[#F2F4F5]">
+  —
+</p>
+<p className="text-[10px] text-[#69757B] mt-1">
+  Valoración
+</p>
 
               </div>
 

@@ -4810,7 +4810,7 @@ onChange={(e) => setPinSesion(e.target.value)}
       </div>
 
     {/* CONTENIDO */}
-<div className="max-w-2xl mx-auto px-5 pt-0">
+<div className="relative z-10 max-w-2xl mx-auto px-5 pt-0">
 
   {/* INTRODUCCIÓN */}
   <div className="mb-6">

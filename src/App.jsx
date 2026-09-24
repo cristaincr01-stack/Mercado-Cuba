@@ -4783,7 +4783,7 @@ onChange={(e) => setPinSesion(e.target.value)}
     <div className="relative">
 
       {/* CABECERA */}
-      <div className="sticky top-0 z-20 bg-[#0D1113]/85 backdrop-blur-xl border-b border-[#2A3033]">
+      <div className="relative z-20 bg-[#0D1113]/85 backdrop-blur-xl border-b border-[#2A3033]">
 
         <div className="max-w-2xl mx-auto px-4 py-3 flex items-center">
 

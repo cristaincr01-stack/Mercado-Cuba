@@ -4774,6 +4774,305 @@ onChange={(e) => setPinSesion(e.target.value)}
 
   </div>
 )}
+    {verificacionAbierta && (
+  <div className="fixed inset-0 z-50 overflow-y-auto bg-[#0D1113] text-[#F2F4F5]">
+
+    {/* FONDO */}
+    <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_-10%,rgba(27,107,99,0.40),transparent_42%),radial-gradient(circle_at_0%_35%,rgba(126,226,192,0.10),transparent_28%),radial-gradient(circle_at_100%_65%,rgba(27,107,99,0.12),transparent_30%),linear-gradient(180deg,#111A1B_0%,#0D1113_48%,#090C0D_100%)]" />
+
+    <div className="relative min-h-screen pb-24">
+
+      {/* CABECERA */}
+      <div className="sticky top-0 z-20 bg-[#0D1113]/85 backdrop-blur-xl border-b border-[#2A3033]">
+
+        <div className="max-w-2xl mx-auto px-4 py-3 flex items-center">
+
+          <button
+            onClick={() => setVerificacionAbierta(false)}
+            className="w-10 h-10 rounded-full bg-[#151A1D] border border-[#2A3033] flex items-center justify-center"
+          >
+            <ChevronLeft className="w-5 h-5 text-[#F2F4F5]" />
+          </button>
+
+          <div className="flex-1 text-center">
+
+            <p className="font-bold text-sm">
+              Verifica tu cuenta
+            </p>
+
+          </div>
+
+          <div className="w-10" />
+
+        </div>
+
+      </div>
+
+    </div>
+    {/* CONTENIDO */}
+<div className="max-w-2xl mx-auto px-5 pt-6">
+
+  {/* INTRODUCCIÓN */}
+  <div className="mb-6">
+
+    <p className="text-xs uppercase tracking-[0.12em] text-[#7EE2C0] font-bold">
+      Confianza en MercadoCU
+    </p>
+
+    <h1 className="text-2xl font-black tracking-tight mt-2">
+      Verifica tu cuenta
+    </h1>
+
+    <p className="text-sm text-[#9AA6AD] mt-2 leading-relaxed">
+      Aumenta la confianza de otros usuarios y destaca tu perfil dentro de MercadoCU.
+    </p>
+
+  </div>
+
+  {/* ESTADO ACTUAL */}
+  <div className="relative overflow-hidden rounded-3xl border border-[#2A3033] bg-[#151A1D]/90 p-5">
+
+    <div className="absolute -right-12 -top-12 w-36 h-36 rounded-full bg-[#1B6B63]/20 blur-3xl pointer-events-none" />
+
+    <div className="relative">
+
+      <div className="flex items-center gap-4">
+
+        <div className="w-14 h-14 rounded-2xl bg-[#1B6B63]/20 border border-[#7EE2C0]/20 flex items-center justify-center shrink-0">
+          <BadgeCheck className="w-7 h-7 text-[#7EE2C0]" />
+        </div>
+
+        <div className="min-w-0">
+
+          <p className="text-xs text-[#69757B] uppercase tracking-wider font-bold">
+            Estado de tu cuenta
+          </p>
+
+          <h2 className="text-lg font-bold mt-1">
+            Aún no verificada
+          </h2>
+
+        </div>
+
+      </div>
+
+      <p className="text-sm text-[#9AA6AD] mt-4 leading-relaxed">
+        Verifica tu identidad para obtener la insignia oficial de MercadoCU y generar mayor confianza.
+      </p>
+
+      <button
+        className="mt-5 w-full bg-[#1B6B63] hover:bg-[#23786F] active:scale-[0.98] text-white font-bold py-3.5 rounded-2xl transition-all shadow-[0_6px_18px_rgba(0,0,0,0.18)]"
+      >
+        Solicitar verificación
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+    {/* NIVEL 1 — VERIFICADO */}
+<div className="mt-5 bg-[#151A1D]/95 border border-[#7EE2C0]/25 rounded-3xl p-5 relative overflow-hidden">
+
+  <div className="absolute -right-16 -top-16 w-40 h-40 rounded-full bg-[#7EE2C0]/10 blur-3xl pointer-events-none" />
+
+  <div className="relative">
+
+    <div className="flex items-start justify-between gap-3">
+
+      <div className="flex items-center gap-3">
+
+        <div className="w-11 h-11 rounded-2xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center">
+          <BadgeCheck className="w-6 h-6 text-[#7EE2C0]" />
+        </div>
+
+        <div>
+          <p className="text-[10px] uppercase tracking-[0.12em] font-bold text-[#7EE2C0]">
+            Nivel 1
+          </p>
+
+          <h3 className="text-lg font-extrabold text-[#F2F4F5]">
+            Verificado
+          </h3>
+        </div>
+
+      </div>
+
+      <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 text-[#7EE2C0]">
+        Confianza
+      </span>
+
+    </div>
+
+    <p className="text-sm text-[#9AA6AD] mt-4 leading-relaxed">
+      Demuestra que tu cuenta pertenece a una persona o negocio real y genera mayor confianza dentro de MercadoCU.
+    </p>
+
+    <div className="mt-4 space-y-2">
+
+      <div className="flex items-center gap-2 text-sm text-[#F2F4F5]">
+        <Check className="w-4 h-4 text-[#7EE2C0] shrink-0" />
+        Insignia oficial de cuenta verificada
+      </div>
+
+      <div className="flex items-center gap-2 text-sm text-[#F2F4F5]">
+        <Check className="w-4 h-4 text-[#7EE2C0] shrink-0" />
+        Mayor confianza para tus clientes
+      </div>
+
+      <div className="flex items-center gap-2 text-sm text-[#F2F4F5]">
+        <Check className="w-4 h-4 text-[#7EE2C0] shrink-0" />
+        Perfil identificado como auténtico
+      </div>
+
+    </div>
+
+    <button
+      className="mt-5 w-full bg-[#1B6B63] hover:bg-[#23786F] active:scale-[0.98] text-white font-bold py-3.5 rounded-2xl transition-all shadow-[0_6px_18px_rgba(0,0,0,0.18)]"
+    >
+      Solicitar verificación
+    </button>
+
+  </div>
+
+</div>
+    {/* NIVEL 2 — NEGOCIO PRO */}
+<div className="mt-5 bg-[#151A1D]/95 border border-[#C0C5CA]/20 rounded-3xl p-5 relative overflow-hidden">
+
+  <div className="absolute -right-16 -top-16 w-40 h-40 rounded-full bg-[#C0C5CA]/10 blur-3xl pointer-events-none" />
+
+  <div className="relative">
+
+    <div className="flex items-start justify-between gap-3">
+
+      <div className="flex items-center gap-3">
+
+        <div className="w-11 h-11 rounded-2xl bg-[#C0C5CA]/10 border border-[#C0C5CA]/20 flex items-center justify-center">
+          <Sparkles className="w-6 h-6 text-[#C0C5CA]" />
+        </div>
+
+        <div>
+          <p className="text-[10px] uppercase tracking-[0.12em] font-bold text-[#C0C5CA]">
+            Nivel 2
+          </p>
+
+          <h3 className="text-lg font-extrabold text-[#F2F4F5]">
+            Negocio Pro
+          </h3>
+        </div>
+
+      </div>
+
+      <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#C0C5CA]/10 border border-[#C0C5CA]/20 text-[#C0C5CA]">
+        Pro
+      </span>
+
+    </div>
+
+    <p className="text-sm text-[#9AA6AD] mt-4 leading-relaxed">
+      Lleva tu cuenta al siguiente nivel y obtén herramientas adicionales para hacer crecer tu actividad dentro de MercadoCU.
+    </p>
+
+    <div className="mt-4 space-y-2">
+
+      <div className="flex items-center gap-2 text-sm text-[#F2F4F5]">
+        <Check className="w-4 h-4 text-[#C0C5CA] shrink-0" />
+        Estadísticas de tu actividad
+      </div>
+
+      <div className="flex items-center gap-2 text-sm text-[#F2F4F5]">
+        <Check className="w-4 h-4 text-[#C0C5CA] shrink-0" />
+        Mayor visibilidad en búsquedas
+      </div>
+
+      <div className="flex items-center gap-2 text-sm text-[#F2F4F5]">
+        <Check className="w-4 h-4 text-[#C0C5CA] shrink-0" />
+        Herramientas adicionales para tu perfil
+      </div>
+
+    </div>
+
+    <button
+      className="mt-5 w-full bg-[#202629] border border-[#C0C5CA]/25 hover:bg-[#292F32] active:scale-[0.98] text-[#F2F4F5] font-bold py-3.5 rounded-2xl transition-all"
+    >
+      Mejorar a Negocio Pro
+    </button>
+
+  </div>
+
+</div>
+{/* NIVEL 3 — PREMIUM */}
+<div className="mt-5 bg-[#151A1D]/95 border border-[#D4AF37]/30 rounded-3xl p-5 relative overflow-hidden">
+
+  <div className="absolute -right-20 -top-20 w-48 h-48 rounded-full bg-[#D4AF37]/10 blur-3xl pointer-events-none" />
+
+  <div className="relative">
+
+    <div className="flex items-start justify-between gap-3">
+
+      <div className="flex items-center gap-3">
+
+        <div className="w-11 h-11 rounded-2xl bg-[#D4AF37]/10 border border-[#D4AF37]/25 flex items-center justify-center">
+          <Crown className="w-6 h-6 text-[#D4AF37]" />
+        </div>
+
+        <div>
+          <p className="text-[10px] uppercase tracking-[0.12em] font-bold text-[#D4AF37]">
+            Nivel 3
+          </p>
+
+          <h3 className="text-lg font-extrabold text-[#F2F4F5]">
+            Premium
+          </h3>
+        </div>
+
+      </div>
+
+      <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/25 text-[#D4AF37]">
+        VIP
+      </span>
+
+    </div>
+
+    <p className="text-sm text-[#9AA6AD] mt-4 leading-relaxed">
+      La experiencia más completa para cuentas que quieren destacar, crecer y aprovechar al máximo MercadoCU.
+    </p>
+
+    <div className="mt-4 space-y-2">
+
+      <div className="flex items-center gap-2 text-sm text-[#F2F4F5]">
+        <Check className="w-4 h-4 text-[#D4AF37] shrink-0" />
+        Aparición en espacios destacados
+      </div>
+
+      <div className="flex items-center gap-2 text-sm text-[#F2F4F5]">
+        <Check className="w-4 h-4 text-[#D4AF37] shrink-0" />
+        Insignia Premium en tu perfil
+      </div>
+
+      <div className="flex items-center gap-2 text-sm text-[#F2F4F5]">
+        <Check className="w-4 h-4 text-[#D4AF37] shrink-0" />
+        Mayor visibilidad para tus publicaciones
+      </div>
+
+      <div className="flex items-center gap-2 text-sm text-[#F2F4F5]">
+        <Check className="w-4 h-4 text-[#D4AF37] shrink-0" />
+        Soporte prioritario
+      </div>
+
+    </div>
+
+    <button
+      className="mt-5 w-full bg-[#D4AF37]/15 border border-[#D4AF37]/35 hover:bg-[#D4AF37]/20 active:scale-[0.98] text-[#F0D77A] font-bold py-3.5 rounded-2xl transition-all"
+    >
+      Conocer Premium
+    </button>
+
+  </div>
+
+</div>
+  </div>
+)}
 
       {/* BARRA DE NAVEGACIÓN INFERIOR */}
 <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#0D1113]/95 backdrop-blur-xl border-t border-[#2A3033] shadow-[0_-8px_30px_rgba(0,0,0,0.35)]">

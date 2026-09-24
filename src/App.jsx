@@ -2478,8 +2478,8 @@ if (orden === "precioMayor") {
       {/* CATEGORÍAS */}
       <div className="mb-8">
         <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
-          Servicios
-        </p>
+  Especialidades
+</p>
 
         <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
           {[
@@ -2539,8 +2539,12 @@ if (orden === "precioMayor") {
                   </h3>
 
                   <p className="text-xs text-[#9AA6AD] mt-0.5">
-                    Creadora de contenido · Santa Clara
-                  </p>
+  Creadora de contenido · Santa Clara
+</p>
+
+<p className="text-[10px] text-[#69757B] mt-1">
+  Creadores · Foto y video
+</p>
                 </div>
 
                 <ChevronRight className="w-5 h-5 text-[#69757B] shrink-0" />
@@ -2562,38 +2566,31 @@ if (orden === "precioMayor") {
               </p>
 
               <div className="flex flex-wrap gap-2 mt-3">
-                <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
-                  Instagram
-                </span>
+  <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
+    Publicaciones patrocinadas
+  </span>
 
-                <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
-                  TikTok
-                </span>
+  <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
+    Videos promocionales
+  </span>
 
-                <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
-                  Facebook
-                </span>
-              </div>
+  <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
+    Contenido para redes
+  </span>
+</div>
 
-              <div className="flex items-center justify-between gap-3 mt-4 pt-4 border-t border-[#2A3033]/80">
-                <p className="text-[11px] text-[#69757B]">
-                  Servicios desde
-                </p>
-
-                <p className="text-sm font-semibold text-[#7EE2C0]">
-                  500 CUP
-                </p>
-              </div>
-
+              
             </div>
           </div>
         </button>
 
         {/* SEGUNDA TARJETA */}
         <button
-          type="button"
-          className="w-full text-left bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 hover:bg-[#1A2023] transition shadow-[0_0_35px_rgba(126,226,192,0.05)]"
-        >
+          <button
+  type="button"
+  onClick={() => setPromocionesAbierto("agencia")}
+  className="w-full text-left bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 hover:bg-[#1A2023] transition shadow-[0_0_35px_rgba(126,226,192,0.05)]"
+>
           <div className="flex items-start gap-4">
 
             <div className="w-14 h-14 rounded-2xl bg-[#202629] flex items-center justify-center shrink-0">
@@ -2611,8 +2608,12 @@ if (orden === "precioMayor") {
                   </h3>
 
                   <p className="text-xs text-[#9AA6AD] mt-0.5">
-                    Marketing digital · Villa Clara
-                  </p>
+  Marketing digital · Villa Clara
+</p>
+
+<p className="text-[10px] text-[#69757B] mt-1">
+  Marketing digital · Community manager · Publicidad en redes
+</p>
                 </div>
 
                 <ChevronRight className="w-5 h-5 text-[#69757B] shrink-0" />
@@ -2634,28 +2635,20 @@ if (orden === "precioMayor") {
               </p>
 
               <div className="flex flex-wrap gap-2 mt-3">
-                <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
-                  Instagram
-                </span>
+  <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
+    Marketing digital
+  </span>
 
-                <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
-                  Facebook
-                </span>
+  <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
+    Publicidad en redes
+  </span>
 
-                <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
-                  YouTube
-                </span>
-              </div>
+  <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
+    Estrategia digital
+  </span>
+</div>
 
-              <div className="flex items-center justify-between gap-3 mt-4 pt-4 border-t border-[#2A3033]/80">
-                <p className="text-[11px] text-[#69757B]">
-                  Servicios desde
-                </p>
-
-                <p className="text-sm font-semibold text-[#7EE2C0]">
-                  800 CUP
-                </p>
-              </div>
+              
 
             </div>
           </div>
@@ -2709,13 +2702,19 @@ if (orden === "precioMayor") {
 
           <div className="flex-1">
 
-            <p className="text-lg font-bold text-[#F2F4F5]">
-              Profesional
-            </p>
+            <div className="flex items-center gap-2">
+  <p className="text-lg font-bold text-[#F2F4F5]">
+    Profesional
+  </p>
 
-            <p className="text-sm text-[#9AA6AD] mt-1">
-              Creador o especialista en promoción
-            </p>
+  <span className="text-[10px] uppercase tracking-[0.14em] font-semibold text-[#7EE2C0] bg-[#1B6B63]/20 border border-[#1B6B63]/40 px-2 py-1 rounded-full">
+    Promociones
+  </span>
+</div>
+
+<p className="text-sm text-[#9AA6AD] mt-1">
+  Creador o especialista en promoción
+</p>
 
             <div className="flex items-center gap-2 mt-2">
 
@@ -2793,8 +2792,8 @@ if (orden === "precioMayor") {
               <ImageIcon className="w-6 h-6 text-[#69757B] mb-2" />
 
               <p className="text-xs font-medium text-[#9AA6AD]">
-                Trabajo 1
-              </p>
+  Publicación promocional
+</p>
 
             </div>
 
@@ -2803,8 +2802,8 @@ if (orden === "precioMayor") {
               <ImageIcon className="w-6 h-6 text-[#69757B] mb-2" />
 
               <p className="text-xs font-medium text-[#9AA6AD]">
-                Trabajo 2
-              </p>
+  Video promocional
+</p>
 
             </div>
 
@@ -3022,7 +3021,7 @@ if (orden === "precioMayor") {
               </p>
 
               <p className="text-xs text-[#69757B] mt-1">
-                Solicita una propuesta directamente a este profesional.
+               Solicita trabajar con este profesional para promocionar tu negocio.
               </p>
             </div>
 
@@ -3039,6 +3038,290 @@ if (orden === "precioMayor") {
 
       </div>
       </div>
+  </div>
+)}
+
+{promocionesAbierto === "agencia" && (
+  <div
+    className="fixed inset-0 z-50 text-[#F2F4F5] overflow-y-auto"
+    style={{
+      background:
+        "radial-gradient(circle at 50% -10%, rgba(27,107,99,0.40), transparent 42%), radial-gradient(circle at 100% 35%, rgba(126,226,192,0.10), transparent 35%), linear-gradient(180deg, #111A1B 0%, #0D1113 48%, #090C0D 100%)"
+    }}
+  >
+    <div className="max-w-lg mx-auto px-5 pt-4 pb-24">
+
+      {/* CABECERA */}
+      <div className="flex items-center gap-3 mb-6">
+        <button
+          onClick={() => setPromocionesAbierto(true)}
+          className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#202629] transition"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        <div>
+          <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold">
+            Promociones
+          </p>
+          <h2 className="text-2xl font-bold">
+            Perfil profesional
+          </h2>
+        </div>
+      </div>
+
+      {/* IDENTIDAD */}
+      <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 mb-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
+        <div className="flex items-center gap-4">
+
+          <div className="w-16 h-16 rounded-2xl bg-[#202629] flex items-center justify-center shrink-0">
+            <span className="text-xl font-bold text-[#7EE2C0]">
+              A
+            </span>
+          </div>
+
+          <div className="flex-1">
+
+            <div className="flex items-center gap-2">
+              <p className="text-lg font-bold text-[#F2F4F5]">
+                Agencia Creativa
+              </p>
+
+              <span className="text-[10px] uppercase tracking-[0.14em] font-semibold text-[#7EE2C0] bg-[#1B6B63]/20 border border-[#1B6B63]/40 px-2 py-1 rounded-full">
+                Promociones
+              </span>
+            </div>
+
+            <p className="text-sm text-[#9AA6AD] mt-1">
+              Marketing digital · Villa Clara
+            </p>
+
+            <div className="flex items-center gap-2 mt-2">
+              <Star className="w-4 h-4 text-[#69757B]" />
+              <span className="text-xs text-[#69757B]">
+                4.8 · 18 valoraciones
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* ESPECIALIDADES */}
+      <div className="mb-6">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+          Especialidades
+        </p>
+
+        <div className="flex flex-wrap gap-2">
+          <span className="px-3 py-1.5 rounded-full bg-[#202629] border border-[#2A3033] text-xs text-[#9AA6AD]">
+            Marketing digital
+          </span>
+
+          <span className="px-3 py-1.5 rounded-full bg-[#202629] border border-[#2A3033] text-xs text-[#9AA6AD]">
+            Community manager
+          </span>
+
+          <span className="px-3 py-1.5 rounded-full bg-[#202629] border border-[#2A3033] text-xs text-[#9AA6AD]">
+            Publicidad en redes
+          </span>
+        </div>
+      </div>
+
+      {/* PRESENTACIÓN */}
+      <div className="mb-6">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+          Sobre este profesional
+        </p>
+
+        <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
+          <p className="text-sm text-[#9AA6AD] leading-relaxed">
+            Ayudamos a negocios y emprendimientos a mejorar su presencia
+            digital mediante estrategias de contenido, gestión de redes y
+            campañas publicitarias.
+          </p>
+        </div>
+      </div>
+
+      {/* SERVICIOS */}
+      <div className="mb-6">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+          Servicios
+        </p>
+
+        <div className="space-y-3">
+
+          <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-4">
+            <p className="text-sm font-semibold text-[#F2F4F5]">
+              Gestión de redes sociales
+            </p>
+            <p className="text-xs text-[#69757B] mt-1 leading-relaxed">
+              Organización y gestión de las redes sociales de tu negocio.
+            </p>
+          </div>
+
+          <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-4">
+            <p className="text-sm font-semibold text-[#F2F4F5]">
+              Campañas publicitarias
+            </p>
+            <p className="text-xs text-[#69757B] mt-1 leading-relaxed">
+              Creación y gestión de campañas para promocionar productos
+              y servicios.
+            </p>
+          </div>
+
+          <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-4">
+            <p className="text-sm font-semibold text-[#F2F4F5]">
+              Estrategia digital
+            </p>
+            <p className="text-xs text-[#69757B] mt-1 leading-relaxed">
+              Planificación de acciones digitales adaptadas a cada negocio.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      {/* PORTAFOLIO */}
+      <div className="mb-6">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+          Portafolio
+        </p>
+
+        <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
+          <div className="grid grid-cols-2 gap-3">
+
+            <div className="aspect-square rounded-2xl bg-[#202629] border border-[#2A3033] flex flex-col items-center justify-center text-center px-3">
+              <ImageIcon className="w-6 h-6 text-[#69757B] mb-2" />
+              <p className="text-xs font-medium text-[#9AA6AD]">
+                Campaña digital
+              </p>
+            </div>
+
+            <div className="aspect-square rounded-2xl bg-[#202629] border border-[#2A3033] flex flex-col items-center justify-center text-center px-3">
+              <ImageIcon className="w-6 h-6 text-[#69757B] mb-2" />
+              <p className="text-xs font-medium text-[#9AA6AD]">
+                Publicidad en redes
+              </p>
+            </div>
+
+          </div>
+
+          <div className="flex items-center gap-2 mt-4">
+            <div className="w-2 h-2 rounded-full bg-[#69757B]" />
+            <p className="text-xs text-[#69757B]">
+              Aquí aparecerán ejemplos del trabajo de la agencia.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* REDES SOCIALES */}
+      <div className="mb-6">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+          Redes sociales
+        </p>
+
+        <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
+          <p className="text-xs text-[#69757B] leading-relaxed mb-4">
+            La agencia podrá añadir sus perfiles para que los clientes
+            puedan conocer su trabajo.
+          </p>
+
+          <div className="space-y-2">
+
+            <div className="w-full flex items-center justify-between bg-[#202629]/80 border border-[#2A3033] rounded-2xl px-4 py-3">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-[#202629] flex items-center justify-center">
+                  <Instagram className="w-4 h-4 text-[#F2F4F5]" />
+                </div>
+
+                <div>
+                  <p className="text-sm font-medium text-[#F2F4F5]">
+                    Instagram
+                  </p>
+                  <p className="text-[11px] text-[#69757B]">
+                    Perfil no añadido
+                  </p>
+                </div>
+              </div>
+
+              <ChevronRight className="w-4 h-4 text-[#69757B]" />
+            </div>
+
+            <div className="w-full flex items-center justify-between bg-[#202629]/80 border border-[#2A3033] rounded-2xl px-4 py-3">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-[#202629] flex items-center justify-center">
+                  <Facebook className="w-4 h-4 text-[#F2F4F5]" />
+                </div>
+
+                <div>
+                  <p className="text-sm font-medium text-[#F2F4F5]">
+                    Facebook
+                  </p>
+                  <p className="text-[11px] text-[#69757B]">
+                    Perfil no añadido
+                  </p>
+                </div>
+              </div>
+
+              <ChevronRight className="w-4 h-4 text-[#69757B]" />
+            </div>
+
+            <div className="w-full flex items-center justify-between bg-[#202629]/80 border border-[#2A3033] rounded-2xl px-4 py-3">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-[#202629] flex items-center justify-center">
+                  <TikTok className="w-4 h-4 text-[#F2F4F5]" />
+                </div>
+
+                <div>
+                  <p className="text-sm font-medium text-[#F2F4F5]">
+                    TikTok
+                  </p>
+                  <p className="text-[11px] text-[#69757B]">
+                    Perfil no añadido
+                  </p>
+                </div>
+              </div>
+
+              <ChevronRight className="w-4 h-4 text-[#69757B]" />
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* CONTRATACIÓN */}
+      <div className="mb-6">
+        <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
+
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-xl bg-[#e6efec] flex items-center justify-center">
+              <Megaphone className="w-5 h-5 text-[#1B6B63]" />
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold text-[#F2F4F5]">
+                ¿Quieres promocionar tu negocio?
+              </p>
+
+              <p className="text-xs text-[#69757B] mt-1">
+                Solicita trabajar con esta agencia para promocionar tu negocio.
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            className="w-full bg-[#1B6B63] text-white rounded-2xl py-3.5 text-sm font-semibold hover:opacity-90 transition"
+          >
+            Solicitar promoción
+          </button>
+
+        </div>
+      </div>
+
+    </div>
   </div>
 )}
               {crearCuentaAbierto && (

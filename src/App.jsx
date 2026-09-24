@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck, Eye,
-EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, Smartphone, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill, ChevronLeft, UserPlus, Sparkles, Crown } from "lucide-react";
+EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, Smartphone, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill, ChevronLeft, UserPlus, Sparkles, Crown, Megaphone } from "lucide-react";
 window.onerror = function (mensaje, archivo, linea, columna, error) {
   document.body.innerHTML = `
     <div style="
@@ -683,6 +683,7 @@ const [productosMeGusta, setProductosMeGusta] = useState([]);
   const [productos, setProductos] = useState([]);
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [domiciliosAbierto, setDomiciliosAbierto] = useState(false);
+  const [promocionesAbierto, setPromocionesAbierto] = useState(false);
   const [solicitarDomicilioAbierto, setSolicitarDomicilioAbierto] = useState(false);
   const [misDomiciliosAbierto, setMisDomiciliosAbierto] = useState(false);
   const [tendenciasAbierto, setTendenciasAbierto] = useState(false);
@@ -1912,6 +1913,30 @@ if (orden === "precioMayor") {
 
   <ChevronRight className="w-4 h-4 text-[#69757B]" />
 </button>
+            <button
+        onClick={() => {
+  setMenuAbierto(false);
+  setPromocionesAbierto(true);
+}}
+        className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#202629] rounded-xl transition"
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-[#e6efec] flex items-center justify-center">
+            <Megaphone className="w-5 h-5 text-[#1B6B63]" />
+          </div>
+
+          <div>
+            <p className="font-semibold text-sm text-[#F2F4F5]">
+              Promociones
+            </p>
+            <p className="text-[11px] text-[#9AA6AD]">
+              Impulsa tu negocio en otras redes
+            </p>
+          </div>
+        </div>
+
+        <ChevronRight className="w-4 h-4 text-[#69757B]" />
+      </button>
       <div className="flex items-center gap-2 mt-5 mb-2 px-2">
   <Settings className="w-4 h-4 text-[#1B6B63]" />
   <p className="text-xs uppercase tracking-wider font-bold text-[#8a8370]">
@@ -2389,6 +2414,251 @@ if (orden === "precioMayor") {
 </p>
 
         </div>
+
+      </div>
+
+    </div>
+  </div>
+)}
+            {promocionesAbierto && (
+  <div
+    className="fixed inset-0 z-50 text-[#F2F4F5] overflow-y-auto"
+    style={{
+      background:
+        "radial-gradient(circle at 50% -10%, rgba(27,107,99,0.40), transparent 42%), radial-gradient(circle at 100% 35%, rgba(126,226,192,0.10), transparent 35%), linear-gradient(180deg, #111A1B 0%, #0D1113 48%, #090C0D 100%)"
+    }}
+  >
+    <div className="max-w-2xl mx-auto px-5 pt-4 pb-24">
+
+      {/* CABECERA */}
+      <div className="flex items-center gap-3 mb-8">
+        <button
+          type="button"
+          onClick={() => setPromocionesAbierto(false)}
+          className="w-10 h-10 rounded-2xl bg-[#151A1D]/90 border border-[#2A3033] flex items-center justify-center hover:bg-[#202629] transition"
+        >
+          <ChevronLeft className="w-5 h-5 text-[#F2F4F5]" />
+        </button>
+
+        <div>
+          <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold">
+            MercadoCU · Servicios
+          </p>
+          <h1 className="text-xl font-bold text-[#F2F4F5]">
+            Promociones
+          </h1>
+        </div>
+      </div>
+
+      {/* INTRODUCCIÓN */}
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold text-[#F2F4F5] leading-tight">
+          Haz crecer tu negocio
+        </h2>
+
+        <p className="text-sm leading-relaxed text-[#9AA6AD] mt-2">
+          Descubre profesionales que pueden ayudarte a promocionar tu negocio,
+          crear contenido y llegar a nuevas audiencias.
+        </p>
+      </div>
+
+      {/* BUSCADOR */}
+      <div className="mb-7">
+        <div className="flex items-center gap-3 bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl px-4 py-3">
+          <Search className="w-5 h-5 text-[#69757B] shrink-0" />
+
+          <input
+            type="text"
+            placeholder="Buscar profesionales o servicios..."
+            className="w-full bg-transparent outline-none text-sm text-[#F2F4F5] placeholder:text-[#69757B]"
+          />
+        </div>
+      </div>
+
+      {/* CATEGORÍAS */}
+      <div className="mb-8">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+          Servicios
+        </p>
+
+        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+          {[
+            "Todos",
+            "Influencers",
+            "Creadores",
+            "Marketing digital",
+            "Community manager",
+            "Diseño gráfico",
+            "Foto y video",
+            "Publicidad en redes"
+          ].map((categoria, index) => (
+            <button
+              key={categoria}
+              type="button"
+              className={`shrink-0 px-4 py-2.5 rounded-full text-xs font-medium border transition ${
+                index === 0
+                  ? "bg-[#151A1D]/90 border-[#1B6B63] text-[#7EE2C0] shadow-[0_0_20px_rgba(27,107,99,0.12)]"
+                  : "bg-[#151A1D]/70 border-[#2A3033] text-[#9AA6AD] hover:bg-[#1A2023]"
+              }`}
+            >
+              {categoria}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* PROFESIONALES DESTACADOS */}
+      <div className="mb-4">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold">
+          Profesionales destacados
+        </p>
+      </div>
+
+      {/* TARJETA DE PROFESIONAL */}
+      <div className="space-y-4">
+
+        <button
+          type="button"
+          className="w-full text-left bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 hover:bg-[#1A2023] transition shadow-[0_0_35px_rgba(126,226,192,0.05)]"
+        >
+          <div className="flex items-start gap-4">
+
+            <div className="w-14 h-14 rounded-2xl bg-[#202629] flex items-center justify-center shrink-0">
+              <span className="text-lg font-bold text-[#7EE2C0]">
+                M
+              </span>
+            </div>
+
+            <div className="min-w-0 flex-1">
+
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <h3 className="text-base font-bold text-[#F2F4F5]">
+                    María González
+                  </h3>
+
+                  <p className="text-xs text-[#9AA6AD] mt-0.5">
+                    Creadora de contenido · Santa Clara
+                  </p>
+                </div>
+
+                <ChevronRight className="w-5 h-5 text-[#69757B] shrink-0" />
+              </div>
+
+              <div className="flex items-center gap-2 mt-3">
+                <span className="text-sm font-semibold text-[#F2F4F5]">
+                  ★ 4.9
+                </span>
+
+                <span className="text-xs text-[#69757B]">
+                  · 27 valoraciones
+                </span>
+              </div>
+
+              <p className="text-xs text-[#9AA6AD] leading-relaxed mt-3">
+                Contenido para redes sociales y campañas para pequeños
+                negocios y emprendimientos.
+              </p>
+
+              <div className="flex flex-wrap gap-2 mt-3">
+                <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
+                  Instagram
+                </span>
+
+                <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
+                  TikTok
+                </span>
+
+                <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
+                  Facebook
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between gap-3 mt-4 pt-4 border-t border-[#2A3033]/80">
+                <p className="text-[11px] text-[#69757B]">
+                  Servicios desde
+                </p>
+
+                <p className="text-sm font-semibold text-[#7EE2C0]">
+                  500 CUP
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </button>
+
+        {/* SEGUNDA TARJETA */}
+        <button
+          type="button"
+          className="w-full text-left bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 hover:bg-[#1A2023] transition shadow-[0_0_35px_rgba(126,226,192,0.05)]"
+        >
+          <div className="flex items-start gap-4">
+
+            <div className="w-14 h-14 rounded-2xl bg-[#202629] flex items-center justify-center shrink-0">
+              <span className="text-lg font-bold text-[#7EE2C0]">
+                A
+              </span>
+            </div>
+
+            <div className="min-w-0 flex-1">
+
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <h3 className="text-base font-bold text-[#F2F4F5]">
+                    Agencia Creativa
+                  </h3>
+
+                  <p className="text-xs text-[#9AA6AD] mt-0.5">
+                    Marketing digital · Villa Clara
+                  </p>
+                </div>
+
+                <ChevronRight className="w-5 h-5 text-[#69757B] shrink-0" />
+              </div>
+
+              <div className="flex items-center gap-2 mt-3">
+                <span className="text-sm font-semibold text-[#F2F4F5]">
+                  ★ 4.8
+                </span>
+
+                <span className="text-xs text-[#69757B]">
+                  · 18 valoraciones
+                </span>
+              </div>
+
+              <p className="text-xs text-[#9AA6AD] leading-relaxed mt-3">
+                Campañas digitales, publicidad en redes y estrategias para
+                negocios locales.
+              </p>
+
+              <div className="flex flex-wrap gap-2 mt-3">
+                <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
+                  Instagram
+                </span>
+
+                <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
+                  Facebook
+                </span>
+
+                <span className="px-2.5 py-1 rounded-lg bg-[#202629] text-[10px] text-[#9AA6AD]">
+                  YouTube
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between gap-3 mt-4 pt-4 border-t border-[#2A3033]/80">
+                <p className="text-[11px] text-[#69757B]">
+                  Servicios desde
+                </p>
+
+                <p className="text-sm font-semibold text-[#7EE2C0]">
+                  800 CUP
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </button>
 
       </div>
 

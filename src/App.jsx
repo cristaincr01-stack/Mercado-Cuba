@@ -3126,7 +3126,7 @@ if (orden === "precioMayor") {
             </p>
 
             <div className="flex items-center gap-2 mt-2">
-              <Star className="w-4 h-4 text-[#69757B]" />
+              <Star className="w-4 h-4 text-[#7EE2C0]" />
               <span className="text-xs text-[#69757B]">
                 4.8 · 18 valoraciones
               </span>

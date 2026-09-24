@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck, Eye,
-EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, Smartphone, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill, ChevronLeft, UserPlus, Sparkles, Crown, Megaphone } from "lucide-react";
+EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, Smartphone, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill, ChevronLeft, UserPlus, Sparkles, Crown, Megaphone, ImageIcon, BriefcaseBusiness, Instagram, Facebook, Music2, Youtube } from "lucide-react";
 window.onerror = function (mensaje, archivo, linea, columna, error) {
   document.body.innerHTML = `
     <div style="
@@ -2517,10 +2517,11 @@ if (orden === "precioMayor") {
       {/* TARJETA DE PROFESIONAL */}
       <div className="space-y-4">
 
-        <button
-          type="button"
-          className="w-full text-left bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 hover:bg-[#1A2023] transition shadow-[0_0_35px_rgba(126,226,192,0.05)]"
-        >
+       <button
+  type="button"
+  onClick={() => setPromocionesAbierto("maria")}
+  className="w-full text-left bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 hover:bg-[#1A2023] transition shadow-[0_0_35px_rgba(126,226,192,0.05)]"
+>
           <div className="flex items-start gap-4">
 
             <div className="w-14 h-14 rounded-2xl bg-[#202629] flex items-center justify-center shrink-0">
@@ -2665,6 +2666,478 @@ if (orden === "precioMayor") {
     </div>
   </div>
 )}
+            {promocionesAbierto === "maria" && (
+  <div
+    className="fixed inset-0 z-50 text-[#F2F4F5] overflow-y-auto"
+    style={{
+      background:
+        "radial-gradient(circle at 50% -10%, rgba(27,107,99,0.40), transparent 42%), radial-gradient(circle at 100% 35%, rgba(126,226,192,0.10), transparent 35%), linear-gradient(180deg, #111A1B 0%, #0D1113 48%, #090C0D 100%)"
+    }}
+  >
+    <div className="max-w-lg mx-auto px-5 pt-4 pb-24">
+
+      {/* Cabecera */}
+      <div className="flex items-center gap-3 mb-6">
+
+        <button
+          onClick={() => setPromocionesAbierto(true)}
+          className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#202629] transition"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        <div>
+          <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold">
+            Promociones
+          </p>
+
+          <h2 className="text-2xl font-bold">
+            Perfil profesional
+          </h2>
+        </div>
+
+      </div>
+
+      {/* Identidad */}
+      <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 mb-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
+
+        <div className="flex items-center gap-4">
+
+          <div className="w-16 h-16 rounded-2xl bg-[#202629] flex items-center justify-center shrink-0">
+            <User className="w-7 h-7 text-[#69757B]" />
+          </div>
+
+          <div className="flex-1">
+
+            <p className="text-lg font-bold text-[#F2F4F5]">
+              Profesional
+            </p>
+
+            <p className="text-sm text-[#9AA6AD] mt-1">
+              Creador o especialista en promoción
+            </p>
+
+            <div className="flex items-center gap-2 mt-2">
+
+              <Star className="w-4 h-4 text-[#69757B]" />
+
+              <span className="text-xs text-[#69757B]">
+                Sin valoraciones todavía
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+            {/* Servicios */}
+      <div className="mb-6">
+
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+          Servicios
+        </p>
+
+        <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
+
+          <div className="flex items-center gap-3">
+
+            <div className="w-11 h-11 rounded-2xl bg-[#202629] flex items-center justify-center shrink-0">
+              <BriefcaseBusiness className="w-5 h-5 text-[#7EE2C0]" />
+            </div>
+
+            <div className="flex-1">
+
+              <p className="text-sm font-semibold text-[#F2F4F5]">
+                Servicios de promoción
+              </p>
+
+              <p className="text-xs text-[#69757B] mt-1 leading-relaxed">
+                Aquí aparecerán los servicios que este profesional ofrece,
+                junto con sus detalles y precios.
+              </p>
+
+            </div>
+
+          </div>
+
+          <div className="h-px bg-[#2A3033]/80 my-4" />
+
+          <div className="flex items-center gap-2">
+
+            <div className="w-2 h-2 rounded-full bg-[#69757B]" />
+
+            <p className="text-xs text-[#69757B]">
+              Este profesional aún no ha añadido servicios.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+            {/* Portafolio */}
+      <div className="mb-6">
+
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+          Portafolio
+        </p>
+
+        <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
+
+          <div className="grid grid-cols-2 gap-3">
+
+            <div className="aspect-square rounded-2xl bg-[#202629] border border-[#2A3033] flex flex-col items-center justify-center text-center px-3">
+
+              <ImageIcon className="w-6 h-6 text-[#69757B] mb-2" />
+
+              <p className="text-xs font-medium text-[#9AA6AD]">
+                Trabajo 1
+              </p>
+
+            </div>
+
+            <div className="aspect-square rounded-2xl bg-[#202629] border border-[#2A3033] flex flex-col items-center justify-center text-center px-3">
+
+              <ImageIcon className="w-6 h-6 text-[#69757B] mb-2" />
+
+              <p className="text-xs font-medium text-[#9AA6AD]">
+                Trabajo 2
+              </p>
+
+            </div>
+
+          </div>
+
+          <div className="flex items-center gap-2 mt-4">
+
+            <div className="w-2 h-2 rounded-full bg-[#69757B]" />
+
+            <p className="text-xs text-[#69757B]">
+              Aquí aparecerán ejemplos del trabajo del profesional.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+            {/* Redes sociales */}
+      <div className="mb-6">
+
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+          Redes sociales
+        </p>
+
+        <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
+
+          <p className="text-xs text-[#69757B] leading-relaxed mb-4">
+            El profesional podrá añadir sus perfiles para que los clientes
+            puedan conocer su trabajo en otras plataformas.
+          </p>
+
+          <div className="space-y-2">
+
+            {/* Instagram */}
+            <button
+              type="button"
+              className="w-full flex items-center justify-between bg-[#202629]/80 border border-[#2A3033] rounded-2xl px-4 py-3 hover:bg-[#252C2F] transition"
+            >
+
+              <div className="flex items-center gap-3">
+
+                <div className="w-9 h-9 rounded-xl bg-[#202629] flex items-center justify-center">
+                  <Instagram className="w-4 h-4 text-[#F2F4F5]" />
+                </div>
+
+                <div className="text-left">
+
+                  <p className="text-sm font-medium text-[#F2F4F5]">
+                    Instagram
+                  </p>
+
+                  <p className="text-[11px] text-[#69757B]">
+                    Perfil no añadido
+                  </p>
+
+                </div>
+
+              </div>
+
+              <ChevronRight className="w-4 h-4 text-[#69757B]" />
+
+            </button>
+
+            {/* Facebook */}
+            <button
+              type="button"
+              className="w-full flex items-center justify-between bg-[#202629]/80 border border-[#2A3033] rounded-2xl px-4 py-3 hover:bg-[#252C2F] transition"
+            >
+
+              <div className="flex items-center gap-3">
+
+                <div className="w-9 h-9 rounded-xl bg-[#202629] flex items-center justify-center">
+                  <Facebook className="w-4 h-4 text-[#F2F4F5]" />
+                </div>
+
+                <div className="text-left">
+
+                  <p className="text-sm font-medium text-[#F2F4F5]">
+                    Facebook
+                  </p>
+
+                  <p className="text-[11px] text-[#69757B]">
+                    Perfil no añadido
+                  </p>
+
+                </div>
+
+              </div>
+
+              <ChevronRight className="w-4 h-4 text-[#69757B]" />
+
+            </button>
+
+            {/* TikTok */}
+            <button
+              type="button"
+              className="w-full flex items-center justify-between bg-[#202629]/80 border border-[#2A3033] rounded-2xl px-4 py-3 hover:bg-[#252C2F] transition"
+            >
+
+              <div className="flex items-center gap-3">
+
+                <div className="w-9 h-9 rounded-xl bg-[#202629] flex items-center justify-center">
+                  <Music2 className="w-4 h-4 text-[#F2F4F5]" />
+                </div>
+
+                <div className="text-left">
+
+                  <p className="text-sm font-medium text-[#F2F4F5]">
+                    TikTok
+                  </p>
+
+                  <p className="text-[11px] text-[#69757B]">
+                    Perfil no añadido
+                  </p>
+
+                </div>
+
+              </div>
+
+              <ChevronRight className="w-4 h-4 text-[#69757B]" />
+
+            </button>
+
+            {/* YouTube */}
+            <button
+              type="button"
+              className="w-full flex items-center justify-between bg-[#202629]/80 border border-[#2A3033] rounded-2xl px-4 py-3 hover:bg-[#252C2F] transition"
+            >
+
+              <div className="flex items-center gap-3">
+
+                <div className="w-9 h-9 rounded-xl bg-[#202629] flex items-center justify-center">
+                  <Youtube className="w-4 h-4 text-[#F2F4F5]" />
+                </div>
+
+                <div className="text-left">
+
+                  <p className="text-sm font-medium text-[#F2F4F5]">
+                    YouTube
+                  </p>
+
+                  <p className="text-[11px] text-[#69757B]">
+                    Canal no añadido
+                  </p>
+
+                </div>
+
+              </div>
+
+              <ChevronRight className="w-4 h-4 text-[#69757B]" />
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+            {/* Redes y perfiles */}
+      <div className="mb-6">
+
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+          Redes y perfiles
+        </p>
+
+        <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-4 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
+
+          <p className="text-xs text-[#69757B] mb-4">
+            Conoce el contenido y los perfiles donde trabaja este profesional.
+          </p>
+
+          <div className="space-y-2">
+
+            {/* Instagram */}
+            <button
+              type="button"
+              className="w-full flex items-center justify-between px-3 py-3 rounded-2xl bg-[#0D1113] border border-[#2A3033] hover:bg-[#1A2023] transition"
+            >
+              <div className="flex items-center gap-3">
+
+                <div className="w-9 h-9 rounded-xl bg-[#242024] flex items-center justify-center">
+                  <Instagram className="w-4 h-4 text-[#F2F4F5]" />
+                </div>
+
+                <span className="text-sm font-medium text-[#F2F4F5]">
+                  Instagram
+                </span>
+
+              </div>
+
+              <ChevronRight className="w-4 h-4 text-[#69757B]" />
+            </button>
+
+            {/* Facebook */}
+            <button
+              type="button"
+              className="w-full flex items-center justify-between px-3 py-3 rounded-2xl bg-[#0D1113] border border-[#2A3033] hover:bg-[#1A2023] transition"
+            >
+              <div className="flex items-center gap-3">
+
+                <div className="w-9 h-9 rounded-xl bg-[#202629] flex items-center justify-center">
+                  <Facebook className="w-4 h-4 text-[#F2F4F5]" />
+                </div>
+
+                <span className="text-sm font-medium text-[#F2F4F5]">
+                  Facebook
+                </span>
+
+              </div>
+
+              <ChevronRight className="w-4 h-4 text-[#69757B]" />
+            </button>
+
+            {/* TikTok */}
+            <button
+              type="button"
+              className="w-full flex items-center justify-between px-3 py-3 rounded-2xl bg-[#0D1113] border border-[#2A3033] hover:bg-[#1A2023] transition"
+            >
+              <div className="flex items-center gap-3">
+
+                <div className="w-9 h-9 rounded-xl bg-[#202629] flex items-center justify-center">
+                  <Music2 className="w-4 h-4 text-[#F2F4F5]" />
+                </div>
+
+                <span className="text-sm font-medium text-[#F2F4F5]">
+                  TikTok
+                </span>
+
+              </div>
+
+              <ChevronRight className="w-4 h-4 text-[#69757B]" />
+            </button>
+
+            {/* YouTube */}
+            <button
+              type="button"
+              className="w-full flex items-center justify-between px-3 py-3 rounded-2xl bg-[#0D1113] border border-[#2A3033] hover:bg-[#1A2023] transition"
+            >
+              <div className="flex items-center gap-3">
+
+                <div className="w-9 h-9 rounded-xl bg-[#202629] flex items-center justify-center">
+                  <Youtube className="w-4 h-4 text-[#F2F4F5]" />
+                </div>
+
+                <span className="text-sm font-medium text-[#F2F4F5]">
+                  YouTube
+                </span>
+
+              </div>
+
+              <ChevronRight className="w-4 h-4 text-[#69757B]" />
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+
+
+      {/* Servicios */}
+      <div className="mb-6">
+
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+          Servicios
+        </p>
+
+        <div className="grid grid-cols-1 gap-2">
+
+          <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl p-4">
+            <p className="text-sm font-semibold text-[#F2F4F5]">
+              Publicaciones patrocinadas
+            </p>
+            <p className="text-xs text-[#69757B] mt-1">
+              Promoción de negocios y productos en sus redes.
+            </p>
+          </div>
+
+          <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl p-4">
+            <p className="text-sm font-semibold text-[#F2F4F5]">
+              Videos promocionales
+            </p>
+            <p className="text-xs text-[#69757B] mt-1">
+              Creación de contenido para promocionar tu negocio.
+            </p>
+          </div>
+
+          <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl p-4">
+            <p className="text-sm font-semibold text-[#F2F4F5]">
+              Historias y contenido
+            </p>
+            <p className="text-xs text-[#69757B] mt-1">
+              Campañas y publicaciones adaptadas a diferentes redes.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+
+      {/* Contratación */}
+      <div className="mb-6">
+
+        <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
+
+          <div className="flex items-center gap-3 mb-4">
+
+            <div className="w-10 h-10 rounded-xl bg-[#e6efec] flex items-center justify-center">
+              <Megaphone className="w-5 h-5 text-[#1B6B63]" />
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold text-[#F2F4F5]">
+                ¿Quieres promocionar tu negocio?
+              </p>
+
+              <p className="text-xs text-[#69757B] mt-1">
+                Solicita una propuesta directamente a este profesional.
+              </p>
+            </div>
+
+          </div>
+
+          <button
+            type="button"
+            className="w-full bg-[#1B6B63] text-white rounded-2xl py-3.5 text-sm font-semibold hover:opacity-90 transition"
+          >
+            Solicitar promoción
+          </button>
+
+        </div>
+
+      </div>
               {crearCuentaAbierto && (
   <div className="fixed inset-0 bg-black/70 flex items-end justify-center z-50">
     <div className="bg-[#151A1D] w-full max-w-lg rounded-t-3xl p-5 shadow-2xl border-t border-[#2A3033]">

@@ -2585,7 +2585,6 @@ if (orden === "precioMayor") {
         </button>
 
         {/* SEGUNDA TARJETA */}
-        <button
           <button
   type="button"
   onClick={() => setPromocionesAbierto("agencia")}

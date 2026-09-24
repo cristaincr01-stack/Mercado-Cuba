@@ -2133,9 +2133,17 @@ if (orden === "precioMayor") {
           ¿Dónde recoger?
         </p>
 
-        <p className="text-xs text-[#69757B] mt-1">
-          Añade el punto donde el mensajero debe recoger el envío.
-        </p>
+       <p className="text-xs text-[#69757B] mt-1 leading-relaxed">
+  Añade el punto donde el mensajero debe recoger el envío.
+</p>
+
+<button
+  type="button"
+  className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-[#7EE2C0] hover:opacity-80 transition"
+>
+  <MapPin className="w-3.5 h-3.5" />
+  Usar mi ubicación
+</button>
       </div>
 
       <ChevronRight className="w-4 h-4 text-[#69757B] mt-1 shrink-0" />
@@ -2157,17 +2165,26 @@ if (orden === "precioMayor") {
           ¿Dónde entregar?
         </p>
 
-        <p className="text-xs text-[#69757B] mt-1">
-          Añade la dirección donde debe llegar el envío.
-        </p>
+        <p className="text-xs text-[#69757B] mt-1 leading-relaxed">
+  Añade la dirección donde debe llegar el envío.
+</p>
       </div>
 
       <ChevronRight className="w-4 h-4 text-[#69757B] mt-1 shrink-0" />
     </div>
 
+    </div>
+
+  <div className="flex items-center justify-center gap-2 mt-3 px-4">
+    <MapPin className="w-3.5 h-3.5 text-[#69757B] shrink-0" />
+    <p className="text-[11px] text-[#69757B] text-center leading-relaxed">
+      El seguimiento GPS será opcional durante el viaje.
+    </p>
   </div>
+
 </div>
-      {/* Detalles del envío */}
+
+{/* Detalles del envío */}
 <div className="mb-6">
 
  <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
@@ -2334,11 +2351,18 @@ if (orden === "precioMayor") {
           <div className="h-px bg-[#2A3033]/80 mb-4" />
 
           <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#69757B]" />
-            <p className="text-xs text-[#69757B]">
-              Sin viajes en curso
-            </p>
-          </div>
+  <div className="w-2.5 h-2.5 rounded-full bg-[#69757B]" />
+  <p className="text-xs text-[#69757B]">
+    Sin viajes en curso
+  </p>
+</div>
+
+<div className="flex items-center gap-2 mt-3 pt-3 border-t border-[#2A3033]/70">
+  <MapPin className="w-3.5 h-3.5 text-[#69757B] shrink-0" />
+  <p className="text-[11px] text-[#69757B] leading-relaxed">
+    El seguimiento GPS aparecerá cuando tengas un viaje activo.
+  </p>
+</div>
 
         </div>
       </div>

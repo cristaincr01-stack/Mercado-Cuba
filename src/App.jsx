@@ -1942,10 +1942,16 @@ if (orden === "precioMayor") {
     </div>
   )}
             {domiciliosAbierto && (
-  <div className="fixed inset-0 z-50 bg-[#0D1113] text-[#F2F4F5] overflow-y-auto">
-    <div className="max-w-lg mx-auto px-4 pt-5 pb-24">
+  <div
+  className="fixed inset-0 z-50 text-[#F2F4F5] overflow-y-auto"
+  style={{
+    background:
+      "radial-gradient(circle at 50% -10%, rgba(27,107,99,0.40), transparent 42%), radial-gradient(circle at 100% 35%, rgba(126,226,192,0.10), transparent 35%), linear-gradient(180deg, #111A1B 0%, #0D1113 48%, #090C0D 100%)"
+  }}
+>
+    <div className="max-w-2xl mx-auto px-5 pt-4 pb-24">
 
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-3 mb-8">
         <button
           onClick={() => setDomiciliosAbierto(false)}
           className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#202629] transition"
@@ -1954,28 +1960,30 @@ if (orden === "precioMayor") {
         </button>
 
         <div>
-          <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold">
-            MercadoCU
-          </p>
-          <h2 className="text-2xl font-bold">
-            Domicilios
-          </h2>
+         <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-1">
+  MercadoCU · Servicios
+</p>
+          <h2 className="text-2xl font-bold tracking-tight text-[#F2F4F5]">
+  Domicilios
+</h2>
         </div>
       </div>
 
-      <p className="text-sm text-[#9AA6AD] mb-6">
-        Solicita un viaje para recibir tus compras o gestiona tus servicios de mensajería.
-      </p>
-      <div className="space-y-3">
+     <div className="mb-8">
+  <p className="text-sm leading-relaxed text-[#9AA6AD]">
+    Solicita un domicilio para recibir o enviar tus compras, o consulta tus viajes.
+  </p>
+</div>
+      <div className="space-y-4">
 
   <button
   onClick={() => {
     setSolicitarDomicilioAbierto(true);
   }}
-  className="w-full text-left bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4 hover:bg-[#1A2023] transition"
+  className="w-full text-left bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 hover:bg-[#1A2023] transition shadow-[0_0_35px_rgba(126,226,192,0.05)]"
 >
     <div className="flex items-center gap-3">
-      <div className="w-11 h-11 rounded-xl bg-[#e6efec] flex items-center justify-center shrink-0">
+      <div className="w-11 h-11 rounded-2xl bg-[#e6efec] flex items-center justify-center shrink-0">
         <Truck className="w-5 h-5 text-[#1B6B63]" />
       </div>
 
@@ -1996,10 +2004,10 @@ if (orden === "precioMayor") {
   onClick={() => {
     setMisDomiciliosAbierto(true);
   }}
-  className="w-full text-left bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4 hover:bg-[#1A2023] transition"
+  className="w-full text-left bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 hover:bg-[#1A2023] transition shadow-[0_0_35px_rgba(126,226,192,0.05)]"
 >
     <div className="flex items-center gap-3">
-      <div className="w-11 h-11 rounded-xl bg-[#202629] flex items-center justify-center shrink-0">
+     <div className="w-11 h-11 rounded-2xl bg-[#202629] flex items-center justify-center shrink-0">
         <Truck className="w-5 h-5 text-[#7EE2C0]" />
       </div>
 
@@ -2268,11 +2276,17 @@ if (orden === "precioMayor") {
   </div>
 )}
             {misDomiciliosAbierto && (
-  <div className="fixed inset-0 z-50 bg-[#0D1113] text-[#F2F4F5] overflow-y-auto">
-    <div className="max-w-lg mx-auto px-4 pt-5 pb-24">
+  <div
+  className="fixed inset-0 z-50 text-[#F2F4F5] overflow-y-auto"
+  style={{
+    background:
+      "radial-gradient(circle at 50% -10%, rgba(27,107,99,0.40), transparent 42%), radial-gradient(circle at 100% 35%, rgba(126,226,192,0.10), transparent 35%), linear-gradient(180deg, #111A1B 0%, #0D1113 48%, #090C0D 100%)"
+  }}
+>
+    <div className="max-w-2xl mx-auto px-5 pt-4 pb-24">
 
       {/* Cabecera */}
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-3 mb-8">
         <button
           onClick={() => setMisDomiciliosAbierto(false)}
           className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#202629] transition"
@@ -2293,15 +2307,15 @@ if (orden === "precioMayor") {
       {/* Viaje activo */}
       <div className="mb-7">
 
-        <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold mb-3">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
           Viaje activo
         </p>
 
-        <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4">
+        <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
 
           <div className="flex items-center gap-3 mb-4">
 
-            <div className="w-11 h-11 rounded-xl bg-[#e6efec] flex items-center justify-center shrink-0">
+            <div className="w-11 h-11 rounded-2xl bg-[#e6efec] flex items-center justify-center shrink-0">
               <Truck className="w-5 h-5 text-[#1B6B63]" />
             </div>
 
@@ -2317,10 +2331,10 @@ if (orden === "precioMayor") {
 
           </div>
 
-          <div className="h-px bg-[#2A3033] mb-4" />
+          <div className="h-px bg-[#2A3033]/80 mb-4" />
 
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-[#69757B]" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#69757B]" />
             <p className="text-xs text-[#69757B]">
               Sin viajes en curso
             </p>
@@ -2332,13 +2346,13 @@ if (orden === "precioMayor") {
       {/* Historial */}
       <div>
 
-        <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold mb-3">
-          Historial
-        </p>
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+  Historial
+</p>
 
-        <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-5 text-center">
+        <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 text-center shadow-[0_0_35px_rgba(126,226,192,0.05)]">
 
-          <div className="w-12 h-12 rounded-2xl bg-[#202629] flex items-center justify-center mx-auto mb-3">
+          <div className="w-12 h-12 rounded-2xl bg-[#202629]/80 flex items-center justify-center mx-auto mb-4">
             <Truck className="w-5 h-5 text-[#69757B]" />
           </div>
 
@@ -2346,9 +2360,9 @@ if (orden === "precioMayor") {
             Aún no tienes domicilios
           </p>
 
-          <p className="text-xs text-[#69757B] mt-1">
-            Cuando solicites un viaje, aparecerá aquí.
-          </p>
+          <p className="text-xs text-[#69757B] mt-1 leading-relaxed">
+  Cuando solicites un viaje, aparecerá aquí.
+</p>
 
         </div>
 

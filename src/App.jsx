@@ -683,6 +683,7 @@ const [productosMeGusta, setProductosMeGusta] = useState([]);
   const [productos, setProductos] = useState([]);
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [domiciliosAbierto, setDomiciliosAbierto] = useState(false);
+  const [solicitarDomicilioAbierto, setSolicitarDomicilioAbierto] = useState(false);
   const [tendenciasAbierto, setTendenciasAbierto] = useState(false);
   const [tiendasAbierto, setTiendasAbierto] = useState(false);
   const [verificacionAbierta, setVerificacionAbierta] = useState(false);
@@ -1964,6 +1965,294 @@ if (orden === "precioMayor") {
       <p className="text-sm text-[#9AA6AD] mb-6">
         Solicita un viaje para recibir tus compras o gestiona tus servicios de mensajería.
       </p>
+      <div className="space-y-3">
+
+  <button
+  onClick={() => {
+    setSolicitarDomicilioAbierto(true);
+  }}
+  className="w-full text-left bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4 hover:bg-[#1A2023] transition"
+>
+    <div className="flex items-center gap-3">
+      <div className="w-11 h-11 rounded-xl bg-[#e6efec] flex items-center justify-center shrink-0">
+        <Truck className="w-5 h-5 text-[#1B6B63]" />
+      </div>
+
+      <div className="flex-1 min-w-0">
+        <p className="font-semibold text-sm text-[#F2F4F5]">
+          Solicitar un domicilio
+        </p>
+        <p className="text-xs text-[#9AA6AD] mt-1">
+          Envía o recibe una compra con un mensajero.
+        </p>
+      </div>
+
+      <ChevronRight className="w-4 h-4 text-[#69757B] shrink-0" />
+    </div>
+  </button>
+
+  <button
+    className="w-full text-left bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4 hover:bg-[#1A2023] transition"
+  >
+    <div className="flex items-center gap-3">
+      <div className="w-11 h-11 rounded-xl bg-[#202629] flex items-center justify-center shrink-0">
+        <Truck className="w-5 h-5 text-[#7EE2C0]" />
+      </div>
+
+      <div className="flex-1 min-w-0">
+        <p className="font-semibold text-sm text-[#F2F4F5]">
+          Mis domicilios
+        </p>
+        <p className="text-xs text-[#9AA6AD] mt-1">
+          Consulta tus solicitudes y viajes.
+        </p>
+      </div>
+
+      <ChevronRight className="w-4 h-4 text-[#69757B] shrink-0" />
+    </div>
+  </button>
+
+</div>
+
+    </div>
+  </div>
+)}
+            {solicitarDomicilioAbierto && (
+  <div className="fixed inset-0 z-50 bg-[#0D1113] text-[#F2F4F5] overflow-y-auto">
+    <div className="max-w-lg mx-auto px-4 pt-5 pb-24">
+
+      {/* Cabecera */}
+      <div className="flex items-center gap-3 mb-6">
+        <button
+          onClick={() => setSolicitarDomicilioAbierto(false)}
+          className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#202629] transition"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        <div>
+          <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold">
+            Domicilios
+          </p>
+          <h2 className="text-2xl font-bold">
+            Solicitar un domicilio
+          </h2>
+        </div>
+      </div>
+
+      {/* Introducción */}
+      <div className="mb-6">
+        <p className="text-sm text-[#9AA6AD]">
+          Indica dónde recoger y dónde entregar tu envío.
+        </p>
+      </div>
+      {/* Tipo de envío */}
+<div className="mb-6">
+  <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold mb-3">
+    Tipo de envío
+  </p>
+
+  <div className="grid grid-cols-2 gap-3">
+
+    <button
+      className="text-left bg-[#151A1D] border border-[#1B6B63] rounded-2xl p-4 transition"
+    >
+      <div className="w-10 h-10 rounded-xl bg-[#e6efec] flex items-center justify-center mb-3">
+        <Truck className="w-5 h-5 text-[#1B6B63]" />
+      </div>
+
+      <p className="text-sm font-semibold text-[#F2F4F5]">
+        Compra de MercadoCU
+      </p>
+
+      <p className="text-xs text-[#9AA6AD] mt-1">
+        Recibir una compra realizada en MercadoCU.
+      </p>
+    </button>
+
+    <button
+      className="text-left bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4 hover:bg-[#1A2023] transition"
+    >
+      <div className="w-10 h-10 rounded-xl bg-[#202629] flex items-center justify-center mb-3">
+        <Truck className="w-5 h-5 text-[#7EE2C0]" />
+      </div>
+
+      <p className="text-sm font-semibold text-[#F2F4F5]">
+        Otro envío
+      </p>
+
+      <p className="text-xs text-[#9AA6AD] mt-1">
+        Envía algo que no compraste en MercadoCU.
+      </p>
+    </button>
+
+  </div>
+</div>
+
+      {/* Ruta */}
+<div className="mb-6">
+
+  <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold mb-3">
+    Ruta del domicilio
+  </p>
+
+  <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4">
+
+    {/* Recogida */}
+    <div className="flex items-start gap-3">
+
+      <div className="flex flex-col items-center pt-1">
+        <div className="w-3 h-3 rounded-full border-2 border-[#7EE2C0] bg-[#0D1113]" />
+        <div className="w-px h-12 bg-[#2A3033] my-1" />
+      </div>
+
+      <div className="flex-1 pb-3">
+        <p className="text-[11px] text-[#9AA6AD] mb-1">
+          RECOGIDA
+        </p>
+
+        <p className="text-sm font-medium text-[#F2F4F5]">
+          ¿Dónde recoger?
+        </p>
+
+        <p className="text-xs text-[#69757B] mt-1">
+          Añade el punto donde el mensajero debe recoger el envío.
+        </p>
+      </div>
+
+      <ChevronRight className="w-4 h-4 text-[#69757B] mt-1 shrink-0" />
+    </div>
+
+    {/* Destino */}
+    <div className="flex items-start gap-3">
+
+      <div className="flex flex-col items-center pt-1">
+        <div className="w-3 h-3 rounded-full bg-[#7EE2C0]" />
+      </div>
+
+      <div className="flex-1">
+        <p className="text-[11px] text-[#9AA6AD] mb-1">
+          DESTINO
+        </p>
+
+        <p className="text-sm font-medium text-[#F2F4F5]">
+          ¿Dónde entregar?
+        </p>
+
+        <p className="text-xs text-[#69757B] mt-1">
+          Añade la dirección donde debe llegar el envío.
+        </p>
+      </div>
+
+      <ChevronRight className="w-4 h-4 text-[#69757B] mt-1 shrink-0" />
+    </div>
+
+  </div>
+</div>
+      {/* Detalles del envío */}
+<div className="mb-6">
+
+  <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold mb-3">
+    Detalles del envío
+  </p>
+
+  <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4">
+
+    {/* Qué se envía */}
+    <div className="mb-5">
+      <label className="block text-sm font-semibold text-[#F2F4F5] mb-2">
+        ¿Qué necesitas enviar?
+      </label>
+
+      <div className="w-full bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3">
+        <p className="text-sm text-[#69757B]">
+          Ej. paquete, alimentos, documento, compra...
+        </p>
+      </div>
+    </div>
+
+    {/* Tamaño */}
+    <div className="mb-5">
+      <label className="block text-sm font-semibold text-[#F2F4F5] mb-2">
+        Tamaño aproximado
+      </label>
+
+      <div className="grid grid-cols-3 gap-2">
+
+        <button
+          className="bg-[#202629] border border-[#1B6B63] rounded-xl py-3 text-xs font-medium text-[#F2F4F5]"
+        >
+          Pequeño
+        </button>
+
+        <button
+          className="bg-[#0D1113] border border-[#2A3033] rounded-xl py-3 text-xs font-medium text-[#9AA6AD]"
+        >
+          Mediano
+        </button>
+
+        <button
+          className="bg-[#0D1113] border border-[#2A3033] rounded-xl py-3 text-xs font-medium text-[#9AA6AD]"
+        >
+          Grande
+        </button>
+
+      </div>
+    </div>
+
+    {/* Indicaciones */}
+    <div>
+      <label className="block text-sm font-semibold text-[#F2F4F5] mb-2">
+        Indicaciones para el mensajero
+      </label>
+
+      <div className="w-full min-h-[90px] bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3">
+        <p className="text-sm text-[#69757B]">
+          Añade alguna indicación especial para la recogida o entrega...
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+      {/* Resumen del viaje */}
+<div className="mb-6">
+
+  <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold mb-3">
+    Resumen
+  </p>
+
+  <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4">
+
+    <div className="flex items-center justify-between mb-3">
+      <span className="text-sm text-[#9AA6AD]">
+        Costo estimado
+      </span>
+
+      <span className="text-lg font-bold text-[#F2F4F5]">
+        — CUP
+      </span>
+    </div>
+
+    <div className="h-px bg-[#2A3033] mb-3" />
+
+    <p className="text-xs leading-relaxed text-[#69757B]">
+      El costo dependerá de la distancia, el recorrido y las condiciones del viaje.
+    </p>
+
+  </div>
+</div>
+
+{/* Solicitar */}
+<button
+  className="w-full bg-[#1B6B63] text-white rounded-2xl py-4 font-semibold text-sm hover:opacity-90 transition"
+>
+  Solicitar domicilio
+</button>
+
+<p className="text-[11px] text-[#69757B] text-center mt-3 px-4">
+  Podrás revisar los detalles del viaje antes de confirmarlo.
+</p>
 
     </div>
   </div>

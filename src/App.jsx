@@ -4775,7 +4775,7 @@ onChange={(e) => setPinSesion(e.target.value)}
   </div>
 )}
     {verificacionAbierta && (
-  <div className="fixed inset-0 z-50 overflow-y-auto bg-[#0D1113] text-[#F2F4F5]">
+  <div className="fixed inset-0 z-50 overflow-y-auto bg-[#0D1113] text-[#F2F4F5] flex flex-col">
 
     {/* FONDO */}
     <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_-10%,rgba(27,107,99,0.40),transparent_42%),radial-gradient(circle_at_0%_35%,rgba(126,226,192,0.10),transparent_28%),radial-gradient(circle_at_100%_65%,rgba(27,107,99,0.12),transparent_30%),linear-gradient(180deg,#111A1B_0%,#0D1113_48%,#090C0D_100%)]" />

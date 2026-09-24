@@ -2658,6 +2658,7 @@ if (orden === "precioMayor") {
     </div>
   </div>
 )}
+
             {promocionesAbierto === "maria" && (
   <div
     className="fixed inset-0 z-50 text-[#F2F4F5] overflow-y-auto"
@@ -2668,7 +2669,7 @@ if (orden === "precioMayor") {
   >
     <div className="max-w-lg mx-auto px-5 pt-4 pb-24">
 
-      {/* Cabecera */}
+      {/* CABECERA */}
       <div className="flex items-center gap-3 mb-6">
 
         <button
@@ -2690,37 +2691,42 @@ if (orden === "precioMayor") {
 
       </div>
 
-      {/* Identidad */}
+
+      {/* IDENTIDAD */}
       <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 mb-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
 
         <div className="flex items-center gap-4">
 
           <div className="w-16 h-16 rounded-2xl bg-[#202629] flex items-center justify-center shrink-0">
-            <User className="w-7 h-7 text-[#69757B]" />
+            <span className="text-xl font-bold text-[#7EE2C0]">
+              M
+            </span>
           </div>
 
           <div className="flex-1">
 
             <div className="flex items-center gap-2">
-  <p className="text-lg font-bold text-[#F2F4F5]">
-    Profesional
-  </p>
 
-  <span className="text-[10px] uppercase tracking-[0.14em] font-semibold text-[#7EE2C0] bg-[#1B6B63]/20 border border-[#1B6B63]/40 px-2 py-1 rounded-full">
-    Promociones
-  </span>
-</div>
+              <p className="text-lg font-bold text-[#F2F4F5]">
+                María González
+              </p>
 
-<p className="text-sm text-[#9AA6AD] mt-1">
-  Creador o especialista en promoción
-</p>
+              <span className="text-[10px] uppercase tracking-[0.14em] font-semibold text-[#7EE2C0] bg-[#1B6B63]/20 border border-[#1B6B63]/40 px-2 py-1 rounded-full">
+                Promociones
+              </span>
+
+            </div>
+
+            <p className="text-sm text-[#9AA6AD] mt-1">
+              Creadora de contenido · Santa Clara
+            </p>
 
             <div className="flex items-center gap-2 mt-2">
 
-              <Star className="w-4 h-4 text-[#69757B]" />
+              <Star className="w-4 h-4 text-[#7EE2C0]" />
 
-              <span className="text-xs text-[#69757B]">
-                Sin valoraciones todavía
+              <span className="text-xs text-[#9AA6AD]">
+                4.9 · 27 valoraciones
               </span>
 
             </div>
@@ -2730,44 +2736,95 @@ if (orden === "precioMayor") {
         </div>
 
       </div>
-            {/* Servicios */}
+
+
+      {/* ESPECIALIDADES */}
+      <div className="mb-6">
+
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+          Especialidades
+        </p>
+
+        <div className="flex flex-wrap gap-2">
+
+          <span className="px-3 py-1.5 rounded-full bg-[#202629] border border-[#2A3033] text-xs text-[#9AA6AD]">
+            Creadores
+          </span>
+
+          <span className="px-3 py-1.5 rounded-full bg-[#202629] border border-[#2A3033] text-xs text-[#9AA6AD]">
+            Foto y video
+          </span>
+
+        </div>
+
+      </div>
+
+
+      {/* SOBRE ESTE PROFESIONAL */}
+      <div className="mb-6">
+
+        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+          Sobre este profesional
+        </p>
+
+        <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
+
+          <p className="text-sm text-[#9AA6AD] leading-relaxed">
+            Creo contenido para redes sociales y campañas promocionales
+            enfocadas en pequeños negocios y emprendimientos. Desarrollo
+            publicaciones, videos y contenido visual adaptado a cada marca.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      {/* SERVICIOS */}
       <div className="mb-6">
 
         <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
           Servicios
         </p>
 
-        <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
+        <div className="space-y-3">
 
-          <div className="flex items-center gap-3">
+          <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-4">
 
-            <div className="w-11 h-11 rounded-2xl bg-[#202629] flex items-center justify-center shrink-0">
-              <BriefcaseBusiness className="w-5 h-5 text-[#7EE2C0]" />
-            </div>
+            <p className="text-sm font-semibold text-[#F2F4F5]">
+              Publicaciones patrocinadas
+            </p>
 
-            <div className="flex-1">
-
-              <p className="text-sm font-semibold text-[#F2F4F5]">
-                Servicios de promoción
-              </p>
-
-              <p className="text-xs text-[#69757B] mt-1 leading-relaxed">
-                Aquí aparecerán los servicios que este profesional ofrece,
-                junto con sus detalles y precios.
-              </p>
-
-            </div>
+            <p className="text-xs text-[#69757B] mt-1 leading-relaxed">
+              Promoción de negocios y productos a través de sus redes sociales.
+            </p>
 
           </div>
 
-          <div className="h-px bg-[#2A3033]/80 my-4" />
 
-          <div className="flex items-center gap-2">
+          <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-4">
 
-            <div className="w-2 h-2 rounded-full bg-[#69757B]" />
+            <p className="text-sm font-semibold text-[#F2F4F5]">
+              Videos promocionales
+            </p>
 
-            <p className="text-xs text-[#69757B]">
-              Este profesional aún no ha añadido servicios.
+            <p className="text-xs text-[#69757B] mt-1 leading-relaxed">
+              Creación de videos y contenido audiovisual para promocionar
+              productos y servicios.
+            </p>
+
+          </div>
+
+
+          <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-4">
+
+            <p className="text-sm font-semibold text-[#F2F4F5]">
+              Historias y contenido
+            </p>
+
+            <p className="text-xs text-[#69757B] mt-1 leading-relaxed">
+              Creación de historias y publicaciones adaptadas a diferentes
+              redes sociales.
             </p>
 
           </div>
@@ -2775,7 +2832,9 @@ if (orden === "precioMayor") {
         </div>
 
       </div>
-            {/* Portafolio */}
+
+
+      {/* PORTAFOLIO */}
       <div className="mb-6">
 
         <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
@@ -2791,18 +2850,19 @@ if (orden === "precioMayor") {
               <ImageIcon className="w-6 h-6 text-[#69757B] mb-2" />
 
               <p className="text-xs font-medium text-[#9AA6AD]">
-  Publicación promocional
-</p>
+                Publicación promocional
+              </p>
 
             </div>
+
 
             <div className="aspect-square rounded-2xl bg-[#202629] border border-[#2A3033] flex flex-col items-center justify-center text-center px-3">
 
               <ImageIcon className="w-6 h-6 text-[#69757B] mb-2" />
 
               <p className="text-xs font-medium text-[#9AA6AD]">
-  Video promocional
-</p>
+                Video promocional
+              </p>
 
             </div>
 
@@ -2813,7 +2873,7 @@ if (orden === "precioMayor") {
             <div className="w-2 h-2 rounded-full bg-[#69757B]" />
 
             <p className="text-xs text-[#69757B]">
-              Aquí aparecerán ejemplos del trabajo del profesional.
+              Aquí aparecerán ejemplos del trabajo de la profesional.
             </p>
 
           </div>
@@ -2821,7 +2881,9 @@ if (orden === "precioMayor") {
         </div>
 
       </div>
-            {/* Redes sociales */}
+
+
+      {/* REDES SOCIALES */}
       <div className="mb-6">
 
         <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
@@ -2831,8 +2893,8 @@ if (orden === "precioMayor") {
         <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
 
           <p className="text-xs text-[#69757B] leading-relaxed mb-4">
-            El profesional podrá añadir sus perfiles para que los clientes
-            puedan conocer su trabajo en otras plataformas.
+            María podrá añadir sus perfiles para que los clientes puedan
+            conocer su trabajo y contenido en otras plataformas.
           </p>
 
           <div className="space-y-2">
@@ -2867,6 +2929,7 @@ if (orden === "precioMayor") {
 
             </button>
 
+
             {/* Facebook */}
             <button
               type="button"
@@ -2897,6 +2960,7 @@ if (orden === "precioMayor") {
 
             </button>
 
+
             {/* TikTok */}
             <button
               type="button"
@@ -2926,6 +2990,7 @@ if (orden === "precioMayor") {
               <ChevronRight className="w-4 h-4 text-[#69757B]" />
 
             </button>
+
 
             {/* YouTube */}
             <button
@@ -2963,47 +3028,8 @@ if (orden === "precioMayor") {
 
       </div>
 
-      {/* Servicios */}
-      <div className="mb-6">
 
-        <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
-          Servicios
-        </p>
-
-        <div className="grid grid-cols-1 gap-2">
-
-          <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl p-4">
-            <p className="text-sm font-semibold text-[#F2F4F5]">
-              Publicaciones patrocinadas
-            </p>
-            <p className="text-xs text-[#69757B] mt-1">
-              Promoción de negocios y productos en sus redes.
-            </p>
-          </div>
-
-          <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl p-4">
-            <p className="text-sm font-semibold text-[#F2F4F5]">
-              Videos promocionales
-            </p>
-            <p className="text-xs text-[#69757B] mt-1">
-              Creación de contenido para promocionar tu negocio.
-            </p>
-          </div>
-
-          <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-2xl p-4">
-            <p className="text-sm font-semibold text-[#F2F4F5]">
-              Historias y contenido
-            </p>
-            <p className="text-xs text-[#69757B] mt-1">
-              Campañas y publicaciones adaptadas a diferentes redes.
-            </p>
-          </div>
-
-        </div>
-      </div>
-
-
-      {/* Contratación */}
+      {/* CONTRATACIÓN */}
       <div className="mb-6">
 
         <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
@@ -3015,13 +3041,15 @@ if (orden === "precioMayor") {
             </div>
 
             <div>
+
               <p className="text-sm font-semibold text-[#F2F4F5]">
                 ¿Quieres promocionar tu negocio?
               </p>
 
               <p className="text-xs text-[#69757B] mt-1">
-               Solicita trabajar con este profesional para promocionar tu negocio.
+                Solicita trabajar con esta profesional para promocionar tu negocio.
               </p>
+
             </div>
 
           </div>
@@ -3036,10 +3064,12 @@ if (orden === "precioMayor") {
         </div>
 
       </div>
-      </div>
+
+    </div>
   </div>
 )}
 
+            
 {promocionesAbierto === "agencia" && (
   <div
     className="fixed inset-0 z-50 text-[#F2F4F5] overflow-y-auto"

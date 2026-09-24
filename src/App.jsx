@@ -3270,7 +3270,7 @@ if (orden === "precioMayor") {
             <div className="w-full flex items-center justify-between bg-[#202629]/80 border border-[#2A3033] rounded-2xl px-4 py-3">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-xl bg-[#202629] flex items-center justify-center">
-                  <TikTok className="w-4 h-4 text-[#F2F4F5]" />
+                  <Music2 className="w-4 h-4 text-[#F2F4F5]" />
                 </div>
 
                 <div>

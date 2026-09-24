@@ -2022,11 +2022,17 @@ if (orden === "precioMayor") {
   </div>
 )}
             {solicitarDomicilioAbierto && (
-  <div className="fixed inset-0 z-50 bg-[#0D1113] text-[#F2F4F5] overflow-y-auto">
-    <div className="max-w-lg mx-auto px-4 pt-5 pb-24">
+  <div
+  className="fixed inset-0 z-50 text-[#F2F4F5] overflow-y-auto"
+  style={{
+    background:
+      "radial-gradient(circle at 50% -10%, rgba(27,107,99,0.40), transparent 42%), radial-gradient(circle at 100% 35%, rgba(126,226,192,0.10), transparent 35%), linear-gradient(180deg, #111A1B 0%, #0D1113 48%, #090C0D 100%)"
+  }}
+>
+    <div className="max-w-2xl mx-auto px-5 pt-4 pb-24">
 
       {/* Cabecera */}
-      <div className="flex items-center gap-3 mb-6">
+     <div className="flex items-center gap-3 mb-8">
         <button
           onClick={() => setSolicitarDomicilioAbierto(false)}
           className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#202629] transition"
@@ -2035,31 +2041,32 @@ if (orden === "precioMayor") {
         </button>
 
         <div>
-          <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold">
-            Domicilios
-          </p>
-          <h2 className="text-2xl font-bold">
-            Solicitar un domicilio
-          </h2>
-        </div>
+  <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-1">
+    MercadoCU · Servicios
+  </p>
+
+  <h2 className="text-2xl font-bold tracking-tight text-[#F2F4F5]">
+    Solicitar un domicilio
+  </h2>
+</div>
       </div>
 
       {/* Introducción */}
-      <div className="mb-6">
-        <p className="text-sm text-[#9AA6AD]">
-          Indica dónde recoger y dónde entregar tu envío.
-        </p>
-      </div>
+      <div className="mb-8">
+  <p className="text-sm leading-relaxed text-[#9AA6AD]">
+    Organiza tu entrega de forma sencilla. Indica el recorrido y los detalles del envío.
+  </p>
+</div>
       {/* Tipo de envío */}
-<div className="mb-6">
-  <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold mb-3">
+<div className="mb-8">
+  <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
     Tipo de envío
   </p>
 
   <div className="grid grid-cols-2 gap-3">
 
     <button
-      className="text-left bg-[#151A1D] border border-[#1B6B63] rounded-2xl p-4 transition"
+      className="text-left bg-[#151A1D]/90 border border-[#1B6B63] rounded-3xl p-4 transition shadow-[0_0_30px_rgba(27,107,99,0.12)]"
     >
       <div className="w-10 h-10 rounded-xl bg-[#e6efec] flex items-center justify-center mb-3">
         <Truck className="w-5 h-5 text-[#1B6B63]" />
@@ -2075,7 +2082,7 @@ if (orden === "precioMayor") {
     </button>
 
     <button
-      className="text-left bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4 hover:bg-[#1A2023] transition"
+      className="text-left bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-4 hover:bg-[#1A2023] transition"
     >
       <div className="w-10 h-10 rounded-xl bg-[#202629] flex items-center justify-center mb-3">
         <Truck className="w-5 h-5 text-[#7EE2C0]" />
@@ -2096,18 +2103,17 @@ if (orden === "precioMayor") {
       {/* Ruta */}
 <div className="mb-6">
 
-  <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold mb-3">
-    Ruta del domicilio
-  </p>
-
-  <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4">
+  <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+  Ruta del domicilio
+</p>
+  <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
 
     {/* Recogida */}
     <div className="flex items-start gap-3">
 
       <div className="flex flex-col items-center pt-1">
-        <div className="w-3 h-3 rounded-full border-2 border-[#7EE2C0] bg-[#0D1113]" />
-        <div className="w-px h-12 bg-[#2A3033] my-1" />
+        <div className="w-3.5 h-3.5 rounded-full border-2 border-[#7EE2C0] bg-[#0D1113] shadow-[0_0_10px_rgba(126,226,192,0.35)]" />
+        <div className="w-px h-12 bg-gradient-to-b from-[#7EE2C0]/40 to-[#2A3033] my-1" />
       </div>
 
       <div className="flex-1 pb-3">
@@ -2131,7 +2137,7 @@ if (orden === "precioMayor") {
     <div className="flex items-start gap-3">
 
       <div className="flex flex-col items-center pt-1">
-        <div className="w-3 h-3 rounded-full bg-[#7EE2C0]" />
+       <div className="w-3.5 h-3.5 rounded-full bg-[#7EE2C0] shadow-[0_0_12px_rgba(126,226,192,0.45)]" />
       </div>
 
       <div className="flex-1">
@@ -2156,11 +2162,11 @@ if (orden === "precioMayor") {
       {/* Detalles del envío */}
 <div className="mb-6">
 
-  <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold mb-3">
-    Detalles del envío
-  </p>
+ <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+  Detalles del envío
+</p>
 
-  <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4">
+  <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
 
     {/* Qué se envía */}
     <div className="mb-5">
@@ -2168,7 +2174,7 @@ if (orden === "precioMayor") {
         ¿Qué necesitas enviar?
       </label>
 
-      <div className="w-full bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3">
+      <div className="w-full bg-[#0D1113]/80 border border-[#2A3033] rounded-2xl px-4 py-3">
         <p className="text-sm text-[#69757B]">
           Ej. paquete, alimentos, documento, compra...
         </p>
@@ -2210,7 +2216,7 @@ if (orden === "precioMayor") {
         Indicaciones para el mensajero
       </label>
 
-      <div className="w-full min-h-[90px] bg-[#0D1113] border border-[#2A3033] rounded-xl px-4 py-3">
+      <div className="w-full min-h-[90px] bg-[#0D1113]/80 border border-[#2A3033] rounded-2xl px-4 py-3">
         <p className="text-sm text-[#69757B]">
           Añade alguna indicación especial para la recogida o entrega...
         </p>
@@ -2222,11 +2228,11 @@ if (orden === "precioMayor") {
       {/* Resumen del viaje */}
 <div className="mb-6">
 
-  <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold mb-3">
-    Resumen
-  </p>
+  <p className="text-[11px] uppercase tracking-[0.18em] text-[#7EE2C0] font-semibold mb-3">
+  Resumen del viaje
+</p>
 
-  <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4">
+  <div className="bg-[#151A1D]/90 border border-[#2A3033] rounded-3xl p-5 shadow-[0_0_35px_rgba(126,226,192,0.05)]">
 
     <div className="flex items-center justify-between mb-3">
       <span className="text-sm text-[#9AA6AD]">
@@ -2249,12 +2255,12 @@ if (orden === "precioMayor") {
 
 {/* Solicitar */}
 <button
-  className="w-full bg-[#1B6B63] text-white rounded-2xl py-4 font-semibold text-sm hover:opacity-90 transition"
+  className="w-full bg-[#1B6B63] text-white rounded-2xl py-4 font-semibold text-sm shadow-[0_8px_30px_rgba(27,107,99,0.28)] hover:opacity-90 transition"
 >
   Solicitar domicilio
 </button>
 
-<p className="text-[11px] text-[#69757B] text-center mt-3 px-4">
+<p className="text-[11px] text-[#69757B] text-center mt-3 px-6 leading-relaxed">
   Podrás revisar los detalles del viaje antes de confirmarlo.
 </p>
 

@@ -2704,7 +2704,7 @@ if (orden === "precioMayor") {
         <div className="flex items-center gap-4">
 
           <div className="w-16 h-16 rounded-2xl bg-[#202629] flex items-center justify-center shrink-0">
-            <User className="w-7 h-7 text-[#69757B]" />
+            <UserRound className="w-7 h-7 text-[#69757B]" />
           </div>
 
           <div className="flex-1">

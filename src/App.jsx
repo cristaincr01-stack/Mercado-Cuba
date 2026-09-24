@@ -684,6 +684,7 @@ const [productosMeGusta, setProductosMeGusta] = useState([]);
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [tendenciasAbierto, setTendenciasAbierto] = useState(false);
   const [tiendasAbierto, setTiendasAbierto] = useState(false);
+  const [verificacionAbierta, setVerificacionAbierta] = useState(false);
   const [tiendaSeleccionada, setTiendaSeleccionada] = useState(null);
   const [vendedoresDisponibles, setVendedoresDisponibles] = useState([]);
 
@@ -1855,10 +1856,10 @@ if (orden === "precioMayor") {
   <ChevronRight className="w-4 h-4 text-[#69757B]" />
 </button>
       <button
-  onClick={() => {
-    setMenuAbierto(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }}
+      onClick={() => {
+  setMenuAbierto(false);
+  setVerificacionAbierta(true);
+}}
   className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#202629] rounded-xl transition"
 >
   <div className="flex items-center gap-3">
@@ -1868,7 +1869,7 @@ if (orden === "precioMayor") {
 
     <div>
       <p className="font-semibold text-sm text-[#F2F4F5]">
-        Verificados
+        Verifica tu cuenta
       </p>
       <p className="text-[11px] text-[#9AA6AD]">
         Vendedores y tiendas de confianza

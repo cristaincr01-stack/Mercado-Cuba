@@ -682,6 +682,7 @@ const [productosMeGusta, setProductosMeGusta] = useState([]);
 }, [seleccionado]);
   const [productos, setProductos] = useState([]);
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const [domiciliosAbierto, setDomiciliosAbierto] = useState(false);
   const [tendenciasAbierto, setTendenciasAbierto] = useState(false);
   const [tiendasAbierto, setTiendasAbierto] = useState(false);
   const [verificacionAbierta, setVerificacionAbierta] = useState(false);
@@ -1887,9 +1888,9 @@ if (orden === "precioMayor") {
 </div>
       <button
   onClick={() => {
-    setMenuAbierto(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }}
+  setMenuAbierto(false);
+  setDomiciliosAbierto(true);
+}}
   className="w-full flex items-center justify-between text-left px-3 py-3 hover:bg-[#202629] rounded-xl transition"
 >
   <div className="flex items-center gap-3">
@@ -1938,6 +1939,35 @@ if (orden === "precioMayor") {
 
     </div>
   )}
+            {domiciliosAbierto && (
+  <div className="fixed inset-0 z-50 bg-[#0D1113] text-[#F2F4F5] overflow-y-auto">
+    <div className="max-w-lg mx-auto px-4 pt-5 pb-24">
+
+      <div className="flex items-center gap-3 mb-6">
+        <button
+          onClick={() => setDomiciliosAbierto(false)}
+          className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#202629] transition"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        <div>
+          <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold">
+            MercadoCU
+          </p>
+          <h2 className="text-2xl font-bold">
+            Domicilios
+          </h2>
+        </div>
+      </div>
+
+      <p className="text-sm text-[#9AA6AD] mb-6">
+        Solicita un viaje para recibir tus compras o gestiona tus servicios de mensajería.
+      </p>
+
+    </div>
+  </div>
+)}
               {crearCuentaAbierto && (
   <div className="fixed inset-0 bg-black/70 flex items-end justify-center z-50">
     <div className="bg-[#151A1D] w-full max-w-lg rounded-t-3xl p-5 shadow-2xl border-t border-[#2A3033]">

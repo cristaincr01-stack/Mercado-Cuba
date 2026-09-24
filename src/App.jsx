@@ -4783,7 +4783,7 @@ onChange={(e) => setPinSesion(e.target.value)}
     <div className="relative">
 
       {/* CABECERA */}
-      <div className="relative z-20 bg-transparent backdrop-blur-xl border-b border-white/5">
+      <div className="relative z-20 bg-transparent border-b-0">
 
         <div className="max-w-2xl mx-auto px-4 py-3 flex items-center">
 
@@ -4795,6 +4795,9 @@ onChange={(e) => setPinSesion(e.target.value)}
           </button>
 
           <div className="flex-1 text-center">
+            <p className="text-[11px] uppercase tracking-[0.28em] text-[#7EE2C0] font-bold">
+    MERCADOCU
+  </p>
 
             <p className="font-bold text-sm">
               Verifica tu cuenta

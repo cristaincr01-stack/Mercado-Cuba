@@ -684,6 +684,7 @@ const [productosMeGusta, setProductosMeGusta] = useState([]);
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [domiciliosAbierto, setDomiciliosAbierto] = useState(false);
   const [solicitarDomicilioAbierto, setSolicitarDomicilioAbierto] = useState(false);
+  const [misDomiciliosAbierto, setMisDomiciliosAbierto] = useState(false);
   const [tendenciasAbierto, setTendenciasAbierto] = useState(false);
   const [tiendasAbierto, setTiendasAbierto] = useState(false);
   const [verificacionAbierta, setVerificacionAbierta] = useState(false);
@@ -1992,8 +1993,11 @@ if (orden === "precioMayor") {
   </button>
 
   <button
-    className="w-full text-left bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4 hover:bg-[#1A2023] transition"
-  >
+  onClick={() => {
+    setMisDomiciliosAbierto(true);
+  }}
+  className="w-full text-left bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4 hover:bg-[#1A2023] transition"
+>
     <div className="flex items-center gap-3">
       <div className="w-11 h-11 rounded-xl bg-[#202629] flex items-center justify-center shrink-0">
         <Truck className="w-5 h-5 text-[#7EE2C0]" />
@@ -2253,6 +2257,96 @@ if (orden === "precioMayor") {
 <p className="text-[11px] text-[#69757B] text-center mt-3 px-4">
   Podrás revisar los detalles del viaje antes de confirmarlo.
 </p>
+
+    </div>
+  </div>
+)}
+            {misDomiciliosAbierto && (
+  <div className="fixed inset-0 z-50 bg-[#0D1113] text-[#F2F4F5] overflow-y-auto">
+    <div className="max-w-lg mx-auto px-4 pt-5 pb-24">
+
+      {/* Cabecera */}
+      <div className="flex items-center gap-3 mb-6">
+        <button
+          onClick={() => setMisDomiciliosAbierto(false)}
+          className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#202629] transition"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        <div>
+          <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold">
+            Domicilios
+          </p>
+          <h2 className="text-2xl font-bold">
+            Mis domicilios
+          </h2>
+        </div>
+      </div>
+
+      {/* Viaje activo */}
+      <div className="mb-7">
+
+        <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold mb-3">
+          Viaje activo
+        </p>
+
+        <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-4">
+
+          <div className="flex items-center gap-3 mb-4">
+
+            <div className="w-11 h-11 rounded-xl bg-[#e6efec] flex items-center justify-center shrink-0">
+              <Truck className="w-5 h-5 text-[#1B6B63]" />
+            </div>
+
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-[#F2F4F5]">
+                No tienes viajes activos
+              </p>
+
+              <p className="text-xs text-[#9AA6AD] mt-1">
+                Aquí aparecerá tu domicilio cuando tengas uno en curso.
+              </p>
+            </div>
+
+          </div>
+
+          <div className="h-px bg-[#2A3033] mb-4" />
+
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-[#69757B]" />
+            <p className="text-xs text-[#69757B]">
+              Sin viajes en curso
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Historial */}
+      <div>
+
+        <p className="text-xs uppercase tracking-wider text-[#7EE2C0] font-semibold mb-3">
+          Historial
+        </p>
+
+        <div className="bg-[#151A1D] border border-[#2A3033] rounded-2xl p-5 text-center">
+
+          <div className="w-12 h-12 rounded-2xl bg-[#202629] flex items-center justify-center mx-auto mb-3">
+            <Truck className="w-5 h-5 text-[#69757B]" />
+          </div>
+
+          <p className="text-sm font-semibold text-[#F2F4F5]">
+            Aún no tienes domicilios
+          </p>
+
+          <p className="text-xs text-[#69757B] mt-1">
+            Cuando solicites un viaje, aparecerá aquí.
+          </p>
+
+        </div>
+
+      </div>
 
     </div>
   </div>

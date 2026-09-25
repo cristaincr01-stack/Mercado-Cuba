@@ -652,6 +652,135 @@ const [selectorProvinciaAbierto, setSelectorProvinciaAbierto] = useState(false);
     color: ""
   };
 };
+  const tieneSuscripcionActiva = () => {
+  if (!usuarioActual) return false;
+
+  const suscripcion = String(
+    usuarioActual.suscripcion || ""
+  ).toLowerCase();
+
+  return suscripcion === "activa";
+};
+  const puedeUsarHerramienta = (nivelRequerido = 0) => {
+  if (!usuarioActual) return false;
+
+  const nivelActual = Number(
+    usuarioActual.nivelVerificacion || 0
+  );
+
+  return nivelActual >= nivelRequerido;
+};
+  const herramientasPorCuenta = {
+  vendedor: {
+    nivel1: [
+      "perfilMejorado",
+      "estadisticasBasicas"
+    ],
+    nivel2: [
+      "gestionAvanzadaProductos",
+      "estadisticasAvanzadas",
+      "promociones"
+    ],
+    nivel3: [
+      "estadisticasProfesionales",
+      "promocionAvanzada",
+      "inteligenciaComercial"
+    ]
+  },
+
+  tienda: {
+    nivel1: [
+      "perfilComercialMejorado",
+      "estadisticasBasicas"
+    ],
+    nivel2: [
+      "catalogoAvanzado",
+      "estadisticasAvanzadas",
+      "promociones"
+    ],
+    nivel3: [
+      "inventarioProfesional",
+      "controlCostos",
+      "controlVentas",
+      "controlGanancias",
+      "alertasInventario",
+      "radarOportunidades",
+      "inteligenciaComercial",
+      "panelNegocioVIP",
+      "promocionAvanzada"
+    ]
+  },
+
+  profesional: {
+    nivel1: [
+      "perfilProfesionalMejorado",
+      "estadisticasBasicas"
+    ],
+    nivel2: [
+      "gestionSolicitudes",
+      "agendaPro",
+      "clientes",
+      "estadisticasAvanzadas"
+    ],
+    nivel3: [
+      "agendaProfesional",
+      "crmProfesional",
+      "controlIngresos",
+      "analiticasProfesionales",
+      "radarOportunidades",
+      "promocionAvanzada",
+      "panelProfesionalVIP"
+    ]
+  },
+
+  promociones: {
+    nivel1: [
+      "perfilPromocionesMejorado",
+      "estadisticasBasicas"
+    ],
+    nivel2: [
+      "gestionSolicitudes",
+      "gestionCampanas",
+      "clientes",
+      "estadisticasAvanzadas"
+    ],
+    nivel3: [
+      "crmPromociones",
+      "campanasAvanzadas",
+      "analiticasAvanzadas",
+      "controlIngresos",
+      "agendaProfesional",
+      "radarOportunidades",
+      "promocionAvanzada",
+      "panelPromocionesVIP"
+    ]
+  },
+
+  mensajero: {
+    nivel1: [
+      "perfilMensajeroMejorado",
+      "estadisticasBasicas"
+    ],
+    nivel2: [
+      "gestionSolicitudes",
+      "gestionEntregas",
+      "disponibilidadPro",
+      "vehiculos",
+      "estadisticasAvanzadas"
+    ],
+    nivel3: [
+      "gestionEntregasAvanzada",
+      "rutas",
+      "radarDemanda",
+      "disponibilidadInteligente",
+      "gestionIncidencias",
+      "controlIngresos",
+      "analiticasAvanzadas",
+      "historialProfesional",
+      "panelMensajeroVIP"
+    ]
+  }
+};
   const obtenerIdentidadDispositivo = () => {
   let dispositivo = localStorage.getItem("mercadoCU_dispositivo");
 

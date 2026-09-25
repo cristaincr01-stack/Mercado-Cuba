@@ -615,51 +615,165 @@ const [selectorProvinciaAbierto, setSelectorProvinciaAbierto] = useState(false);
   const guardado = localStorage.getItem("mercadoCU_usuario");
   return guardado ? JSON.parse(guardado) : null;
 });
+   const nivelesVerificacion = {
+  0: {
+  nombre: "Sin verificar",
+  etiqueta: "",
+  color: "",
+  descripcion: "Cuenta básica sin verificación."
+},
+
+  1: {
+  nombre: "Verificado",
+  etiqueta: "Confianza",
+  color: "verde",
+  descripcion: "Mayor confianza y herramientas básicas."
+},
+
+  2: {
+  nombre: "Negocio PRO",
+  etiqueta: "PRO",
+  color: "plateado",
+  descripcion: "Herramientas avanzadas para gestionar y crecer."
+},
+
+  3: {
+  nombre: "Premium",
+  etiqueta: "VIP",
+  color: "dorado",
+  descripcion: "Herramientas profesionales, inteligencia y gestión avanzada."
+  }
+};
   const obtenerNivelVerificacion = () => {
   const nivel = Number(usuarioActual?.nivelVerificacion || 0);
 
-  if (nivel === 3) {
-    return {
-      nivel: 3,
-      nombre: "Premium",
-      etiqueta: "VIP",
-      color: "dorado"
-    };
+ const nivelActual = nivelesVerificacion[nivel] || nivelesVerificacion[0];
+
+return {
+  nivel,
+  ...nivelActual
+};
+};
+  const estaVerificacionAprobada = () => {
+  if (!usuarioActual) return false;
+
+  const estado = String(
+    usuarioActual.estadoVerificacion || ""
+  ).toUpperCase();
+
+  return estado === "APROBADA";
+};
+  const obtenerNivelVerificacionActivo = () => {
+  if (!usuarioActual) return 0;
+
+  if (!estaVerificacionAprobada()) {
+    return 0;
   }
 
-  if (nivel === 2) {
-    return {
-      nivel: 2,
-      nombre: "Negocio PRO",
-      etiqueta: "PRO",
-      color: "plateado"
-    };
+  const nivel = Number(
+    usuarioActual.nivelVerificacion || 0
+  );
+
+  if (nivel < 1) return 0;
+
+  const fin = usuarioActual.finVerificacion;
+
+  if (fin) {
+    const fechaFin = new Date(fin);
+
+    if (
+      !isNaN(fechaFin.getTime()) &&
+      fechaFin < new Date()
+    ) {
+      return 0;
+    }
   }
 
-  if (nivel === 1) {
+  return nivel;
+};
+  const obtenerInfoCuenta = () => {
+  if (!usuarioActual) {
     return {
-      nivel: 1,
-      nombre: "Verificado",
-      etiqueta: "Confianza",
-      color: "verde"
+      tipo: "",
+      esOferente: false,
+      puedeOfrecer: false,
+      suscripcionActiva: false,
+      nivelVerificacion: 0,
+      verificacionAprobada: false
     };
   }
 
   return {
-    nivel: 0,
-    nombre: "Sin verificar",
-    etiqueta: "",
-    color: ""
+    tipo: String(
+      usuarioActual.tipoCuenta || ""
+    ).toLowerCase(),
+
+    esOferente: esCuentaOferente(),
+
+    puedeOfrecer: puedeOfrecer(),
+
+    suscripcionActiva: tieneSuscripcionActiva(),
+
+    nivelVerificacion: obtenerNivelVerificacionActivo(),
+
+    verificacionAprobada: estaVerificacionAprobada()
   };
 };
+  const obtenerHerramientasDisponibles = () => {
+  if (!usuarioActual) return [];
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  const nivel = obtenerNivelVerificacionActivo();
+
+  if (nivel < 1) return [];
+
+  const herramientas = herramientasPorCuenta[tipo];
+
+  if (!herramientas) return [];
+
+  const disponibles = [];
+
+  for (let i = 1; i <= nivel; i++) {
+    const lista = herramientas[`nivel${i}`] || [];
+
+    lista.forEach((herramienta) => {
+      if (!disponibles.includes(herramienta)) {
+        disponibles.push(herramienta);
+      }
+    });
+  }
+
+  return disponibles;
+};
+  
   const tieneSuscripcionActiva = () => {
   if (!usuarioActual) return false;
 
   const suscripcion = String(
     usuarioActual.suscripcion || ""
-  ).toLowerCase();
+  ).trim().toUpperCase();
 
-  return suscripcion === "activa";
+  if (suscripcion !== "ACTIVA") {
+    return false;
+  }
+
+  const fin = usuarioActual.finSuscripcion;
+
+  if (fin) {
+    const fechaFin = new Date(fin);
+
+    if (
+      !isNaN(fechaFin.getTime()) &&
+      fechaFin < new Date()
+    ) {
+      return false;
+    }
+  }
+
+  return true;
 };
   const puedeUsarHerramienta = (nivelRequerido = 0) => {
   if (!usuarioActual) return false;
@@ -780,6 +894,594 @@ const [selectorProvinciaAbierto, setSelectorProvinciaAbierto] = useState(false);
       "panelMensajeroVIP"
     ]
   }
+};
+  const nivelRequeridoHerramienta = (herramienta) => {
+  for (const tipo in herramientasPorCuenta) {
+    const herramientas = herramientasPorCuenta[tipo];
+
+    for (let nivel = 1; nivel <= 3; nivel++) {
+      const lista = herramientas[`nivel${nivel}`] || [];
+
+      if (lista.includes(herramienta)) {
+        return nivel;
+      }
+    }
+  }
+
+  return 99;
+};
+  const puedeSolicitarVerificacion = (nivel) => {
+  if (!usuarioActual) return false;
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  if (![
+    "vendedor",
+    "tienda",
+    "profesional",
+    "promociones",
+    "mensajero"
+  ].includes(tipo)) {
+    return false;
+  }
+
+  const nivelSolicitado = Number(nivel);
+
+  if (
+    nivelSolicitado < 1 ||
+    nivelSolicitado > 3
+  ) {
+    return false;
+  }
+
+  const nivelActual = Number(
+    usuarioActual.nivelVerificacion || 0
+  );
+
+  return nivelSolicitado > nivelActual;
+};
+  const tieneVerificacionPendiente = () => {
+  if (!usuarioActual) return false;
+
+  const estado = String(
+    usuarioActual.estadoVerificacion || ""
+  ).toUpperCase();
+
+  return estado === "PENDIENTE";
+};
+  const obtenerEstadoVerificacion = () => {
+  if (!usuarioActual) {
+    return "SIN_CUENTA";
+  }
+
+  const estado = String(
+    usuarioActual.estadoVerificacion || "NO_VERIFICADA"
+  ).toUpperCase();
+
+  if (estado === "PENDIENTE") {
+    return "PENDIENTE";
+  }
+
+  if (estado === "APROBADA") {
+    const nivelActivo = obtenerNivelVerificacionActivo();
+
+    if (nivelActivo > 0) {
+      return "ACTIVA";
+    }
+
+    return "VENCIDA";
+  }
+
+  if (estado === "RECHAZADA") {
+    return "RECHAZADA";
+  }
+
+  return "NO_VERIFICADA";
+};
+  const obtenerSiguienteNivelVerificacion = () => {
+  if (!usuarioActual) return 0;
+
+  if (tieneVerificacionPendiente()) {
+    return 0;
+  }
+
+  const nivelActual = obtenerNivelVerificacionActivo();
+
+  if (nivelActual >= 3) {
+    return 0;
+  }
+
+  return nivelActual + 1;
+};
+  const obtenerAccionVerificacion = () => {
+  const siguienteNivel = obtenerSiguienteNivelVerificacion();
+
+  if (siguienteNivel === 1) {
+    return {
+      texto: "Solicitar Verificado",
+      nivel: 1
+    };
+  }
+
+  if (siguienteNivel === 2) {
+    return {
+      texto: "Subir a PRO",
+      nivel: 2
+    };
+  }
+
+  if (siguienteNivel === 3) {
+    return {
+      texto: "Subir a VIP",
+      nivel: 3
+    };
+  }
+
+  return {
+    texto: "",
+    nivel: 0
+  };
+};
+  const capacidadesBasicasPorCuenta = {
+  comprador: [
+    "buscar",
+    "guardar",
+    "contactar",
+    "comprar",
+    "solicitarServicios"
+  ],
+
+  vendedor: [
+    "buscar",
+    "guardar",
+    "contactar",
+    "comprar",
+    "publicar",
+    "vender",
+    "gestionarProductos"
+  ],
+
+  tienda: [
+    "buscar",
+    "guardar",
+    "contactar",
+    "comprar",
+    "publicar",
+    "vender",
+    "gestionarProductos",
+    "gestionarCatalogo"
+  ],
+
+  profesional: [
+    "buscar",
+    "guardar",
+    "contactar",
+    "comprar",
+    "ofrecerServicios",
+    "recibirSolicitudes",
+    "gestionarSolicitudes"
+  ],
+
+  promociones: [
+    "buscar",
+    "guardar",
+    "contactar",
+    "comprar",
+    "ofrecerPromociones",
+    "recibirSolicitudes",
+    "gestionarSolicitudes"
+  ],
+
+  mensajero: [
+    "buscar",
+    "guardar",
+    "contactar",
+    "comprar",
+    "ofrecerDomicilios",
+    "recibirSolicitudes",
+    "gestionarEntregas"
+  ]
+};
+  const tieneCapacidad = (capacidad) => {
+  if (!usuarioActual) return false;
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  const capacidades =
+    capacidadesBasicasPorCuenta[tipo];
+
+  if (!capacidades) return false;
+
+  return capacidades.includes(capacidad);
+};
+  const capacidadesQueRequierenSuscripcion = [
+  "publicar",
+  "vender",
+  "ofrecerServicios",
+  "ofrecerPromociones",
+  "ofrecerDomicilios",
+  "recibirSolicitudes",
+  "gestionarSolicitudes",
+  "gestionarEntregas"
+];
+  const requiereSuscripcion = (capacidad) => {
+  return capacidadesQueRequierenSuscripcion.includes(
+    capacidad
+  );
+};
+  const puedeRealizarAccion = (capacidad) => {
+  if (!usuarioActual) return false;
+
+  if (!tieneCapacidad(capacidad)) {
+    return false;
+  }
+
+  if (
+    requiereSuscripcion(capacidad) &&
+    !tieneSuscripcionActiva()
+  ) {
+    return false;
+  }
+
+  return true;
+};
+  const obtenerMotivoBloqueo = (capacidad) => {
+  if (!usuarioActual) {
+    return "INICIAR_SESION";
+  }
+
+  if (!tieneCapacidad(capacidad)) {
+    return "NO_DISPONIBLE_PARA_CUENTA";
+  }
+
+  if (
+    requiereSuscripcion(capacidad) &&
+    !tieneSuscripcionActiva()
+  ) {
+    return "SUSCRIPCION_REQUERIDA";
+  }
+
+  return "";
+};
+  const puedeUsarHerramientaAhora = (herramienta) => {
+  if (!usuarioActual) return false;
+
+  return tieneHerramienta(herramienta);
+};
+
+const obtenerHerramientasDisponiblesAhora = () => {
+  if (!usuarioActual) return [];
+
+  return obtenerHerramientasDisponibles();
+};
+
+const obtenerAccesoCuenta = () => {
+  if (!usuarioActual) {
+    return {
+      autenticado: false,
+      tipo: "",
+      esOferente: false,
+      puedeOfrecer: false,
+      suscripcionActiva: false,
+      estadoVerificacion: "SIN_CUENTA",
+      nivelVerificacion: 0,
+      herramientas: []
+    };
+  }
+
+  return {
+    autenticado: true,
+
+    tipo: String(
+      usuarioActual.tipoCuenta || ""
+    ).toLowerCase(),
+
+    esOferente: esCuentaOferente(),
+
+    puedeOfrecer: puedeOfrecer(),
+
+    suscripcionActiva: tieneSuscripcionActiva(),
+
+    estadoVerificacion: obtenerEstadoVerificacion(),
+
+    nivelVerificacion: obtenerNivelVerificacionActivo(),
+
+    herramientas: obtenerHerramientasDisponiblesAhora()
+  };
+};
+
+const estadosSolicitud = {
+  NUEVA: "NUEVA",
+  PENDIENTE: "PENDIENTE",
+  ACEPTADA: "ACEPTADA",
+  EN_PROCESO: "EN_PROCESO",
+  COMPLETADA: "COMPLETADA",
+  CANCELADA: "CANCELADA",
+  RECHAZADA: "RECHAZADA"
+};
+
+const estadosDomicilio = {
+  NUEVO: "NUEVO",
+  ACEPTADO: "ACEPTADO",
+  RECOGIDA: "RECOGIDA",
+  EN_CAMINO: "EN_CAMINO",
+  ENTREGADO: "ENTREGADO",
+  CANCELADO: "CANCELADO"
+};
+
+const tiposIncidencia = {
+  DIRECCION: "DIRECCION",
+  CLIENTE_NO_DISPONIBLE: "CLIENTE_NO_DISPONIBLE",
+  PAQUETE: "PAQUETE",
+  RETRASO: "RETRASO",
+  CANCELACION: "CANCELACION",
+  OTRO: "OTRO"
+};
+
+const estadosProducto = {
+  EN_VENTA: "En venta",
+  RESERVADO: "Reservado",
+  VENDIDO: "Vendido"
+};
+
+const estadosSuscripcion = {
+  ACTIVA: "ACTIVA",
+  VENCIDA: "VENCIDA",
+  CANCELADA: "CANCELADA",
+  PENDIENTE: "PENDIENTE"
+};
+
+const obtenerEstadoComercial = () => {
+  if (!usuarioActual) {
+    return "SIN_CUENTA";
+  }
+
+  if (!esCuentaOferente()) {
+    return "CUENTA_GRATUITA";
+  }
+
+  if (tieneSuscripcionActiva()) {
+    return "ACTIVA";
+  }
+
+  return "SUSCRIPCION_REQUERIDA";
+};
+
+const obtenerSeccionesCuenta = () => {
+  if (!usuarioActual) return [];
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  if (tipo === "comprador") {
+    return [
+      "perfil",
+      "guardados",
+      "compras",
+      "solicitudes"
+    ];
+  }
+
+  if (tipo === "vendedor") {
+    return [
+      "perfil",
+      "misProductos",
+      "ventas",
+      "estadisticas",
+      "verificacion",
+      "suscripcion"
+    ];
+  }
+
+  if (tipo === "tienda") {
+    return [
+      "perfil",
+      "catalogo",
+      "ventas",
+      "estadisticas",
+      "verificacion",
+      "suscripcion"
+    ];
+  }
+
+  if (tipo === "profesional") {
+    return [
+      "perfil",
+      "servicios",
+      "solicitudes",
+      "agenda",
+      "clientes",
+      "estadisticas",
+      "verificacion",
+      "suscripcion"
+    ];
+  }
+
+  if (tipo === "promociones") {
+    return [
+      "perfil",
+      "serviciosPromocion",
+      "solicitudes",
+      "campanas",
+      "clientes",
+      "estadisticas",
+      "verificacion",
+      "suscripcion"
+    ];
+  }
+
+  if (tipo === "mensajero") {
+    return [
+      "perfil",
+      "domicilios",
+      "solicitudes",
+      "disponibilidad",
+      "vehiculo",
+      "estadisticas",
+      "verificacion",
+      "suscripcion"
+    ];
+  }
+
+  return [
+    "perfil",
+    "verificacion",
+    "suscripcion"
+  ];
+};
+
+const obtenerSeccionesAvanzadas = () => {
+  if (!usuarioActual) return [];
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  const secciones = [];
+
+  if (tipo === "tienda") {
+    if (tieneHerramienta("inventarioProfesional")) {
+      secciones.push("inventario");
+    }
+
+    if (tieneHerramienta("controlCostos")) {
+      secciones.push("costos");
+    }
+
+    if (tieneHerramienta("controlVentas")) {
+      secciones.push("controlVentas");
+    }
+
+    if (tieneHerramienta("controlGanancias")) {
+      secciones.push("ganancias");
+    }
+
+    if (tieneHerramienta("radarOportunidades")) {
+      secciones.push("oportunidades");
+    }
+  }
+
+  if (tipo === "profesional") {
+    if (tieneHerramienta("crmProfesional")) {
+      secciones.push("crm");
+    }
+
+    if (tieneHerramienta("agendaProfesional")) {
+      secciones.push("agendaProfesional");
+    }
+
+    if (tieneHerramienta("controlIngresos")) {
+      secciones.push("ingresos");
+    }
+
+    if (tieneHerramienta("radarOportunidades")) {
+      secciones.push("oportunidades");
+    }
+  }
+
+  if (tipo === "promociones") {
+    if (tieneHerramienta("crmPromociones")) {
+      secciones.push("crm");
+    }
+
+    if (tieneHerramienta("campanasAvanzadas")) {
+      secciones.push("campanasAvanzadas");
+    }
+
+    if (tieneHerramienta("controlIngresos")) {
+      secciones.push("ingresos");
+    }
+
+    if (tieneHerramienta("radarOportunidades")) {
+      secciones.push("oportunidades");
+    }
+  }
+
+  if (tipo === "mensajero") {
+    if (tieneHerramienta("gestionEntregasAvanzada")) {
+      secciones.push("entregasAvanzadas");
+    }
+
+    if (tieneHerramienta("rutas")) {
+      secciones.push("rutas");
+    }
+
+    if (tieneHerramienta("radarDemanda")) {
+      secciones.push("radarDemanda");
+    }
+
+    if (tieneHerramienta("gestionIncidencias")) {
+      secciones.push("incidencias");
+    }
+  }
+
+  return secciones;
+};
+  const tieneHerramienta = (herramienta) => {
+  if (!usuarioActual) return false;
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  const nivel = obtenerNivelVerificacionActivo();
+
+  if (nivel < 1) return false;
+
+  const herramientas = herramientasPorCuenta[tipo];
+
+  if (!herramientas) return false;
+
+  for (let i = 1; i <= nivel; i++) {
+    const lista = herramientas[`nivel${i}`] || [];
+
+    if (lista.includes(herramienta)) {
+      return true;
+    }
+  }
+
+  return false;
+};
+  const puedeOfrecer = () => {
+  if (!usuarioActual) return false;
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  const tiposQueOfrecen = [
+    "vendedor",
+    "tienda",
+    "profesional",
+    "promociones",
+    "mensajero"
+  ];
+
+  if (!tiposQueOfrecen.includes(tipo)) {
+    return false;
+  }
+
+  return tieneSuscripcionActiva();
+};
+  const esCuentaOferente = () => {
+  if (!usuarioActual) return false;
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  return [
+    "vendedor",
+    "tienda",
+    "profesional",
+    "promociones",
+    "mensajero"
+  ].includes(tipo);
 };
   const obtenerIdentidadDispositivo = () => {
   let dispositivo = localStorage.getItem("mercadoCU_dispositivo");

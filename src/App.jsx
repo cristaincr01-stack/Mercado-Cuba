@@ -3657,8 +3657,13 @@ try {
   setRegistroError("");
   const usuario = {
   idVendedor: resultado.idVendedor,
+  tipoCuenta: tipoCuenta,
   nombre: nombreRegistro,
-  whatsapp: whatsappRegistro
+  whatsapp: whatsappRegistro,
+  nivelVerificacion: 0,
+  estadoVerificacion: "NO_VERIFICADA",
+  inicioVerificacion: "",
+  finVerificacion: ""
 };
 
 setUsuarioActual(usuario);

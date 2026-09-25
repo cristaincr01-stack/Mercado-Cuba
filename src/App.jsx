@@ -615,6 +615,43 @@ const [selectorProvinciaAbierto, setSelectorProvinciaAbierto] = useState(false);
   const guardado = localStorage.getItem("mercadoCU_usuario");
   return guardado ? JSON.parse(guardado) : null;
 });
+  const obtenerNivelVerificacion = () => {
+  const nivel = Number(usuarioActual?.nivelVerificacion || 0);
+
+  if (nivel === 3) {
+    return {
+      nivel: 3,
+      nombre: "Premium",
+      etiqueta: "VIP",
+      color: "dorado"
+    };
+  }
+
+  if (nivel === 2) {
+    return {
+      nivel: 2,
+      nombre: "Negocio PRO",
+      etiqueta: "PRO",
+      color: "plateado"
+    };
+  }
+
+  if (nivel === 1) {
+    return {
+      nivel: 1,
+      nombre: "Verificado",
+      etiqueta: "Confianza",
+      color: "verde"
+    };
+  }
+
+  return {
+    nivel: 0,
+    nombre: "Sin verificar",
+    etiqueta: "",
+    color: ""
+  };
+};
   const obtenerIdentidadDispositivo = () => {
   let dispositivo = localStorage.getItem("mercadoCU_dispositivo");
 

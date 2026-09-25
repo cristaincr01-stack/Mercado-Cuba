@@ -644,6 +644,72 @@ const [selectorProvinciaAbierto, setSelectorProvinciaAbierto] = useState(false);
   descripcion: "Herramientas profesionales, inteligencia y gestión avanzada."
   }
 };
+  const beneficiosPorNivelVerificacion = {
+  0: [
+    "Cuenta básica",
+    "Acceso a las funciones generales de MercadoCU"
+  ],
+
+  1: [
+    "Perfil verificado",
+    "Mayor confianza para otros usuarios",
+    "Estadísticas básicas",
+    "Herramientas básicas según el tipo de cuenta"
+  ],
+
+  2: [
+    "Todo lo incluido en Verificado",
+    "Herramientas avanzadas según el tipo de cuenta",
+    "Estadísticas avanzadas",
+    "Gestión profesional de solicitudes, productos o servicios",
+    "Funciones comerciales adicionales"
+  ],
+
+  3: [
+    "Todo lo incluido en PRO",
+    "Herramientas profesionales",
+    "Analíticas avanzadas",
+    "Inteligencia comercial",
+    "Funciones avanzadas de gestión",
+    "Herramientas VIP según el tipo de cuenta"
+  ]
+};
+  const obtenerInfoNivelVerificacion = (nivel) => {
+  const numeroNivel = Number(nivel);
+
+  return {
+    nivel: numeroNivel,
+    ...(
+      nivelesVerificacion[numeroNivel] ||
+      nivelesVerificacion[0]
+    ),
+    beneficios:
+      beneficiosPorNivelVerificacion[numeroNivel] ||
+      beneficiosPorNivelVerificacion[0]
+  };
+};
+
+const obtenerNivelesDisponiblesVerificacion = () => {
+  if (!usuarioActual) return [];
+
+  const nivelActual = obtenerNivelVerificacionActivo();
+
+  if (tieneVerificacionPendiente()) {
+    return [];
+  }
+
+  const nivelesDisponibles = [];
+
+  for (let nivel = 1; nivel <= 3; nivel++) {
+    if (nivel > nivelActual) {
+      nivelesDisponibles.push(
+        obtenerInfoNivelVerificacion(nivel)
+      );
+    }
+  }
+
+  return nivelesDisponibles;
+};
   const obtenerNivelVerificacion = () => {
   const nivel = Number(usuarioActual?.nivelVerificacion || 0);
 
@@ -1024,6 +1090,44 @@ return {
     nivel: 0
   };
 };
+  const estadosSolicitudVerificacion = {
+  PENDIENTE: "PENDIENTE",
+  APROBADA: "APROBADA",
+  RECHAZADA: "RECHAZADA",
+  CANCELADA: "CANCELADA"
+};
+
+const crearSolicitudVerificacion = (nivel) => {
+  if (!usuarioActual) return null;
+
+  const nivelSolicitado = Number(nivel);
+
+  if (!puedeSolicitarVerificacion(nivelSolicitado)) {
+    return null;
+  }
+
+  return {
+    idSolicitud: `VER-${Date.now()}`,
+    idVendedor: usuarioActual.idVendedor || "",
+    tipoCuenta: usuarioActual.tipoCuenta || "",
+    nivelSolicitado,
+    estado: estadosSolicitudVerificacion.PENDIENTE,
+    fechaSolicitud: new Date().toISOString(),
+    observacionesUsuario: "",
+    observacionesAdmin: "",
+    fechaRespuesta: ""
+  };
+};
+
+const puedeSolicitarNivelVerificacion = (nivel) => {
+  if (!usuarioActual) return false;
+
+  if (tieneVerificacionPendiente()) {
+    return false;
+  }
+
+  return puedeSolicitarVerificacion(nivel);
+};
   const capacidadesBasicasPorCuenta = {
   comprador: [
     "buscar",
@@ -1333,6 +1437,1189 @@ const obtenerSeccionesCuenta = () => {
     "verificacion",
     "suscripcion"
   ];
+};
+  const tiposCuentaConSolicitudes = [
+  "profesional",
+  "promociones",
+  "mensajero"
+];
+
+const puedeRecibirSolicitudes = () => {
+  if (!usuarioActual) return false;
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  if (!tiposCuentaConSolicitudes.includes(tipo)) {
+    return false;
+  }
+
+  return puedeRealizarAccion("recibirSolicitudes");
+};
+
+const obtenerTipoSolicitud = () => {
+  if (!usuarioActual) return "";
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  if (tipo === "profesional") {
+    return "SERVICIO";
+  }
+
+  if (tipo === "promociones") {
+    return "PROMOCION";
+  }
+
+  if (tipo === "mensajero") {
+    return "DOMICILIO";
+  }
+
+  return "";
+};
+
+const puedeGestionarSolicitudes = () => {
+  if (!usuarioActual) return false;
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  if (!tiposCuentaConSolicitudes.includes(tipo)) {
+    return false;
+  }
+
+  return puedeRealizarAccion("gestionarSolicitudes");
+};
+  const tiposCuentaQuePuedenSolicitar = [
+  "comprador",
+  "vendedor",
+  "tienda",
+  "profesional",
+  "promociones",
+  "mensajero"
+];
+
+const puedeSolicitarServicios = () => {
+  if (!usuarioActual) return false;
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  return tiposCuentaQuePuedenSolicitar.includes(tipo);
+};
+
+const crearSolicitudServicio = ({
+  idReceptor = "",
+  tipoSolicitud = "",
+  descripcion = "",
+  fechaPreferida = "",
+  horaPreferida = "",
+  provincia = "",
+  municipio = ""
+} = {}) => {
+  if (!usuarioActual) return null;
+
+  if (!puedeSolicitarServicios()) {
+    return null;
+  }
+
+  if (!idReceptor || !tipoSolicitud) {
+    return null;
+  }
+
+  return {
+    idSolicitud: `SOL-${Date.now()}`,
+    idSolicitante:
+      usuarioActual.idVendedor || "",
+    idReceptor,
+    tipoSolicitud,
+    descripcion,
+    fechaPreferida,
+    horaPreferida,
+    provincia,
+    municipio,
+    estado: estadosSolicitud.NUEVA,
+    fechaCreacion: new Date().toISOString(),
+    fechaActualizacion: new Date().toISOString()
+  };
+};
+  const crearSolicitudPromocion = ({
+  idPromotor = "",
+  descripcion = "",
+  fechaPreferida = "",
+  horaPreferida = "",
+  provincia = "",
+  municipio = ""
+} = {}) => {
+  return crearSolicitudServicio({
+    idReceptor: idPromotor,
+    tipoSolicitud: "PROMOCION",
+    descripcion,
+    fechaPreferida,
+    horaPreferida,
+    provincia,
+    municipio
+  });
+};
+
+const crearSolicitudDomicilio = ({
+  idMensajero = "",
+  descripcion = "",
+  fechaPreferida = "",
+  horaPreferida = "",
+  provincia = "",
+  municipio = ""
+} = {}) => {
+  return crearSolicitudServicio({
+    idReceptor: idMensajero,
+    tipoSolicitud: "DOMICILIO",
+    descripcion,
+    fechaPreferida,
+    horaPreferida,
+    provincia,
+    municipio
+  });
+};
+
+const crearSolicitudServicioProfesional = ({
+  idProfesional = "",
+  descripcion = "",
+  fechaPreferida = "",
+  horaPreferida = "",
+  provincia = "",
+  municipio = ""
+} = {}) => {
+  return crearSolicitudServicio({
+    idReceptor: idProfesional,
+    tipoSolicitud: "SERVICIO",
+    descripcion,
+    fechaPreferida,
+    horaPreferida,
+    provincia,
+    municipio
+  });
+};
+
+const actualizarEstadoSolicitud = (
+  solicitud,
+  nuevoEstado
+) => {
+  if (!solicitud) return null;
+
+  const estadosPermitidos = Object.values(
+    estadosSolicitud
+  );
+
+  if (!estadosPermitidos.includes(nuevoEstado)) {
+    return solicitud;
+  }
+
+  return {
+    ...solicitud,
+    estado: nuevoEstado,
+    fechaActualizacion:
+      new Date().toISOString()
+  };
+};
+
+const cancelarSolicitud = (solicitud) => {
+  if (!solicitud) return null;
+
+  return actualizarEstadoSolicitud(
+    solicitud,
+    estadosSolicitud.CANCELADA
+  );
+};
+
+const aceptarSolicitud = (solicitud) => {
+  if (!solicitud) return null;
+
+  return actualizarEstadoSolicitud(
+    solicitud,
+    estadosSolicitud.ACEPTADA
+  );
+};
+
+const rechazarSolicitud = (solicitud) => {
+  if (!solicitud) return null;
+
+  return actualizarEstadoSolicitud(
+    solicitud,
+    estadosSolicitud.RECHAZADA
+  );
+};
+
+const completarSolicitud = (solicitud) => {
+  if (!solicitud) return null;
+
+  return actualizarEstadoSolicitud(
+    solicitud,
+    estadosSolicitud.COMPLETADA
+  );
+};
+
+const puedeGestionarTipoSolicitud = (
+  tipoSolicitud
+) => {
+  if (!usuarioActual) return false;
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  if (tipoSolicitud === "SERVICIO") {
+    return tipo === "profesional";
+  }
+
+  if (tipoSolicitud === "PROMOCION") {
+    return tipo === "promociones";
+  }
+
+  if (tipoSolicitud === "DOMICILIO") {
+    return tipo === "mensajero";
+  }
+
+  return false;
+};
+  const puedeCambiarEstadoSolicitud = (
+  solicitud,
+  nuevoEstado
+) => {
+  if (!usuarioActual || !solicitud) {
+    return false;
+  }
+
+  const tipoSolicitud = String(
+    solicitud.tipoSolicitud || ""
+  ).toUpperCase();
+
+  const tipoUsuario = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  const idUsuario =
+    usuarioActual.idVendedor || "";
+
+  const esSolicitante =
+    String(solicitud.idSolicitante || "") ===
+    String(idUsuario);
+
+  const esReceptor =
+    String(solicitud.idReceptor || "") ===
+    String(idUsuario);
+
+  if (nuevoEstado === estadosSolicitud.CANCELADA) {
+    return esSolicitante || esReceptor;
+  }
+
+  if (
+    nuevoEstado === estadosSolicitud.ACEPTADA ||
+    nuevoEstado === estadosSolicitud.RECHAZADA
+  ) {
+    return (
+      esReceptor &&
+      puedeGestionarTipoSolicitud(tipoSolicitud) &&
+      puedeGestionarSolicitudes()
+    );
+  }
+
+  if (nuevoEstado === estadosSolicitud.EN_PROCESO) {
+    return (
+      esReceptor &&
+      puedeGestionarTipoSolicitud(tipoSolicitud) &&
+      puedeGestionarSolicitudes()
+    );
+  }
+
+  if (nuevoEstado === estadosSolicitud.COMPLETADA) {
+    return esSolicitante || esReceptor;
+  }
+
+  return false;
+};
+
+const cambiarEstadoSolicitud = (
+  solicitud,
+  nuevoEstado
+) => {
+  if (
+    !puedeCambiarEstadoSolicitud(
+      solicitud,
+      nuevoEstado
+    )
+  ) {
+    return solicitud;
+  }
+
+  return actualizarEstadoSolicitud(
+    solicitud,
+    nuevoEstado
+  );
+};
+
+const iniciarSolicitud = (solicitud) => {
+  return cambiarEstadoSolicitud(
+    solicitud,
+    estadosSolicitud.EN_PROCESO
+  );
+};
+
+const finalizarSolicitud = (solicitud) => {
+  return cambiarEstadoSolicitud(
+    solicitud,
+    estadosSolicitud.COMPLETADA
+  );
+};
+
+const obtenerAccionesSolicitud = (solicitud) => {
+  if (!usuarioActual || !solicitud) {
+    return [];
+  }
+
+  const acciones = [];
+
+  const idUsuario =
+    usuarioActual.idVendedor || "";
+
+  const esSolicitante =
+    String(solicitud.idSolicitante || "") ===
+    String(idUsuario);
+
+  const esReceptor =
+    String(solicitud.idReceptor || "") ===
+    String(idUsuario);
+
+  const estado = String(
+    solicitud.estado || ""
+  ).toUpperCase();
+
+  if (
+    (esSolicitante || esReceptor) &&
+    estado !== estadosSolicitud.COMPLETADA &&
+    estado !== estadosSolicitud.CANCELADA &&
+    estado !== estadosSolicitud.RECHAZADA
+  ) {
+    acciones.push("CANCELAR");
+  }
+
+  if (
+    esReceptor &&
+    estado === estadosSolicitud.NUEVA &&
+    puedeGestionarSolicitudes()
+  ) {
+    acciones.push("ACEPTAR");
+    acciones.push("RECHAZAR");
+  }
+
+  if (
+    esReceptor &&
+    estado === estadosSolicitud.ACEPTADA &&
+    puedeGestionarSolicitudes()
+  ) {
+    acciones.push("INICIAR");
+  }
+
+  if (
+    (esSolicitante || esReceptor) &&
+    estado === estadosSolicitud.EN_PROCESO
+  ) {
+    acciones.push("COMPLETAR");
+  }
+
+  return acciones;
+};
+  const datosSolicitudPorTipo = {
+  SERVICIO: {
+    nombre: "Servicio profesional",
+    campos: [
+      "descripcion",
+      "fechaPreferida",
+      "horaPreferida",
+      "provincia",
+      "municipio"
+    ]
+  },
+
+  PROMOCION: {
+    nombre: "Promoción",
+    campos: [
+      "descripcion",
+      "fechaPreferida",
+      "horaPreferida",
+      "provincia",
+      "municipio"
+    ]
+  },
+
+  DOMICILIO: {
+    nombre: "Domicilio",
+    campos: [
+      "descripcion",
+      "fechaPreferida",
+      "horaPreferida",
+      "provincia",
+      "municipio"
+    ]
+  }
+};
+
+const obtenerDatosSolicitud = (
+  tipoSolicitud
+) => {
+  const tipo = String(
+    tipoSolicitud || ""
+  ).toUpperCase();
+
+  return (
+    datosSolicitudPorTipo[tipo] || null
+  );
+};
+
+const validarSolicitud = (solicitud) => {
+  if (!solicitud) return false;
+
+  if (!solicitud.idSolicitante) {
+    return false;
+  }
+
+  if (!solicitud.idReceptor) {
+    return false;
+  }
+
+  if (!solicitud.tipoSolicitud) {
+    return false;
+  }
+
+  if (
+    !datosSolicitudPorTipo[
+      String(
+        solicitud.tipoSolicitud
+      ).toUpperCase()
+    ]
+  ) {
+    return false;
+  }
+
+  if (!solicitud.descripcion) {
+    return false;
+  }
+
+  return true;
+};
+
+const obtenerEtiquetaEstadoSolicitud = (
+  estado
+) => {
+  const estadoNormalizado = String(
+    estado || ""
+  ).toUpperCase();
+
+  const etiquetas = {
+    NUEVA: "Nueva",
+    PENDIENTE: "Pendiente",
+    ACEPTADA: "Aceptada",
+    EN_PROCESO: "En proceso",
+    COMPLETADA: "Completada",
+    CANCELADA: "Cancelada",
+    RECHAZADA: "Rechazada"
+  };
+
+  return (
+    etiquetas[estadoNormalizado] ||
+    "Desconocido"
+  );
+};
+
+const obtenerEtiquetaTipoSolicitud = (
+  tipoSolicitud
+) => {
+  const tipo = String(
+    tipoSolicitud || ""
+  ).toUpperCase();
+
+  const etiquetas = {
+    SERVICIO: "Servicio profesional",
+    PROMOCION: "Promoción",
+    DOMICILIO: "Domicilio"
+  };
+
+  return (
+    etiquetas[tipo] ||
+    "Solicitud"
+  );
+};
+  const permisosPorTipoCuenta = {
+  comprador: {
+    puedePublicar: false,
+    puedeVender: false,
+    puedeOfrecerServicios: false,
+    puedeOfrecerPromociones: false,
+    puedeOfrecerDomicilios: false,
+    puedeRecibirSolicitudes: false,
+    puedeGestionarSolicitudes: false
+  },
+
+  vendedor: {
+    puedePublicar: true,
+    puedeVender: true,
+    puedeOfrecerServicios: false,
+    puedeOfrecerPromociones: false,
+    puedeOfrecerDomicilios: false,
+    puedeRecibirSolicitudes: false,
+    puedeGestionarSolicitudes: false
+  },
+
+  tienda: {
+    puedePublicar: true,
+    puedeVender: true,
+    puedeOfrecerServicios: false,
+    puedeOfrecerPromociones: false,
+    puedeOfrecerDomicilios: false,
+    puedeRecibirSolicitudes: false,
+    puedeGestionarSolicitudes: false
+  },
+
+  profesional: {
+    puedePublicar: false,
+    puedeVender: false,
+    puedeOfrecerServicios: true,
+    puedeOfrecerPromociones: false,
+    puedeOfrecerDomicilios: false,
+    puedeRecibirSolicitudes: true,
+    puedeGestionarSolicitudes: true
+  },
+
+  promociones: {
+    puedePublicar: false,
+    puedeVender: false,
+    puedeOfrecerServicios: false,
+    puedeOfrecerPromociones: true,
+    puedeOfrecerDomicilios: false,
+    puedeRecibirSolicitudes: true,
+    puedeGestionarSolicitudes: true
+  },
+
+  mensajero: {
+    puedePublicar: false,
+    puedeVender: false,
+    puedeOfrecerServicios: false,
+    puedeOfrecerPromociones: false,
+    puedeOfrecerDomicilios: true,
+    puedeRecibirSolicitudes: true,
+    puedeGestionarSolicitudes: true
+  }
+};
+
+const tienePermisoCuenta = (permiso) => {
+  if (!usuarioActual) return false;
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  const permisos =
+    permisosPorTipoCuenta[tipo];
+
+  if (!permisos) return false;
+
+  return permisos[permiso] === true;
+};
+
+const puedePublicarCuenta = () => {
+  if (!usuarioActual) return false;
+
+  if (!tienePermisoCuenta("puedePublicar")) {
+    return false;
+  }
+
+  return tieneSuscripcionActiva();
+};
+
+const puedeVenderCuenta = () => {
+  if (!usuarioActual) return false;
+
+  if (!tienePermisoCuenta("puedeVender")) {
+    return false;
+  }
+
+  return tieneSuscripcionActiva();
+};
+
+const puedeOfrecerServicioCuenta = () => {
+  if (!usuarioActual) return false;
+
+  if (
+    !tienePermisoCuenta(
+      "puedeOfrecerServicios"
+    )
+  ) {
+    return false;
+  }
+
+  return tieneSuscripcionActiva();
+};
+
+const puedeOfrecerPromocionCuenta = () => {
+  if (!usuarioActual) return false;
+
+  if (
+    !tienePermisoCuenta(
+      "puedeOfrecerPromociones"
+    )
+  ) {
+    return false;
+  }
+
+  return tieneSuscripcionActiva();
+};
+
+const puedeOfrecerDomicilioCuenta = () => {
+  if (!usuarioActual) return false;
+
+  if (
+    !tienePermisoCuenta(
+      "puedeOfrecerDomicilios"
+    )
+  ) {
+    return false;
+  }
+
+  return tieneSuscripcionActiva();
+};
+  const configuracionPerfilPorCuenta = {
+  comprador: {
+    nombreRol: "Comprador",
+    descripcion: "Busca, guarda y solicita productos o servicios.",
+    secciones: [
+      "perfil",
+      "guardados",
+      "compras",
+      "solicitudes"
+    ]
+  },
+
+  vendedor: {
+    nombreRol: "Vendedor",
+    descripcion: "Publica y vende productos en MercadoCU.",
+    secciones: [
+      "perfil",
+      "misProductos",
+      "ventas",
+      "estadisticas",
+      "verificacion",
+      "suscripcion"
+    ]
+  },
+
+  tienda: {
+    nombreRol: "Tienda",
+    descripcion: "Gestiona un catálogo comercial y sus ventas.",
+    secciones: [
+      "perfil",
+      "catalogo",
+      "ventas",
+      "estadisticas",
+      "verificacion",
+      "suscripcion"
+    ]
+  },
+
+  profesional: {
+    nombreRol: "Profesional",
+    descripcion: "Ofrece servicios y gestiona solicitudes de clientes.",
+    secciones: [
+      "perfil",
+      "servicios",
+      "solicitudes",
+      "agenda",
+      "clientes",
+      "estadisticas",
+      "verificacion",
+      "suscripcion"
+    ]
+  },
+
+  promociones: {
+    nombreRol: "Promociones",
+    descripcion: "Ofrece servicios de promoción y gestiona campañas.",
+    secciones: [
+      "perfil",
+      "serviciosPromocion",
+      "solicitudes",
+      "campanas",
+      "clientes",
+      "estadisticas",
+      "verificacion",
+      "suscripcion"
+    ]
+  },
+
+  mensajero: {
+    nombreRol: "Mensajero",
+    descripcion: "Ofrece servicios de domicilio y gestiona entregas.",
+    secciones: [
+      "perfil",
+      "domicilios",
+      "solicitudes",
+      "disponibilidad",
+      "vehiculo",
+      "estadisticas",
+      "verificacion",
+      "suscripcion"
+    ]
+  }
+};
+
+const obtenerConfiguracionPerfil = () => {
+  if (!usuarioActual) return null;
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  return (
+    configuracionPerfilPorCuenta[tipo] ||
+    null
+  );
+};
+
+const obtenerNombreRolCuenta = () => {
+  const configuracion =
+    obtenerConfiguracionPerfil();
+
+  return configuracion?.nombreRol || "";
+};
+
+const obtenerDescripcionRolCuenta = () => {
+  const configuracion =
+    obtenerConfiguracionPerfil();
+
+  return configuracion?.descripcion || "";
+};
+
+const obtenerSeccionesPerfilCuenta = () => {
+  const configuracion =
+    obtenerConfiguracionPerfil();
+
+  if (!configuracion) return [];
+
+  return configuracion.secciones || [];
+};
+
+const cuentaTieneSeccion = (seccion) => {
+  return obtenerSeccionesPerfilCuenta()
+    .includes(seccion);
+};
+  const puedeAccederSeccion = (seccion) => {
+  if (!usuarioActual) return false;
+
+  if (!cuentaTieneSeccion(seccion)) {
+    return false;
+  }
+
+  const seccionesGratuitas = [
+    "perfil",
+    "guardados",
+    "compras",
+    "solicitudes"
+  ];
+
+  if (seccionesGratuitas.includes(seccion)) {
+    return true;
+  }
+
+  if (
+    [
+      "misProductos",
+      "catalogo",
+      "ventas",
+      "servicios",
+      "serviciosPromocion",
+      "domicilios",
+      "disponibilidad",
+      "vehiculo"
+    ].includes(seccion)
+  ) {
+    return tieneSuscripcionActiva();
+  }
+
+  if (seccion === "verificacion") {
+    return true;
+  }
+
+  if (seccion === "suscripcion") {
+    return true;
+  }
+
+  if (seccion === "estadisticas") {
+    return (
+      tieneSuscripcionActiva() &&
+      obtenerNivelVerificacionActivo() >= 1
+    );
+  }
+
+  if (
+    [
+      "agenda",
+      "clientes",
+      "campanas",
+      "inventario",
+      "costos",
+      "controlVentas",
+      "ganancias",
+      "oportunidades",
+      "crm",
+      "agendaProfesional",
+      "ingresos",
+      "campanasAvanzadas",
+      "entregasAvanzadas",
+      "rutas",
+      "radarDemanda",
+      "incidencias"
+    ].includes(seccion)
+  ) {
+    return (
+      tieneSuscripcionActiva() &&
+      obtenerNivelVerificacionActivo() >= 2
+    );
+  }
+
+  return false;
+};
+
+const obtenerSeccionesVisiblesCuenta = () => {
+  const secciones =
+    obtenerSeccionesPerfilCuenta();
+
+  return secciones.filter((seccion) =>
+    puedeAccederSeccion(seccion)
+  );
+};
+
+const obtenerSeccionesBloqueadasCuenta = () => {
+  const secciones =
+    obtenerSeccionesPerfilCuenta();
+
+  return secciones.filter(
+    (seccion) =>
+      !puedeAccederSeccion(seccion)
+  );
+};
+  const obtenerMotivoBloqueoSeccion = (seccion) => {
+  if (!usuarioActual) {
+    return "INICIAR_SESION";
+  }
+
+  if (!cuentaTieneSeccion(seccion)) {
+    return "NO_DISPONIBLE_PARA_CUENTA";
+  }
+
+  const seccionesSuscripcion = [
+    "misProductos",
+    "catalogo",
+    "ventas",
+    "servicios",
+    "serviciosPromocion",
+    "domicilios",
+    "disponibilidad",
+    "vehiculo"
+  ];
+
+  if (
+    seccionesSuscripcion.includes(seccion) &&
+    !tieneSuscripcionActiva()
+  ) {
+    return "SUSCRIPCION_REQUERIDA";
+  }
+
+  if (
+    seccion === "estadisticas" &&
+    obtenerNivelVerificacionActivo() < 1
+  ) {
+    return "VERIFICACION_REQUERIDA";
+  }
+
+  const seccionesNivel2 = [
+    "agenda",
+    "clientes",
+    "campanas",
+    "inventario",
+    "costos",
+    "controlVentas",
+    "ganancias",
+    "oportunidades",
+    "crm",
+    "agendaProfesional",
+    "ingresos",
+    "campanasAvanzadas",
+    "entregasAvanzadas",
+    "rutas",
+    "radarDemanda",
+    "incidencias"
+  ];
+
+  if (
+    seccionesNivel2.includes(seccion) &&
+    obtenerNivelVerificacionActivo() < 2
+  ) {
+    return "NIVEL_2_REQUERIDO";
+  }
+
+  return "";
+};
+
+const obtenerNivelRequeridoSeccion = (seccion) => {
+  if (!usuarioActual) return 0;
+
+  if (
+    [
+      "agenda",
+      "clientes",
+      "campanas",
+      "inventario",
+      "costos",
+      "controlVentas",
+      "ganancias",
+      "oportunidades",
+      "crm",
+      "agendaProfesional",
+      "ingresos",
+      "campanasAvanzadas",
+      "entregasAvanzadas",
+      "rutas",
+      "radarDemanda",
+      "incidencias"
+    ].includes(seccion)
+  ) {
+    return 2;
+  }
+
+  if (seccion === "estadisticas") {
+    return 1;
+  }
+
+  return 0;
+};
+
+const obtenerMensajeBloqueoSeccion = (seccion) => {
+  const motivo =
+    obtenerMotivoBloqueoSeccion(seccion);
+
+  if (motivo === "INICIAR_SESION") {
+    return "Inicia sesión para acceder.";
+  }
+
+  if (motivo === "NO_DISPONIBLE_PARA_CUENTA") {
+    return "Esta sección no corresponde a tu tipo de cuenta.";
+  }
+
+  if (motivo === "SUSCRIPCION_REQUERIDA") {
+    return "Necesitas una suscripción activa para utilizar esta función.";
+  }
+
+  if (motivo === "VERIFICACION_REQUERIDA") {
+    return "Necesitas al menos el nivel Verificado.";
+  }
+
+  if (motivo === "NIVEL_2_REQUERIDO") {
+    return "Necesitas el nivel PRO o superior.";
+  }
+
+  return "";
+};
+  const obtenerAccesoSeccion = (seccion) => {
+  if (!usuarioActual) {
+    return {
+      disponible: false,
+      bloqueada: true,
+      motivo: "INICIAR_SESION",
+      mensaje: "Inicia sesión para acceder.",
+      nivelRequerido: 0
+    };
+  }
+
+  const disponible =
+    puedeAccederSeccion(seccion);
+
+  return {
+    disponible,
+    bloqueada: !disponible,
+    motivo: disponible
+      ? ""
+      : obtenerMotivoBloqueoSeccion(seccion),
+    mensaje: disponible
+      ? ""
+      : obtenerMensajeBloqueoSeccion(seccion),
+    nivelRequerido:
+      obtenerNivelRequeridoSeccion(seccion)
+  };
+};
+
+const obtenerAccesoSeccionesCuenta = () => {
+  const secciones =
+    obtenerSeccionesPerfilCuenta();
+
+  const resultado = {};
+
+  secciones.forEach((seccion) => {
+    resultado[seccion] =
+      obtenerAccesoSeccion(seccion);
+  });
+
+  return resultado;
+};
+
+const seccionEstaDisponible = (seccion) => {
+  return puedeAccederSeccion(seccion);
+};
+
+const seccionEstaBloqueada = (seccion) => {
+  return !puedeAccederSeccion(seccion);
+};
+  const obtenerResumenCuenta = () => {
+  if (!usuarioActual) {
+    return {
+      autenticado: false,
+      tipoCuenta: "",
+      nombre: "",
+      idVendedor: "",
+      suscripcionActiva: false,
+      estadoComercial: "SIN_CUENTA",
+      nivelVerificacion: 0,
+      estadoVerificacion: "SIN_CUENTA",
+      puedeOfrecer: false,
+      herramientasDisponibles: [],
+      seccionesVisibles: [],
+      seccionesBloqueadas: []
+    };
+  }
+
+  const secciones =
+    obtenerSeccionesPerfilCuenta();
+
+  const seccionesVisibles =
+    secciones.filter((seccion) =>
+      puedeAccederSeccion(seccion)
+    );
+
+  const seccionesBloqueadas =
+    secciones.filter((seccion) =>
+      !puedeAccederSeccion(seccion)
+    );
+
+  return {
+    autenticado: true,
+
+    tipoCuenta: String(
+      usuarioActual.tipoCuenta || ""
+    ).toLowerCase(),
+
+    nombre:
+      usuarioActual.nombre || "",
+
+    idVendedor:
+      usuarioActual.idVendedor || "",
+
+    suscripcionActiva:
+      tieneSuscripcionActiva(),
+
+    estadoComercial:
+      obtenerEstadoComercial(),
+
+    nivelVerificacion:
+      obtenerNivelVerificacionActivo(),
+
+    estadoVerificacion:
+      obtenerEstadoVerificacion(),
+
+    puedeOfrecer:
+      puedeOfrecer(),
+
+    herramientasDisponibles:
+      obtenerHerramientasDisponiblesAhora(),
+
+    seccionesVisibles,
+
+    seccionesBloqueadas
+  };
+};
+
+const obtenerEstadoCuentaVisual = () => {
+  if (!usuarioActual) {
+    return {
+      tipo: "SIN_CUENTA",
+      titulo: "Sin cuenta",
+      descripcion: "Inicia sesión para acceder a tu cuenta."
+    };
+  }
+
+  const tipo = String(
+    usuarioActual.tipoCuenta || ""
+  ).toLowerCase();
+
+  if (tipo === "comprador") {
+    return {
+      tipo: "COMPRADOR",
+      titulo: "Cuenta de comprador",
+      descripcion:
+        "Busca, guarda y solicita productos o servicios."
+    };
+  }
+
+  if (tipo === "vendedor") {
+    return {
+      tipo: "VENDEDOR",
+      titulo: "Cuenta de vendedor",
+      descripcion:
+        "Publica y gestiona tus productos."
+    };
+  }
+
+  if (tipo === "tienda") {
+    return {
+      tipo: "TIENDA",
+      titulo: "Cuenta de tienda",
+      descripcion:
+        "Gestiona tu catálogo y actividad comercial."
+    };
+  }
+
+  if (tipo === "profesional") {
+    return {
+      tipo: "PROFESIONAL",
+      titulo: "Cuenta profesional",
+      descripcion:
+        "Ofrece servicios y gestiona tus solicitudes."
+    };
+  }
+
+  if (tipo === "promociones") {
+    return {
+      tipo: "PROMOCIONES",
+      titulo: "Cuenta de promociones",
+      descripcion:
+        "Ofrece promociones y gestiona campañas."
+    };
+  }
+
+  if (tipo === "mensajero") {
+    return {
+      tipo: "MENSAJERO",
+      titulo: "Cuenta de mensajero",
+      descripcion:
+        "Gestiona servicios de domicilio y entregas."
+    };
+  }
+
+  return {
+    tipo: "OTRA",
+    titulo: "Cuenta",
+    descripcion: "Gestiona tu actividad en MercadoCU."
+  };
 };
 
 const obtenerSeccionesAvanzadas = () => {

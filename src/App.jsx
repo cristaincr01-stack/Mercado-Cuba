@@ -6045,7 +6045,16 @@ localStorage.setItem(
 {p.fotos && p.fotos.length > 0 && (
   <div className="w-full aspect-square bg-[#0B0F11] overflow-hidden flex items-center justify-center">
     <img
-      src={p.foto || p.fotos[0]}
+      src={(p.foto || p.fotos[0]).replace(
+        "uc?export=view&id=",
+        "thumbnail?sz=w1000&id="
+      )}
+      onError={(e) => {
+        if (!e.currentTarget.dataset.fallback) {
+          e.currentTarget.dataset.fallback = "true";
+          e.currentTarget.src = p.foto || p.fotos[0];
+        }
+      }}
       alt={p.nombre || "Producto"}
       className="w-full h-full object-contain"
       loading="lazy"

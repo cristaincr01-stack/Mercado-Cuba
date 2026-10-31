@@ -5947,7 +5947,7 @@ localStorage.setItem(
   <article
     key={p.id}
     id={`producto-${p.id}`}
-    className={`bg-[#151A1D] rounded-2xl border overflow-hidden transition-all duration-300 min-w-0 ${
+    className={`bg-[#151A1D] rounded-[20px] border overflow-hidden transition-all duration-300 min-w-0 shadow-[0_4px_18px_rgba(0,0,0,0.18)] ${
   productoDestacado === p.id
     ? "border-[#E8A33D] shadow-[0_0_0_3px_rgba(232,163,61,0.18)]"
     : "border-[#2A3033]"
@@ -5955,7 +5955,7 @@ localStorage.setItem(
   >
 
     {/* CABECERA DE LA PUBLICACIÓN */}
-<div className="flex items-center justify-between px-2.5 pt-3 pb-2">
+<div className="flex items-center justify-between px-3 pt-3 pb-2.5">
 
   <div className="flex items-center gap-3">
 
@@ -6009,7 +6009,7 @@ localStorage.setItem(
     {/* TÍTULO */}
 <div className="px-2.5 pb-2">
 
-  <div className="flex items-center gap-2 mb-2.5">
+  <div className="flex items-center gap-2 mb-2">
 
     {/* CATEGORÍA */}
     <span className="text-[10px] uppercase font-bold tracking-[0.1em] text-[#7EE2C0]">
@@ -6035,7 +6035,7 @@ localStorage.setItem(
 
   </div>
 
-    <h3 className="text-sm font-bold tracking-tight text-[#F2F4F5] leading-snug line-clamp-2 min-h-[2.5rem] break-words">
+    <h3 className="text-[14px] font-bold tracking-tight text-[#F2F4F5] leading-snug line-clamp-2 min-h-[2.4rem] break-words">
     {p.nombre}
   </h3>
 
@@ -6043,7 +6043,7 @@ localStorage.setItem(
 
         {/* FOTO PRINCIPAL DEL PRODUCTO */}
 {p.fotos && p.fotos.length > 0 && (
-  <div className="relative w-full overflow-hidden">
+  <div className="relative w-full overflow-hidden rounded-t-[2px]">
 
     <img
       src={(p.foto || p.fotos[0]).replace(
@@ -6064,7 +6064,7 @@ localStorage.setItem(
     {/* CORAZÓN FLOTANTE */}
     <button
       onClick={(e) => {
-        alert("EL CORAZÓN RECIBIÓ EL CLIC");
+        e.stopPropagation();
 
         if (
           p.estado === "Vendido" ||
@@ -6079,7 +6079,7 @@ localStorage.setItem(
         p.estado === "Vendido" ||
         p.estado === "Reservado"
       }
-      className="absolute top-3 right-3 w-10 h-10 rounded-full bg-[#0D1113]/80 flex items-center justify-center backdrop-blur-sm active:scale-90 transition"
+      className="absolute top-3 right-3 w-9 h-9 rounded-full bg-[#0D1113]/75 border border-white/10 flex items-center justify-center backdrop-blur-md shadow-lg active:scale-90 transition"
     >
       <Heart
         className={`w-5 h-5 ${
@@ -6096,7 +6096,7 @@ localStorage.setItem(
 )}
 
     {/* INFORMACIÓN */}
-<div className="px-2.5 pt-2.5 pb-1">
+<div className="px-3 pt-3 pb-1.5">
 
   <div className="flex items-center justify-between gap-3">
 
@@ -6105,7 +6105,7 @@ localStorage.setItem(
         Precio
       </p>
 
-      <div className="text-lg font-extrabold tracking-tight text-[#5FBFA5]">
+      <div className="text-xl font-extrabold tracking-tight text-[#5FBFA5] leading-tight">
         <EtiquetaPrecio
           precio={p.precio}
           moneda={p.moneda}
@@ -6142,7 +6142,7 @@ localStorage.setItem(
   {/* GUARDAR PRODUCTO */}
   <button
     onClick={(e) => {
-      alert("EL CARRITO RECIBIÓ EL CLIC");
+      e.stopPropagation();
 
       const estadoProducto = String(p.estado || "")
         .trim()
@@ -6162,7 +6162,7 @@ localStorage.setItem(
         String(p.estado || "").trim().toUpperCase()
       )
     }
-    className="w-9 h-9 flex items-center justify-center rounded-full bg-[#202629] active:scale-90 transition"
+    className="w-9 h-9 flex items-center justify-center rounded-full bg-[#202629] border border-[#30383C] hover:bg-[#26332F] active:scale-90 transition-all shadow-sm"
   >
     <ShoppingCart
       className={`w-4 h-4 ${
@@ -6199,7 +6199,7 @@ localStorage.setItem(
   );
 }}
   disabled={p.estado === "Vendido"}
-    className={`group flex items-center justify-center gap-1 transition-all text-[10px] font-bold py-2.5 px-1 rounded-xl min-w-0 ${
+    className={`group flex items-center justify-center gap-1.5 transition-all text-[10px] font-bold py-3 px-1 rounded-xl min-w-0 ${
     p.estado === "Vendido"
       ? "bg-[#202629] text-[#5C666B] border border-[#2A3033] cursor-not-allowed opacity-60"
       : "bg-[#1B6B63] hover:bg-[#23786F] active:scale-[0.97] text-white shadow-[0_4px_14px_rgba(0,0,0,0.18)]"

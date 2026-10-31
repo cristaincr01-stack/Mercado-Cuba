@@ -6068,8 +6068,7 @@ localStorage.setItem(
     </span>
   </button>
 
-</div>
-    </div>
+</div> 
 )}
    
    

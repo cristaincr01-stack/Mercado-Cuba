@@ -3775,7 +3775,7 @@ if (orden === "precioMayor") {
 }, [productosFiltrados, visualizacionesRegistradas]);
   return (
   <div
-    className="min-h-screen bg-[#0D1113] text-[#F2F4F5]"
+        className="min-h-screen bg-[#0D1113] bg-[radial-gradient(ellipse_at_top,_#10231F_0%,_#111A19_25%,_#0D1113_65%)] text-[#F2F4F5]"
     style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
   >
     {avisoGuardado && (

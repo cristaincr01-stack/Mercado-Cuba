@@ -5959,7 +5959,6 @@ localStorage.setItem(
    {/* FOTO Y TARJETA FLOTANTE DEL PRODUCTO */}
 {p.fotos && p.fotos.length > 0 && (
   <div
-    <div
   className="relative w-full overflow-visible cursor-pointer"
     onClick={() => {
       registrarInteraccion({

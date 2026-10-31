@@ -6245,7 +6245,7 @@ localStorage.setItem(
   </div>
 
 {/* ACCIONES */}
-<div className="px-4 pt-3 pb-4">
+<div className="px-2.5 pt-2.5 pb-3">
 
   <div className="h-px bg-[#2A3033] mb-3" />
 

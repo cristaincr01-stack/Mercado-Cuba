@@ -5959,7 +5959,8 @@ localStorage.setItem(
    {/* FOTO Y TARJETA FLOTANTE DEL PRODUCTO */}
 {p.fotos && p.fotos.length > 0 && (
   <div
-    className="relative w-full overflow-hidden cursor-pointer"
+    <div
+  className="relative w-full overflow-visible cursor-pointer"
     onClick={() => {
       registrarInteraccion({
         tipo: "VER_PRODUCTO",
@@ -6064,7 +6065,7 @@ localStorage.setItem(
         <span>
           {p.estado === "Vendido"
             ? "Producto vendido"
-            : "Contactar por WhatsApp"}
+            : "WhatsApp"}
         </span>
       </button>
 

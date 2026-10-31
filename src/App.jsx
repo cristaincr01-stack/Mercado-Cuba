@@ -6046,7 +6046,7 @@ localStorage.setItem(
 )}
 
     {/* INFORMACIÓN */}
-<div className="px-4 pt-4 pb-1">
+<div className="px-2.5 pt-2.5 pb-1">
 
   <div className="flex items-center justify-between gap-3">
 
@@ -6055,7 +6055,7 @@ localStorage.setItem(
         Precio
       </p>
 
-      <div className="text-3xl font-black tracking-tight text-[#5FBFA5]">
+      <div className="text-lg font-extrabold tracking-tight text-[#5FBFA5]">
         <EtiquetaPrecio
           precio={p.precio}
           moneda={p.moneda}
@@ -6117,7 +6117,7 @@ localStorage.setItem(
   }`}
 >
   <div
-    className={`w-9 h-9 rounded-full flex items-center justify-center transition ${
+    className={`w-7 h-7 rounded-full flex items-center justify-center transition ${
       productosMeGusta.some(
         (producto) => producto._fila === p._fila
       )
@@ -6126,7 +6126,7 @@ localStorage.setItem(
     }`}
   >
     <Heart
-      className={`w-4 h-4 transition ${
+      className={`w-3.5 h-3.5 transition ${
         productosMeGusta.some(
           (producto) => producto._fila === p._fila
         )
@@ -6178,7 +6178,7 @@ localStorage.setItem(
   }`}
 >
   <div
-    className={`w-9 h-9 rounded-full flex items-center justify-center transition ${
+    className={`w-7 h-7 rounded-full flex items-center justify-center transition ${
       productosGuardados.some(
         (producto) => producto._fila === p._fila
       )
@@ -6187,7 +6187,7 @@ localStorage.setItem(
     }`}
   >
     <ShoppingCart
-      className={`w-4 h-4 transition ${
+      className={`w-3.5 h-3.5 transition ${
         productosGuardados.some(
           (producto) => producto._fila === p._fila
         )

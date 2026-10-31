@@ -6020,6 +6020,8 @@ localStorage.setItem(
         }`}
       />
     </button>
+  </div> 
+  )}
 
     {/* FRANJA INFERIOR DEL PRODUCTO */}
 <div className="bg-gradient-to-br from-[#151A1D] via-[#172321] to-[#1B6B63]/30 px-3 py-3">
@@ -6068,8 +6070,7 @@ localStorage.setItem(
     </span>
   </button>
 
-</div> 
-)}
+</div>
    
    
     {/* INTERACCIONES */}

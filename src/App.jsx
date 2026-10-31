@@ -5938,7 +5938,7 @@ localStorage.setItem(
   Prueba con otra provincia o categoría.
 </div>
         ) : (
-          <div className="max-w-2xl mx-auto space-y-5">
+          <div className="grid grid-cols-2 gap-3 w-full">
             {productosFeed.map(p => (
   <article
     key={p.id}

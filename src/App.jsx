@@ -5938,8 +5938,12 @@ localStorage.setItem(
   Prueba con otra provincia o categoría.
 </div>
         ) : (
-          <div className="grid grid-cols-2 gap-3 w-full">
-            {productosFeed.map(p => (
+         <div className="grid grid-cols-2 gap-3 w-full items-start">
+  {[0, 1].map(columna => (
+    <div key={columna} className="flex flex-col gap-3 min-w-0">
+      {productosFeed
+        .filter((_, indice) => indice % 2 === columna)
+        .map(p => (
   <article
     key={p.id}
     id={`producto-${p.id}`}
@@ -6343,10 +6347,11 @@ localStorage.setItem(
 
 </div>
 
-  </article>
-))}
-  
-          </div>
+      </article>
+        ))}
+    </div>
+  ))}
+</div>
         )}
       </main>
 

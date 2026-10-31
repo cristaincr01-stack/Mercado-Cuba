@@ -6178,11 +6178,11 @@ localStorage.setItem(
 </div>
 
 {/* ACCIONES */}
-<div className="px-2.5 pt-2.5 pb-3">
+<div className="px-3 pt-2.5 pb-3">
 
-  <div className="h-px bg-[#2A3033] mb-3" />
+  <div className="h-px bg-[#2A3033]/70 mb-3" />
 
-  <div className="grid grid-cols-3 gap-2.5">
+  <div className="grid grid-cols-3 gap-2">
 
     {/* PREGUNTAR */}
 <button

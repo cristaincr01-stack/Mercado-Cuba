@@ -6021,15 +6021,15 @@ localStorage.setItem(
     </button>
 
     {/* DEGRADADO INFERIOR */}
-    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0D1113] via-[#0D1113]/95 to-transparent pt-16 pb-3 px-3">
+    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0D1113] via-[#0D1113]/95 to-transparent pt-10 pb-2 px-3">
 
       {/* NOMBRE */}
-      <h3 className="text-sm font-bold text-white leading-snug line-clamp-2 mb-2">
+      <h3 className="text-xs font-bold text-white leading-tight line-clamp-1 mb-1">
         {p.nombre}
       </h3>
 
       {/* PRECIO */}
-<div className="text-xl font-extrabold tracking-tight text-[#7EE2C0] leading-tight">
+<div className="text-lg font-extrabold tracking-tight text-[#7EE2C0] leading-tight">
   {p.moneda} {Number(p.precio).toLocaleString("es-ES")}
 </div>
 
@@ -6054,7 +6054,7 @@ localStorage.setItem(
           );
         }}
         disabled={p.estado === "Vendido"}
-        className={`w-full mt-3 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold ${
+       className={`w-full mt-2 flex items-center justify-center gap-2 py-2 rounded-xl text-xs font-bold ${
           p.estado === "Vendido"
             ? "bg-[#202629]/90 text-[#9AA6AD]"
             : "bg-[#1B6B63] text-white shadow-lg"

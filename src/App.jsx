@@ -6043,7 +6043,8 @@ localStorage.setItem(
 
         {/* FOTO PRINCIPAL DEL PRODUCTO */}
 {p.fotos && p.fotos.length > 0 && (
-  <div className="w-full aspect-square bg-[#0B0F11] overflow-hidden flex items-center justify-center">
+  <div className="relative w-full overflow-hidden">
+
     <img
       src={(p.foto || p.fotos[0]).replace(
         "uc?export=view&id=",
@@ -6056,9 +6057,41 @@ localStorage.setItem(
         }
       }}
       alt={p.nombre || "Producto"}
-      className="w-full h-full object-contain"
+      className="block w-full h-auto object-contain"
       loading="lazy"
     />
+
+    {/* CORAZÓN FLOTANTE */}
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+
+        if (
+          p.estado === "Vendido" ||
+          p.estado === "Reservado"
+        ) {
+          return;
+        }
+
+        alternarMeGusta(p);
+      }}
+      disabled={
+        p.estado === "Vendido" ||
+        p.estado === "Reservado"
+      }
+      className="absolute top-3 right-3 w-10 h-10 rounded-full bg-[#0D1113]/80 flex items-center justify-center backdrop-blur-sm active:scale-90 transition"
+    >
+      <Heart
+        className={`w-5 h-5 ${
+          productosMeGusta.some(
+            (producto) => producto._fila === p._fila
+          )
+            ? "text-[#FF6B7A] fill-[#FF6B7A]"
+            : "text-white"
+        }`}
+      />
+    </button>
+
   </div>
 )}
 
@@ -6101,161 +6134,48 @@ localStorage.setItem(
 
 </div>
 
-   {/* INTERACCIONES */}
-<div className="px-4 pt-3 pb-1">
+   
+   
+    {/* INTERACCIONES */}
+<div className="flex justify-end px-2.5 pt-2 pb-1">
 
-  <div className="flex items-center justify-between">
+  {/* GUARDAR PRODUCTO */}
+  <button
+    onClick={(e) => {
+      e.stopPropagation();
 
-    {/* ME GUSTA */}
-<button
-  onClick={() => {
-  if (
-    p.estado === "Vendido" ||
-    p.estado === "Reservado"
-  ) {
-    return;
-  }
+      const estadoProducto = String(p.estado || "")
+        .trim()
+        .toUpperCase();
 
+      if (
+        estadoProducto === "VENDIDO" ||
+        estadoProducto === "RESERVADO"
+      ) {
+        return;
+      }
 
-
-  alternarMeGusta(p);
-
-  
-}}
-  disabled={
-    p.estado === "Vendido" ||
-    p.estado === "Reservado"
-  }
-  className={`group flex items-center gap-2 transition-all ${
-    p.estado === "Vendido" ||
-    p.estado === "Reservado"
-      ? "opacity-40 cursor-not-allowed"
-      : "active:scale-95"
-  }`}
->
-    <Heart
-    className={`w-5 h-5 transition ${
-      productosMeGusta.some(
-        (producto) => producto._fila === p._fila
+      alternarProductoGuardado(p);
+    }}
+    disabled={
+      ["VENDIDO", "RESERVADO"].includes(
+        String(p.estado || "").trim().toUpperCase()
       )
-        ? "text-[#FF6B57] fill-[#FF6B57]"
-        : "text-[#F2F4F5]"
-    }`}
-    strokeWidth={1.8}
-  />
-
-  <div className="text-left leading-tight">
-    <p className="text-sm font-bold text-[#F2F4F5]">
-      {Number(p.meGusta || 0)}
-    </p>
-
-    <p className="text-[10px] text-[#9AA6AD]">
-      me gusta
-    </p>
-  </div>
-</button>
-
-
- {/* GUARDAR */}
-<button
-  onClick={() => {
-    const estadoProducto = String(p.estado || "")
-      .trim()
-      .toUpperCase();
-
-    if (
-      estadoProducto === "VENDIDO" ||
-      estadoProducto === "RESERVADO"
-    ) {
-      return;
     }
-
-    alternarProductoGuardado(p);
-  }}
-  disabled={
-    String(p.estado || "").trim().toUpperCase() === "VENDIDO" ||
-    String(p.estado || "").trim().toUpperCase() === "RESERVADO"
-  }
-  className={`group flex items-center gap-2 transition-all ${
-    ["VENDIDO", "RESERVADO"].includes(
-      String(p.estado || "").trim().toUpperCase()
-    )
-      ? "opacity-40 cursor-not-allowed"
-      : "active:scale-95"
-  }`}
->
-   <ShoppingCart
-    className={`w-5 h-5 transition ${
-      productosGuardados.some(
-        (producto) => producto._fila === p._fila
-      )
-        ? "text-[#60A5FA] fill-[#60A5FA]"
-        : "text-[#F2F4F5]"
-    }`}
-    strokeWidth={1.8}
-  />
-
-  <div className="text-left leading-tight">
-    <p className="text-sm font-bold text-[#F2F4F5]">
-      {Number(p.guardados || 0)}
-    </p>
-
-    <p className="text-[10px] text-[#9AA6AD]">
-      guardados
-    </p>
-  </div>
-</button>
-
-
-    {/* VISUALIZACIONES */}
-<div className="flex items-center gap-2">
-
-  <div
-    className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
-      Number(p.visualizaciones || 0) === 0
-        ? "bg-[#202629]"
-        : Number(p.visualizaciones || 0) < 5
-        ? "bg-[#24566B]"
-        : Number(p.visualizaciones || 0) < 10
-        ? "bg-[#5A3D78]"
-        : Number(p.visualizaciones || 0) < 25
-        ? "bg-[#8A5A24]"
-        : Number(p.visualizaciones || 0) < 50
-        ? "bg-[#7A315E]"
-        : "bg-[#8A6A24]"
-    }`}
+    className="w-9 h-9 flex items-center justify-center rounded-full bg-[#202629] active:scale-90 transition"
   >
-    <Eye
+    <ShoppingCart
       className={`w-4 h-4 ${
-        Number(p.visualizaciones || 0) === 0
-          ? "text-[#9AA6AD]"
-          : Number(p.visualizaciones || 0) < 5
-          ? "text-[#7DD3FC]"
-          : Number(p.visualizaciones || 0) < 10
-          ? "text-[#C4A7E7]"
-          : Number(p.visualizaciones || 0) < 25
-          ? "text-[#F2B86B]"
-          : Number(p.visualizaciones || 0) < 50
-          ? "text-[#E78BC4]"
-          : "text-[#F2D27A]"
+        productosGuardados.some(
+          (producto) => producto._fila === p._fila
+        )
+          ? "text-[#7EE2C0] fill-[#7EE2C0]"
+          : "text-[#9AA6AD]"
       }`}
-      strokeWidth={1.8}
     />
-  </div>
-
-  <div className="leading-tight">
-    <p className="text-sm font-bold text-[#F2F4F5]">
-      {Number(p.visualizaciones || 0)}
-    </p>
-
-    <p className="text-[10px] text-[#9AA6AD]">
-      visualizaciones
-    </p>
-  </div>
+  </button>
 
 </div>
-    </div>
-  </div>
 
 {/* ACCIONES */}
 <div className="px-2.5 pt-2.5 pb-3">

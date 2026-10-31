@@ -5943,22 +5943,22 @@ localStorage.setItem(
   <article
     key={p.id}
     id={`producto-${p.id}`}
-    className={`bg-[#151A1D] rounded-3xl border overflow-hidden transition-all duration-500 ${
-      productoDestacado === p.id
-        ? "border-[#E8A33D] shadow-[0_0_0_4px_rgba(232,163,61,0.18),0_12px_35px_rgba(0,0,0,0.35)] scale-[1.01]"
-        : "border-[#2A3033] shadow-[0_8px_30px_rgba(0,0,0,0.18)]"
-    }`}
+    className={`bg-[#151A1D] rounded-2xl border overflow-hidden transition-all duration-300 min-w-0 ${
+  productoDestacado === p.id
+    ? "border-[#E8A33D] shadow-[0_0_0_3px_rgba(232,163,61,0.18)]"
+    : "border-[#2A3033]"
+}`}
   >
 
     {/* CABECERA DE LA PUBLICACIÓN */}
-<div className="flex items-center justify-between px-4 pt-4 pb-3">
+<div className="flex items-center justify-between px-2.5 pt-3 pb-2">
 
   <div className="flex items-center gap-3">
 
     {/* AVATAR */}
     <div className="relative">
 
-      <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#1B6B63] to-[#164F4A] border border-[#3A827A] flex items-center justify-center text-white font-bold text-sm shadow-[0_5px_16px_rgba(0,0,0,0.28)]">
+      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1B6B63] to-[#164F4A] border border-[#3A827A] flex items-center justify-center text-white font-bold text-sm shadow-[0_5px_16px_rgba(0,0,0,0.28)]">
   {p.vendedor
     ? p.vendedor
         .split(" ")
@@ -5971,18 +5971,18 @@ localStorage.setItem(
 </div>
 
       {/* INDICADOR */}
-      <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#79D6A3] border-2 border-[#151A1D]" />
+      <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#79D6A3] border-2 border-[#151A1D]" />
 
     </div>
 
     {/* INFORMACIÓN DEL VENDEDOR */}
     <div className="min-w-0">
 
-      <p className="text-sm font-bold text-[#F2F4F5] truncate">
+     <p className="text-xs font-bold text-[#F2F4F5] truncate">
         {p.vendedor || "Vendedor"}
       </p>
 
-      <p className="text-[11px] text-[#9AA6AD] flex items-center gap-1 mt-0.5">
+      <p className="text-[10px] text-[#9AA6AD] flex items-center gap-1 mt-0.5">
         <MapPin className="w-3 h-3 shrink-0" />
         <span className="truncate">
           {p.provincia}
@@ -6003,7 +6003,7 @@ localStorage.setItem(
 </div>
 
     {/* TÍTULO */}
-<div className="px-4 pb-4">
+<div className="px-2.5 pb-2">
 
   <div className="flex items-center gap-2 mb-2.5">
 
@@ -6031,7 +6031,7 @@ localStorage.setItem(
 
   </div>
 
-  <h3 className="text-[22px] font-extrabold tracking-tight text-[#F2F4F5] leading-[1.15]">
+  <h3 className="text-sm font-bold tracking-tight text-[#F2F4F5] leading-tight line-clamp-2">
     {p.nombre}
   </h3>
 

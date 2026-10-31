@@ -5954,93 +5954,6 @@ localStorage.setItem(
 }`}
   >
 
-    {/* CABECERA DE LA PUBLICACIÓN */}
-<div className="flex items-center justify-between px-3 pt-3 pb-2.5">
-
-  <div className="flex items-center gap-3">
-
-    {/* AVATAR */}
-    <div className="relative">
-
-      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1B6B63] to-[#164F4A] border border-[#3A827A] flex items-center justify-center text-white font-bold text-sm shadow-[0_5px_16px_rgba(0,0,0,0.28)]">
-  {p.vendedor
-    ? p.vendedor
-        .split(" ")
-        .filter(Boolean)
-        .slice(0, 2)
-        .map(parte => parte[0])
-        .join("")
-        .toUpperCase()
-    : "U"}
-</div>
-
-      {/* INDICADOR */}
-      <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#79D6A3] border-2 border-[#151A1D]" />
-
-    </div>
-
-    {/* INFORMACIÓN DEL VENDEDOR */}
-    <div className="min-w-0">
-
-     <p className="text-xs font-bold text-[#F2F4F5] truncate">
-        {p.vendedor || "Vendedor"}
-      </p>
-
-      <p className="text-[10px] text-[#9AA6AD] flex items-center gap-1 mt-1 min-w-0">
-        <MapPin className="w-3 h-3 shrink-0" />
-        <span className="truncate">
-          {p.provincia}
-        </span>
-      </p>
-
-    </div>
-
-  </div>
-
-  {/* MENÚ */}
-<button
-  className="w-10 h-10 shrink-0 rounded-full flex items-center justify-center text-[#9AA6AD] bg-[#202629] border border-[#30383C] hover:bg-[#272E31] hover:text-[#F2F4F5] hover:border-[#3A464B] active:scale-95 transition-all"
->
-  <MoreHorizontal className="w-5 h-5" />
-</button>
-
-</div>
-
-    {/* TÍTULO */}
-<div className="px-2.5 pb-2">
-
-  <div className="flex items-center gap-2 mb-2">
-
-    {/* CATEGORÍA */}
-    <span className="text-[10px] uppercase font-bold tracking-[0.1em] text-[#7EE2C0]">
-      {p.categoria}
-    </span>
-
-    <span className="w-1 h-1 rounded-full bg-[#4A555A]" />
-
-    {/* ESTADO */}
-    {p.estado === "Vendido" ? (
-      <span className="text-[10px] uppercase font-bold tracking-[0.1em] text-[#FF8A76]">
-        Vendido
-      </span>
-    ) : p.estado === "Reservado" ? (
-      <span className="text-[10px] uppercase font-bold tracking-[0.1em] text-[#E8C56A]">
-        Reservado
-      </span>
-    ) : (
-      <span className="text-[10px] uppercase font-bold tracking-[0.1em] text-[#79D6A3]">
-        En venta
-      </span>
-    )}
-
-  </div>
-
-    <h3 className="text-[14px] font-bold tracking-tight text-[#F2F4F5] leading-snug line-clamp-2 min-h-[2.4rem] break-words">
-    {p.nombre}
-  </h3>
-
-</div>
-
         {/* FOTO PRINCIPAL DEL PRODUCTO */}
 {p.fotos && p.fotos.length > 0 && (
   <div className="relative w-full overflow-hidden rounded-t-[2px]">
@@ -6095,45 +6008,29 @@ localStorage.setItem(
   </div>
 )}
 
-    {/* INFORMACIÓN */}
-<div className="px-3 pt-3 pb-1.5">
+    {/* INFORMACIÓN DEL PRODUCTO */}
+<div className="px-3 pt-3 pb-2">
 
-  <div className="flex items-center justify-between gap-3">
+  {/* NOMBRE */}
+  <h3 className="text-sm font-bold text-[#F2F4F5] leading-snug line-clamp-2 mb-2">
+    {p.nombre}
+  </h3>
 
-    <div>
-      <p className="text-[10px] uppercase tracking-[0.12em] text-[#9AA6AD] mb-1">
-        Precio
-      </p>
+  {/* PRECIO */}
+  <div className="text-xl font-extrabold tracking-tight text-[#5FBFA5] leading-tight">
+    <EtiquetaPrecio
+      precio={p.precio}
+      moneda={p.moneda}
+    />
+  </div>
 
-      <div className="text-xl font-extrabold tracking-tight text-[#5FBFA5] leading-tight">
-        <EtiquetaPrecio
-          precio={p.precio}
-          moneda={p.moneda}
-        />
-      </div>
-    </div>
-
-    {p.estado === "Vendido" ? (
-      <span className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wide text-[#FF8A76] bg-[#C4472B]/15 border border-[#C4472B]/20 px-3 py-1.5 rounded-full">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B57]" />
-        Vendido
-      </span>
-    ) : p.estado === "Reservado" ? (
-      <span className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wide text-[#E8C56A] bg-[#E8A33D]/10 border border-[#E8A33D]/20 px-3 py-1.5 rounded-full">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#E8A33D]" />
-        Reservado
-      </span>
-    ) : (
-      <span className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wide text-[#79D6A3] bg-[#79D6A3]/10 border border-[#79D6A3]/20 px-3 py-1.5 rounded-full">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#79D6A3]" />
-        En venta
-      </span>
-    )}
-
+  {/* PROVINCIA */}
+  <div className="flex items-center gap-1 mt-1.5 text-[10px] text-[#9AA6AD]">
+    <MapPin className="w-3 h-3 shrink-0" />
+    <span className="truncate">{p.provincia}</span>
   </div>
 
 </div>
-
    
    
     {/* INTERACCIONES */}
@@ -6178,63 +6075,52 @@ localStorage.setItem(
 </div>
 
 {/* ACCIONES */}
-<div className="px-3 pt-2.5 pb-3">
+<div className="px-3 pt-2 pb-3">
 
-  <div className="h-px bg-[#2A3033]/70 mb-3" />
+  {/* WHATSAPP - BOTÓN PRINCIPAL */}
+  <button
+    onClick={() => {
+      if (p.estado === "Vendido") return;
 
-  <div className="grid grid-cols-3 gap-2">
+      const numero = `53${String(p.tel).replace(/\s+/g, "")}`;
 
-    {/* PREGUNTAR */}
-<button
-  onClick={() => {
-  if (p.estado === "Vendido") return;
+      const mensaje = `Hola, estoy interesado en el producto "${p.nombre}". ¿Sigue disponible?`;
 
-  const numero = `53${String(p.tel).replace(/\s+/g, "")}`;
-
-  const mensaje = `Hola, estoy interesado en el producto "${p.nombre}". ¿Sigue disponible?`;
-
-  window.open(
-    `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
-    "_blank"
-  );
-}}
-  disabled={p.estado === "Vendido"}
-    className={`group flex items-center justify-center gap-1.5 transition-all text-[10px] font-bold py-3 px-1 rounded-xl min-w-0 ${
-    p.estado === "Vendido"
-      ? "bg-[#202629] text-[#5C666B] border border-[#2A3033] cursor-not-allowed opacity-60"
-      : "bg-[#1B6B63] hover:bg-[#23786F] active:scale-[0.97] text-white shadow-[0_4px_14px_rgba(0,0,0,0.18)]"
-  }`}
->
-  <MessageCircle
-    className={`w-4 h-4 shrink-0 ${
+      window.open(
+        `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
+        "_blank"
+      );
+    }}
+    disabled={p.estado === "Vendido"}
+    className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-bold transition-all active:scale-[0.98] ${
       p.estado === "Vendido"
-        ? "text-[#5C666B]"
-        : "group-hover:scale-105 transition-transform"
+        ? "bg-[#202629] text-[#5C666B] border border-[#2A3033] opacity-60 cursor-not-allowed"
+        : "bg-[#1B6B63] hover:bg-[#23786F] text-white shadow-[0_4px_14px_rgba(0,0,0,0.2)]"
     }`}
-  />
-  <span>
-    {p.estado === "Vendido" ? "Vendido" : "Preguntar"}
-  </span>
-</button>
+  >
+    <MessageCircle className="w-4 h-4" />
+    {p.estado === "Vendido" ? "Producto vendido" : "Contactar por WhatsApp"}
+  </button>
+
+  {/* ACCIONES SECUNDARIAS */}
+  <div className="grid grid-cols-2 gap-2 mt-2">
 
     {/* VER PRODUCTO */}
     <button
       onClick={() => {
-  registrarInteraccion({
-    tipo: "VER_PRODUCTO",
-    producto: p,
-    identificador: "VER_PRODUCTO",
-    esUnica: "SI"
-  });
+        registrarInteraccion({
+          tipo: "VER_PRODUCTO",
+          producto: p,
+          identificador: "VER_PRODUCTO",
+          esUnica: "SI"
+        });
 
-  setSeleccionado(p);
-}}
-            className="group flex items-center justify-center gap-1 bg-[#202629] hover:bg-[#272E31] active:scale-[0.97] transition-all text-[#F2F4F5] text-[10px] font-semibold py-2.5 px-1 rounded-xl border border-[#30383C] hover:border-[#3A464B] min-w-0"
+        setSeleccionado(p);
+      }}
+      className="flex items-center justify-center gap-1.5 bg-[#202629] hover:bg-[#272E31] active:scale-[0.97] transition-all text-[#F2F4F5] text-[10px] font-semibold py-2.5 rounded-xl border border-[#30383C]"
     >
-      <ChevronRight
-        className="w-4 h-4 shrink-0 text-[#7EE2C0] group-hover:translate-x-0.5 transition-transform"
-      />
-      <span>Ver producto</span>
+      <ChevronRight className="w-4 h-4 text-[#7EE2C0]" />
+      Ver producto
     </button>
 
     {/* COMPARTIR */}
@@ -6248,17 +6134,17 @@ localStorage.setItem(
           }).catch(() => {});
         }
       }}
-            className="group flex items-center justify-center gap-1 bg-[#202629] hover:bg-[#272E31] active:scale-[0.97] transition-all text-[#F2F4F5] text-[10px] font-semibold py-2.5 px-1 rounded-xl border border-[#30383C] hover:border-[#3A464B] min-w-0"
+      className="flex items-center justify-center gap-1.5 bg-[#202629] hover:bg-[#272E31] active:scale-[0.97] transition-all text-[#F2F4F5] text-[10px] font-semibold py-2.5 rounded-xl border border-[#30383C]"
     >
-      <Share2
-        className="w-4 h-4 shrink-0 text-[#9AA6AD] group-hover:text-[#7EE2C0] transition-colors"
-      />
-      <span>Compartir</span>
+      <Share2 className="w-4 h-4 text-[#9AA6AD]" />
+      Compartir
     </button>
 
   </div>
 
 </div>
+
+    
 
       </article>
         ))}

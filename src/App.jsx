@@ -6021,7 +6021,7 @@ localStorage.setItem(
     </button>
 
     {/* DEGRADADO INFERIOR */}
-    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0D1113] via-[#0D1113]/85 to-transparent pt-16 pb-3 px-3">
+    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0D1113] via-[#0D1113]/95 to-transparent pt-16 pb-3 px-3">
 
       {/* NOMBRE */}
       <h3 className="text-sm font-bold text-white leading-snug line-clamp-2 mb-2">
@@ -6029,18 +6029,44 @@ localStorage.setItem(
       </h3>
 
       {/* PRECIO */}
-      <div className="text-xl font-extrabold tracking-tight text-[#7EE2C0] leading-tight">
-        <EtiquetaPrecio
-          precio={p.precio}
-          moneda={p.moneda}
-        />
-      </div>
+<div className="text-xl font-extrabold tracking-tight text-[#7EE2C0] leading-tight">
+  {p.moneda} {Number(p.precio).toLocaleString("es-ES")}
+</div>
 
       {/* PROVINCIA */}
       <div className="flex items-center gap-1 mt-1.5 text-[10px] text-[#D0D7DA]">
         <MapPin className="w-3 h-3 shrink-0" />
         <span className="truncate">{p.provincia}</span>
       </div>
+            {/* WHATSAPP FLOTANTE */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+
+          if (p.estado === "Vendido") return;
+
+          const numero = `53${String(p.tel).replace(/\s+/g, "")}`;
+          const mensaje = `Hola, estoy interesado en el producto "${p.nombre}". ¿Sigue disponible?`;
+
+          window.open(
+            `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
+            "_blank"
+          );
+        }}
+        disabled={p.estado === "Vendido"}
+        className={`w-full mt-3 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold ${
+          p.estado === "Vendido"
+            ? "bg-[#202629]/90 text-[#9AA6AD]"
+            : "bg-[#1B6B63] text-white shadow-lg"
+        }`}
+      >
+        <MessageCircle className="w-5 h-5" />
+        <span>
+          {p.estado === "Vendido"
+            ? "Producto vendido"
+            : "Contactar por WhatsApp"}
+        </span>
+      </button>
 
     </div>
 
@@ -6088,78 +6114,6 @@ localStorage.setItem(
   </button>
 
 </div>
-
-{/* ACCIONES */}
-<div className="px-3 pt-2 pb-3">
-
-  {/* WHATSAPP - BOTÓN PRINCIPAL */}
-  <button
-    onClick={() => {
-      if (p.estado === "Vendido") return;
-
-      const numero = `53${String(p.tel).replace(/\s+/g, "")}`;
-
-      const mensaje = `Hola, estoy interesado en el producto "${p.nombre}". ¿Sigue disponible?`;
-
-      window.open(
-        `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
-        "_blank"
-      );
-    }}
-    disabled={p.estado === "Vendido"}
-    className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-bold transition-all active:scale-[0.98] ${
-      p.estado === "Vendido"
-        ? "bg-[#202629] text-[#5C666B] border border-[#2A3033] opacity-60 cursor-not-allowed"
-        : "bg-[#1B6B63] hover:bg-[#23786F] text-white shadow-[0_4px_14px_rgba(0,0,0,0.2)]"
-    }`}
-  >
-    <MessageCircle className="w-4 h-4" />
-    {p.estado === "Vendido" ? "Producto vendido" : "Contactar por WhatsApp"}
-  </button>
-
-  {/* ACCIONES SECUNDARIAS */}
-  <div className="grid grid-cols-2 gap-2 mt-2">
-
-    {/* VER PRODUCTO */}
-    <button
-      onClick={() => {
-        registrarInteraccion({
-          tipo: "VER_PRODUCTO",
-          producto: p,
-          identificador: "VER_PRODUCTO",
-          esUnica: "SI"
-        });
-
-        setSeleccionado(p);
-      }}
-      className="flex items-center justify-center gap-1.5 bg-[#202629] hover:bg-[#272E31] active:scale-[0.97] transition-all text-[#F2F4F5] text-[10px] font-semibold py-2.5 rounded-xl border border-[#30383C]"
-    >
-      <ChevronRight className="w-4 h-4 text-[#7EE2C0]" />
-      Ver producto
-    </button>
-
-    {/* COMPARTIR */}
-    <button
-      onClick={() => {
-        if (navigator.share) {
-          navigator.share({
-            title: p.nombre,
-            text: `Mira este producto en MercadoCU: ${p.nombre}`,
-            url: window.location.href
-          }).catch(() => {});
-        }
-      }}
-      className="flex items-center justify-center gap-1.5 bg-[#202629] hover:bg-[#272E31] active:scale-[0.97] transition-all text-[#F2F4F5] text-[10px] font-semibold py-2.5 rounded-xl border border-[#30383C]"
-    >
-      <Share2 className="w-4 h-4 text-[#9AA6AD]" />
-      Compartir
-    </button>
-
-  </div>
-
-</div>
-
-    
 
       </article>
         ))}

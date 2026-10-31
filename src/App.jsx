@@ -6035,7 +6035,7 @@ localStorage.setItem(
 
   </div>
 
-  <h3 className="text-sm font-bold tracking-tight text-[#F2F4F5] leading-tight line-clamp-2">
+    <h3 className="text-sm font-bold tracking-tight text-[#F2F4F5] leading-snug line-clamp-2 min-h-[2.5rem] break-words">
     {p.nombre}
   </h3>
 

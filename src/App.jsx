@@ -5959,7 +5959,7 @@ localStorage.setItem(
    {/* FOTO Y TARJETA FLOTANTE DEL PRODUCTO */}
 {p.fotos && p.fotos.length > 0 && (
   <div
-    className="relative w-full aspect-square overflow-hidden cursor-pointer"
+    className="relative w-full aspect-[4/5] overflow-hidden cursor-pointer"
     onClick={() => {
       registrarInteraccion({
         tipo: "VER_PRODUCTO",
@@ -6000,7 +6000,7 @@ localStorage.setItem(
         }
       }}
       alt={p.nombre || "Producto"}
-      className="absolute inset-0 w-full h-full object-contain"
+      className="absolute inset-0 w-full h-full object-contain scale-110"
       loading="lazy"
     />
 

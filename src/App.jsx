@@ -5972,21 +5972,7 @@ localStorage.setItem(
     }}
   >
 
-    {/* FONDO QUE RELLENA EL CUADRADO */}
-    <img
-      src={(p.foto || p.fotos[0]).replace(
-        "uc?export=view&id=",
-        "thumbnail?sz=w1000&id="
-      )}
-      alt=""
-      aria-hidden="true"
-      className="absolute inset-0 w-full h-full object-cover scale-110 blur-xl opacity-50"
-      loading="lazy"
-    />
-
-    {/* CAPA OSCURA DEL FONDO */}
-    <div className="absolute inset-0 bg-[#0D1113]/30" />
-
+    
     {/* PRODUCTO COMPLETO CENTRADO */}
     <img
       src={(p.foto || p.fotos[0]).replace(
@@ -6035,57 +6021,54 @@ localStorage.setItem(
       />
     </button>
 
-    {/* DEGRADADO INFERIOR */}
-    <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#0D1113] via-[#0D1113]/95 to-transparent pt-10 pb-3 px-3">
+    {/* FRANJA INFERIOR DEL PRODUCTO */}
+<div className="bg-gradient-to-br from-[#151A1D] via-[#172321] to-[#1B6B63]/30 px-3 py-3">
 
-      {/* NOMBRE */}
-      <h3 className="text-xs font-bold text-white leading-tight line-clamp-1 mb-1">
-        {p.nombre}
-      </h3>
+  {/* NOMBRE */}
+  <h3 className="text-xs font-bold text-white leading-tight line-clamp-1 mb-1">
+    {p.nombre}
+  </h3>
 
-      {/* PRECIO */}
-      <div className="text-lg font-extrabold tracking-tight text-[#7EE2C0] leading-tight">
-        {p.moneda} {Number(p.precio).toLocaleString("es-ES")}
-      </div>
-
-      {/* PROVINCIA */}
-      <div className="flex items-center gap-1 mt-1.5 text-[10px] text-[#D0D7DA]">
-        <MapPin className="w-3 h-3 shrink-0" />
-        <span className="truncate">{p.provincia}</span>
-      </div>
-
-      {/* WHATSAPP */}
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-
-          if (p.estado === "Vendido") return;
-
-          const numero = `53${String(p.tel).replace(/\s+/g, "")}`;
-          const mensaje = `Hola, estoy interesado en el producto "${p.nombre}". ¿Sigue disponible?`;
-
-          window.open(
-            `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
-            "_blank"
-          );
-        }}
-        disabled={p.estado === "Vendido"}
-        className={`w-full mt-2 flex items-center justify-center gap-2 py-2 rounded-xl text-xs font-bold ${
-          p.estado === "Vendido"
-            ? "bg-[#202629]/90 text-[#9AA6AD]"
-            : "bg-[#1B6B63] text-white shadow-lg"
-        }`}
-      >
-        <MessageCircle className="w-4 h-4" />
-        <span>
-          {p.estado === "Vendido" ? "Vendido" : "WhatsApp"}
-        </span>
-      </button>
-
-    </div>
-
+  {/* PRECIO */}
+  <div className="text-lg font-extrabold tracking-tight text-[#7EE2C0] leading-tight">
+    {p.moneda} {Number(p.precio).toLocaleString("es-ES")}
   </div>
-)}
+
+  {/* PROVINCIA */}
+  <div className="flex items-center gap-1 mt-1.5 text-[10px] text-[#D0D7DA]">
+    <MapPin className="w-3 h-3 shrink-0" />
+    <span className="truncate">{p.provincia}</span>
+  </div>
+
+  {/* WHATSAPP */}
+  <button
+    onClick={(e) => {
+      e.stopPropagation();
+
+      if (p.estado === "Vendido") return;
+
+      const numero = `53${String(p.tel).replace(/\s+/g, "")}`;
+      const mensaje = `Hola, estoy interesado en el producto "${p.nombre}". ¿Sigue disponible?`;
+
+      window.open(
+        `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
+        "_blank"
+      );
+    }}
+    disabled={p.estado === "Vendido"}
+    className={`w-full mt-2 flex items-center justify-center gap-2 py-2 rounded-xl text-xs font-bold ${
+      p.estado === "Vendido"
+        ? "bg-[#202629]/90 text-[#9AA6AD]"
+        : "bg-[#1B6B63] text-white shadow-lg"
+    }`}
+  >
+    <MessageCircle className="w-4 h-4" />
+    <span>
+      {p.estado === "Vendido" ? "Vendido" : "WhatsApp"}
+    </span>
+  </button>
+
+</div>
    
    
     {/* INTERACCIONES */}

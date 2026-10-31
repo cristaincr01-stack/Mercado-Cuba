@@ -6120,26 +6120,16 @@ localStorage.setItem(
       : "active:scale-95"
   }`}
 >
-  <div
-    className={`w-7 h-7 rounded-full flex items-center justify-center transition ${
+    <Heart
+    className={`w-5 h-5 transition ${
       productosMeGusta.some(
         (producto) => producto._fila === p._fila
       )
-        ? "bg-[#C4472B]"
-        : "bg-[#202629] group-hover:bg-[#2A3033]"
+        ? "text-[#FF6B57] fill-[#FF6B57]"
+        : "text-[#F2F4F5]"
     }`}
-  >
-    <Heart
-      className={`w-3.5 h-3.5 transition ${
-        productosMeGusta.some(
-          (producto) => producto._fila === p._fila
-        )
-          ? "text-white fill-white"
-          : "text-[#9AA6AD]"
-      }`}
-      strokeWidth={1.8}
-    />
-  </div>
+    strokeWidth={1.8}
+  />
 
   <div className="text-left leading-tight">
     <p className="text-sm font-bold text-[#F2F4F5]">
@@ -6181,26 +6171,16 @@ localStorage.setItem(
       : "active:scale-95"
   }`}
 >
-  <div
-    className={`w-7 h-7 rounded-full flex items-center justify-center transition ${
+   <ShoppingCart
+    className={`w-5 h-5 transition ${
       productosGuardados.some(
         (producto) => producto._fila === p._fila
       )
-        ? "bg-[#2563EB]"
-        : "bg-[#202629] group-hover:bg-[#2A3033]"
+        ? "text-[#60A5FA] fill-[#60A5FA]"
+        : "text-[#F2F4F5]"
     }`}
-  >
-    <ShoppingCart
-      className={`w-3.5 h-3.5 transition ${
-        productosGuardados.some(
-          (producto) => producto._fila === p._fila
-        )
-          ? "text-white"
-          : "text-[#9AA6AD]"
-      }`}
-      strokeWidth={1.8}
-    />
-  </div>
+    strokeWidth={1.8}
+  />
 
   <div className="text-left leading-tight">
     <p className="text-sm font-bold text-[#F2F4F5]">
@@ -6286,7 +6266,7 @@ localStorage.setItem(
   );
 }}
   disabled={p.estado === "Vendido"}
-  className={`group flex items-center justify-center gap-1.5 transition-all text-[12px] sm:text-[13px] font-bold py-3.5 rounded-2xl ${
+    className={`group flex items-center justify-center gap-1 transition-all text-[10px] font-bold py-2.5 px-1 rounded-xl min-w-0 ${
     p.estado === "Vendido"
       ? "bg-[#202629] text-[#5C666B] border border-[#2A3033] cursor-not-allowed opacity-60"
       : "bg-[#1B6B63] hover:bg-[#23786F] active:scale-[0.97] text-white shadow-[0_4px_14px_rgba(0,0,0,0.18)]"
@@ -6316,7 +6296,7 @@ localStorage.setItem(
 
   setSeleccionado(p);
 }}
-      className="group flex items-center justify-center gap-1.5 bg-[#202629] hover:bg-[#272E31] active:scale-[0.97] transition-all text-[#F2F4F5] text-[12px] sm:text-[13px] font-semibold py-3.5 rounded-2xl border border-[#30383C] hover:border-[#3A464B]"
+            className="group flex items-center justify-center gap-1 bg-[#202629] hover:bg-[#272E31] active:scale-[0.97] transition-all text-[#F2F4F5] text-[10px] font-semibold py-2.5 px-1 rounded-xl border border-[#30383C] hover:border-[#3A464B] min-w-0"
     >
       <ChevronRight
         className="w-4 h-4 shrink-0 text-[#7EE2C0] group-hover:translate-x-0.5 transition-transform"
@@ -6335,7 +6315,7 @@ localStorage.setItem(
           }).catch(() => {});
         }
       }}
-      className="group flex items-center justify-center gap-1.5 bg-[#202629] hover:bg-[#272E31] active:scale-[0.97] transition-all text-[#F2F4F5] text-[12px] sm:text-[13px] font-semibold py-3.5 rounded-2xl border border-[#30383C] hover:border-[#3A464B]"
+            className="group flex items-center justify-center gap-1 bg-[#202629] hover:bg-[#272E31] active:scale-[0.97] transition-all text-[#F2F4F5] text-[10px] font-semibold py-2.5 px-1 rounded-xl border border-[#30383C] hover:border-[#3A464B] min-w-0"
     >
       <Share2
         className="w-4 h-4 shrink-0 text-[#9AA6AD] group-hover:text-[#7EE2C0] transition-colors"

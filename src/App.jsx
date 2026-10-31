@@ -6041,12 +6041,16 @@ localStorage.setItem(
 
 </div>
 
-    {/* CARRUSEL DE FOTOS */}
+        {/* FOTO PRINCIPAL DEL PRODUCTO */}
 {p.fotos && p.fotos.length > 0 && (
-  <CarruselFotos
-    fotos={p.fotos}
-    nombre={p.nombre}
-  />
+  <div className="w-full aspect-square bg-[#0B0F11] overflow-hidden flex items-center justify-center">
+    <img
+      src={p.foto || p.fotos[0]}
+      alt={p.nombre || "Producto"}
+      className="w-full h-full object-contain"
+      loading="lazy"
+    />
+  </div>
 )}
 
     {/* INFORMACIÓN */}

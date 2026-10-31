@@ -5986,7 +5986,7 @@ localStorage.setItem(
         {p.vendedor || "Vendedor"}
       </p>
 
-      <p className="text-[10px] text-[#9AA6AD] flex items-center gap-1 mt-0.5">
+      <p className="text-[10px] text-[#9AA6AD] flex items-center gap-1 mt-0.5 min-w-0">
         <MapPin className="w-3 h-3 shrink-0" />
         <span className="truncate">
           {p.provincia}

@@ -6064,7 +6064,6 @@ localStorage.setItem(
     {/* CORAZÓN FLOTANTE */}
     <button
       onClick={(e) => {
-        e.stopPropagation();
 
         if (
           p.estado === "Vendido" ||
@@ -6142,7 +6141,6 @@ localStorage.setItem(
   {/* GUARDAR PRODUCTO */}
   <button
     onClick={(e) => {
-      e.stopPropagation();
 
       const estadoProducto = String(p.estado || "")
         .trim()

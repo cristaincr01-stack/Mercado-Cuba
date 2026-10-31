@@ -5954,10 +5954,25 @@ localStorage.setItem(
 }`}
   >
 
-        {/* FOTO PRINCIPAL DEL PRODUCTO */}
-{p.fotos && p.fotos.length > 0 && (
-  <div className="relative w-full overflow-hidden rounded-t-[2px]">
+       
 
+   {/* FOTO Y TARJETA FLOTANTE DEL PRODUCTO */}
+{p.fotos && p.fotos.length > 0 && (
+  <div
+    className="relative w-full overflow-hidden cursor-pointer"
+    onClick={() => {
+      registrarInteraccion({
+        tipo: "VER_PRODUCTO",
+        producto: p,
+        identificador: "VER_PRODUCTO",
+        esUnica: "SI"
+      });
+
+      setSeleccionado(p);
+    }}
+  >
+
+    {/* FOTOGRAFÍA */}
     <img
       src={(p.foto || p.fotos[0]).replace(
         "uc?export=view&id=",
@@ -6005,32 +6020,32 @@ localStorage.setItem(
       />
     </button>
 
+    {/* DEGRADADO INFERIOR */}
+    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0D1113] via-[#0D1113]/85 to-transparent pt-16 pb-3 px-3">
+
+      {/* NOMBRE */}
+      <h3 className="text-sm font-bold text-white leading-snug line-clamp-2 mb-2">
+        {p.nombre}
+      </h3>
+
+      {/* PRECIO */}
+      <div className="text-xl font-extrabold tracking-tight text-[#7EE2C0] leading-tight">
+        <EtiquetaPrecio
+          precio={p.precio}
+          moneda={p.moneda}
+        />
+      </div>
+
+      {/* PROVINCIA */}
+      <div className="flex items-center gap-1 mt-1.5 text-[10px] text-[#D0D7DA]">
+        <MapPin className="w-3 h-3 shrink-0" />
+        <span className="truncate">{p.provincia}</span>
+      </div>
+
+    </div>
+
   </div>
 )}
-
-    {/* INFORMACIÓN DEL PRODUCTO */}
-<div className="px-3 pt-3 pb-2">
-
-  {/* NOMBRE */}
-  <h3 className="text-sm font-bold text-[#F2F4F5] leading-snug line-clamp-2 mb-2">
-    {p.nombre}
-  </h3>
-
-  {/* PRECIO */}
-  <div className="text-xl font-extrabold tracking-tight text-[#5FBFA5] leading-tight">
-    <EtiquetaPrecio
-      precio={p.precio}
-      moneda={p.moneda}
-    />
-  </div>
-
-  {/* PROVINCIA */}
-  <div className="flex items-center gap-1 mt-1.5 text-[10px] text-[#9AA6AD]">
-    <MapPin className="w-3 h-3 shrink-0" />
-    <span className="truncate">{p.provincia}</span>
-  </div>
-
-</div>
    
    
     {/* INTERACCIONES */}

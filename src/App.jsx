@@ -271,12 +271,14 @@ function equivalente(p, tasas) {
   const precio = Number(p.precio);
   if (!precio) return "";
 
+  if (!tasas.USD || !tasas.EUR) return "";
+
   const m = String(p.moneda || "").trim().toUpperCase();
 
   if (m === "USD") return `≈ ${formatoNumero(precio * tasas.USD)} CUP`;
   if (m === "EUR") return `≈ ${formatoNumero(precio * tasas.EUR)} CUP`;
 
-  if (m === "CUP" && tasas.USD) {
+  if (m === "CUP") {
     return `≈ ${formatoNumero(precio / tasas.USD)} USD`;
   }
 
@@ -2965,9 +2967,11 @@ const [mostrarPin, setMostrarPin] = useState(false);
   const [orden, setOrden] = useState("recientes");
   const [moneda, setMoneda] = useState("Todas");
   const [tasas, setTasas] = useState({
-  USD: 680,
-  EUR: 700,
+  USD: "",
+  EUR: "",
 });
+
+const [monedaReferencia, setMonedaReferencia] = useState("CUP");
 
   const [nombreProducto, setNombreProducto] = useState("");
   const [informacionProducto, setInformacionProducto] = useState("");

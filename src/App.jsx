@@ -3967,7 +3967,7 @@ const productosDestacados = useMemo(() => {
     />
   </div>
 
-  <button
+   <button
     onClick={() => setBuscarAbierto(true)}
     className="h-12 px-5 bg-[#1B6B63] text-white flex items-center justify-center hover:bg-[#237D73] transition active:scale-95"
     aria-label="Abrir búsqueda avanzada"
@@ -3976,6 +3976,45 @@ const productosDestacados = useMemo(() => {
     </button>
 </div>
 </div>
+
+{/* TASAS DE CAMBIO - TICKER */}
+<style>
+  {`
+    @keyframes mercadoTasas {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+  `}
+</style>
+
+<div className="mx-2 mb-3 w-auto min-w-0 max-w-full overflow-hidden rounded-xl border border-[#26383B] bg-[#101C20]">
+  <div
+    className="flex w-max min-w-max items-center py-2.5"
+    style={{ animation: "mercadoTasas 18s linear infinite" }}
+  >
+    {[0, 1].map((copia) => (
+      <div key={copia} className="flex shrink-0 items-center gap-7 px-4">
+
+        <span className="flex shrink-0 items-center gap-1.5 text-[11px] font-semibold text-[#9AA6AD]">
+          <span className="h-2 w-2 rounded-full bg-[#35D07F]" />
+          HOY
+        </span>
+
+        <span className="whitespace-nowrap text-sm font-bold text-[#F2F4F5]">
+          💵 USD <span className="text-[#F5B82E]">{tasas.USD} CUP</span>
+          <span className="ml-1 text-[#35D07F]">▲</span>
+        </span>
+
+        <span className="whitespace-nowrap text-sm font-bold text-[#F2F4F5]">
+          💶 EUR <span className="text-[#F5B82E]">{tasas.EUR} CUP</span>
+          <span className="ml-1 text-[#35D07F]">▲</span>
+        </span>
+
+      </div>
+    ))}
+  </div>
+</div>
+
             {/* PRODUCTOS DESTACADOS */}
 {productosDestacados.length > 0 && (
   <section className="px-5 pt-5 pb-7">
@@ -6028,41 +6067,7 @@ localStorage.setItem(
     Encuentra lo que buscas cerca de ti.
   </p>
 
-    {/* TASAS DE CAMBIO - TICKER */}
-  <style>
-    {`
-      @keyframes mercadoTasas {
-        from { transform: translateX(0); }
-        to { transform: translateX(-50%); }
-      }
-    `}
-  </style>
-
-  <div className="mt-5 w-full max-w-full min-w-0 overflow-hidden rounded-2xl border border-[#26383B] bg-[#101C20]">
-    <div
-      className="flex w-max min-w-max items-center py-3"
-      style={{ animation: "mercadoTasas 18s linear infinite" }}
-    >
-      {[0, 1].map((copia) => (
-        <div key={copia} className="flex shrink-0 items-center gap-8 px-5">
-
-          <span className="text-xs font-semibold text-[#9AA6AD]">
-            ● HOY
-          </span>
-
-          <span className="whitespace-nowrap text-sm font-bold text-[#F2F4F5]">
-            💵 USD <span className="text-[#35D07F]">{tasas.USD} CUP ▲</span>
-          </span>
-
-          <span className="whitespace-nowrap text-sm font-bold text-[#F2F4F5]">
-            💶 EUR <span className="text-[#35D07F]">{tasas.EUR} CUP ▲</span>
-          </span>
-
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
+    
             </div>
           </div>
       </header>

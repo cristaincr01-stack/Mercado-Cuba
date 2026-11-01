@@ -4262,117 +4262,363 @@ return (
 
             {/* PRODUCTOS DESTACADOS */}
 {productosDestacados.length > 0 && (
-  <section className="pt-6 pb-8">
-    <div className="px-5 mb-5">
-      <p className="text-[10px] uppercase tracking-[0.2em] text-[#7EE2C0] font-bold">
-        Selección MercadoCU
-      </p>
+  <section className="pt-5 pb-7">
 
-      <h2 className="text-xl font-extrabold text-[#F2F4F5] mt-1">
-        Destacados para ti
-      </h2>
+    {/* ENCABEZADO */}
+    <div className="px-5 mb-4 flex items-end justify-between gap-3">
+      <div className="min-w-0">
+        <div className="flex items-center gap-2">
+          <span className="text-[#D6B875] text-lg">✦</span>
 
-      <p className="text-xs text-[#9AA6AD] mt-1">
-        Productos que vale la pena descubrir
-      </p>
+          <p className="text-[10px] uppercase tracking-[0.2em] text-[#7EE2C0] font-bold">
+            Selección MercadoCU
+          </p>
+        </div>
+
+        <h2
+          className="text-[23px] font-extrabold text-[#F2F4F5] mt-1"
+          style={{ letterSpacing: "-0.035em" }}
+        >
+          Destacados para ti
+        </h2>
+
+        <p className="text-xs text-[#9AA6AD] mt-1">
+          Productos que merecen tu atención
+        </p>
+      </div>
     </div>
 
+    {/* CARRUSEL */}
     <div
       id="mercadoCU-destacados-carrusel"
       onScroll={(e) => {
         const contenedor = e.currentTarget;
         const tarjetas = Array.from(contenedor.children);
-        const centroContenedor =
+
+        const centro =
           contenedor.getBoundingClientRect().left +
           contenedor.getBoundingClientRect().width / 2;
 
-        let indiceMasCercano = 0;
-        let distanciaMasCercana = Infinity;
+        let indice = 0;
+        let distanciaMinima = Infinity;
 
-        tarjetas.forEach((tarjeta, index) => {
+        tarjetas.forEach((tarjeta, i) => {
           const rect = tarjeta.getBoundingClientRect();
           const centroTarjeta = rect.left + rect.width / 2;
-          const distancia = Math.abs(
-            centroContenedor - centroTarjeta
-          );
+          const distancia = Math.abs(centro - centroTarjeta);
 
-          if (distancia < distanciaMasCercana) {
-            distanciaMasCercana = distancia;
-            indiceMasCercano = index;
+          if (distancia < distanciaMinima) {
+            distanciaMinima = distancia;
+            indice = i;
           }
         });
 
-        setDestacadoActivo(indiceMasCercano);
+        setDestacadoActivo(indice);
       }}
-      className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-5 pb-2"
+      className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-5 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
     >
-      {productosDestacados.map((producto, index) => (
-        <button
-          key={producto.id || index}
-          type="button"
-          onClick={() => {
-            setProductoDestino(producto);
-            setProductoDestacado(producto);
-          }}
-          className="relative shrink-0 w-[82%] snap-center overflow-hidden rounded-3xl bg-[#151A1D] border border-[#2A3033] text-left shadow-lg"
-        >
-          <div className="relative h-48">
-            <img
-              src={producto.foto?.replace(
-                "uc?export=view&id=",
-                "thumbnail?sz=w1000&id="
-              )}
-              onError={(e) => {
-  const imagen = e.currentTarget;
-  const fotoOriginal = producto.foto;
 
-  imagen.onerror = null;
+      {productosDestacados.map((producto, index) => {
 
-  if (imagen.src !== fotoOriginal) {
-    imagen.src = fotoOriginal;
-  }
-}}
-              alt={producto.nombre}
-              className="w-full h-full object-cover"
+        const tipoOriginal = String(
+          producto.tipoDestacado || ""
+        ).trim().toUpperCase();
+
+        const tipo = [
+          "PROMOCIONADO",
+          "RECOMENDADO",
+          "EN TENDENCIA"
+        ].includes(tipoOriginal)
+          ? tipoOriginal
+          : "SELECCIÓN";
+
+        const noDisponible = [
+          "VENDIDO",
+          "RESERVADO"
+        ].includes(
+          String(producto.estado || "").trim().toUpperCase()
+        );
+
+        const guardado = productosGuardados.some(
+          (p) => p._fila === producto._fila
+        );
+
+        const meGustaActivo = productosMeGusta.some(
+          (p) => p._fila === producto._fila
+        );
+
+        const nombreVendedor = producto.vendedor || "Vendedor";
+
+        const iniciales = nombreVendedor
+          .split(" ")
+          .filter(Boolean)
+          .slice(0, 2)
+          .map((parte) => parte[0])
+          .join("")
+          .toUpperCase() || "V";
+
+        const cantidadFotos = producto.fotos?.length || 0;
+        const tiempo = hace(producto.fechaPublicacion);
+
+        const estiloEtiqueta =
+          tipo === "PROMOCIONADO"
+            ? "from-[#D6B875]/30 to-[#A98945]/15 border-[#D6B875]/40 text-[#F2D99A]"
+            : tipo === "RECOMENDADO"
+            ? "from-[#91B8A5]/30 to-[#548C75]/15 border-[#91B8A5]/40 text-[#B9E1CE]"
+            : tipo === "EN TENDENCIA"
+            ? "from-[#C98F78]/30 to-[#965E4D]/15 border-[#C98F78]/40 text-[#E8B5A0]"
+            : "from-[#7EE2C0]/20 to-[#1B6B63]/15 border-[#7EE2C0]/30 text-[#A9EBD6]";
+
+        const simboloEtiqueta =
+          tipo === "PROMOCIONADO"
+            ? "✦"
+            : tipo === "RECOMENDADO"
+            ? "✓"
+            : tipo === "EN TENDENCIA"
+            ? "↗"
+            : "◆";
+
+        const textoEtiqueta =
+          tipo === "EN TENDENCIA"
+            ? "En tendencia"
+            : tipo === "SELECCIÓN"
+            ? "Selección"
+            : tipo.charAt(0) + tipo.slice(1).toLowerCase();
+
+        return (
+          <article
+            key={producto.id || index}
+            className="relative shrink-0 w-[86%] max-w-[360px] aspect-[330/540] snap-center overflow-hidden rounded-[28px] bg-[#151A1D] border border-[#2A3033] shadow-[0_14px_35px_rgba(0,0,0,0.38)]"
+          >
+
+            {/* FOTOGRAFÍA */}
+            {producto.foto ? (
+              <img
+                src={producto.foto.replace(
+                  "uc?export=view&id=",
+                  "thumbnail?sz=w1000&id="
+                )}
+                onError={(e) => {
+                  const imagen = e.currentTarget;
+                  const fotoOriginal = producto.foto;
+
+                  imagen.onerror = null;
+
+                  if (imagen.src !== fotoOriginal) {
+                    imagen.src = fotoOriginal;
+                  }
+                }}
+                alt={producto.nombre}
+                className={`absolute inset-0 w-full h-full object-cover ${
+                  noDisponible ? "opacity-50" : ""
+                }`}
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#24373F] to-[#0B1519]">
+                <ImageIcon className="w-10 h-10 text-[#2C4650]" />
+              </div>
+            )}
+
+            {/* BOTÓN PARA ABRIR EL PRODUCTO */}
+            <button
+              type="button"
+              aria-label={`Ver ${producto.nombre}`}
+              onClick={() => {
+                setProductoDestino(producto);
+                setProductoDestacado(producto);
+              }}
+              className="absolute inset-0 z-0 w-full h-full"
             />
 
-            <span
-              className={`absolute top-3 left-3 text-[10px] font-extrabold px-3 py-1.5 rounded-full border shadow-sm ${
-                producto.tipoDestacado === "PROMOCIONADO"
-                  ? "bg-[#D6B875] text-[#0D1113] border-[#E5D09A]/40"
-                  : producto.tipoDestacado === "RECOMENDADO"
-                  ? "bg-[#91B8A5] text-[#0D1113] border-[#B5D0C2]/40"
-                  : "bg-[#C98F78] text-[#0D1113] border-[#D9A995]/40"
-              }`}
+            {/* DEGRADADO SUPERIOR */}
+            <div
+              className="absolute inset-x-0 top-0 h-28 pointer-events-none"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(5,12,14,0.65), transparent)"
+              }}
+            />
+
+            {/* ETIQUETA Y CONTROLES */}
+            <div className="absolute top-4 left-4 right-4 flex items-start justify-between gap-2 pointer-events-none">
+
+              <span
+                className={`inline-flex items-center gap-1.5 rounded-full border bg-gradient-to-br backdrop-blur-xl px-3.5 py-2 text-[11px] font-extrabold tracking-wide shadow-[0_4px_16px_rgba(0,0,0,0.22)] ${estiloEtiqueta}`}
+              >
+                <span className="text-sm">{simboloEtiqueta}</span>
+                {textoEtiqueta}
+              </span>
+
+              <div className="flex items-center gap-2 pointer-events-auto">
+
+                {cantidadFotos > 1 && (
+                  <span className="flex items-center gap-1 rounded-full bg-[#0B1519]/65 backdrop-blur-xl border border-white/10 px-3 h-9 text-xs font-bold text-white">
+                    <ImageIcon className="w-3.5 h-3.5" />
+                    {cantidadFotos}
+                  </span>
+                )}
+
+                <button
+                  type="button"
+                  aria-label="Me gusta"
+                  disabled={noDisponible}
+                  onClick={(e) => {
+                    e.stopPropagation();
+
+                    if (noDisponible) return;
+
+                    alternarMeGusta(producto);
+                  }}
+                  className="w-10 h-10 rounded-full bg-[#0B1519]/65 backdrop-blur-xl border border-white/10 flex items-center justify-center active:scale-90 transition"
+                >
+                  <Heart
+                    className={`w-[19px] h-[19px] ${
+                      meGustaActivo
+                        ? "text-[#FF6B7A] fill-[#FF6B7A]"
+                        : "text-white"
+                    }`}
+                  />
+                </button>
+
+              </div>
+            </div>
+
+            {/* DEGRADADO INFERIOR */}
+            <div
+              className="absolute inset-x-0 bottom-0 pt-32 pb-4 px-4 pointer-events-none"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(7,17,20,1) 0%, rgba(7,17,20,0.96) 48%, rgba(7,17,20,0.65) 75%, transparent 100%)"
+              }}
             >
-              {producto.tipoDestacado === "PROMOCIONADO"
-                ? "PROMOCIONADO"
-                : producto.tipoDestacado === "RECOMENDADO"
-                ? "RECOMENDADO"
-                : "EN TENDENCIA"}
-            </span>
-          </div>
 
-          <div className="p-4">
-            <h3 className="text-base font-bold text-[#F2F4F5] line-clamp-1">
-              {producto.nombre}
-            </h3>
+              {/* NOMBRE */}
+              <h3
+                className="text-[22px] font-extrabold text-white leading-tight line-clamp-2"
+                style={{ letterSpacing: "-0.025em" }}
+              >
+                {producto.nombre}
+              </h3>
 
-            <p className="text-lg font-extrabold text-[#7EE2C0] mt-2">
-              {formatoNumero(producto.precio)} {producto.moneda}
-            </p>
+              {/* UBICACIÓN */}
+              <div className="mt-2 flex items-center gap-1.5 text-xs text-[#A9D8CD]">
+                <MapPin className="w-3.5 h-3.5 shrink-0" />
 
-            {producto.provincia && (
-              <p className="text-xs text-[#9AA6AD] mt-2">
-                {producto.provincia}
-              </p>
-            )}
-          </div>
-        </button>
-      ))}
+                <span className="truncate">
+                  {[producto.subcategoria, producto.provincia]
+                    .filter(Boolean)
+                    .join(" · ")}
+                </span>
+              </div>
+
+              {/* PRECIO */}
+              <div className="mt-4">
+                <p
+                  className="text-[29px] leading-none font-extrabold text-[#E8C56A]"
+                  style={{ letterSpacing: "-0.035em" }}
+                >
+                  {formatoNumero(producto.precio)} {producto.moneda}
+                </p>
+              </div>
+
+              {/* VENDEDOR */}
+              <div className="mt-4 flex items-center gap-2">
+
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1B8C75] to-[#164F4A] border border-[#7EE2C0]/20 flex items-center justify-center text-[11px] font-extrabold text-white shrink-0">
+                  {iniciales}
+                </div>
+
+                <div className="min-w-0 flex-1">
+                  <p className="text-[13px] font-semibold text-[#F2F4F5] truncate">
+                    {nombreVendedor}
+                  </p>
+
+                  {tiempo && (
+                    <p className="text-[10px] text-[#9AA6AD]">
+                      Publicado {tiempo}
+                    </p>
+                  )}
+                </div>
+
+              </div>
+
+              {/* BOTONES */}
+              <div className="mt-4 flex items-center gap-2.5 pointer-events-auto">
+
+                <button
+                  type="button"
+                  disabled={noDisponible || !producto.tel}
+                  onClick={(e) => {
+                    e.stopPropagation();
+
+                    if (noDisponible || !producto.tel) return;
+
+                    registrarInteraccion({
+                      tipo: "WHATSAPP",
+                      producto: producto,
+                      identificador: "WHATSAPP",
+                      esUnica: "SI"
+                    });
+
+                    const numero = `53${String(producto.tel).replace(/\s+/g, "")}`;
+
+                    const mensaje =
+                      `Hola, estoy interesado en el producto "${producto.nombre}". ¿Sigue disponible?`;
+
+                    window.open(
+                      `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,
+                      "_blank"
+                    );
+                  }}
+                  className={`flex-1 h-11 rounded-full flex items-center justify-center gap-2 text-[13px] font-bold transition active:scale-[0.97] ${
+                    noDisponible || !producto.tel
+                      ? "bg-[#202629] text-[#69757B]"
+                      : "bg-gradient-to-br from-[#2BE072] to-[#1DA851] text-white shadow-[0_7px_20px_rgba(37,211,102,0.22)]"
+                  }`}
+                >
+                  <MessageCircle className="w-[18px] h-[18px] shrink-0" />
+
+                  <span>
+                    {String(producto.estado || "").toUpperCase() === "VENDIDO"
+                      ? "Vendido"
+                      : String(producto.estado || "").toUpperCase() === "RESERVADO"
+                      ? "Reservado"
+                      : "Contactar"}
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  aria-label="Guardar producto"
+                  disabled={noDisponible}
+                  onClick={(e) => {
+                    e.stopPropagation();
+
+                    if (noDisponible) return;
+
+                    alternarProductoGuardado(producto);
+                  }}
+                  className="w-11 h-11 rounded-full bg-white/10 border border-white/15 backdrop-blur-md flex items-center justify-center shrink-0 active:scale-90 transition"
+                >
+                  <ShoppingCart
+                    className={`w-5 h-5 ${
+                      guardado
+                        ? "text-[#7EE2C0] fill-[#7EE2C0]"
+                        : "text-white"
+                    }`}
+                  />
+                </button>
+
+              </div>
+            </div>
+          </article>
+        );
+      })}
+
     </div>
 
-    <div className="flex justify-center items-center gap-2 mt-4">
+    {/* INDICADORES */}
+    <div className="flex justify-center items-center gap-1.5 mt-3">
       {productosDestacados.map((_, index) => (
         <button
           key={index}
@@ -4382,6 +4628,7 @@ return (
             const contenedor = document.getElementById(
               "mercadoCU-destacados-carrusel"
             );
+
             const tarjeta = contenedor?.children[index];
 
             tarjeta?.scrollIntoView({
@@ -4390,16 +4637,24 @@ return (
               inline: "center"
             });
           }}
-          className={`h-1.5 rounded-full transition-all ${
-            destacadoActivo === index
-              ? "w-6 bg-[#7EE2C0]"
-              : "w-1.5 bg-[#465256]"
-          }`}
-        />
+          className="py-2 px-0.5"
+        >
+          <span
+            className={`block h-1 rounded-full transition-all duration-300 ${
+              destacadoActivo === index
+                ? "w-8 bg-[#7EE2C0] shadow-[0_0_8px_rgba(126,226,192,0.35)]"
+                : "w-5 bg-[#344449]"
+            }`}
+          />
+        </button>
       ))}
     </div>
+
   </section>
 )}
+
+  
+
 
   {menuAbierto && (
     <div className="fixed inset-x-0 bottom-0 bg-[#151A1D] text-[#F2F4F5] rounded-t-3xl shadow-2xl p-5 z-50 max-h-[85vh] overflow-y-auto border-t border-[#2A3033]">

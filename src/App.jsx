@@ -4264,7 +4264,7 @@ return (
 {productosDestacados.length > 0 && (
 
   <section className="w-full basis-full min-w-0 pt-4 pb-6">{/* ENCABEZADO */}
-<div className="px-5 mb-4 flex items-center justify-between gap-2">
+<div className="px-4 mb-2 flex items-center justify-between gap-2">
   <div className="min-w-0">
     <div className="flex items-center gap-2">
       <Sparkles
@@ -4282,7 +4282,10 @@ return (
     </p>
   </div>
 
-  <span className="shrink-0 text-xs font-semibold text-[#7EE2C0]">
+  
+</div>
+    <div className="px-5 mb-2 flex justify-end">
+  <span className="text-xs font-semibold text-[#7EE2C0]">
     Desliza para explorar ›
   </span>
 </div>
@@ -4440,7 +4443,7 @@ return (
           className="absolute inset-x-0 top-0 h-28 pointer-events-none z-[1]"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(11,21,25,0.65), transparent)"
+  "linear-gradient(to bottom, rgba(11,21,25,0.38), transparent)"
           }}
         />
 
@@ -4499,7 +4502,7 @@ return (
           className="absolute z-10 inset-x-0 bottom-0 p-4 pt-32 pointer-events-none"
           style={{
             background:
-              "linear-gradient(to top, #0B1519 0%, rgba(11,21,25,0.97) 48%, rgba(11,21,25,0.72) 76%, transparent 100%)"
+  "linear-gradient(to top, #0B1519 0%, rgba(11,21,25,0.88) 48%, rgba(11,21,25,0.48) 76%, transparent 100%)"
           }}
         >
 

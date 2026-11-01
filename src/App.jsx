@@ -3976,6 +3976,72 @@ const productosDestacados = useMemo(() => {
     </button>
 </div>
 </div>
+            {/* PRODUCTOS DESTACADOS */}
+{productosDestacados.length > 0 && (
+  <section className="px-5 pt-5 pb-7">
+    <div className="flex items-center justify-between mb-4">
+      <div>
+        <p className="text-[10px] uppercase tracking-[0.2em] text-[#7EE2C0] font-bold">
+          Selección MercadoCU
+        </p>
+        <h2 className="text-xl font-extrabold text-[#F2F4F5] mt-1">
+          Destacados para ti
+        </h2>
+      </div>
+
+      <div className="flex gap-1">
+        {productosDestacados.map((_, index) => (
+          <span
+            key={index}
+            className={`h-1.5 rounded-full transition-all ${
+              destacadoActivo === index
+                ? "w-5 bg-[#7EE2C0]"
+                : "w-1.5 bg-[#465256]"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+
+    <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2">
+      {productosDestacados.map((producto, index) => (
+        <button
+          key={producto.id || index}
+          type="button"
+          onClick={() => {
+  setProductoDestino(producto);
+  setProductoDestacado(producto);
+}}
+          className="relative shrink-0 w-[82%] snap-center overflow-hidden rounded-3xl bg-[#151A1D] border border-[#2A3033] text-left"
+        >
+          <div className="h-52 relative">
+            <img
+              src={producto.foto}
+              alt={producto.nombre}
+              className="w-full h-full object-cover"
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+
+            <span className="absolute top-3 left-3 bg-[#7EE2C0] text-[#0D1113] text-[10px] font-extrabold px-3 py-1.5 rounded-full">
+              DESTACADO
+            </span>
+
+            <div className="absolute bottom-4 left-4 right-4">
+              <h3 className="text-lg font-bold text-white line-clamp-1">
+                {producto.nombre}
+              </h3>
+
+              <p className="text-sm font-semibold text-[#7EE2C0] mt-1">
+                {formatoNumero(producto.precio)} {producto.moneda}
+              </p>
+            </div>
+          </div>
+        </button>
+      ))}
+    </div>
+  </section>
+)}
 
   {menuAbierto && (
     <div className="fixed inset-x-0 bottom-0 bg-[#151A1D] text-[#F2F4F5] rounded-t-3xl shadow-2xl p-5 z-50 max-h-[85vh] overflow-y-auto border-t border-[#2A3033]">

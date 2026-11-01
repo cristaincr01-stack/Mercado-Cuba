@@ -6030,15 +6030,81 @@ localStorage.setItem(
     Encuentra lo que buscas cerca de ti.
   </p>
 
-  <div className="mt-3 flex gap-2 flex-wrap">
-    <div className="bg-white/10 px-3 py-1.5 rounded-lg text-xs text-white/75">
-      💵 USD: {tasas.USD} CUP
+  {/* TASAS DE CAMBIO - ESTILO TRADING */}
+<div className="mt-5 w-full overflow-hidden rounded-2xl border border-[#26383B] bg-[#101C20]">
+
+  <div className="flex items-center gap-3 px-4 py-3">
+
+    {/* INDICADOR HOY */}
+    <div className="flex shrink-0 items-center gap-2 border-r border-[#26383B] pr-3">
+      <span className="w-2.5 h-2.5 rounded-full bg-[#35D07F]" />
+      <span className="text-xs font-semibold text-[#9AA6AD]">
+        Hoy
+      </span>
     </div>
 
-    <div className="bg-white/10 px-3 py-1.5 rounded-lg text-xs text-white/75">
-      💶 EUR: {tasas.EUR} CUP
+    {/* USD */}
+    <div className="flex min-w-0 flex-1 items-center justify-between gap-2">
+
+      <div className="flex items-center gap-1.5">
+        <span className="text-xs text-[#9AA6AD]">USD</span>
+        <span className="text-lg font-black text-[#F2F4F5]">
+          {tasas.USD}
+        </span>
+        <span className="text-sm text-[#35D07F]">▲</span>
+      </div>
+
+      <svg
+        viewBox="0 0 64 24"
+        className="h-6 w-14 shrink-0"
+        fill="none"
+      >
+        <path
+          d="M2 18 L14 13 L24 16 L36 8 L48 11 L62 4"
+          stroke="#F5B82E"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+
     </div>
+
+    <div className="h-7 w-px shrink-0 bg-[#26383B]" />
+
+    {/* EUR */}
+    <div className="flex min-w-0 flex-1 items-center justify-between gap-2">
+
+      <div className="flex items-center gap-1.5">
+        <span className="text-xs text-[#9AA6AD]">EUR</span>
+        <span className="text-lg font-black text-[#F2F4F5]">
+          {tasas.EUR}
+        </span>
+        <span className="text-sm text-[#35D07F]">▲</span>
+      </div>
+
+      <svg
+        viewBox="0 0 64 24"
+        className="h-6 w-14 shrink-0"
+        fill="none"
+      >
+        <path
+          d="M2 17 L14 15 L24 9 L36 12 L48 5 L62 3"
+          stroke="#F5B82E"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+
+    </div>
+
+    <span className="shrink-0 border-l border-[#26383B] pl-3 text-xs text-[#9AA6AD]">
+      en CUP
+    </span>
+
   </div>
+</div>
 </div>
             </div>
           </div>

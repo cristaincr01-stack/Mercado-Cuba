@@ -3955,7 +3955,7 @@ const productosDestacados = useMemo(() => {
   </button>
 </div>
             <div className="px-2 pb-5">
-<div className="flex items-center bg-[#151A1D] rounded-2xl border border-[#2A3033] shadow-lg overflow-hidden">
+<div className="flex items-center bg-[#202629] rounded-2xl border border-[#343D40] overflow-hidden">
  <div className="flex items-center flex-1 px-4 py-4 gap-3">
     <Search className="w-5 h-5 text-[#9AA6AD] shrink-0" />
 

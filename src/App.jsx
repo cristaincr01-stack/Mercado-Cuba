@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck, Eye,
-EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, Smartphone, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill, ChevronLeft, UserPlus, Sparkles, Crown, Megaphone, BriefcaseBusiness, Instagram, Facebook, Music2, Youtube, Star, User, TrendingUp } from "lucide-react";
+EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, Smartphone, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill, ChevronLeft, UserPlus, Sparkles, Crown, Megaphone, BriefcaseBusiness, Instagram, Facebook, Music2, Youtube, Star, User, TrendingUp, Peso, DollarSign, Euro } from "lucide-react";
 window.onerror = function (mensaje, archivo, linea, columna, error) {
   document.body.innerHTML = `
     <div style="
@@ -3992,56 +3992,56 @@ const productosDestacados = useMemo(() => {
   `}
 </style>
 
-<div className="-ml-1 mb-3 w-[calc(100%+0.5rem)] max-w-[calc(100%+0.5rem)] min-w-0 overflow-visible rounded-xl border border-[#26383B] bg-[#101C20]">
+<div className="-ml-1 mb-3 w-[calc(100%+0.5rem)] max-w-[calc(100%+0.5rem)] min-w-0 overflow-hidden rounded-xl border border-[#26383B] bg-[#101C20]">
 
-  <div className="flex w-full min-w-0 items-center">
+  <div className="flex w-full min-w-0 items-stretch">
 
     {/* HOY Y SELECTOR FIJOS */}
-<div className="relative z-30 flex shrink-0 flex-col items-center justify-center gap-1 border-r border-[#26383B] bg-[#101C20] px-2 py-2">
+    <div className="relative z-30 flex shrink-0 flex-col items-center justify-center gap-1 self-stretch rounded-l-xl border-r border-[#26383B] bg-[#101C20] px-2 py-2">
 
-  <div className="flex items-center gap-1.5">
-    <span className="h-2 w-2 rounded-full bg-[#35D07F]" />
-    <span className="text-[11px] font-bold text-[#F2F4F5]">
-      HOY
-    </span>
-  </div>
+      <div className="flex items-center gap-1.5">
+        <span className="h-2 w-2 rounded-full bg-[#35D07F]" />
+        <span className="text-[11px] font-bold text-[#F2F4F5]">
+          HOY
+        </span>
+      </div>
 
-  <button
-    type="button"
-    onClick={() => setSelectorMonedaAbierto(!selectorMonedaAbierto)}
-    className="min-w-[34px] text-center text-[10px] font-extrabold tracking-wide text-[#7EE2C0] active:opacity-60"
-  >
-    {monedaReferencia}
-  </button>
+      <button
+        type="button"
+        onClick={() => setSelectorMonedaAbierto(!selectorMonedaAbierto)}
+        className="min-w-[34px] text-center text-[10px] font-extrabold tracking-wide text-[#7EE2C0] active:opacity-60"
+      >
+        {monedaReferencia}
+      </button>
 
-  {selectorMonedaAbierto && (
-    <div className="absolute left-1/2 top-[calc(100%-2px)] z-50 w-[42px] -translate-x-1/2 overflow-hidden rounded-lg border border-[#304448] bg-[#152328] shadow-xl">
+      {selectorMonedaAbierto && (
+        <div className="absolute left-1/2 top-[calc(100%-2px)] z-50 w-[46px] -translate-x-1/2 overflow-hidden rounded-lg border border-[#304448] bg-[#152328] shadow-xl">
 
-      {["CUP", "USD", "EUR"].map((monedaOpcion) => (
-        <button
-          key={monedaOpcion}
-          type="button"
-          onClick={() => {
-            setMonedaReferencia(monedaOpcion);
-            setSelectorMonedaAbierto(false);
-          }}
-          className={`block w-full py-2 text-center text-[10px] font-bold transition ${
-            monedaReferencia === monedaOpcion
-              ? "bg-[#1B6B63]/30 text-[#7EE2C0]"
-              : "text-[#D5DEE0] active:bg-[#26383B]"
-          }`}
-        >
-          {monedaOpcion}
-        </button>
-      ))}
+          {["CUP", "USD", "EUR"].map((monedaOpcion) => (
+            <button
+              key={monedaOpcion}
+              type="button"
+              onClick={() => {
+                setMonedaReferencia(monedaOpcion);
+                setSelectorMonedaAbierto(false);
+              }}
+              className={`block w-full py-2 text-center text-[10px] font-bold transition ${
+                monedaReferencia === monedaOpcion
+                  ? "bg-[#1B6B63]/30 text-[#7EE2C0]"
+                  : "text-[#D5DEE0] active:bg-[#26383B]"
+              }`}
+            >
+              {monedaOpcion}
+            </button>
+          ))}
+
+        </div>
+      )}
 
     </div>
-  )}
-
-</div>
 
     {/* MONEDAS EN MOVIMIENTO */}
-    <div className="min-w-0 flex-1 overflow-hidden">
+    <div className="min-w-0 flex-1 overflow-hidden rounded-r-xl">
 
       <div
         className="flex w-max min-w-max items-center"
@@ -4050,68 +4050,100 @@ const productosDestacados = useMemo(() => {
 
         {[0, 1].map((copia) => (
 
-          <div key={copia} className="flex shrink-0 items-center gap-8 px-5 py-3">
+          <div
+            key={copia}
+            className="flex shrink-0 items-center gap-8 px-5 py-3"
+          >
 
             {(monedaReferencia === "CUP"
               ? [
-                  { origen: "USD", destino: "CUP", valor: tasas.USD },
-                  { origen: "EUR", destino: "CUP", valor: tasas.EUR },
+                  { moneda: "USD", valor: Number(tasas.USD), unidad: "CUP" },
+                  { moneda: "EUR", valor: Number(tasas.EUR), unidad: "CUP" },
                 ]
-              : monedaReferencia === "USD"
+              : monedaReferencia === "EUR"
               ? [
-                  { origen: "EUR", destino: "USD", valor: Number(tasas.EUR) / Number(tasas.USD) },
-                  { origen: "CUP", destino: "USD", valor: 1 / Number(tasas.USD) },
+                  { moneda: "CUP", valor: 1 / Number(tasas.EUR), unidad: "EUR" },
+                  { moneda: "USD", valor: Number(tasas.EUR) / Number(tasas.USD), unidad: "USD" },
                 ]
               : [
-                  { origen: "USD", destino: "EUR", valor: Number(tasas.USD) / Number(tasas.EUR) },
-                  { origen: "CUP", destino: "EUR", valor: 1 / Number(tasas.EUR) },
+                  { moneda: "CUP", valor: 1 / Number(tasas.USD), unidad: "USD" },
+                  { moneda: "EUR", valor: Number(tasas.USD) / Number(tasas.EUR), unidad: "EUR" },
                 ]
-            ).map((item, indice) => (
+            ).map((item, indice) => {
 
-              <div
-                key={item.origen}
-                className="flex shrink-0 items-center whitespace-nowrap text-sm font-bold text-[#F2F4F5]"
-              >
+              const IconoMoneda =
+                item.moneda === "CUP"
+                  ? Peso
+                  : item.moneda === "USD"
+                  ? DollarSign
+                  : Euro;
 
-                {item.origen === "USD" ? "💵" : item.origen === "EUR" ? "💶" : "🇨🇺"}
+              return (
+                <div
+                  key={item.moneda}
+                  className="flex shrink-0 items-center whitespace-nowrap text-sm font-bold text-[#F2F4F5]"
+                >
 
-                <span className="ml-1">
-                  {item.origen} → {item.destino}
-                </span>
+                  <IconoMoneda
+                    size={17}
+                    strokeWidth={2}
+                    className="mr-1.5 text-[#9AA6AD]"
+                  />
 
-                <span className="ml-2 text-[#F5B82E]">
-                  {tasas.USD && tasas.EUR && Number.isFinite(item.valor)
-                    ? formatoNumero(item.valor)
-                    : "Cargando..."}
-                  {" "}{item.destino}
-                </span>
-
-                {/* INDICADORES VISUALES */}
-                <span className={`ml-2 flex shrink-0 items-center gap-1 ${
-                  indice === 0 ? "text-[#38BDF8]" : "text-[#EF4444]"
-                }`}>
-
-                  <span className="font-black">
-                    {indice === 0 ? "▲" : "▼"}
+                  <span>
+                    {item.moneda}
                   </span>
 
-                  <svg viewBox="0 0 64 24" className="h-6 w-14" fill="none">
-                    <path
-                      d={indice === 0
-                        ? "M2 18 L14 13 L24 16 L36 8 L48 11 L62 4"
-                        : "M2 4 L14 8 L24 7 L36 14 L48 12 L62 20"}
-                      stroke={indice === 0 ? "#38BDF8" : "#EF4444"}
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  <span className="ml-2 text-[#F5B82E]">
+                    {tasas.USD &&
+                    tasas.EUR &&
+                    Number.isFinite(item.valor)
+                      ? Number(item.valor).toLocaleString("es-ES", {
+                          minimumFractionDigits: 0,
+                          maximumFractionDigits: item.valor < 0.01 ? 4 : 2,
+                        })
+                      : "Cargando..."}
+                    {" "}{item.unidad}
+                  </span>
 
-                </span>
+                  {/* INDICADORES VISUALES */}
+                  <span
+                    className={`ml-2 flex shrink-0 items-center gap-1 ${
+                      indice === 0
+                        ? "text-[#38BDF8]"
+                        : "text-[#EF4444]"
+                    }`}
+                  >
 
-              </div>
+                    <span className="font-black">
+                      {indice === 0 ? "▲" : "▼"}
+                    </span>
 
-            ))}
+                    <svg
+                      viewBox="0 0 64 24"
+                      className="h-6 w-14"
+                      fill="none"
+                    >
+                      <path
+                        d={
+                          indice === 0
+                            ? "M2 18 L14 13 L24 16 L36 8 L48 11 L62 4"
+                            : "M2 4 L14 8 L24 7 L36 14 L48 12 L62 20"
+                        }
+                        stroke={
+                          indice === 0 ? "#38BDF8" : "#EF4444"
+                        }
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+
+                  </span>
+
+                </div>
+              );
+            })}
 
           </div>
 
@@ -4124,6 +4156,8 @@ const productosDestacados = useMemo(() => {
   </div>
 
 </div>
+
+
 
             {/* PRODUCTOS DESTACADOS */}
 {productosDestacados.length > 0 && (

@@ -3992,7 +3992,7 @@ const productosDestacados = useMemo(() => {
   `}
 </style>
 
-<div className="-ml-1 mb-3 w-[calc(100%+0.5rem)] max-w-[calc(100%+0.5rem)] min-w-0 overflow-hidden rounded-xl border border-[#26383B] bg-[#101C20]">
+<div className="-ml-1 mb-3 w-[calc(100%+0.5rem)] max-w-[calc(100%+0.5rem)] min-w-0 overflow-visible rounded-xl border border-[#26383B] bg-[#101C20]">
 
   <div className="flex w-full min-w-0 items-stretch">
 

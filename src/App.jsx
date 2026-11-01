@@ -3852,6 +3852,31 @@ if (orden === "precioMayor") {
     });
   };
 }, [productosFiltrados, visualizacionesRegistradas]);
+  const [destacadoActivo, setDestacadoActivo] = useState(0);
+
+const productosDestacados = useMemo(() => {
+  const disponibles = productosFiltrados.filter(
+    p =>
+      p.foto &&
+      String(p.estado || "").trim().toUpperCase() !== "VENDIDO"
+  );
+
+  return [...disponibles]
+    .sort(
+      (a, b) =>
+        (
+          (Number(b.meGusta) || 0) +
+          (Number(b.guardados) || 0) +
+          (Number(b.visualizaciones) || 0)
+        ) -
+        (
+          (Number(a.meGusta) || 0) +
+          (Number(a.guardados) || 0) +
+          (Number(a.visualizaciones) || 0)
+        )
+    )
+    .slice(0, 4);
+}, [productosFiltrados]);
   return (
   <div
         className="min-h-screen bg-[#0D1113] bg-[radial-gradient(ellipse_at_top,_#10231F_0%,_#111A19_25%,_#0D1113_65%)] text-[#F2F4F5]"

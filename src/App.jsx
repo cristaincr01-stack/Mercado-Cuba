@@ -4040,18 +4040,6 @@ const productosDestacados = useMemo(() => {
 
 </div>
 
-      <select
-        value={monedaReferencia}
-        onChange={(e) => setMonedaReferencia(e.target.value)}
-        className="w-[43px] rounded border border-[#34464A] bg-[#172529] px-1 py-0.5 text-[9px] font-bold text-[#7EE2C0] outline-none"
-      >
-        <option value="CUP">CUP</option>
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-      </select>
-
-    </div>
-
     {/* MONEDAS EN MOVIMIENTO */}
     <div className="min-w-0 flex-1 overflow-hidden">
 

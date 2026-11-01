@@ -213,7 +213,86 @@ function convertirACUP(precio, moneda) {
 
   return precio;
 }
+const ICONOS_CATEGORIA = {
+  Todas: LayoutGrid,
+  Productos: Package,
+  Electrónica: Smartphone,
+  Vehículos: Car,
+  Inmuebles: Home,
+  Farmacia: Pill,
+  Servicios: Settings,
+  Empleo: BriefcaseBusiness,
+};
 
+const formatoNumero = (n) =>
+  Math.round(Number(n) || 0).toLocaleString("de-DE");
+
+function parseFecha(valor) {
+  if (!valor) return null;
+  if (valor instanceof Date) return valor;
+
+  const s = String(valor).trim();
+
+  const m = s.match(
+    /^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?/
+  );
+
+  if (m) {
+    return new Date(
+      +m[3], +m[2] - 1, +m[1],
+      +(m[4] || 0), +(m[5] || 0), +(m[6] || 0)
+    );
+  }
+
+  const d = new Date(s);
+  return isNaN(d.getTime()) ? null : d;
+}
+
+function esNuevo(fecha) {
+  const d = parseFecha(fecha);
+  if (!d) return false;
+
+  const diferencia = Date.now() - d.getTime();
+  return diferencia >= 0 && diferencia < 72 * 3600 * 1000;
+}
+
+function hace(fecha) {
+  const d = parseFecha(fecha);
+  if (!d) return "";
+
+  const horas = (Date.now() - d.getTime()) / 3600000;
+
+  if (horas < 1) return "hace minutos";
+  if (horas < 24) return `hace ${Math.floor(horas)} h`;
+  return `hace ${Math.floor(horas / 24)} d`;
+}
+
+function equivalente(p, tasas) {
+  const precio = Number(p.precio);
+  if (!precio) return "";
+
+  const m = String(p.moneda || "").trim().toUpperCase();
+
+  if (m === "USD") return `≈ ${formatoNumero(precio * tasas.USD)} CUP`;
+  if (m === "EUR") return `≈ ${formatoNumero(precio * tasas.EUR)} CUP`;
+
+  if (m === "CUP" && tasas.USD) {
+    return `≈ ${formatoNumero(precio / tasas.USD)} USD`;
+  }
+
+  return "";
+}
+
+function SiluetaCuba() {
+  return (
+    <svg width="26" height="12" viewBox="0 0 34 15" aria-hidden="true">
+      <path
+        d="M1 12 C4 9 7 8 10 7 C13 6 15 7 18 5.5 C21 4 24 3.5 27 4.5 C30 5.5 31 6.5 33 7.5 C31 9 28 8.5 25 9.5 C22 10.5 19 10 16 11 C12 12 8 12.5 5 13.5 C3 14 1.5 13.5 1 12 Z"
+        fill="#F5B324"
+      />
+    </svg>
+  );
+}
 const API_URL =
   "https://script.google.com/macros/s/AKfycby16A5ELOrZAE2QubflsJp9j6EQx34erkLCPD4TcIL18RvvDVCU5yVbOFZMn-Tfe0UU/exec";
 

@@ -6079,8 +6079,8 @@ localStorage.setItem(
       }}
      className={`whitespace-nowrap px-4 py-3 rounded-2xl text-[13px] font-bold border transition-all duration-200 active:scale-95 flex items-center gap-2 ${
         categoria === c
-          ?"bg-[#1B6B63] text-[#F2F4F5] border-[#7EE2C0] shadow-[0_4px_14px_rgba(27,107,99,0.30)]"
-          : "bg-[#151A1D] text-[#9AA6AD] border-[#30383C] hover:border-[#4A555A] hover:text-[#F2F4F5]"
+          ?"bg-gradient-to-r from-[#1B6B63] to-[#248878] text-white border-[#7EE2C0] shadow-[0_5px_18px_rgba(27,107,99,0.38)]"
+          : "bg-[#192124] text-[#B0BEC3] border-[#303D40] hover:bg-[#202C2F] hover:border-[#52736D] hover:text-white"
       }`}
     >
       <IconoCategoria className="w-4 h-4 shrink-0" />

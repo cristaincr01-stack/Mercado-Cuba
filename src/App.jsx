@@ -3866,22 +3866,107 @@ const productosDestacados = useMemo(() => {
       String(p.estado || "").trim().toUpperCase() !== "VENDIDO"
   );
 
-  return [...disponibles]
-    .sort(
-      (a, b) =>
-        (
-          (Number(b.meGusta) || 0) +
-          (Number(b.guardados) || 0) +
-          (Number(b.visualizaciones) || 0)
-        ) -
-        (
-          (Number(a.meGusta) || 0) +
-          (Number(a.guardados) || 0) +
-          (Number(a.visualizaciones) || 0)
-        )
-    )
-    .slice(0, 4);
-}, [productosFiltrados]);
+  if (disponibles.length === 0) {
+    return [];
+  }
+
+  // Productos que el cliente ha guardado o marcado con Me gusta
+  const productosDeInteres = [
+    ...(productosGuardados || []),
+    ...(productosMeGusta || [])
+  ];
+
+  // Medir qué categorías interesan más al cliente
+  const afinidadCategorias = {};
+
+  productosDeInteres.forEach(producto => {
+    const categoriaProducto = String(
+      producto.categoria || ""
+    ).trim().toLowerCase();
+
+    if (categoriaProducto) {
+      afinidadCategorias[categoriaProducto] =
+        (afinidadCategorias[categoriaProducto] || 0) + 1;
+    }
+  });
+
+  // Puntuar cada producto y asignar su tipo principal
+  const candidatos = disponibles.map(producto => {
+    const categoriaProducto = String(
+      producto.categoria || ""
+    ).trim().toLowerCase();
+
+    const afinidad =
+      afinidadCategorias[categoriaProducto] || 0;
+
+    const meGusta = Number(producto.meGusta) || 0;
+    const guardados = Number(producto.guardados) || 0;
+    const visualizaciones =
+      Number(producto.visualizaciones) || 0;
+
+    const puntuacionTendencia =
+      meGusta * 4 +
+      guardados * 5 +
+      visualizaciones;
+
+    const puntuacionRecomendacion = afinidad * 10;
+
+    const esRecomendado =
+      puntuacionRecomendacion > puntuacionTendencia;
+
+    return {
+      ...producto,
+      tipoDestacado: esRecomendado
+        ? "RECOMENDADO"
+        : "TENDENCIA",
+      puntuacion:
+        Math.max(
+          puntuacionRecomendacion,
+          puntuacionTendencia
+        ) +
+        Math.random() * 5
+    };
+  });
+
+  // Ordenar por relevancia con una pequeña variación aleatoria
+  candidatos.sort((a, b) => b.puntuacion - a.puntuacion);
+
+  // Elegir hasta cuatro productos procurando diversidad de vendedores
+  const seleccionados = [];
+  const vendedoresIncluidos = new Set();
+
+  candidatos.forEach(producto => {
+    if (seleccionados.length >= 4) return;
+
+    const vendedor = producto.idVendedor || producto._fila;
+
+    if (!vendedoresIncluidos.has(vendedor)) {
+      seleccionados.push(producto);
+      vendedoresIncluidos.add(vendedor);
+    }
+  });
+
+  // Si faltan productos, completar permitiendo repetir vendedor
+  if (seleccionados.length < 4) {
+    candidatos.forEach(producto => {
+      if (seleccionados.length >= 4) return;
+
+      const yaIncluido = seleccionados.some(
+        p => p._fila === producto._fila
+      );
+
+      if (!yaIncluido) {
+        seleccionados.push(producto);
+      }
+    });
+  }
+
+  return seleccionados;
+}, [
+  productosFiltrados,
+  productosGuardados,
+  productosMeGusta
+]);
   return (
   <div
         className="min-h-screen bg-[#0D1113] bg-[radial-gradient(ellipse_at_top,_#10231F_0%,_#111A19_25%,_#0D1113_65%)] text-[#F2F4F5]"

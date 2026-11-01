@@ -4262,79 +4262,137 @@ return (
 
             {/* PRODUCTOS DESTACADOS */}
 {productosDestacados.length > 0 && (
-  <section className="px-5 pt-5 pb-7">
-        <div className="mb-4">
+  <section className="pt-6 pb-8">
+    <div className="px-5 mb-5">
       <p className="text-[10px] uppercase tracking-[0.2em] text-[#7EE2C0] font-bold">
         Selección MercadoCU
       </p>
+
       <h2 className="text-xl font-extrabold text-[#F2F4F5] mt-1">
         Destacados para ti
       </h2>
+
+      <p className="text-xs text-[#9AA6AD] mt-1">
+        Productos que vale la pena descubrir
+      </p>
     </div>
 
-    <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2">
+    <div
+      id="mercadoCU-destacados-carrusel"
+      onScroll={(e) => {
+        const contenedor = e.currentTarget;
+        const tarjetas = Array.from(contenedor.children);
+        const centroContenedor =
+          contenedor.getBoundingClientRect().left +
+          contenedor.getBoundingClientRect().width / 2;
+
+        let indiceMasCercano = 0;
+        let distanciaMasCercana = Infinity;
+
+        tarjetas.forEach((tarjeta, index) => {
+          const rect = tarjeta.getBoundingClientRect();
+          const centroTarjeta = rect.left + rect.width / 2;
+          const distancia = Math.abs(
+            centroContenedor - centroTarjeta
+          );
+
+          if (distancia < distanciaMasCercana) {
+            distanciaMasCercana = distancia;
+            indiceMasCercano = index;
+          }
+        });
+
+        setDestacadoActivo(indiceMasCercano);
+      }}
+      className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-5 pb-2"
+    >
       {productosDestacados.map((producto, index) => (
         <button
           key={producto.id || index}
           type="button"
           onClick={() => {
-  setProductoDestino(producto);
-  setProductoDestacado(producto);
-}}
-          className="relative shrink-0 w-[82%] snap-center overflow-hidden rounded-3xl bg-[#151A1D] border border-[#2A3033] text-left"
+            setProductoDestino(producto);
+            setProductoDestacado(producto);
+          }}
+          className="relative shrink-0 w-[82%] snap-center overflow-hidden rounded-3xl bg-[#151A1D] border border-[#2A3033] text-left shadow-lg"
         >
-          <div className="h-52 relative">
+          <div className="relative h-48">
             <img
-  src={producto.foto?.replace(
-    "uc?export=view&id=",
-    "thumbnail?sz=w1000&id="
-  )}
-  onError={(e) => {
-    e.currentTarget.src = producto.foto;
-  }}
-  alt={producto.nombre}
-  className="w-full h-full object-cover"
-/>
+              src={producto.foto?.replace(
+                "uc?export=view&id=",
+                "thumbnail?sz=w1000&id="
+              )}
+              onError={(e) => {
+  const imagen = e.currentTarget;
+  const fotoOriginal = producto.foto;
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+  imagen.onerror = null;
+
+  if (imagen.src !== fotoOriginal) {
+    imagen.src = fotoOriginal;
+  }
+}}
+              alt={producto.nombre}
+              className="w-full h-full object-cover"
+            />
 
             <span
-  className={`absolute top-3 left-3 text-[10px] font-extrabold px-3 py-1.5 rounded-full ${
-    producto.tipoDestacado === "PROMOCIONADO"
-      ? "bg-[#F5C451] text-[#0D1113]"
-      : producto.tipoDestacado === "RECOMENDADO"
-      ? "bg-[#7EE2C0] text-[#0D1113]"
-      : "bg-[#FF8A65] text-[#0D1113]"
-  }`}
->
-  {producto.tipoDestacado === "PROMOCIONADO"
-    ? "PROMOCIONADO"
-    : producto.tipoDestacado === "RECOMENDADO"
-    ? "RECOMENDADO"
-    : "EN TENDENCIA"}
-</span>
+              className={`absolute top-3 left-3 text-[10px] font-extrabold px-3 py-1.5 rounded-full border shadow-sm ${
+                producto.tipoDestacado === "PROMOCIONADO"
+                  ? "bg-[#D6B875] text-[#0D1113] border-[#E5D09A]/40"
+                  : producto.tipoDestacado === "RECOMENDADO"
+                  ? "bg-[#91B8A5] text-[#0D1113] border-[#B5D0C2]/40"
+                  : "bg-[#C98F78] text-[#0D1113] border-[#D9A995]/40"
+              }`}
+            >
+              {producto.tipoDestacado === "PROMOCIONADO"
+                ? "PROMOCIONADO"
+                : producto.tipoDestacado === "RECOMENDADO"
+                ? "RECOMENDADO"
+                : "EN TENDENCIA"}
+            </span>
+          </div>
 
-            <div className="absolute bottom-4 left-4 right-4">
-              <h3 className="text-lg font-bold text-white line-clamp-1">
-                {producto.nombre}
-              </h3>
+          <div className="p-4">
+            <h3 className="text-base font-bold text-[#F2F4F5] line-clamp-1">
+              {producto.nombre}
+            </h3>
 
-              <p className="text-sm font-semibold text-[#7EE2C0] mt-1">
-                {formatoNumero(producto.precio)} {producto.moneda}
+            <p className="text-lg font-extrabold text-[#7EE2C0] mt-2">
+              {formatoNumero(producto.precio)} {producto.moneda}
+            </p>
+
+            {producto.provincia && (
+              <p className="text-xs text-[#9AA6AD] mt-2">
+                {producto.provincia}
               </p>
-            </div>
+            )}
           </div>
         </button>
-            ))}
+      ))}
     </div>
 
-    <div className="flex justify-center gap-1 mt-3">
+    <div className="flex justify-center items-center gap-2 mt-4">
       {productosDestacados.map((_, index) => (
-        <span
+        <button
           key={index}
+          type="button"
+          aria-label={`Ir al destacado ${index + 1}`}
+          onClick={() => {
+            const contenedor = document.getElementById(
+              "mercadoCU-destacados-carrusel"
+            );
+            const tarjeta = contenedor?.children[index];
+
+            tarjeta?.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "center"
+            });
+          }}
           className={`h-1.5 rounded-full transition-all ${
             destacadoActivo === index
-              ? "w-5 bg-[#7EE2C0]"
+              ? "w-6 bg-[#7EE2C0]"
               : "w-1.5 bg-[#465256]"
           }`}
         />

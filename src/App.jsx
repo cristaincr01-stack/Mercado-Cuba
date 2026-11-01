@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck, Eye,
-EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, Smartphone, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill, ChevronLeft, UserPlus, Sparkles, Crown, Megaphone, BriefcaseBusiness, Instagram, Facebook, Music2, Youtube, Star, User, TrendingUp, PhilippinePeso, DollarSign, Euro } from "lucide-react";
+EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, Smartphone, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill, ChevronLeft, UserPlus, Sparkles, Crown, Megaphone, BriefcaseBusiness, Instagram, Facebook, Music2, Youtube, Star, User, TrendingUp, DollarSign, Euro } from "lucide-react";
 window.onerror = function (mensaje, archivo, linea, columna, error) {
   document.body.innerHTML = `
     <div style="
@@ -4071,24 +4071,40 @@ const productosDestacados = useMemo(() => {
                 ]
             ).map((item, indice) => {
 
-              const IconoMoneda =
-                item.moneda === "CUP"
-                  ? PhilippinePeso
-                  : item.moneda === "USD"
-                  ? DollarSign
-                  : Euro;
+             const IconoMoneda =
+  item.moneda === "USD"
+    ? DollarSign
+    : Euro;
 
-              return (
-                <div
+return (
+  <div
                   key={item.moneda}
                   className="flex shrink-0 items-center whitespace-nowrap text-sm font-bold text-[#F2F4F5]"
                 >
 
-                  <IconoMoneda
-                    size={17}
-                    strokeWidth={2}
-                    className="mr-1.5 text-[#9AA6AD]"
-                  />
+                  {item.moneda === "CUP" ? (
+  <svg
+    viewBox="0 0 24 24"
+    width="17"
+    height="17"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="mr-1.5 text-[#9AA6AD]"
+  >
+    <path d="M7 21V4h6a5 5 0 0 1 0 10H7" />
+    <path d="M5 9h11" />
+    <path d="M5 13h11" />
+  </svg>
+) : (
+  <IconoMoneda
+    size={17}
+    strokeWidth={2}
+    className="mr-1.5 text-[#9AA6AD]"
+  />
+)}
 
                   <span>
                     {item.moneda}

@@ -3892,7 +3892,7 @@ const productosDestacados = useMemo(() => {
     </div>
   </div>
 )}
-      <header className="relative bg-[#151A1D] text-[#F2F4F5] border-b border-[#2A3033]">
+      <header className="relative text-[#F2F4F5]">
         <div className="max-w-6xl mx-auto px-5 py-6">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-2">

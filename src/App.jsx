@@ -4000,62 +4000,40 @@ const productosDestacados = useMemo(() => {
     </div>
 
     {/* MONEDAS EN MOVIMIENTO */}
-    <div className="min-w-0 flex-1 overflow-hidden">
+<div className="min-w-0 flex-1 overflow-hidden">
+  <div
+    className="flex w-max min-w-max items-center"
+    style={{ animation: "mercadoTasas 18s linear infinite" }}
+  >
+    {[0, 1].map((copia) => (
+      <div key={copia} className="flex shrink-0 items-center gap-8 px-5 py-3">
 
-      <div
-        className="flex w-max min-w-max items-center"
-        style={{ animation: "mercadoTasas 18s linear infinite" }}
-      >
+        {/* USD - SUBIENDO */}
+        <div className="flex shrink-0 items-center whitespace-nowrap text-sm font-bold text-[#F2F4F5]">
+          💵 USD
+          <span className="ml-2 text-[#F5B82E]">{tasas.USD} CUP</span>
+          <span className="ml-2 flex shrink-0 items-center gap-1 text-[#F5B82E]">
+            <span className="font-black">▲</span>
+            <svg viewBox="0 0 64 24" className="h-6 w-14" fill="none">
+              <path d="M2 18 L14 13 L24 16 L36 8 L48 11 L62 4" stroke="#F5B82E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+        </div>
 
-        {[0, 1].map((copia) => (
-          <div key={copia} className="flex shrink-0 items-center gap-8 px-5 py-3">
-
-            {/* USD */}
-            <span className="whitespace-nowrap text-sm font-bold text-[#F2F4F5]">
-              💵 USD
-              <span className="ml-2 text-[#F5B82E]">
-                {tasas.USD} CUP
-              <span className="ml-2 flex shrink-0 items-center gap-1 text-[#F5B82E]">
-  <span className="font-black">▲</span>
-
-  <svg viewBox="0 0 64 24" className="h-6 w-14" fill="none">
-    <path
-      d="M2 18 L14 13 L24 16 L36 8 L48 11 L62 4"
-      stroke="#F5B82E"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-</span>
-            </span>
-
-            {/* EUR */}
-            <span className="whitespace-nowrap text-sm font-bold text-[#F2F4F5]">
-              💶 EUR
-              <span className="ml-2 text-[#F5B82E]">
-                {tasas.EUR} CUP
-              <span className="ml-2 flex shrink-0 items-center gap-1 text-[#EF4444]">
-  <span className="font-black">▼</span>
-
-  <svg viewBox="0 0 64 24" className="h-6 w-14" fill="none">
-    <path
-      d="M2 4 L14 8 L24 7 L36 14 L48 12 L62 20"
-      stroke="#EF4444"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-</span>
-            </span>
-
-          </div>
-        ))}
+        {/* EUR - BAJANDO */}
+        <div className="flex shrink-0 items-center whitespace-nowrap text-sm font-bold text-[#F2F4F5]">
+          💶 EUR
+          <span className="ml-2 text-[#F5B82E]">{tasas.EUR} CUP</span>
+          <span className="ml-2 flex shrink-0 items-center gap-1 text-[#EF4444]">
+            <span className="font-black">▼</span>
+            <svg viewBox="0 0 64 24" className="h-6 w-14" fill="none">
+              <path d="M2 4 L14 8 L24 7 L36 14 L48 12 L62 20" stroke="#EF4444" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+        </div>
 
       </div>
-
-    </div>
+    ))}
   </div>
 </div>
 

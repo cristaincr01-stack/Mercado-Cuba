@@ -4298,9 +4298,21 @@ return (
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
 
-            <span className="absolute top-3 left-3 bg-[#7EE2C0] text-[#0D1113] text-[10px] font-extrabold px-3 py-1.5 rounded-full">
-              DESTACADO
-            </span>
+            <span
+  className={`absolute top-3 left-3 text-[10px] font-extrabold px-3 py-1.5 rounded-full ${
+    producto.tipoDestacado === "PROMOCIONADO"
+      ? "bg-[#F5C451] text-[#0D1113]"
+      : producto.tipoDestacado === "RECOMENDADO"
+      ? "bg-[#7EE2C0] text-[#0D1113]"
+      : "bg-[#FF8A65] text-[#0D1113]"
+  }`}
+>
+  {producto.tipoDestacado === "PROMOCIONADO"
+    ? "PROMOCIONADO"
+    : producto.tipoDestacado === "RECOMENDADO"
+    ? "RECOMENDADO"
+    : "EN TENDENCIA"}
+</span>
 
             <div className="absolute bottom-4 left-4 right-4">
               <h3 className="text-lg font-bold text-white line-clamp-1">

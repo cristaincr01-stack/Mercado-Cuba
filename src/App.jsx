@@ -3916,9 +3916,9 @@ const productosDestacados = useMemo(() => {
 
     return {
       ...producto,
-      tipoDestacado: esRecomendado
-        ? "RECOMENDADO"
-        : "TENDENCIA",
+     tipoDestacado: esRecomendado
+  ? "RECOMENDADO"
+  : "EN TENDENCIA",
       puntuacion:
         Math.max(
           puntuacionRecomendacion,
@@ -4363,16 +4363,22 @@ return (
     
 
     const tipoOriginal = String(
-      producto.tipoDestacado || ""
-    ).trim().toUpperCase();
+  producto.tipoDestacado || ""
+).trim().toUpperCase();
 
-    const tipo = [
-      "PROMOCIONADO",
-      "RECOMENDADO",
-      "EN TENDENCIA"
-    ].includes(tipoOriginal)
-      ? tipoOriginal
-      : "SELECCIÓN";
+const tipo =
+  tipoOriginal === "PROMOCIONADO"
+    ? "PROMOCIONADO"
+    : tipoOriginal === "RECOMENDADO"
+    ? "RECOMENDADO"
+    : [
+        "TENDENCIA",
+        "TENDENCIAS",
+        "EN TENDENCIA",
+        "EN TENDENCIAS"
+      ].includes(tipoOriginal)
+    ? "EN TENDENCIA"
+    : "SELECCIÓN";
 
     const estiloEtiqueta =
       tipo === "PROMOCIONADO"

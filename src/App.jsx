@@ -6077,7 +6077,7 @@ localStorage.setItem(
         setCategoria(c);
         setSubcategoria("");
       }}
-     className={`whitespace-nowrap px-3.5 py-2.5 rounded-xl text-[13px] font-semibold border transition-all duration-200 active:scale-95 flex items-center gap-2 ${
+     className={`whitespace-nowrap px-4 py-3 rounded-2xl text-[13px] font-bold border transition-all duration-200 active:scale-95 flex items-center gap-2 ${
         categoria === c
           ?"bg-[#1B6B63] text-[#F2F4F5] border-[#7EE2C0] shadow-[0_4px_14px_rgba(27,107,99,0.30)]"
           : "bg-[#151A1D] text-[#9AA6AD] border-[#30383C] hover:border-[#4A555A] hover:text-[#F2F4F5]"

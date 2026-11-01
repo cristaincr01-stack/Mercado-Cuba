@@ -3987,31 +3987,57 @@ const productosDestacados = useMemo(() => {
   `}
 </style>
 
-<div className="mx-2 mb-3 w-auto min-w-0 max-w-full overflow-hidden rounded-xl border border-[#26383B] bg-[#101C20]">
-  <div
-    className="flex w-max min-w-max items-center py-2.5"
-    style={{ animation: "mercadoTasas 18s linear infinite" }}
-  >
-    {[0, 1].map((copia) => (
-      <div key={copia} className="flex shrink-0 items-center gap-7 px-4">
+<div className="-ml-2 mb-3 w-[calc(100%+1rem)] max-w-[calc(100%+1rem)] min-w-0 overflow-hidden rounded-xl border border-[#26383B] bg-[#101C20]">
 
-        <span className="flex shrink-0 items-center gap-1.5 text-[11px] font-semibold text-[#9AA6AD]">
-          <span className="h-2 w-2 rounded-full bg-[#35D07F]" />
-          HOY
-        </span>
+  <div className="flex w-full min-w-0 items-center">
 
-        <span className="whitespace-nowrap text-sm font-bold text-[#F2F4F5]">
-          💵 USD <span className="text-[#F5B82E]">{tasas.USD} CUP</span>
-          <span className="ml-1 text-[#35D07F]">▲</span>
-        </span>
+    {/* HOY FIJO */}
+    <div className="z-10 flex shrink-0 items-center gap-2 border-r border-[#26383B] bg-[#101C20] px-3 py-3">
+      <span className="h-2 w-2 rounded-full bg-[#35D07F]" />
+      <span className="text-xs font-bold text-[#F2F4F5]">
+        HOY
+      </span>
+    </div>
 
-        <span className="whitespace-nowrap text-sm font-bold text-[#F2F4F5]">
-          💶 EUR <span className="text-[#F5B82E]">{tasas.EUR} CUP</span>
-          <span className="ml-1 text-[#35D07F]">▲</span>
-        </span>
+    {/* MONEDAS EN MOVIMIENTO */}
+    <div className="min-w-0 flex-1 overflow-hidden">
+
+      <div
+        className="flex w-max min-w-max items-center"
+        style={{ animation: "mercadoTasas 18s linear infinite" }}
+      >
+
+        {[0, 1].map((copia) => (
+          <div key={copia} className="flex shrink-0 items-center gap-8 px-5 py-3">
+
+            {/* USD */}
+            <span className="whitespace-nowrap text-sm font-bold text-[#F2F4F5]">
+              💵 USD
+              <span className="ml-2 text-[#F5B82E]">
+                {tasas.USD} CUP
+              </span>
+              <span className="ml-2 font-black text-[#42A5F5]">
+                ━
+              </span>
+            </span>
+
+            {/* EUR */}
+            <span className="whitespace-nowrap text-sm font-bold text-[#F2F4F5]">
+              💶 EUR
+              <span className="ml-2 text-[#F5B82E]">
+                {tasas.EUR} CUP
+              </span>
+              <span className="ml-2 font-black text-[#42A5F5]">
+                ━
+              </span>
+            </span>
+
+          </div>
+        ))}
 
       </div>
-    ))}
+
+    </div>
   </div>
 </div>
 

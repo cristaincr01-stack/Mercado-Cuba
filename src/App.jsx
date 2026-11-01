@@ -2972,6 +2972,7 @@ const [mostrarPin, setMostrarPin] = useState(false);
 });
 
 const [monedaReferencia, setMonedaReferencia] = useState("CUP");
+const [selectorMonedaAbierto, setSelectorMonedaAbierto] = useState(false);
 
   const [nombreProducto, setNombreProducto] = useState("");
   const [informacionProducto, setInformacionProducto] = useState("");
@@ -3991,19 +3992,53 @@ const productosDestacados = useMemo(() => {
   `}
 </style>
 
-<div className="-ml-2 mb-3 w-[calc(100%+1rem)] max-w-[calc(100%+1rem)] min-w-0 overflow-hidden rounded-xl border border-[#26383B] bg-[#101C20]">
+<div className="-ml-1 mb-3 w-[calc(100%+0.5rem)] max-w-[calc(100%+0.5rem)] min-w-0 overflow-visible rounded-xl border border-[#26383B] bg-[#101C20]">
 
   <div className="flex w-full min-w-0 items-center">
 
     {/* HOY Y SELECTOR FIJOS */}
-    <div className="z-10 flex shrink-0 flex-col items-center justify-center gap-1 border-r border-[#26383B] bg-[#101C20] px-2 py-2">
+<div className="relative z-30 flex shrink-0 flex-col items-center justify-center gap-1 border-r border-[#26383B] bg-[#101C20] px-2 py-2">
 
-      <div className="flex items-center gap-1.5">
-        <span className="h-2 w-2 rounded-full bg-[#35D07F]" />
-        <span className="text-[11px] font-bold text-[#F2F4F5]">
-          HOY
-        </span>
-      </div>
+  <div className="flex items-center gap-1.5">
+    <span className="h-2 w-2 rounded-full bg-[#35D07F]" />
+    <span className="text-[11px] font-bold text-[#F2F4F5]">
+      HOY
+    </span>
+  </div>
+
+  <button
+    type="button"
+    onClick={() => setSelectorMonedaAbierto(!selectorMonedaAbierto)}
+    className="min-w-[34px] text-center text-[10px] font-extrabold tracking-wide text-[#7EE2C0] active:opacity-60"
+  >
+    {monedaReferencia}
+  </button>
+
+  {selectorMonedaAbierto && (
+    <div className="absolute left-1/2 top-[calc(100%-2px)] z-50 w-[42px] -translate-x-1/2 overflow-hidden rounded-lg border border-[#304448] bg-[#152328] shadow-xl">
+
+      {["CUP", "USD", "EUR"].map((monedaOpcion) => (
+        <button
+          key={monedaOpcion}
+          type="button"
+          onClick={() => {
+            setMonedaReferencia(monedaOpcion);
+            setSelectorMonedaAbierto(false);
+          }}
+          className={`block w-full py-2 text-center text-[10px] font-bold transition ${
+            monedaReferencia === monedaOpcion
+              ? "bg-[#1B6B63]/30 text-[#7EE2C0]"
+              : "text-[#D5DEE0] active:bg-[#26383B]"
+          }`}
+        >
+          {monedaOpcion}
+        </button>
+      ))}
+
+    </div>
+  )}
+
+</div>
 
       <select
         value={monedaReferencia}

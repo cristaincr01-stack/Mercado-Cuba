@@ -6094,7 +6094,7 @@ localStorage.setItem(
 </div>
 
 
-<main className="max-w-6xl mx-auto px-5 mt-6 pb-16">
+<main className="max-w-6xl mx-auto px-5 mt-4 pb-16">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-sm font-semibold text-[#9AA6AD] uppercase tracking-wide">
             {productosFeed.length} anuncio{productosFeed.length !== 1 ? "s" : ""} encontrado{productosFeed.length !== 1 ? "s" : ""}

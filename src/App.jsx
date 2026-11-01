@@ -4015,10 +4015,19 @@ const productosDestacados = useMemo(() => {
               💵 USD
               <span className="ml-2 text-[#F5B82E]">
                 {tasas.USD} CUP
-              </span>
-              <span className="ml-2 font-black text-[#42A5F5]">
-                ━
-              </span>
+              <span className="ml-2 flex shrink-0 items-center gap-1 text-[#F5B82E]">
+  <span className="font-black">▲</span>
+
+  <svg viewBox="0 0 64 24" className="h-6 w-14" fill="none">
+    <path
+      d="M2 18 L14 13 L24 16 L36 8 L48 11 L62 4"
+      stroke="#F5B82E"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+</span>
             </span>
 
             {/* EUR */}
@@ -4026,10 +4035,19 @@ const productosDestacados = useMemo(() => {
               💶 EUR
               <span className="ml-2 text-[#F5B82E]">
                 {tasas.EUR} CUP
-              </span>
-              <span className="ml-2 font-black text-[#42A5F5]">
-                ━
-              </span>
+              <span className="ml-2 flex shrink-0 items-center gap-1 text-[#EF4444]">
+  <span className="font-black">▼</span>
+
+  <svg viewBox="0 0 64 24" className="h-6 w-14" fill="none">
+    <path
+      d="M2 4 L14 8 L24 7 L36 14 L48 12 L62 20"
+      stroke="#EF4444"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+</span>
             </span>
 
           </div>

@@ -4200,10 +4200,16 @@ return (
         >
           <div className="h-52 relative">
             <img
-              src={producto.foto}
-              alt={producto.nombre}
-              className="w-full h-full object-cover"
-            />
+  src={producto.foto?.replace(
+    "uc?export=view&id=",
+    "thumbnail?sz=w1000&id="
+  )}
+  onError={(e) => {
+    e.currentTarget.src = producto.foto;
+  }}
+  alt={producto.nombre}
+  className="w-full h-full object-cover"
+/>
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
 

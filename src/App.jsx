@@ -4036,6 +4036,8 @@ const productosDestacados = useMemo(() => {
     ))}
   </div>
 </div>
+  </div>
+</div>
 
             {/* PRODUCTOS DESTACADOS */}
 {productosDestacados.length > 0 && (

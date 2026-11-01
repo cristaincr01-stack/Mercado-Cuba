@@ -4063,11 +4063,11 @@ const productosDestacados = useMemo(() => {
               : monedaReferencia === "EUR"
               ? [
                   { moneda: "CUP", valor: 1 / Number(tasas.EUR), unidad: "EUR" },
-                  { moneda: "USD", valor: Number(tasas.EUR) / Number(tasas.USD), unidad: "EUR" },
+                  { moneda: "USD", valor: Number(tasas.USD) / Number(tasas.EUR), unidad: "EUR" },
                 ]
               : [
                   { moneda: "CUP", valor: 1 / Number(tasas.USD), unidad: "USD" },
-                  { moneda: "EUR", valor: Number(tasas.USD) / Number(tasas.EUR), unidad: "USD" },
+                  { moneda: "EUR", valor: Number(tasas.EUR) / Number(tasas.USD), unidad: "USD" },
                 ]
             ).map((item, indice) => {
 

@@ -3979,28 +3979,13 @@ const productosDestacados = useMemo(() => {
             {/* PRODUCTOS DESTACADOS */}
 {productosDestacados.length > 0 && (
   <section className="px-5 pt-5 pb-7">
-    <div className="flex items-center justify-between mb-4">
-      <div>
-        <p className="text-[10px] uppercase tracking-[0.2em] text-[#7EE2C0] font-bold">
-          Selección MercadoCU
-        </p>
-        <h2 className="text-xl font-extrabold text-[#F2F4F5] mt-1">
-          Destacados para ti
-        </h2>
-      </div>
-
-      <div className="flex gap-1">
-        {productosDestacados.map((_, index) => (
-          <span
-            key={index}
-            className={`h-1.5 rounded-full transition-all ${
-              destacadoActivo === index
-                ? "w-5 bg-[#7EE2C0]"
-                : "w-1.5 bg-[#465256]"
-            }`}
-          />
-        ))}
-      </div>
+        <div className="mb-4">
+      <p className="text-[10px] uppercase tracking-[0.2em] text-[#7EE2C0] font-bold">
+        Selección MercadoCU
+      </p>
+      <h2 className="text-xl font-extrabold text-[#F2F4F5] mt-1">
+        Destacados para ti
+      </h2>
     </div>
 
     <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2">
@@ -4038,6 +4023,19 @@ const productosDestacados = useMemo(() => {
             </div>
           </div>
         </button>
+            ))}
+    </div>
+
+    <div className="flex justify-center gap-1 mt-3">
+      {productosDestacados.map((_, index) => (
+        <span
+          key={index}
+          className={`h-1.5 rounded-full transition-all ${
+            destacadoActivo === index
+              ? "w-5 bg-[#7EE2C0]"
+              : "w-1.5 bg-[#465256]"
+          }`}
+        />
       ))}
     </div>
   </section>

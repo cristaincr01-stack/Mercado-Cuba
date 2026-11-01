@@ -3995,52 +3995,111 @@ const productosDestacados = useMemo(() => {
 
   <div className="flex w-full min-w-0 items-center">
 
-    {/* HOY FIJO */}
-    <div className="z-10 flex shrink-0 items-center gap-2 border-r border-[#26383B] bg-[#101C20] px-3 py-3">
-      <span className="h-2 w-2 rounded-full bg-[#35D07F]" />
-      <span className="text-xs font-bold text-[#F2F4F5]">
-        HOY
-      </span>
+    {/* HOY Y SELECTOR FIJOS */}
+    <div className="z-10 flex shrink-0 flex-col items-center justify-center gap-1 border-r border-[#26383B] bg-[#101C20] px-2 py-2">
+
+      <div className="flex items-center gap-1.5">
+        <span className="h-2 w-2 rounded-full bg-[#35D07F]" />
+        <span className="text-[11px] font-bold text-[#F2F4F5]">
+          HOY
+        </span>
+      </div>
+
+      <select
+        value={monedaReferencia}
+        onChange={(e) => setMonedaReferencia(e.target.value)}
+        className="w-[43px] rounded border border-[#34464A] bg-[#172529] px-1 py-0.5 text-[9px] font-bold text-[#7EE2C0] outline-none"
+      >
+        <option value="CUP">CUP</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+      </select>
+
     </div>
 
     {/* MONEDAS EN MOVIMIENTO */}
-<div className="min-w-0 flex-1 overflow-hidden">
-  <div
-    className="flex w-max min-w-max items-center"
-    style={{ animation: "mercadoTasas 18s linear infinite" }}
-  >
-    {[0, 1].map((copia) => (
-      <div key={copia} className="flex shrink-0 items-center gap-8 px-5 py-3">
+    <div className="min-w-0 flex-1 overflow-hidden">
 
-        {/* USD - SUBIENDO */}
-        <div className="flex shrink-0 items-center whitespace-nowrap text-sm font-bold text-[#F2F4F5]">
-          💵 USD
-          <span className="ml-2 text-[#F5B82E]">{tasas.USD} CUP</span>
-          <span className="ml-2 flex shrink-0 items-center gap-1 text-[#F5B82E]">
-            <span className="font-black">▲</span>
-            <svg viewBox="0 0 64 24" className="h-6 w-14" fill="none">
-              <path d="M2 18 L14 13 L24 16 L36 8 L48 11 L62 4" stroke="#F5B82E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
-        </div>
+      <div
+        className="flex w-max min-w-max items-center"
+        style={{ animation: "mercadoTasas 18s linear infinite" }}
+      >
 
-        {/* EUR - BAJANDO */}
-        <div className="flex shrink-0 items-center whitespace-nowrap text-sm font-bold text-[#F2F4F5]">
-          💶 EUR
-          <span className="ml-2 text-[#F5B82E]">{tasas.EUR} CUP</span>
-          <span className="ml-2 flex shrink-0 items-center gap-1 text-[#EF4444]">
-            <span className="font-black">▼</span>
-            <svg viewBox="0 0 64 24" className="h-6 w-14" fill="none">
-              <path d="M2 4 L14 8 L24 7 L36 14 L48 12 L62 20" stroke="#EF4444" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
-        </div>
+        {[0, 1].map((copia) => (
+
+          <div key={copia} className="flex shrink-0 items-center gap-8 px-5 py-3">
+
+            {(monedaReferencia === "CUP"
+              ? [
+                  { origen: "USD", destino: "CUP", valor: tasas.USD },
+                  { origen: "EUR", destino: "CUP", valor: tasas.EUR },
+                ]
+              : monedaReferencia === "USD"
+              ? [
+                  { origen: "EUR", destino: "USD", valor: Number(tasas.EUR) / Number(tasas.USD) },
+                  { origen: "CUP", destino: "USD", valor: 1 / Number(tasas.USD) },
+                ]
+              : [
+                  { origen: "USD", destino: "EUR", valor: Number(tasas.USD) / Number(tasas.EUR) },
+                  { origen: "CUP", destino: "EUR", valor: 1 / Number(tasas.EUR) },
+                ]
+            ).map((item, indice) => (
+
+              <div
+                key={item.origen}
+                className="flex shrink-0 items-center whitespace-nowrap text-sm font-bold text-[#F2F4F5]"
+              >
+
+                {item.origen === "USD" ? "💵" : item.origen === "EUR" ? "💶" : "🇨🇺"}
+
+                <span className="ml-1">
+                  {item.origen} → {item.destino}
+                </span>
+
+                <span className="ml-2 text-[#F5B82E]">
+                  {tasas.USD && tasas.EUR && Number.isFinite(item.valor)
+                    ? formatoNumero(item.valor)
+                    : "Cargando..."}
+                  {" "}{item.destino}
+                </span>
+
+                {/* INDICADORES VISUALES */}
+                <span className={`ml-2 flex shrink-0 items-center gap-1 ${
+                  indice === 0 ? "text-[#38BDF8]" : "text-[#EF4444]"
+                }`}>
+
+                  <span className="font-black">
+                    {indice === 0 ? "▲" : "▼"}
+                  </span>
+
+                  <svg viewBox="0 0 64 24" className="h-6 w-14" fill="none">
+                    <path
+                      d={indice === 0
+                        ? "M2 18 L14 13 L24 16 L36 8 L48 11 L62 4"
+                        : "M2 4 L14 8 L24 7 L36 14 L48 12 L62 20"}
+                      stroke={indice === 0 ? "#38BDF8" : "#EF4444"}
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+
+                </span>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        ))}
 
       </div>
-    ))}
+
+    </div>
+
   </div>
-</div>
-  </div>
+
 </div>
 
             {/* PRODUCTOS DESTACADOS */}

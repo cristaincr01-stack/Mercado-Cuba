@@ -3983,8 +3983,8 @@ const productosDestacados = useMemo(() => {
   </div>
 )}
       <header className="relative text-[#F2F4F5]">
-        <div className="max-w-6xl mx-auto px-5 py-6">
-          <div className="flex items-center justify-between gap-4">
+        <div className="max-w-6xl mx-auto px-3 sm:px-5 py-6 overflow-x-clip">
+          <div className="flex items-center justify-between gap-2 min-w-0">
 
   {/* LOGO */}
   <div className="flex items-center gap-2.5">
@@ -3993,7 +3993,7 @@ const productosDestacados = useMemo(() => {
     </div>
 
     <span
-      className="text-2xl tracking-tight font-extrabold"
+      className="text-xl sm:text-2xl tracking-tight font-extrabold"
       style={{
         fontFamily: "'Inter', system-ui, sans-serif",
         letterSpacing: "-0.04em"
@@ -4023,7 +4023,7 @@ const productosDestacados = useMemo(() => {
 
     <button
       onClick={() => setMenuAbierto(!menuAbierto)}
-      className="relative mr-1 shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-105"
+      className="relative shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-105"
     >
       {usuarioActual ? (
         <>

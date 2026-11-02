@@ -3984,87 +3984,111 @@ const productosDestacados = useMemo(() => {
 )}
       <header className="relative text-[#F2F4F5]">
         <div className="max-w-6xl mx-auto px-5 py-6">
-          <div className="flex items-center justify-between gap-4 flex-wrap">
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-2.5">
-  <div className="w-9 h-9 rounded-xl bg-[#1B6B63] flex items-center justify-center shadow-lg">
-    <Store className="w-5 h-5 text-white" strokeWidth={2.2} />
-  </div>
+          <div className="flex items-center justify-between gap-4">
 
-  <span
-    className="text-2xl tracking-tight font-extrabold"
-    style={{
-      fontFamily: "'Inter', system-ui, sans-serif",
-      letterSpacing: "-0.04em"
-    }}
-  >
-    Mercado<span className="text-[#E8A33D]">CU</span>
-  </span>
-</div>
-            </div>
-         
+  {/* LOGO */}
+  <div className="flex items-center gap-2.5">
+    <div className="w-9 h-9 rounded-xl bg-[#1B6B63] flex items-center justify-center shadow-lg">
+      <Store className="w-5 h-5 text-white" strokeWidth={2.2} />
+    </div>
 
-            <div className="flex items-center gap-2">
-  <button
-    onClick={() => setMenuAbierto(!menuAbierto)}
-    className="relative w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-105"
-  >
-    {usuarioActual ? (
-      <>
-        <div className="w-10 h-10 rounded-full bg-[#1B6B63] text-white flex items-center justify-center text-xs font-bold border border-[#3A474B] shadow-lg">
-          {usuarioActual.nombre
-            ? usuarioActual.nombre
-                .split(" ")
-                .filter(Boolean)
-                .slice(0, 2)
-                .map((parte) => parte[0])
-                .join("")
-                .toUpperCase()
-            : "U"}
-        </div>
-
-        <span className="absolute bottom-0 right-0 w-3 h-3 bg-[#35C759] border-2 border-[#151A1D] rounded-full" />
-      </>
-    ) : (
-      <div className="w-10 h-10 rounded-full bg-[#202629] border border-[#3A474B] flex items-center justify-center text-[#9AA6AD]">
-        <UserRound className="w-5 h-5" />
-      </div>
-    )}
-  </button>
-</div>
-            <div className="px-2 pb-4">
-  <button
-    onClick={() => setSelectorProvinciaAbierto(true)}
-    className="flex items-center gap-2 text-sm font-semibold text-[#F2F4F5] hover:text-white transition"
-  >
-    <MapPin className="w-4 h-4 text-red-500" />
-    <span>
-      {provincia === "Todas" ? "Toda Cuba" : provincia}
+    <span
+      className="text-2xl tracking-tight font-extrabold"
+      style={{
+        fontFamily: "'Inter', system-ui, sans-serif",
+        letterSpacing: "-0.04em"
+      }}
+    >
+      Mercado<span className="text-[#E8A33D]">CU</span>
     </span>
-    <ChevronDown className="w-4 h-4 text-[#9AA6AD]" />
-  </button>
-</div>
-            <div className="px-2 pb-5">
-<div className="flex items-center bg-[#202629] rounded-2xl border border-[#343D40] overflow-hidden">
- <div className="flex items-center flex-1 px-4 py-4 gap-3">
-    <Search className="w-5 h-5 text-[#9AA6AD] shrink-0" />
-
-    <input
-      value={busqueda}
-      onChange={e => setBusqueda(e.target.value)}
-      placeholder="Buscar en MercadoCU"
-      className="w-full outline-none text-sm bg-transparent text-[#F2F4F5] placeholder:text-[#9AA6AD]"
-    />
   </div>
 
-   <button
-    onClick={() => setBuscarAbierto(true)}
-    className="h-12 px-5 bg-[#1B6B63] text-white flex items-center justify-center hover:bg-[#237D73] transition active:scale-95"
-    aria-label="Abrir búsqueda avanzada"
-  >
-    <SlidersHorizontal className="w-5 h-5" />
+  {/* PROVINCIA Y PERFIL */}
+  <div className="flex items-center gap-2">
+
+    <button
+      onClick={() => setSelectorProvinciaAbierto(true)}
+      className="flex items-center gap-2 rounded-full bg-[#172522] border border-[#29443E] pl-2 pr-3 py-2 hover:bg-[#20332E] transition"
+    >
+      <span className="w-8 h-8 rounded-full bg-[#1B6B63]/25 flex items-center justify-center">
+        <svg viewBox="0 0 64 40" className="w-6 h-5 text-[#7EE2C0]" fill="currentColor">
+          <path d="M3 23 C8 19 13 18 18 19 L25 16 L32 17 L38 14 L45 16 L52 14 L60 17 L56 21 L49 22 L43 25 L36 24 L30 27 L23 25 L17 27 L10 25 Z" />
+          <path d="M54 30 L58 29 L61 31 L57 33 Z" />
+        </svg>
+      </span>
+
+      <span className="text-xs font-bold text-[#F2F4F5] whitespace-nowrap">
+        {provincia === "Todas" ? "Toda Cuba" : provincia}
+      </span>
+
+      <ChevronDown className="w-4 h-4 text-[#7EE2C0]" />
     </button>
+
+    <button
+      onClick={() => setMenuAbierto(!menuAbierto)}
+      className="relative w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-105"
+    >
+      {usuarioActual ? (
+        <>
+          <div className="w-10 h-10 rounded-full bg-[#1B6B63] text-white flex items-center justify-center text-xs font-bold border border-[#3A474B] shadow-lg">
+            {usuarioActual.nombre
+              ? usuarioActual.nombre
+                  .split(" ")
+                  .filter(Boolean)
+                  .slice(0, 2)
+                  .map((parte) => parte[0])
+                  .join("")
+                  .toUpperCase()
+              : "U"}
+          </div>
+
+          <span className="absolute bottom-0 right-0 w-3 h-3 bg-[#35C759] border-2 border-[#151A1D] rounded-full" />
+        </>
+      ) : (
+        <div className="w-10 h-10 rounded-full bg-[#202629] border border-[#3A474B] flex items-center justify-center text-[#9AA6AD]">
+          <UserRound className="w-5 h-5" />
+        </div>
+      )}
+    </button>
+
+  </div>
+
 </div>
+            {/* IDENTIDAD DE MERCADOCU */}
+<div className="px-1 pt-4 pb-1 flex items-center gap-2">
+  <Sparkles className="w-4 h-4 text-[#E8A33D] shrink-0" />
+  <p className="text-sm font-semibold text-[#A9BCB6]">
+    Descubre lo que Cuba tiene para ti.
+  </p>
+</div>
+
+{/* BUSCADOR PRINCIPAL */}
+<div className="px-0 pt-3 pb-5">
+
+  <div className="flex items-center gap-2 rounded-full bg-[#192326] border border-[#344448] p-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.22)]">
+
+    <div className="flex items-center flex-1 min-w-0 pl-4 gap-3">
+      <Search className="w-5 h-5 text-[#7EE2C0] shrink-0" />
+
+      <input
+        value={busqueda}
+        onChange={e => setBusqueda(e.target.value)}
+        placeholder="¿Qué estás buscando?"
+        className="w-full min-w-0 py-3 outline-none text-sm bg-transparent text-[#F2F4F5] placeholder:text-[#8C9DA0]"
+      />
+    </div>
+
+    <button
+      onClick={() => setBuscarAbierto(true)}
+      className="h-11 shrink-0 px-4 rounded-full bg-gradient-to-br from-[#237D73] to-[#15584F] text-white flex items-center justify-center gap-2 shadow-[0_4px_12px_rgba(27,107,99,0.3)] hover:brightness-110 active:scale-95 transition"
+      aria-label="Abrir búsqueda avanzada"
+    >
+      <SlidersHorizontal className="w-5 h-5" />
+      <span className="text-xs font-bold">Filtros</span>
+    </button>
+
+  </div>
+
 </div>
 
 {/* TASAS DE CAMBIO - TICKER */}

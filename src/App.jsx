@@ -4007,24 +4007,19 @@ const productosDestacados = useMemo(() => {
   <div className="flex items-center gap-2">
 
     <button
-      onClick={() => setSelectorProvinciaAbierto(true)}
-      className="flex items-center gap-2 rounded-full bg-[#172522] border border-[#29443E] pl-2 pr-3 py-2 hover:bg-[#20332E] transition"
-    >
-      <span className="w-8 h-8 rounded-full bg-[#1B6B63]/25 flex items-center justify-center">
-  <MapPin className="w-4 h-4 text-[#7EE2C0]" />
-</span>
-        <svg viewBox="0 0 64 40" className="w-6 h-5 text-[#7EE2C0]" fill="currentColor">
-          <path d="M3 23 C8 19 13 18 18 19 L25 16 L32 17 L38 14 L45 16 L52 14 L60 17 L56 21 L49 22 L43 25 L36 24 L30 27 L23 25 L17 27 L10 25 Z" />
-          <path d="M54 30 L58 29 L61 31 L57 33 Z" />
-        </svg>
-      </span>
+  onClick={() => setSelectorProvinciaAbierto(true)}
+  className="flex items-center gap-2 rounded-full bg-[#172522] border border-[#29443E] pl-2 pr-3 py-2 hover:bg-[#20332E] transition"
+>
+  <span className="w-8 h-8 rounded-full bg-[#1B6B63]/25 flex items-center justify-center">
+    <MapPin className="w-4 h-4 text-[#7EE2C0]" />
+  </span>
 
-      <span className="text-xs font-bold text-[#F2F4F5] whitespace-nowrap">
-        {provincia === "Todas" ? "Toda Cuba" : provincia}
-      </span>
+  <span className="text-xs font-bold text-[#F2F4F5] whitespace-nowrap">
+    {provincia === "Todas" ? "Toda Cuba" : provincia}
+  </span>
 
-      <ChevronDown className="w-4 h-4 text-[#7EE2C0]" />
-    </button>
+  <ChevronDown className="w-4 h-4 text-[#7EE2C0]" />
+</button>
 
     <button
       onClick={() => setMenuAbierto(!menuAbierto)}

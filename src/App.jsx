@@ -6697,48 +6697,74 @@ localStorage.setItem(
           
 <div className="max-w-6xl mx-auto px-5 mt-5">
 
- <div className="flex gap-2.5 overflow-x-auto py-4 scrollbar-hide">
+ <div className="flex gap-3 overflow-x-auto py-4 scrollbar-hide">
 
-    {CATEGORIAS.map(c => {
-  const IconoCategoria =
-    c === "Todas"
-      ? Home
-      : c === "Productos"
-      ? Package
-      : c === "Inmuebles"
-      ? Home
-      : c === "Vehículos"
-      ? Truck
-      : c === "Farmacia"
-? Plus
-: c === "Electrónica"
-? Smartphone
-: c === "Servicios"
-? Settings
-: c === "Empleo"
-? UserRound
-: Tag;
+  {CATEGORIAS.map(c => {
+    const IconoCategoria =
+      c === "Todas"
+        ? Home
+        : c === "Productos"
+        ? Package
+        : c === "Inmuebles"
+        ? Home
+        : c === "Vehículos"
+        ? Truck
+        : c === "Farmacia"
+        ? Plus
+        : c === "Electrónica"
+        ? Smartphone
+        : c === "Servicios"
+        ? Settings
+        : c === "Empleo"
+        ? UserRound
+        : Tag;
 
-  return (
-    <button
-      key={c}
-      onClick={() => {
-        setCategoria(c);
-        setSubcategoria("");
-      }}
-     className={`whitespace-nowrap px-4 py-3 rounded-2xl text-[13px] font-bold border transition-all duration-200 active:scale-95 flex items-center gap-2 ${
-        categoria === c
-          ?"bg-gradient-to-r from-[#1B6B63] to-[#248878] text-white border-[#7EE2C0] shadow-[0_5px_18px_rgba(27,107,99,0.38)]"
-          : "bg-[#192124] text-[#B0BEC3] border-[#303D40] hover:bg-[#202C2F] hover:border-[#52736D] hover:text-white"
-      }`}
-    >
-      <IconoCategoria className="w-4 h-4 shrink-0" />
-      {c}
-    </button>
-  );
-})}
+    const colorCategoria =
+      c === "Todas"
+        ? "text-[#7EE2C0] bg-[#7EE2C0]/10"
+        : c === "Productos"
+        ? "text-[#60A5FA] bg-[#60A5FA]/10"
+        : c === "Inmuebles"
+        ? "text-[#C084FC] bg-[#C084FC]/10"
+        : c === "Vehículos"
+        ? "text-[#FBBF24] bg-[#FBBF24]/10"
+        : c === "Farmacia"
+        ? "text-[#FB7185] bg-[#FB7185]/10"
+        : c === "Electrónica"
+        ? "text-[#38BDF8] bg-[#38BDF8]/10"
+        : c === "Servicios"
+        ? "text-[#A78BFA] bg-[#A78BFA]/10"
+        : c === "Empleo"
+        ? "text-[#34D399] bg-[#34D399]/10"
+        : "text-[#F59E0B] bg-[#F59E0B]/10";
 
-  </div>
+    return (
+      <button
+        key={c}
+        onClick={() => {
+          setCategoria(c);
+          setSubcategoria("");
+        }}
+        className={`shrink-0 w-[78px] h-[88px] rounded-2xl border flex flex-col items-center justify-center gap-2 transition-all duration-200 active:scale-95 ${
+          categoria === c
+            ? "bg-[#1B6B63]/20 border-[#7EE2C0] shadow-[0_0_16px_rgba(126,226,192,0.16)]"
+            : "bg-[#151A1D] border-[#2A3033] hover:border-[#52736D]"
+        }`}
+      >
+        <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${colorCategoria}`}>
+          <IconoCategoria className="w-6 h-6" />
+        </div>
+
+        <span className={`text-[11px] font-bold text-center leading-tight ${
+          categoria === c ? "text-[#7EE2C0]" : "text-[#B0BEC3]"
+        }`}>
+          {c}
+        </span>
+      </button>
+    );
+  })}
+
+</div>
 
 </div>
 

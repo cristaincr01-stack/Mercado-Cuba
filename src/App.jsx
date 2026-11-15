@@ -7957,101 +7957,66 @@ onChange={(e) => setPinSesion(e.target.value)}
         <p className="text-xs text-[#9AA6AD] px-1 pt-1">
   Busca productos por nombre o palabra clave
 </p>
-        <div className="pt-3">
-  <label className="text-xs font-semibold text-[#9AA6AD]">
-    Categoría
-  </label>
-
-  <select
-    value={categoria}
-    onChange={e => {
-      setCategoria(e.target.value);
-      setSubcategoria("");
-    }}
-    className="w-full border border-[#2A3033] rounded-xl px-4 py-3 text-sm bg-[#0D1113] text-[#F2F4F5] mt-2 outline-none"
-  >
-    {CATEGORIAS.map(c => (
-      <option key={c} value={c}>
-        {c}
-      </option>
-    ))}
-  </select>
-</div>
+        <SelectorVisual
+  etiqueta="Categoría"
+  valor={categoria}
+  opciones={CATEGORIAS.map(c => ({
+    value: c,
+    label: c
+  }))}
+  alCambiar={valor => {
+    setCategoria(valor);
+    setSubcategoria("");
+  }}
+/>
 
 {categoria !== "Todas" &&
   ESTRUCTURA_CATEGORIAS[categoria]?.subcategorias && (
-    <div className="pt-1">
-      <label className="text-xs font-semibold text-[#9AA6AD]">
-        Subcategoría
-      </label>
-
-      <select
-        value={subcategoria}
-        onChange={e => setSubcategoria(e.target.value)}
-        className="w-full border border-[#2A3033] rounded-xl px-4 py-3 text-sm bg-[#0D1113] text-[#F2F4F5] mt-2 outline-none"
-      >
-        <option value="">Todas las subcategorías</option>
-
-        {ESTRUCTURA_CATEGORIAS[categoria].subcategorias.map(
-          sub => (
-            <option key={sub} value={sub}>
-              {sub}
-            </option>
-          )
-        )}
-      </select>
-    </div>
+    <SelectorVisual
+      etiqueta="Subcategoría"
+      valor={subcategoria}
+      opciones={[
+        { value: "", label: "Todas las subcategorías" },
+        ...ESTRUCTURA_CATEGORIAS[categoria].subcategorias.map(sub => ({
+          value: sub,
+          label: sub
+        }))
+      ]}
+      alCambiar={setSubcategoria}
+    />
   )}
-        <div className="pt-1">
-  <label className="text-xs font-semibold text-[#9AA6AD]">
-    Provincia
-  </label>
+        <SelectorVisual
+  etiqueta="Provincia"
+  valor={provincia}
+  opciones={PROVINCIAS.map(p => ({
+    value: p,
+    label: p === "Todas" ? "Toda Cuba" : p
+  }))}
+  alCambiar={setProvincia}
+/>
 
-  <select
-    value={provincia}
-    onChange={e => setProvincia(e.target.value)}
-    className="w-full border border-[#2A3033] rounded-xl px-4 py-3 text-sm bg-[#0D1113] text-[#F2F4F5] mt-2 outline-none"
-  >
-    {PROVINCIAS.map(p => (
-      <option key={p} value={p}>
-        {p === "Todas" ? "Toda Cuba" : p}
-      </option>
-    ))}
-  </select>
-</div>
+<SelectorVisual
+  etiqueta="Moneda"
+  valor={moneda}
+  opciones={[
+    { value: "Todas", label: "Todas" },
+    { value: "CUP", label: "CUP" },
+    { value: "USD", label: "USD" },
+    { value: "EUR", label: "EUR" }
+  ]}
+  alCambiar={setMoneda}
+/>
 
-<div className="pt-1">
-  <label className="text-xs font-semibold text-[#9AA6AD]">
-    Moneda
-  </label>
-
-  <select
-    value={moneda}
-    onChange={e => setMoneda(e.target.value)}
-    className="w-full border border-[#2A3033] rounded-xl px-4 py-3 text-sm bg-[#0D1113] text-[#F2F4F5] mt-2 outline-none"
-  >
-    <option value="Todas">Todas</option>
-    <option value="CUP">CUP</option>
-    <option value="USD">USD</option>
-    <option value="EUR">EUR</option>
-  </select>
-</div>
-
-<div className="pt-1">
-  <label className="text-xs font-semibold text-[#9AA6AD]">
-    Ordenar por
-  </label>
-
-  <select
-    value={orden}
-    onChange={e => setOrden(e.target.value)}
-    className="w-full border border-[#2A3033] rounded-xl px-4 py-3 text-sm bg-[#0D1113] text-[#F2F4F5] mt-2 outline-none"
-  >
-    <option value="recientes">Más recientes</option>
-    <option value="precioMenor">Precio menor a mayor</option>
-    <option value="precioMayor">Precio mayor a menor</option>
-  </select>
-</div>
+<SelectorVisual
+  etiqueta="Ordenar por"
+  valor={orden}
+  opciones={[
+    { value: "recientes", label: "Más recientes" },
+    { value: "precioMenor", label: "Precio menor a mayor" },
+    { value: "precioMayor", label: "Precio mayor a menor" }
+  ]}
+  alCambiar={setOrden}
+/>
         <div className="pt-2 flex items-center justify-between gap-3">
   <button
     onClick={() => {

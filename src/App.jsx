@@ -6754,20 +6754,18 @@ localStorage.setItem(
           className="shrink-0 flex flex-col items-center gap-2"
         >
 
-          <div
-            className={`w-[76px] h-[76px] rounded-[25px] flex items-center justify-center border-2 transition-all duration-200 ${
-              activa
-                ? "border-[#58C7F4] shadow-[0_0_0_2px_rgba(88,199,244,0.18)] scale-[1.03]"
-                : "border-transparent"
-            } ${color.fondo}`}
-          >
-
-            <IconoCategoria
-  className={`w-6 h-6 ${color.icono}`}
-  strokeWidth={2}
-/>
-
-          </div>
+         <div
+  className={`w-[62px] h-[62px] rounded-[20px] flex items-center justify-center border-2 transition-all duration-200 ${
+    activa
+      ? "border-[#58C7F4] shadow-[0_0_0_2px_rgba(88,199,244,0.18)] scale-[1.03]"
+      : "border-transparent"
+  } ${color.fondo}`}
+>
+  <IconoCategoria
+    className={`w-6 h-6 ${color.icono}`}
+    strokeWidth={2}
+  />
+</div>
 
           <span
             className={`text-[12px] font-semibold whitespace-nowrap ${

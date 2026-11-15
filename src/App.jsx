@@ -6702,7 +6702,7 @@ localStorage.setItem(
   {/* FILA HORIZONTAL DE CATEGORÍAS */}
   <div className="flex gap-5 overflow-x-auto py-4 scrollbar-hide">
 
-    {CATEGORIAS.filter(c => c !== "Todas").map(c => {
+    {CATEGORIAS.map(c => {
 
       const IconoCategoria = ICONOS_CATEGORIA[c] || Tag;
 

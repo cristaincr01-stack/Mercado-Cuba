@@ -2902,7 +2902,8 @@ const [productosMeGusta, setProductosMeGusta] = useState([]);
   const [avisoGuardado, setAvisoGuardado] = useState(false);
   const [cargandoMisProductos, setCargandoMisProductos] = useState(false);
   const [categoria, setCategoria] = useState("Todas");
-  const [subcategoria, setSubcategoria] = useState("");
+const [subcategoria, setSubcategoria] = useState("");
+const [categoriaExpandida, setCategoriaExpandida] = useState(null);
   const [busqueda, setBusqueda] = useState("");
   const [seleccionado, setSeleccionado] = useState(null);
   useEffect(() => {
@@ -6695,76 +6696,162 @@ localStorage.setItem(
 
       
           
-<div className="max-w-6xl mx-auto px-5 mt-5">
 
- <div className="flex gap-3 overflow-x-auto py-4 scrollbar-hide">
 
-  {CATEGORIAS.map(c => {
-    const IconoCategoria =
-      c === "Todas"
-        ? Home
-        : c === "Productos"
-        ? Package
-        : c === "Inmuebles"
-        ? Home
-        : c === "Vehículos"
-        ? Truck
-        : c === "Farmacia"
-        ? Plus
-        : c === "Electrónica"
-        ? Smartphone
-        : c === "Servicios"
-        ? Settings
-        : c === "Empleo"
-        ? UserRound
-        : Tag;
+    <div className="max-w-6xl mx-auto px-5 mt-5">
 
-    const colorCategoria =
-      c === "Todas"
-        ? "text-[#7EE2C0] bg-[#7EE2C0]/10"
-        : c === "Productos"
-        ? "text-[#60A5FA] bg-[#60A5FA]/10"
-        : c === "Inmuebles"
-        ? "text-[#C084FC] bg-[#C084FC]/10"
-        : c === "Vehículos"
-        ? "text-[#FBBF24] bg-[#FBBF24]/10"
-        : c === "Farmacia"
-        ? "text-[#FB7185] bg-[#FB7185]/10"
-        : c === "Electrónica"
-        ? "text-[#38BDF8] bg-[#38BDF8]/10"
-        : c === "Servicios"
-        ? "text-[#A78BFA] bg-[#A78BFA]/10"
-        : c === "Empleo"
-        ? "text-[#34D399] bg-[#34D399]/10"
-        : "text-[#F59E0B] bg-[#F59E0B]/10";
+  <div className="py-3">
 
-    return (
-      <button
-        key={c}
-        onClick={() => {
-          setCategoria(c);
-          setSubcategoria("");
-        }}
-        className={`shrink-0 w-[78px] h-[88px] rounded-2xl border flex flex-col items-center justify-center gap-2 transition-all duration-200 active:scale-95 ${
-          categoria === c
-            ? "bg-[#1B6B63]/20 border-[#7EE2C0] shadow-[0_0_16px_rgba(126,226,192,0.16)]"
-            : "bg-[#151A1D] border-[#2A3033] hover:border-[#52736D]"
-        }`}
-      >
-        <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${colorCategoria}`}>
-          <IconoCategoria className="w-6 h-6" />
+    {/* CATEGORÍA EXPANDIDA */}
+    {categoriaExpandida ? (() => {
+      const c = categoriaExpandida;
+
+      const IconoCategoria =
+        c === "Productos" ? Package :
+        c === "Electrónica" ? Smartphone :
+        c === "Vehículos" ? Truck :
+        c === "Inmuebles" ? Home :
+        c === "Farmacia" ? Plus :
+        c === "Servicios" ? Settings :
+        c === "Empleo" ? UserRound : Tag;
+
+      const subcategorias =
+        ESTRUCTURA_CATEGORIAS[c]?.subcategorias || [];
+
+      return (
+        <div className="rounded-3xl border border-[#7EE2C0]/50 bg-gradient-to-br from-[#172824] to-[#121A1B] p-4 shadow-[0_8px_28px_rgba(0,0,0,0.22)] animate-in fade-in duration-200">
+
+          <div className="flex items-start justify-between gap-3">
+
+            <div className="flex items-center gap-3 min-w-0">
+
+              <div className="w-14 h-14 shrink-0 rounded-2xl bg-[#1B6B63]/35 border border-[#7EE2C0]/25 flex items-center justify-center">
+                <IconoCategoria className="w-8 h-8 text-[#7EE2C0]" />
+              </div>
+
+              <div className="min-w-0">
+                <p className="text-[10px] uppercase tracking-[0.18em] text-[#7EE2C0] font-bold">
+                  Explorar categoría
+                </p>
+
+                <h2 className="text-xl font-black text-white">
+                  {c}
+                </h2>
+
+                <p className="text-xs text-[#9AA6AD] mt-1">
+                  Elige lo que estás buscando
+                </p>
+              </div>
+
+            </div>
+
+            <button
+              onClick={() => setCategoriaExpandida(null)}
+              aria-label="Cerrar categoría"
+              className="w-10 h-10 shrink-0 rounded-full bg-[#263330] border border-[#3B514B] flex items-center justify-center text-[#B9C9C3] hover:bg-[#344740] transition active:scale-90"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+          </div>
+
+          {subcategorias.length > 0 && (
+            <div className="mt-5">
+
+              <p className="text-[11px] uppercase tracking-wider text-[#9AA6AD] font-bold mb-3">
+                Subcategorías
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+
+                <button
+                  onClick={() => setSubcategoria("")}
+                  className={`px-3.5 py-2.5 rounded-xl border text-xs font-bold transition active:scale-95 ${
+                    subcategoria === ""
+                      ? "bg-[#1B6B63] border-[#7EE2C0] text-white"
+                      : "bg-[#202629] border-[#303D40] text-[#C3CDD1]"
+                  }`}
+                >
+                  Todas
+                </button>
+
+                {subcategorias.map(sub => (
+                  <button
+                    key={sub}
+                    onClick={() => setSubcategoria(sub)}
+                    className={`px-3.5 py-2.5 rounded-xl border text-xs font-semibold transition active:scale-95 ${
+                      subcategoria === sub
+                        ? "bg-[#1B6B63] border-[#7EE2C0] text-white"
+                        : "bg-[#202629] border-[#303D40] text-[#C3CDD1] hover:border-[#52736D]"
+                    }`}
+                  >
+                    {sub}
+                  </button>
+                ))}
+
+              </div>
+            </div>
+          )}
+
         </div>
+      );
+    })() : (
 
-        <span className={`text-[11px] font-bold text-center leading-tight ${
-          categoria === c ? "text-[#7EE2C0]" : "text-[#B0BEC3]"
-        }`}>
-          {c}
-        </span>
-      </button>
-    );
-  })}
+      /* CATEGORÍAS COMPACTAS */
+      <div className="flex gap-2.5 overflow-x-auto py-2 scrollbar-hide">
 
-</div>
+        {CATEGORIAS.map(c => {
+
+          const IconoCategoria =
+            c === "Todas" ? Home :
+            c === "Productos" ? Package :
+            c === "Electrónica" ? Smartphone :
+            c === "Vehículos" ? Truck :
+            c === "Inmuebles" ? Home :
+            c === "Farmacia" ? Plus :
+            c === "Servicios" ? Settings :
+            c === "Empleo" ? UserRound : Tag;
+
+          return (
+            <button
+              key={c}
+              onClick={() => {
+                setCategoria(c);
+                setSubcategoria("");
+
+                if (c !== "Todas") {
+                  setCategoriaExpandida(c);
+                }
+              }}
+              className={`shrink-0 w-[78px] h-[88px] rounded-2xl border flex flex-col items-center justify-center gap-2 transition-all duration-200 active:scale-95 ${
+                categoria === c
+                  ? "bg-[#1B6B63]/20 border-[#7EE2C0] shadow-[0_0_16px_rgba(126,226,192,0.16)]"
+                  : "bg-[#151A1D] border-[#2A3033] hover:border-[#52736D]"
+              }`}
+            >
+
+              <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${
+                categoria === c
+                  ? "bg-[#1B6B63]/40 text-[#7EE2C0]"
+                  : "bg-[#202629] text-[#9AA6AD]"
+              }`}>
+                <IconoCategoria className="w-6 h-6" />
+              </div>
+
+              <span className={`text-[11px] font-bold text-center leading-tight ${
+                categoria === c ? "text-[#7EE2C0]" : "text-[#B0BEC3]"
+              }`}>
+                {c}
+              </span>
+
+            </button>
+          );
+        })}
+
+      </div>
+    )}
+
+  </div>
 
 </div>
 

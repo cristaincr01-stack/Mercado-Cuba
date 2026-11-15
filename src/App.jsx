@@ -675,6 +675,62 @@ const [guardandoMonedas, setGuardandoMonedas] = useState(false);
     </div>
   );
 }
+function SelectorVisual({ etiqueta, valor, opciones, alCambiar, deshabilitado = false }) {
+  const [abierto, setAbierto] = useState(false);
+
+  const opcionActual = opciones.find(op => op.value === valor);
+
+  return (
+    <div className="relative">
+      <label className="text-xs font-semibold text-[#9AA6AD]">
+        {etiqueta}
+      </label>
+
+      <button
+        type="button"
+        disabled={deshabilitado}
+        onClick={() => setAbierto(!abierto)}
+        className={`mt-2 w-full flex items-center justify-between gap-3 rounded-xl border px-4 py-3 text-sm text-left transition ${
+          deshabilitado
+            ? "border-[#252D30] bg-[#111719] text-[#69757B] opacity-60"
+            : "border-[#304448] bg-[#0D1113] text-[#F2F4F5] hover:border-[#7EE2C0]"
+        }`}
+      >
+        <span>{opcionActual?.label || "Seleccionar"}</span>
+        <ChevronDown
+          className={`w-4 h-4 shrink-0 text-[#7EE2C0] transition-transform ${
+            abierto ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+
+      {abierto && !deshabilitado && (
+        <div className="absolute left-0 right-0 top-full z-[70] mt-2 max-h-56 overflow-y-auto rounded-xl border border-[#304448] bg-[#152024] p-1.5 shadow-2xl">
+          {opciones.map(op => (
+            <button
+              key={op.value}
+              type="button"
+              onClick={() => {
+                alCambiar(op.value);
+                setAbierto(false);
+              }}
+              className={`w-full flex items-center justify-between rounded-lg px-3 py-3 text-left text-sm transition ${
+                valor === op.value
+                  ? "bg-[#1B6B63]/30 text-[#7EE2C0] font-semibold"
+                  : "text-[#D5DEDF] hover:bg-[#202D30]"
+              }`}
+            >
+              <span>{op.label}</span>
+              {valor === op.value && (
+                <Check className="w-4 h-4 text-[#7EE2C0]" />
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function Tienda() {
   const [publicarAbierto, setPublicarAbierto] = useState(false);

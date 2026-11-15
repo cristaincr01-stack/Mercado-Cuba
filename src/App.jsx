@@ -6763,9 +6763,9 @@ localStorage.setItem(
           >
 
             <IconoCategoria
-              className={`w-8 h-8 ${color.icono}`}
-              strokeWidth={2.2}
-            />
+  className={`w-6 h-6 ${color.icono}`}
+  strokeWidth={2}
+/>
 
           </div>
 

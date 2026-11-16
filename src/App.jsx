@@ -7544,182 +7544,370 @@ onChange={(e) => setPinSesion(e.target.value)}
 )}
         {misProductosAbierto && (
   <div className="fixed inset-0 bg-[#0D1113] overflow-y-auto z-50 text-[#F2F4F5]">
-    <div className="w-full min-h-screen p-5 relative">
 
-      <button
-        onClick={() => setMisProductosAbierto(false)}
-        className="absolute top-3 right-3 w-9 h-9 rounded-full bg-[#202629] text-[#9AA6AD] flex items-center justify-center hover:text-white transition"
-      >
-        <X className="w-5 h-5" />
-      </button>
+    <div className="max-w-3xl mx-auto min-h-screen px-4 pt-5 pb-8">
 
-      <h2 className="text-2xl font-bold mb-1">
-  Mis productos
-</h2>
+      {/* ENCABEZADO */}
+      <div className="flex items-center justify-between mb-6">
 
-<p className="text-sm text-[#9AA6AD] mb-5">
-  Administra tus publicaciones
-</p>
+        <div>
+          <p className="text-[10px] font-bold tracking-[0.22em] text-[#7EE2C0] mb-1">
+            MI ESPACIO COMERCIAL
+          </p>
 
-      {cargandoMisProductos ? (
-  <p className="text-center text-[#9AA6AD] py-6">
-    Cargando tus productos...
-  </p>
-) : misProductos.length === 0 ? (
-  <p className="text-center text-[#9AA6AD] py-6">
-    No tienes productos publicados todavía.
-  </p>
-) : null}
-      {misProductos.length > 0 && (
-  <div className="mt-4">
-    <h3 className="font-bold mb-2">
-      Tus productos:
-    </h3>
+          <h2 className="text-2xl font-extrabold tracking-tight">
+            Mis productos
+          </h2>
 
-    {misProductos.map((p, index) => (
-  <div
-  key={index}
-  className="bg-[#0D1113] border border-[#2A3033] rounded-2xl p-4 mb-3 shadow-sm"
->
-    {p["Foto del Producto"] && (
-  <div className="relative w-full bg-[#0B0F11] overflow-hidden">
+          <p className="text-sm text-[#9AA6AD] mt-1">
+            Administra todas tus publicaciones
+          </p>
+        </div>
 
-    <div className="aspect-[4/3] sm:aspect-[16/10] flex items-center justify-center overflow-x-auto">
-      <div className="flex gap-2 h-full">
-
-        {String(p["Foto del Producto"])
-          .split("||")
-          .map((url, fotoIndex) => {
-            const foto = url.trim();
-
-            if (!foto) return null;
-
-            let fotoDirecta = foto;
-
-            if (foto.includes("drive.google.com/file/d/")) {
-              const partes = foto.split("/d/");
-
-              if (partes[1]) {
-                const id = partes[1].split("/")[0];
-
-                fotoDirecta =
-                  "https://drive.google.com/uc?export=view&id=" + id;
-              }
-            }
-
-            return (
-              <div
-                key={fotoIndex}
-                className="h-full min-w-full flex items-center justify-center bg-[#0B0F11] overflow-hidden"
-              >
-                <img
-                  src={fotoDirecta.replace(
-                    "uc?export=view&id=",
-                    "thumbnail?sz=w1000&id="
-                  )}
-                  onError={(e) => {
-                    e.currentTarget.src = fotoDirecta;
-                  }}
-                  alt={`${p["Nombre del producto"]} - foto ${fotoIndex + 1}`}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            );
-          })}
+        <button
+          onClick={() => setMisProductosAbierto(false)}
+          className="w-11 h-11 rounded-2xl bg-[#192124] border border-[#2A393C] text-[#9AA6AD] flex items-center justify-center hover:text-white transition"
+        >
+          <X className="w-5 h-5" />
+        </button>
 
       </div>
+
+
+      {/* RESUMEN DEL INVENTARIO */}
+      {!cargandoMisProductos && misProductos.length > 0 && (
+        <div className="grid grid-cols-2 gap-3 mb-6">
+
+          <div className="col-span-2 rounded-3xl p-4 border border-[#28564F] bg-gradient-to-br from-[#173A35] to-[#122522]">
+
+            <p className="text-xs text-[#A8CFC3] font-medium">
+              Total de publicaciones
+            </p>
+
+            <div className="flex items-end justify-between mt-1">
+
+              <span className="text-4xl font-extrabold text-white">
+                {misProductos.length}
+              </span>
+
+              <span className="text-xs text-[#7EE2C0] bg-[#7EE2C0]/10 px-3 py-1.5 rounded-full">
+                Mi inventario
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div className="rounded-2xl bg-[#151D20] border border-[#293639] p-4">
+
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-2 h-2 rounded-full bg-[#7EE2C0]" />
+              <span className="text-xs text-[#9AA6AD]">En venta</span>
+            </div>
+
+            <p className="text-2xl font-bold text-[#7EE2C0]">
+              {misProductos.filter(p => p["Estado"] !== "Vendido" && p["Estado"] !== "Reservado").length}
+            </p>
+
+          </div>
+
+
+          <div className="rounded-2xl bg-[#151D20] border border-[#293639] p-4">
+
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-2 h-2 rounded-full bg-[#F5B94C]" />
+              <span className="text-xs text-[#9AA6AD]">Reservados</span>
+            </div>
+
+            <p className="text-2xl font-bold text-[#F5B94C]">
+              {misProductos.filter(p => p["Estado"] === "Reservado").length}
+            </p>
+
+          </div>
+
+
+          <div className="col-span-2 rounded-2xl bg-[#151D20] border border-[#293639] p-4">
+
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-2 h-2 rounded-full bg-[#FF746B]" />
+              <span className="text-xs text-[#9AA6AD]">Vendidos</span>
+            </div>
+
+            <p className="text-2xl font-bold text-[#FF746B]">
+              {misProductos.filter(p => p["Estado"] === "Vendido").length}
+            </p>
+
+          </div>
+
+        </div>
+      )}
+
+
+      {/* CARGA */}
+      {cargandoMisProductos && (
+        <div className="rounded-3xl border border-[#293639] bg-[#151D20] py-12 text-center">
+
+          <div className="w-9 h-9 border-2 border-[#7EE2C0] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+
+          <p className="text-sm text-[#9AA6AD]">
+            Cargando tus productos...
+          </p>
+
+        </div>
+      )}
+
+
+      {/* ESTADO VACÍO */}
+      {!cargandoMisProductos && misProductos.length === 0 && (
+
+        <div className="rounded-3xl border border-[#293639] bg-gradient-to-b from-[#182124] to-[#111719] px-6 py-12 text-center">
+
+          <div className="w-16 h-16 rounded-3xl bg-[#1B6B63]/20 border border-[#2C776B]/40 flex items-center justify-center mx-auto mb-5">
+
+            <span className="text-3xl">📦</span>
+
+          </div>
+
+          <h3 className="text-lg font-bold mb-2">
+            Tu inventario está vacío
+          </h3>
+
+          <p className="text-sm text-[#9AA6AD] leading-relaxed max-w-xs mx-auto">
+            Cuando publiques tus productos, podrás administrarlos desde aquí.
+          </p>
+
+        </div>
+
+      )}
+
+
+      {/* LISTA DE PRODUCTOS */}
+      {!cargandoMisProductos && misProductos.length > 0 && (
+
+        <div className="space-y-4">
+
+          <div className="flex items-center justify-between px-1">
+
+            <h3 className="font-bold text-base">
+              Tus publicaciones
+            </h3>
+
+            <span className="text-xs text-[#849197]">
+              {misProductos.length} productos
+            </span>
+
+          </div>
+
+
+          {misProductos.map((p, index) => (
+
+            <div
+              key={index}
+              className="overflow-hidden rounded-3xl bg-[#151D20] border border-[#293639] shadow-lg"
+            >
+
+              {/* FOTOGRAFÍAS */}
+              {p["Foto del Producto"] && (
+
+                <div className="relative w-full bg-[#0B0F11] overflow-hidden">
+
+                  <div className="aspect-[16/10] flex items-center overflow-x-auto">
+
+                    <div className="flex gap-1 h-full">
+
+                      {String(p["Foto del Producto"])
+                        .split("||")
+                        .map((url, fotoIndex) => {
+
+                          const foto = url.trim();
+
+                          if (!foto) return null;
+
+                          let fotoDirecta = foto;
+
+                          if (foto.includes("drive.google.com/file/d/")) {
+
+                            const partes = foto.split("/d/");
+
+                            if (partes[1]) {
+
+                              const id = partes[1].split("/")[0];
+
+                              fotoDirecta =
+                                "https://drive.google.com/uc?export=view&id=" + id;
+
+                            }
+
+                          }
+
+                          return (
+
+                            <div
+                              key={fotoIndex}
+                              className="h-full min-w-full flex items-center justify-center overflow-hidden"
+                            >
+
+                              <img
+                                src={fotoDirecta.replace(
+                                  "uc?export=view&id=",
+                                  "thumbnail?sz=w1000&id="
+                                )}
+                                onError={(e) => {
+                                  e.currentTarget.src = fotoDirecta;
+                                }}
+                                alt={`${p["Nombre del producto"]} - foto ${fotoIndex + 1}`}
+                                className="w-full h-full object-cover"
+                              />
+
+                            </div>
+
+                          );
+
+                        })}
+
+                    </div>
+
+                  </div>
+
+
+                  {/* INDICADOR DE ESTADO */}
+                  <div className="absolute top-3 left-3">
+
+                    {p["Estado"] === "Vendido" ? (
+
+                      <span className="bg-[#321F1F]/95 border border-[#82413D] text-[#FF8980] px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wide">
+                        VENDIDO
+                      </span>
+
+                    ) : p["Estado"] === "Reservado" ? (
+
+                      <span className="bg-[#382D19]/95 border border-[#80652D] text-[#F5C76B] px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wide">
+                        RESERVADO
+                      </span>
+
+                    ) : (
+
+                      <span className="bg-[#173A32]/95 border border-[#397F6C] text-[#7EE2C0] px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wide">
+                        EN VENTA
+                      </span>
+
+                    )}
+
+                  </div>
+
+                </div>
+
+              )}
+
+
+              {/* INFORMACIÓN */}
+              <div className="p-4">
+
+                <h4 className="text-lg font-bold text-white leading-snug">
+                  {p["Nombre del producto"]}
+                </h4>
+
+
+                <p className="text-2xl font-extrabold text-[#7EE2C0] mt-2">
+                  {p["Precio"]} <span className="text-sm font-bold">{p["Moneda"]}</span>
+                </p>
+
+
+                <div className="flex items-center gap-2 mt-3">
+
+                  <span className="text-xs text-[#9AA6AD] bg-[#202A2D] px-3 py-1.5 rounded-full">
+                    {p["Provincia"] || "Cuba"}
+                  </span>
+
+                </div>
+
+
+                {/* ACCIONES */}
+                <div className="grid grid-cols-2 gap-2 mt-5">
+
+                  <button
+                    onClick={() => abrirEdicion(p)}
+                    className="col-span-2 flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#237D73] text-white py-3 rounded-2xl text-sm font-bold transition"
+                  >
+                    Editar publicación
+                  </button>
+
+
+                  {p["Estado"] !== "Vendido" && (
+
+                    <button
+                      onClick={() => marcarReservado(p._fila)}
+                      className="flex items-center justify-center bg-[#202A2D] hover:bg-[#29383B] border border-[#39494D] text-[#F2F4F5] py-3 rounded-xl text-xs font-semibold transition"
+                    >
+                      Reservar
+                    </button>
+
+                  )}
+
+
+                  {p["Estado"] !== "Vendido" && (
+
+                    <button
+                      onClick={() => marcarVendido(p._fila)}
+                      className="flex items-center justify-center bg-[#202A2D] hover:bg-[#29383B] border border-[#39494D] text-[#F2F4F5] py-3 rounded-xl text-xs font-semibold transition"
+                    >
+                      Marcar vendido
+                    </button>
+
+                  )}
+
+
+                  {(p["Estado"] === "Vendido" || p["Estado"] === "Reservado") && (
+
+                    <button
+                      onClick={() => marcarEnVenta(p._fila)}
+                      className="col-span-2 flex items-center justify-center bg-[#173A32] hover:bg-[#205447] border border-[#397F6C] text-[#7EE2C0] py-3 rounded-xl text-xs font-bold transition"
+                    >
+                      Poner nuevamente en venta
+                    </button>
+
+                  )}
+
+
+                  <button
+                    onClick={() => eliminarProducto(p._fila)}
+                    className="col-span-2 flex items-center justify-center bg-[#291C1D] hover:bg-[#3A2325] border border-[#613638] text-[#FF8980] py-2.5 rounded-xl text-xs font-semibold transition"
+                  >
+                    Eliminar publicación
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
+
+      )}
+
+
+      {/* CERRAR */}
+      <button
+        onClick={() => {
+          setMisProductosAbierto(false);
+          setMisProductos([]);
+          setWhatsappLogin("");
+        }}
+        className="w-full mt-7 bg-[#192124] border border-[#354347] text-[#F2F4F5] font-semibold py-3.5 rounded-2xl hover:bg-[#253034] transition"
+      >
+        Cerrar
+      </button>
+
     </div>
 
-    <div className="absolute bottom-0 left-0 right-0 h-px bg-[#2A3033]" />
-
   </div>
 )}
-    {p["Estado"] === "Vendido" && (
-  <div className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold inline-block mb-2">
-    VENDIDO
-  </div>
-)}
-    <p className="font-semibold text-[#F2F4F5] text-lg">
-  {p["Nombre del producto"]}
-</p>
-
-    <p className="text-[#F2F4F5] font-bold text-xl mt-1">
-  {p["Precio"]} {p["Moneda"]}
-</p>
-
-    <div className="grid grid-cols-2 gap-2 mt-4">
-
-  <button
-    onClick={() => abrirEdicion(p)}
-    className="flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#237D73] text-white py-2.5 rounded-xl text-sm font-semibold transition"
-  >
-    Editar
-  </button>
-
-  <button
-  onClick={() => {
-    if (p["Estado"] === "Vendido") return;
-    marcarReservado(p._fila);
-  }}
-  disabled={p["Estado"] === "Vendido"}
-  className={`flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition ${
-    p["Estado"] === "Vendido"
-      ? "bg-[#151A1D] border border-[#2A3033] text-[#5C666B] cursor-not-allowed opacity-60"
-      : "bg-[#202629] hover:bg-[#2A3033] border border-[#3A474B] text-[#F2F4F5]"
-  }`}
->
-  {p["Estado"] === "Vendido" ? "Vendido" : "Reservar"}
-</button>
-
-  <button
-  onClick={() => {
-    if (p["Estado"] === "Vendido") return;
-    marcarVendido(p._fila);
-  }}
-  disabled={p["Estado"] === "Vendido"}
-  className={`flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition ${
-    p["Estado"] === "Vendido"
-      ? "bg-[#321F1F] border border-[#613030] text-[#FF6B57] cursor-not-allowed opacity-70"
-      : "bg-[#202629] hover:bg-[#2A3033] border border-[#3A474B] text-[#F2F4F5]"
-  }`}
->
-  {p["Estado"] === "Vendido" ? "Vendido" : "Vendido"}
-</button>
-
- {(p["Estado"] === "Vendido" || p["Estado"] === "Reservado") && (
-  <button
-    onClick={() => marcarEnVenta(p._fila)}
-    className="flex items-center justify-center gap-2 bg-[#1B6B63] hover:bg-[#237D73] text-white py-2.5 rounded-xl text-sm font-semibold transition"
-  >
-    Poner en venta
-  </button>
-)}
-      <button
-    onClick={() => eliminarProducto(p._fila)}
-    className="col-span-2 flex items-center justify-center gap-2 bg-[#321F1F] hover:bg-[#452323] border border-[#613030] text-[#FF6B57] py-2.5 rounded-xl text-sm font-semibold transition"
-  >
-    Eliminar
-  </button>
-
-</div>
-  </div>
-))}
-  </div>
-)}
-      <button
-  onClick={() => {
-    setMisProductosAbierto(false);
-    setMisProductos([]);
-    setWhatsappLogin("");
-  }}
-  className="w-full mt-5 bg-[#202629] border border-[#3A474B] text-[#F2F4F5] font-semibold py-3 rounded-xl hover:bg-[#2A3033] transition"
->
-  Cerrar
-</button>
-
-    </div>
-  </div>
-)}
+                
+  
       {editandoProducto && productoEditando && (
   <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50">
     <div className="bg-[#151A1D] border border-[#2A3033] rounded-3xl max-w-md w-full p-5 relative shadow-2xl">

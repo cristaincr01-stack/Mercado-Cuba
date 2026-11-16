@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck, Eye,
-EyeOff, LogOut, Heart, Bookmark, Share2, ImageIcon, ShoppingCart, Smartphone, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill, ChevronLeft, UserPlus, Sparkles, Crown, Megaphone, BriefcaseBusiness, Instagram, Facebook, Music2, Youtube, Star, User, TrendingUp, DollarSign, Euro } from "lucide-react";
+EyeOff, LogOut, Heart, Bookmark, Share2, ImageIcon, ShoppingCart, Smartphone, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill, ChevronLeft, UserPlus, Sparkles, Crown, Megaphone, BriefcaseBusiness, Instagram, Facebook, Music2, Youtube, Star, User, TrendingUp, DollarSign, Euro,  Wrench } from "lucide-react";
 window.onerror = function (mensaje, archivo, linea, columna, error) {
   document.body.innerHTML = `
     <div style="
@@ -6462,88 +6462,157 @@ const tipo =
 
     <div className="space-y-3">
 
-        <button
-  onClick={() =>
-  setTipoCuenta(tipoCuenta === "vendedor" ? "" : "vendedor")
-}
-  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
-    tipoCuenta === "vendedor"
-      ? "border-2 border-[#7EE2C0] bg-[#7EE2C0]/10"
-      : "border border-[#2A3033] bg-[#151A1D] hover:bg-[#202629]"
-  }`}
->
-          <div className="w-11 h-11 rounded-xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center">
-            <UserRound className="w-6 h-6 text-[#7EE2C0]" />
-          </div>
+      {/* COMPRADOR */}
+      <button
+        onClick={() =>
+          setTipoCuenta(tipoCuenta === "comprador" ? "" : "comprador")
+        }
+        className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
+          tipoCuenta === "comprador"
+            ? "border-2 border-[#7EE2C0] bg-[#7EE2C0]/10"
+            : "border border-[#2A3033] bg-[#151A1D] hover:bg-[#202629]"
+        }`}
+      >
+        <div className="w-11 h-11 rounded-xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center">
+          <ShoppingBag className="w-6 h-6 text-[#7EE2C0]" />
+        </div>
 
-          <div>
-            <p className="font-bold text-[#F2F4F5]">
-              Vendedor
-            </p>
-            <p className="text-xs text-[#9AA6AD]">
-              Publica y vende tus productos
-            </p>
-          </div>
-        </button>
+        <div>
+          <p className="font-bold text-[#F2F4F5]">Comprador</p>
+          <p className="text-xs text-[#9AA6AD]">
+            Descubre productos y servicios
+          </p>
+        </div>
+      </button>
 
-        <button
-onClick={() =>
-  setTipoCuenta(tipoCuenta === "tienda" ? "" : "tienda")
-}
-  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
-    tipoCuenta === "tienda"
-      ? "border-2 border-[#7EE2C0] bg-[#7EE2C0]/10"
-      : "border border-[#2A3033] bg-[#151A1D] hover:bg-[#202629]"
-  }`}
->
-          <div className="w-11 h-11 rounded-xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center">
-            <Store className="w-6 h-6 text-[#7EE2C0]" />
-          </div>
+      {/* VENDEDOR */}
+      <button
+        onClick={() =>
+          setTipoCuenta(tipoCuenta === "vendedor" ? "" : "vendedor")
+        }
+        className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
+          tipoCuenta === "vendedor"
+            ? "border-2 border-[#7EE2C0] bg-[#7EE2C0]/10"
+            : "border border-[#2A3033] bg-[#151A1D] hover:bg-[#202629]"
+        }`}
+      >
+        <div className="w-11 h-11 rounded-xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center">
+          <UserRound className="w-6 h-6 text-[#7EE2C0]" />
+        </div>
 
-          <div>
-            <p className="font-bold text-[#F2F4F5]">
-              Tienda
-            </p>
-            <p className="text-xs text-[#9AA6AD]">
-              Impulsa tu negocio dentro de MercadoCU
-            </p>
-          </div>
-        </button>
+        <div>
+          <p className="font-bold text-[#F2F4F5]">Vendedor</p>
+          <p className="text-xs text-[#9AA6AD]">
+            Publica y vende tus productos
+          </p>
+        </div>
+      </button>
 
-        <button
-  onClick={() =>
-  setTipoCuenta(tipoCuenta === "mensajero" ? "" : "mensajero")
-  }
-  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
-    tipoCuenta === "mensajero"
-      ? "border-2 border-[#7EE2C0] bg-[#7EE2C0]/10"
-      : "border border-[#2A3033] bg-[#151A1D] hover:bg-[#202629]"
-  }`}
->
-          <div className="w-11 h-11 rounded-xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center">
-            <Truck className="w-6 h-6 text-[#7EE2C0]" />
-          </div>
+      {/* TIENDA */}
+      <button
+        onClick={() =>
+          setTipoCuenta(tipoCuenta === "tienda" ? "" : "tienda")
+        }
+        className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
+          tipoCuenta === "tienda"
+            ? "border-2 border-[#7EE2C0] bg-[#7EE2C0]/10"
+            : "border border-[#2A3033] bg-[#151A1D] hover:bg-[#202629]"
+        }`}
+      >
+        <div className="w-11 h-11 rounded-xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center">
+          <Store className="w-6 h-6 text-[#7EE2C0]" />
+        </div>
 
-          <div>
-            <p className="font-bold text-[#F2F4F5]">
-              Mensajero
-            </p>
-            <p className="text-xs text-[#9AA6AD]">
-              Ofrece servicios de domicilio
-            </p>
-          </div>
-        </button>
+        <div>
+          <p className="font-bold text-[#F2F4F5]">Tienda</p>
+          <p className="text-xs text-[#9AA6AD]">
+            Impulsa tu negocio dentro de MercadoCU
+          </p>
+        </div>
+      </button>
 
-      </div>
-      {tipoCuenta && (
-  <button
-    onClick={() => setRegistroPaso(2)}
-    className="w-full mt-5 bg-[#7EE2C0] text-[#0D1113] font-bold py-3 rounded-xl hover:bg-[#9AEBD2] transition"
-  >
-    Continuar
-  </button>
-)}
-      </>
+      {/* PROFESIONAL */}
+      <button
+        onClick={() =>
+          setTipoCuenta(tipoCuenta === "profesional" ? "" : "profesional")
+        }
+        className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
+          tipoCuenta === "profesional"
+            ? "border-2 border-[#7EE2C0] bg-[#7EE2C0]/10"
+            : "border border-[#2A3033] bg-[#151A1D] hover:bg-[#202629]"
+        }`}
+      >
+        <div className="w-11 h-11 rounded-xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center">
+          <Wrench className="w-6 h-6 text-[#7EE2C0]" />
+        </div>
+
+        <div>
+          <p className="font-bold text-[#F2F4F5]">
+            Profesional de servicios
+          </p>
+          <p className="text-xs text-[#9AA6AD]">
+            Ofrece tus conocimientos y servicios
+          </p>
+        </div>
+      </button>
+
+      {/* PROMOCIONES */}
+      <button
+        onClick={() =>
+          setTipoCuenta(tipoCuenta === "promociones" ? "" : "promociones")
+        }
+        className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
+          tipoCuenta === "promociones"
+            ? "border-2 border-[#7EE2C0] bg-[#7EE2C0]/10"
+            : "border border-[#2A3033] bg-[#151A1D] hover:bg-[#202629]"
+        }`}
+      >
+        <div className="w-11 h-11 rounded-xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center">
+          <Megaphone className="w-6 h-6 text-[#7EE2C0]" />
+        </div>
+
+        <div>
+          <p className="font-bold text-[#F2F4F5]">Promociones</p>
+          <p className="text-xs text-[#9AA6AD]">
+            Promociona negocios, marcas y servicios
+          </p>
+        </div>
+      </button>
+
+      {/* MENSAJERO */}
+      <button
+        onClick={() =>
+          setTipoCuenta(tipoCuenta === "mensajero" ? "" : "mensajero")
+        }
+        className={`w-full flex items-center gap-4 p-4 rounded-2xl transition text-left ${
+          tipoCuenta === "mensajero"
+            ? "border-2 border-[#7EE2C0] bg-[#7EE2C0]/10"
+            : "border border-[#2A3033] bg-[#151A1D] hover:bg-[#202629]"
+        }`}
+      >
+        <div className="w-11 h-11 rounded-xl bg-[#7EE2C0]/10 border border-[#7EE2C0]/20 flex items-center justify-center">
+          <Truck className="w-6 h-6 text-[#7EE2C0]" />
+        </div>
+
+        <div>
+          <p className="font-bold text-[#F2F4F5]">Mensajero</p>
+          <p className="text-xs text-[#9AA6AD]">
+            Ofrece servicios de domicilio
+          </p>
+        </div>
+      </button>
+
+    </div>
+
+    {tipoCuenta && (
+      <button
+        onClick={() => setRegistroPaso(2)}
+        className="w-full mt-5 bg-[#7EE2C0] text-[#0D1113] font-bold py-3 rounded-xl hover:bg-[#9AEBD2] transition"
+      >
+        Continuar
+      </button>
+    )}
+  </>
 )}
       {registroPaso === 2 && (
   <div>
@@ -6561,10 +6630,13 @@ onClick={() =>
     </button>
 
     <h3 className="text-xl font-bold text-[#F2F4F5]">
-      {tipoCuenta === "vendedor" && "Crear cuenta de vendedor"}
-      {tipoCuenta === "tienda" && "Crear cuenta de tienda"}
-      {tipoCuenta === "mensajero" && "Crear cuenta de mensajero"}
-    </h3>
+  {tipoCuenta === "comprador" && "Crear cuenta de comprador"}
+  {tipoCuenta === "vendedor" && "Crear cuenta de vendedor"}
+  {tipoCuenta === "tienda" && "Crear cuenta de tienda"}
+  {tipoCuenta === "profesional" && "Crear cuenta profesional"}
+  {tipoCuenta === "promociones" && "Crear cuenta de promociones"}
+  {tipoCuenta === "mensajero" && "Crear cuenta de mensajero"}
+</h3>
 
     <p className="text-sm text-[#9AA6AD] mt-1 mb-5">
       Solo necesitamos unos datos básicos para comenzar.

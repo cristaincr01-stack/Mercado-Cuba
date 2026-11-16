@@ -7712,7 +7712,7 @@ onChange={(e) => setPinSesion(e.target.value)}
 
                 <div className="relative w-full bg-[#0B0F11] overflow-hidden">
 
-                  <div className="w-full aspect-[5/4] flex items-stretch overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+                  <div className="w-full h-56 flex items-stretch overflow-x-auto snap-x snap-mandatory scrollbar-hide">
 
                     <div className="flex gap-1 h-full">
 
@@ -7745,7 +7745,7 @@ onChange={(e) => setPinSesion(e.target.value)}
 
                             <div
                               key={fotoIndex}
-                              className="h-full min-w-full flex items-center justify-center overflow-hidden snap-center bg-[#151A1D]"
+                              className="h-full min-w-full w-full flex items-center justify-center overflow-hidden snap-center bg-[#151A1D]"
                             >
 
                               <img

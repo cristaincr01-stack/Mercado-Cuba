@@ -7712,7 +7712,7 @@ onChange={(e) => setPinSesion(e.target.value)}
 
                 <div className="relative w-full bg-[#0B0F11] overflow-hidden">
 
-                  <div className="aspect-[16/10] flex items-center overflow-x-auto">
+                  <div className="w-full aspect-[5/4] flex items-stretch overflow-x-auto snap-x snap-mandatory scrollbar-hide">
 
                     <div className="flex gap-1 h-full">
 
@@ -7745,7 +7745,7 @@ onChange={(e) => setPinSesion(e.target.value)}
 
                             <div
                               key={fotoIndex}
-                              className="h-full min-w-full flex items-center justify-center overflow-hidden"
+                              className="h-full min-w-full flex items-center justify-center overflow-hidden snap-center bg-[#151A1D]"
                             >
 
                               <img
@@ -7757,7 +7757,7 @@ onChange={(e) => setPinSesion(e.target.value)}
                                   e.currentTarget.src = fotoDirecta;
                                 }}
                                 alt={`${p["Nombre del producto"]} - foto ${fotoIndex + 1}`}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover object-center"
                               />
 
                             </div>

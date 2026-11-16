@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { MapPin, X, MessageCircle, Store, ChevronRight, Tag, Check, Lock, SlidersHorizontal, UserRound, LogIn, Settings, CircleHelp, Headphones, Info, Home, Search, Plus, Package, MoreHorizontal, Flame, BadgeCheck, Truck, Eye,
-EyeOff, LogOut, Heart, Share2, ImageIcon, ShoppingCart, Smartphone, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill, ChevronLeft, UserPlus, Sparkles, Crown, Megaphone, BriefcaseBusiness, Instagram, Facebook, Music2, Youtube, Star, User, TrendingUp, DollarSign, Euro } from "lucide-react";
+EyeOff, LogOut, Heart, Bookmark, Share2, ImageIcon, ShoppingCart, Smartphone, ChevronDown, LayoutGrid, ShoppingBag, Car, Pill, ChevronLeft, UserPlus, Sparkles, Crown, Megaphone, BriefcaseBusiness, Instagram, Facebook, Music2, Youtube, Star, User, TrendingUp, DollarSign, Euro } from "lucide-react";
 window.onerror = function (mensaje, archivo, linea, columna, error) {
   document.body.innerHTML = `
     <div style="
@@ -3193,7 +3193,38 @@ const [editandoProducto, setEditandoProducto] = useState(false);
 
     const datos = await respuesta.json();
 
-    setMisProductos(datos);
+// Recuperar las métricas que ya existen
+// en los productos cargados en la tienda.
+const datosConMetricas = datos.map((producto) => {
+
+  const productoTienda = productos.find(
+    (p) => String(p._fila) === String(producto._fila)
+  );
+
+  return {
+    ...producto,
+
+    visualizaciones: Number(
+      productoTienda?.visualizaciones ??
+      producto.visualizaciones ??
+      0
+    ),
+
+    meGusta: Number(
+      productoTienda?.meGusta ??
+      producto.meGusta ??
+      0
+    ),
+
+    guardados: Number(
+      productoTienda?.guardados ??
+      producto.guardados ??
+      0
+    )
+  };
+});
+
+setMisProductos(datosConMetricas);
 
   } catch (error) {
     alert("No se pudieron cargar tus productos");
@@ -7730,61 +7761,61 @@ onChange={(e) => setPinSesion(e.target.value)}
 
                     <div className="grid grid-cols-2 gap-x-2 gap-y-4">
 
-                      {/* VISUALIZACIONES */}
-                      <div className="min-w-0">
-                        <p className="text-[10px] text-[#9AA6AD] flex items-center gap-1">
-                          <span>👁️</span>
-                          Vistas
-                        </p>
+  {/* VISUALIZACIONES */}
+  <div className="min-w-0">
+    <p className="text-[10px] text-[#9AA6AD] flex items-center gap-1.5">
+      <Eye className="w-3.5 h-3.5 text-[#7EE2C0]" />
+      Vistas
+    </p>
 
-                        <p className="text-lg font-black text-[#F2F4F5]">
-                          {visualizaciones.toLocaleString("es-ES")}
-                        </p>
-                      </div>
+    <p className="text-lg font-black text-[#F2F4F5]">
+      {visualizaciones.toLocaleString("es-ES")}
+    </p>
+  </div>
 
-                      {/* ME GUSTA */}
-                      <div className="min-w-0">
-                        <p className="text-[10px] text-[#9AA6AD] flex items-center gap-1">
-                          <span>❤️</span>
-                          Me gusta
-                        </p>
+  {/* ME GUSTA */}
+  <div className="min-w-0">
+    <p className="text-[10px] text-[#9AA6AD] flex items-center gap-1.5">
+      <Heart className="w-3.5 h-3.5 text-[#FF7185]" />
+      Me gusta
+    </p>
 
-                        <p className="text-lg font-black text-[#F2F4F5]">
-                          {meGusta.toLocaleString("es-ES")}
-                        </p>
-                      </div>
+    <p className="text-lg font-black text-[#F2F4F5]">
+      {meGusta.toLocaleString("es-ES")}
+    </p>
+  </div>
 
-                      {/* GUARDADOS */}
-                      <div className="min-w-0">
-                        <p className="text-[10px] text-[#9AA6AD] flex items-center gap-1">
-                          <span>🔖</span>
-                          Guardados
-                        </p>
+  {/* GUARDADOS */}
+  <div className="min-w-0">
+    <p className="text-[10px] text-[#9AA6AD] flex items-center gap-1.5">
+      <Bookmark className="w-3.5 h-3.5 text-[#E8B75A]" />
+      Guardados
+    </p>
 
-                        <p className="text-lg font-black text-[#F2F4F5]">
-                          {guardados.toLocaleString("es-ES")}
-                        </p>
-                      </div>
+    <p className="text-lg font-black text-[#F2F4F5]">
+      {guardados.toLocaleString("es-ES")}
+    </p>
+  </div>
 
-                      {/* DESCUENTO */}
-                      <div className="min-w-0">
-                        <p className="text-[10px] text-[#9AA6AD] flex items-center gap-1">
-                          <span>🏷️</span>
-                          Descuento
-                        </p>
+  {/* DESCUENTO */}
+  <div className="min-w-0">
+    <p className="text-[10px] text-[#9AA6AD] flex items-center gap-1.5">
+      <Tag className="w-3.5 h-3.5 text-[#7EB8FF]" />
+      Descuento
+    </p>
 
-                        {descuento > 0 ? (
-                          <p className="text-lg font-black text-[#7EE2C0]">
-                            -{descuento}%
-                          </p>
-                        ) : (
-                          <p className="text-xs font-semibold text-[#69757B] mt-1">
-                            Sin descuento
-                          </p>
-                        )}
-                      </div>
+    {descuento > 0 ? (
+      <p className="text-lg font-black text-[#7EE2C0]">
+        -{descuento}%
+      </p>
+    ) : (
+      <p className="text-xs font-semibold text-[#69757B] mt-1">
+        Sin descuento
+      </p>
+    )}
+  </div>
 
-                    </div>
+</div>
 
                   </div>
 

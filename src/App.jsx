@@ -4830,7 +4830,10 @@ const tipo =
     <button
       onClick={() => {
         setMenuAbierto(false);
-        setIniciarSesionAbierto(true);
+        setIniciarSesionAbierto(false);
+setTipoCuenta("");
+setRegistroPaso(1);
+setCrearCuentaAbierto(true);
         setSesionError("");
       }}
       className="w-full flex items-center gap-3 text-left px-3 py-2 hover:bg-[#202629] rounded-xl"
@@ -7365,7 +7368,10 @@ localStorage.setItem(
         <button
           onClick={() => {
             setAccesoPublicarAbierto(false);
-            setIniciarSesionAbierto(true);
+            setIniciarSesionAbierto(false);
+setTipoCuenta("");
+setRegistroPaso(1);
+setCrearCuentaAbierto(true);
             setSesionError("");
           }}
           className="w-full flex items-center gap-4 p-4 rounded-2xl border border-[#2A3033] bg-[#202629] hover:bg-[#272E31] transition text-left"

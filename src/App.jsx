@@ -6605,13 +6605,45 @@ const tipo =
     </div>
 
     {tipoCuenta && (
-      <button
-        onClick={() => setRegistroPaso(2)}
-        className="w-full mt-5 bg-[#7EE2C0] text-[#0D1113] font-bold py-3 rounded-xl hover:bg-[#9AEBD2] transition"
-      >
-        Continuar
-      </button>
-    )}
+  <button
+    onClick={() => {
+      const nombresPerfiles = {
+        comprador: "Comprador de pruebas",
+        vendedor: "Vendedor de pruebas",
+        tienda: "Tienda de pruebas",
+        profesional: "Profesional de pruebas",
+        promociones: "Promociones de pruebas",
+        mensajero: "Mensajero de pruebas"
+      };
+
+      const usuarioPrueba = {
+        idVendedor: "TEST-" + Date.now(),
+        tipoCuenta: tipoCuenta,
+        nombre: nombresPerfiles[tipoCuenta],
+        whatsapp: "",
+        nivelVerificacion: 0,
+        estadoVerificacion: "NO_VERIFICADA",
+        inicioVerificacion: "",
+        finVerificacion: "",
+        modoPruebas: true
+      };
+
+      setUsuarioActual(usuarioPrueba);
+
+      localStorage.setItem(
+        "mercadoCU_usuario",
+        JSON.stringify(usuarioPrueba)
+      );
+
+      setRegistroError("");
+      setCrearCuentaAbierto(false);
+      setRegistroPaso(1);
+    }}
+    className="w-full mt-5 bg-[#7EE2C0] text-[#0D1113] font-bold py-3 rounded-xl hover:bg-[#9AEBD2] transition"
+  >
+    Entrar y probar este perfil
+  </button>
+)}
   </>
 )}
       {registroPaso === 2 && (
